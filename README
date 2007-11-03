@@ -1,0 +1,24 @@
+$Id: README,v 1.1.1.1 2007-11-03 12:22:23 ensonic Exp $
+
+= quick info =
+Please turn you browser to http://www.buzztard.org to learn what this project
+is about. Buzztard is free software and distributed under the LGPL.
+
+= intro =
+This module provide a set of buzzmachines that have been released as open source.
+They can be used via bml library or in all gstreamer app via bml+gstbml.
+
+= installing locally =
+You can install this module locally too.
+Use following option for ./autogen.sh or ./configure
+  --prefix=$HOME/buzztard/
+
+Add the path to the BML_PATH env var:
+  export BML_PATH=$HOME/buzztard/lib/Gear:$HOME/buzztard/lib/Gear/Effects:\
+    $HOME/buzztard/lib/Gear/Generators
+
+The native one will be installed to $prefix/lib/Gear right now.
+
+= building =
+
+
