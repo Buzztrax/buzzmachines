@@ -1,0 +1,18 @@
+2007-11-03  Stefan Kost  <ensonic@users.sf.net>
+
+	* AUTHORS:
+	* ChangeLog:
+	* Elak/Dist2/Makefile.am:
+	* Elak/Dist2/dist2.cpp:
+	* Elak/Makefile.am:
+	* Elak/SVF/Makefile.am:
+	* Elak/SVF/svf.cpp:
+	* FSM/Makefile.am:
+	* Makefile.am:
+	* NEWS:
+	* autogen.sh:
+	* common/MachineInterface.h:
+	* common/windef.h:
+	* configure.ac:
+	  Importing sources.
+
