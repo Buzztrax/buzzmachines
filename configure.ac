@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.1 2007-11-03 12:29:31 ensonic Exp $
+dnl $Id: configure.ac,v 1.2 2007-11-10 17:24:47 ensonic Exp $
 
 dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.59)
@@ -48,10 +48,15 @@ AC_SUBST(BM_LIBS)
 
 AC_CONFIG_FILES(\
   Makefile \
+  common/Makefile \
+  common/mdk/Makefile \
   Elak/Makefile \
   Elak/Dist2/Makefile \
   Elak/SVF/Makefile \
   FSM/Makefile \
+  FSM/ArpMan/Makefile \
+  FSM/Chorus/Makefile \
+  FSM/Kick/Makefile \
 )
 
 AC_OUTPUT
