@@ -3,8 +3,6 @@
 #include <math.h>
 #include <float.h>
 
-#include "../fft/Fourier.h"
-
 #include <algorithm>
 
 #ifdef __MSVC__
