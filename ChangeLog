@@ -1,3 +1,20 @@
+2007-11-13  Stefan Kost  <ensonic@users.sf.net>
+
+	* configure.ac:
+	  Also create Makefile for Infector, but not yet build by default.
+
+2007-11-13  Krzysztof Foltman  <kfoltman@users.sourceforge.net>
+
+	* FSM/Infector/Channel.cpp:
+	* FSM/Infector/Filters.cpp:
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Infector.h:
+	* FSM/Infector/Makefile.am:
+	* FSM/Infector/Track.cpp:
+	* FSM/Infector/Vegetable.cpp:
+	  Preliminary commit just to get things going, it's not like it's going
+	  to compile or anything - FFT library and the GUI are still missing.
+
 2007-11-12  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/dspchips/DSPChips.h:

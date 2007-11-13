@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.2 2007-11-10 17:24:47 ensonic Exp $
+dnl $Id: configure.ac,v 1.3 2007-11-13 14:48:46 ensonic Exp $
 
 dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.59)
@@ -56,6 +56,7 @@ AC_CONFIG_FILES(\
   FSM/Makefile \
   FSM/ArpMan/Makefile \
   FSM/Chorus/Makefile \
+  FSM/Infector/Makefile \
   FSM/Kick/Makefile \
 )
 
