@@ -1250,10 +1250,16 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
   pt->inrLFO2.SetInertia(1);
 }
 
-
+static bool TablesReady = false;
 
 void mi::Init(CMachineDataInput * const pi)
 {
+    if (!TablesReady) {
+        printf("Generating waves\n");
+        fflush(stdout);
+        GenerateWaves();
+        TablesReady = true;
+    }
 	numTracks = 1;
 
 	for (int c = 0; c < MAX_TRACKS; c++)
@@ -1351,6 +1357,9 @@ void mi::Tick()
   for (int i=0; i<38; i++)
     if (((byte *)&gval)[i]!=pParameters[i]->NoValue)
       ((byte *)&gvalAct)[i]=((byte *)&gval)[i];
+  printf("gval.wavA=%d\n", gval.vWaveformA);
+  printf("gvalAct.wavA=%d\n", gvalAct.vWaveformA);
+    fflush(stdout);
 
   inrCutoff.SetInertia(gvalAct.vFilterInertia);
   inrResonance.SetInertia(gvalAct.vFilterInertia);
@@ -1448,9 +1457,12 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 		int nTab=sizeof(tablesA)/4;
 		int nTab2=sizeof(tablesC)/4;
 		int nWavA=pmi->gvalAct.vWaveformA;
+      // added to check for garbage written into gvalAct - must diagnose why that happens later
+    assert(nWavA < 30);
 		CAnyWaveLevel *pLevel1A=(nWavA<nTab ? tablesA[nWavA] : &pmi->usertables[(nWavA-nTab)&~1])->GetTable(Frequency1);
 		CAnyWaveLevel *pLevel1B=(nWavA<nTab ? tablesB[nWavA] : &pmi->usertables[nWavA-nTab])->GetTable(Frequency1);
 		int nWavB=pmi->gvalAct.vWaveformB;
+    assert(nWavB < 30);
 		CAnyWaveLevel *pLevel2A=(nWavB<nTab ? tablesA[nWavB] : &pmi->usertables[(nWavB-nTab)&~1])->GetTable(Frequency2);
 		CAnyWaveLevel *pLevel2B=(nWavB<nTab ? tablesB[nWavB] : &pmi->usertables[nWavB-nTab])->GetTable(Frequency2);
 		CAnyWaveLevel *pLevel3;
