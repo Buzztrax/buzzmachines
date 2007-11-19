@@ -7,6 +7,9 @@
 
 #ifdef __MSVC__
 #define copysign(x,y) _copysign(x,y);
+#else
+#define __min(x,y) ((x) < (y) ? (x) : (y))
+#define __max(x,y) ((x) > (y) ? (x) : (y))
 #endif
 
 
