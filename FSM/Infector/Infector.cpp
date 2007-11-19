@@ -6,20 +6,21 @@
 // bug w seq<->buzz
 
 // lokalne/globalne LFO
-#include <windows.h>
+
+#include <windef.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "../MachineInterface.h"
+#include <MachineInterface.h>
 #pragma optimize ("a", on)
-#include "../WahMan3/DSPChips.h"
+#include "../dspchips/DSPChips.h"
 
 #include "Infector.h"
 
-static int times[]={
+static const int times[]={
   1,2,3,4,6,8,12,16,24,28,32,48,64,96,128
 };
 
@@ -52,14 +53,14 @@ CBandlimitedTable pr3table;
 CBandlimitedTable spltable;
 CBandlimitedTable smntable;
 
-char *tabnames[]={"Sine","Triangle","SuperSaw","PWM Sqr","Dbl Sqr","Hexagon","Carrot","Onion","Tomato","Cabbage","Cucumber","Octave","1-3","4-6","Regs","Saw","User A","User AA'","User B","User BB'","User C","User CC'","User D","User DD'"};
-char *stabnames[]={"Sine","Tri","Saw","SuperSaw","Sqr","Oct","1-3","4-6","Regs","Hex","FM","XT1","XT2","User A","User A'","User B","User B'","User C","User C'","User D","User D'"};
+const char *tabnames[]={"Sine","Triangle","SuperSaw","PWM Sqr","Dbl Sqr","Hexagon","Carrot","Onion","Tomato","Cabbage","Cucumber","Octave","1-3","4-6","Regs","Saw","User A","User AA'","User B","User BB'","User C","User CC'","User D","User DD'"};
+const char *stabnames[]={"Sine","Tri","Saw","SuperSaw","Sqr","Oct","1-3","4-6","Regs","Hex","FM","XT1","XT2","User A","User A'","User B","User B'","User C","User C'","User D","User D'"};
 
 CBandlimitedTable *tablesA[]={&sintable,&tritable,&spstable,&sawtable,&sqrtable,&hextable,&xt1table,&sawtable,&fm1table,&fm1table,&xt2table,&octtable,&prttable,&pr2table,&pr3table,&spltable};
 CBandlimitedTable *tablesB[]={&nultable,&tritable,&sp2table,&sawtable,&sqrtable,&hextable,&xt1table,&sqrtable,&fm1table,&sqrtable,&xt2table,&octtable,&prttable,&pr2table,&pr3table,&smntable};
 CBandlimitedTable *tablesC[]={&sintable,&tritable,&sawtable,&spstable,&sqrtable,&octtable,&prttable,&pr2table,&pr3table,&hextable,&fm1table,&xt1table,&xt2table};
 
-void GenerateWaves()
+void __attribute__ ((constructor)) GenerateWaves(void)
 {
 	int i;
 
@@ -257,6 +258,7 @@ void GenerateWaves()
   sqrtable.Make(1.1f,0.25);
 }
 
+#ifdef __MSVC__
 HINSTANCE hInstance;
 
 BOOL __stdcall DllMain(HINSTANCE hInst, DWORD dwReason, LPVOID lpReserved)
@@ -268,6 +270,7 @@ BOOL __stdcall DllMain(HINSTANCE hInst, DWORD dwReason, LPVOID lpReserved)
   }
 	return TRUE;
 }
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -992,11 +995,11 @@ DLL_EXPORTS
 void mi::GenerateUserWaves(int nSlot)
 {
 	static float CrispnessValues[4]={2.0f,1.7f,1.5f,1.3f};
-	::EnterCriticalSection(&Crit);
+	//::EnterCriticalSection(&Crit);
 	usertables[nSlot].m_pBuffer=userwaves[nSlot];
 	usertables[nSlot].m_nBufSize=2048;
 	usertables[nSlot].Make(CrispnessValues[aval.crispness],0.25f);
-	::LeaveCriticalSection(&Crit);
+	//::LeaveCriticalSection(&Crit);
 }
 
 short const *mi::GetOscillatorTab(int const waveform)
@@ -1008,14 +1011,14 @@ short const *mi::GetOscillatorTab(int const waveform)
 
 mi::mi()
 {
-	InitializeCriticalSection(&Crit);
+	//InitializeCriticalSection(&Crit);
 	GlobalVals = &gval;
 	TrackVals = tval;
 	AttrVals = (int *)&aval;
   for (int i=0; i<38; i++)
     ((byte *)&gvalAct)[i]=pParameters[i]->DefValue;
   for (int c=0; c<8; c++)
-    for (i=0; i<2048; i++)
+    for (int i=0; i<2048; i++)
   		userwaves[c][i]=0.0f,
 
   CurCutoff=64.0f;
@@ -1023,7 +1026,7 @@ mi::mi()
 
 	aval.crispness=0;
 	nCurChannel=0;
-	for (c=0; c<8; c++)
+	for (int c=0; c<8; c++)
     GenerateUserWaves(c);
   numTracks=0;
   Osc1PWM.m_nPhase=0;
@@ -1032,9 +1035,9 @@ mi::mi()
 
 mi::~mi()
 {
-	if (hwndGUI)
-    ::DestroyWindow(hwndGUI);
-  DeleteCriticalSection(&Crit);
+  //if (hwndGUI)
+  //  ::DestroyWindow(hwndGUI);
+  //DeleteCriticalSection(&Crit);
 }
 
 char const *mi::DescribeValue(int const param, int const value)
@@ -1175,7 +1178,7 @@ void mi::Stop()
 {
   for (int i=0; i<MAX_TRACKS; i++)
     Tracks[i].note=NOTE_OFF;
-  for (i=0; i<MAX_CHANNELS; i++)
+  for (int i=0; i<MAX_CHANNELS; i++)
 	{
     Channels[i].AmpEnv.NoteOffFast();
     Channels[i].FilterEnv.NoteOffFast();
@@ -1253,21 +1256,13 @@ void mi::Init(CMachineDataInput * const pi)
 {
 	numTracks = 1;
 
-	char buf[256];
-
-	GetModuleFileName(NULL,buf,256);
-	int nLen=strlen(buf);
-	int nProt=100;
-	if (nLen<0 || stricmp(buf+nLen-8,"buzz.exe"))
-		nProt=252;
-
 	for (int c = 0; c < MAX_TRACKS; c++)
   {
     Tracks[c].pmi=this;
     InitTrack(c);
   }
 
-	for (c = 0; c < MAX_CHANNELS; c++)
+	for (int c = 0; c < MAX_CHANNELS; c++)
   {
     Channels[c].Reset();
     Channels[c].Init();
@@ -1285,8 +1280,6 @@ void mi::Init(CMachineDataInput * const pi)
 	if (pi)
 		pi->Read(buf,1024);
 		*/
-	if (nProt!=100)
-		tablesA[0]=NULL;
   if (pi)
   {
     int nVersion;
@@ -1301,12 +1294,6 @@ void mi::Init(CMachineDataInput * const pi)
     else
       pCB->MessageBox("Unsupported waveform data format - download a newer version");
   }
-
-	if (nProt!=100)
-	{
-		::MessageBox(NULL,"This software can be used in Jeskola Buzz freeware program ONLY.","",MB_OK);
-		::TerminateProcess(::GetCurrentProcess(),0);
-	}
 }
 
 void mi::AttributesChanged()
@@ -1532,7 +1519,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 			{
 				if (fSubOsc)
 				{
-					for (i=s0; i<c0; i++)
+					for (int i=s0; i<c0; i++)
 					{
 						amp=pEnv->Next()*vel;
 
@@ -1554,7 +1541,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 				}
 				else
 				{
-					for (i=s0; i<c0; i++)
+					for (int i=s0; i<c0; i++)
 					{
 						amp=pEnv->Next()*vel;
 
@@ -1576,7 +1563,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 			{
 				if (fSubOsc)
 				{
-					for (i=s0; i<c0; i++)
+					for (int i=s0; i<c0; i++)
 					{
 						amp=pEnv->Next()*vel;
 
@@ -1597,7 +1584,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 				}
 				else
 				{
-					for (i=s0; i<c0; i++)
+					for (int i=s0; i<c0; i++)
 					{
 						amp=pEnv->Next()*vel;
 						nPWM1=nPWM1Offset+nCoeff1*(*pPWM1++);
@@ -1616,7 +1603,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 			{
 				if (fSubOsc)
 				{
-					for (i=s0; i<c0; i++)
+					for (int i=s0; i<c0; i++)
 					{
 						amp=pEnv->Next()*vel;
 
@@ -1636,7 +1623,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 				}
 				else
 				{
-					for (i=s0; i<c0; i++)
+					for (int i=s0; i<c0; i++)
 					{
 						amp=pEnv->Next()*vel;
 						nPWM1=nPWM1Offset+nCoeff1*(*pPWM1++);
@@ -1703,9 +1690,9 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
   inrLFO2Dest1.Process(gvalAct.vLFO2Amount1,numsamples); // LFO2 -> Cutoff
   inrLFO2Dest2.Process(gvalAct.vLFO2Amount2,numsamples); // LFO2 -> Resonance
 
-  ::EnterCriticalSection(&Crit); 
+  //::EnterCriticalSection(&Crit); 
   bool donesth=false;
-  for (i=0; i<numsamples; i++)
+  for (int i=0; i<numsamples; i++)
     psamples[i]=0.0;
 
   int so=0;
@@ -1718,25 +1705,25 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 			if (wt<end-so)
 				end=so+wt;
 		}
-		for (i=0; i<numTracks; i++)
+		for (int i=0; i<numTracks; i++)
 		{
 			Tracks[i].UseWakeupTime(end-so);
 	    Tracks[i].DoLFO(this,numsamples);
 		}
-		for (i=0; i<MAX_CHANNELS; i++)
+		for (int i=0; i<MAX_CHANNELS; i++)
 			donesth |= DoWorkChannel(psamples+so, this, end-so, &Channels[i]);
-		for (i=0; i<numTracks; i++)
+		for (int i=0; i<numTracks; i++)
 			Tracks[i].DoWakeup(this);
 		so=end;
 	}
-	for (i=0; i<numsamples; i++)
+	for (int i=0; i<numsamples; i++)
 	{
 		if (!(psamples[i]<4000000 && psamples[i]>-4000000))
 		{
 			psamples[i]=0.0;
 		}
 	}
-	::LeaveCriticalSection(&Crit);
+	//::LeaveCriticalSection(&Crit);
 	return donesth;
 }
 
@@ -1778,7 +1765,7 @@ void mi::MidiNote(int const channel, int const value, int const velocity)
     if (nPlaybackTrack==-1)
     {
       float fAmplitude=9e9f;
-      for (i=0; i<numTracks; i++)
+      for (int i=0; i<numTracks; i++)
 			{
 				CChannel *chn=Tracks[i].Chn();
         if (!chn || chn->AmpEnv.m_fLast<fAmplitude)
@@ -1833,7 +1820,7 @@ void mi::Reset()
 {
   for (int i=0; i<numTracks; i++)
     Tracks[i].Reset();
-  for (i=0; i<MAX_CHANNELS; i++)
+  for (int i=0; i<MAX_CHANNELS; i++)
     Channels[i].Reset();
 }
 
@@ -1841,11 +1828,14 @@ void mi::ClearFX()
 {
   for (int i=0; i<numTracks; i++)
     Tracks[i].ClearFX();
-  for (i=0; i<MAX_CHANNELS; i++)
+  for (int i=0; i<MAX_CHANNELS; i++)
     Channels[i].ClearFX();
 }
 
-#include "InfGui.inl"
+//#include "InfGui.inl"
+void mi::Command(int const i)
+{
+}
 
 #pragma optimize ("", on)
 
