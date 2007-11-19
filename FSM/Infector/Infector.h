@@ -216,7 +216,6 @@ public:
 	CTrack Tracks[MAX_TRACKS+1];
   float CurCutoff, CurRes;
   avals aval;
-	pthread_mutex_t crit;
 
 	CBandlimitedTable usertables[8];
   float userwaves[8][2048];
