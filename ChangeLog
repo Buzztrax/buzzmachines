@@ -1,3 +1,15 @@
+2007-11-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Infector/Channel.cpp:
+	* FSM/Infector/Filters.cpp:
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Track.cpp:
+	* FSM/Infector/Vegetable.cpp:
+	* FSM/Makefile.am:
+	* FSM/dspchips/DSPChips.h:
+	  Cleanup the sources a bit. Try to free the generated wave, but
+	  disabled now as valgrind does not yet like it.
+
 2007-11-19  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Infector/Infector.cpp:

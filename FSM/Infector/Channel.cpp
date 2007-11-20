@@ -1,7 +1,7 @@
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "../../common/MachineInterface.h"
+#include <MachineInterface.h>
 #include "../dspchips/DSPChips.h"
 
 #include "Infector.h"

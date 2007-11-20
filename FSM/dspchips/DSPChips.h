@@ -1095,6 +1095,7 @@ public:
   int m_nBufSize;
 
   CBandlimitedTable();
+  ~CBandlimitedTable();
   CAnyWaveLevel *GetTable(float fScanRate);// fScanRate = 1.0f dla czêstotliwoœci jeden okres/próbkê
   void Make(float fMultiplyFactor, float fMaxScanRate, float fCrispFactor=-1);
 

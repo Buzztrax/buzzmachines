@@ -8,7 +8,7 @@
 // lokalne/globalne LFO
 #include <math.h>
 #include <float.h>
-#include "../../common/MachineInterface.h"
+#include <MachineInterface.h>
 #pragma optimize ("a", on)
 #include "../dspchips/DSPChips.h"
 

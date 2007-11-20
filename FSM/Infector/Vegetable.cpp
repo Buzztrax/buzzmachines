@@ -1,6 +1,6 @@
 #include <math.h>
 #include <float.h>
-#include "../../common/MachineInterface.h"
+#include <MachineInterface.h>
 #include "../dspchips/DSPChips.h"
 #include <complex>
 
@@ -84,6 +84,15 @@ CBandlimitedTable::CBandlimitedTable()
   m_nBufSize=0;
 }
 
+CBandlimitedTable::~CBandlimitedTable()
+{
+/*
+  for (int i=0; i<m_nLevels; i++)
+    delete []m_levels[i].m_pData;
+  m_nLevels=0;
+*/
+}
+
 CAnyWaveLevel *CBandlimitedTable::GetTable(float fScanRate)
 {
   for (int i=0; i<m_nLevels; i++)
@@ -103,8 +112,8 @@ static ZOSFFT<11> fft;
 
 void CBandlimitedTable::Make(float fMultiplyFactor, float fMaxScanRate, float fCrispFactor)
 {
-	if (fCrispFactor==-1)
-		fCrispFactor=2.0f/fMultiplyFactor;
+  if (fCrispFactor==-1)
+    fCrispFactor=2.0f/fMultiplyFactor;
   for (int i=0; i<m_nLevels; i++)
     delete []m_levels[i].m_pData;
   m_nLevels=0;
@@ -118,60 +127,60 @@ void CBandlimitedTable::Make(float fMultiplyFactor, float fMaxScanRate, float fC
     m_levels[0].m_pData[i]=m_pBuffer[i];
   float qf=0.25f;
   m_levels[0].m_fMaxScanRate=qf/nSize;
-	
-	pOut[nSize]=pOut[0];
-	pOut[nSize+1]=pOut[1];
-	pOut[nSize+2]=pOut[2];
-	pOut[nSize+3]=pOut[3];
+  
+  pOut[nSize]=pOut[0];
+  pOut[nSize+1]=pOut[1];
+  pOut[nSize+2]=pOut[2];
+  pOut[nSize+3]=pOut[3];
 
-	static ZComplex base[2048], spec[2048], speclim[2048], genwave[2048];
-	for (int i=0; i<2048; i++)
-		base[i]=m_pBuffer[i];
+  static ZComplex base[2048], spec[2048], speclim[2048], genwave[2048];
+  for (int i=0; i<2048; i++)
+    base[i]=m_pBuffer[i];
 
-	fft.FFT(base, spec, false);
+  fft.FFT(base, spec, false);
 
   m_nLevels=1;
-	
-	int nLastTable=0;
+  
+  int nLastTable=0;
 
-	int nAllocs=0;
+  int nAllocs=0;
 
   while(m_levels[m_nLevels-1].m_fMaxScanRate<=fMaxScanRate)
   {
-		CAnyWaveLevel &lev=m_levels[m_nLevels];
-		lev.m_fMaxScanRate=m_levels[m_nLevels-1].m_fMaxScanRate*fMultiplyFactor;
-		int nCount=nSize/2, nLim=nCount/2;
-		if (nCount<4) break;
-		nAllocs+=nCount;
+    CAnyWaveLevel &lev=m_levels[m_nLevels];
+    lev.m_fMaxScanRate=m_levels[m_nLevels-1].m_fMaxScanRate*fMultiplyFactor;
+    int nCount=nSize/2, nLim=nCount/2;
+    if (nCount<4) break;
+    nAllocs+=nCount;
 
     lev.m_nSize=nCount;
-		lev.m_nBits=(int)(log(nCount)/log(2)+0.5);
+    lev.m_nBits=(int)(log(nCount)/log(2)+0.5);
     lev.m_fMultiplier=(float)pow(2.0,-31+lev.m_nBits);
 
     float *pIn=m_levels[nLastTable].m_pData;
     float *pOut=m_levels[m_nLevels].m_pData=new float[nCount+4];
-		int nSize1=m_levels[nLastTable].m_nSize-1;
-		int scale=(nSize1+1)/nCount;
+    int nSize1=m_levels[nLastTable].m_nSize-1;
+    int scale=(nSize1+1)/nCount;
 
-		int nFirstSample=(int)(fCrispFactor*nSize*(m_levels[nLastTable].m_fMaxScanRate/lev.m_fMaxScanRate));
-		for (int i=0; i<nSize; i++)
-			if (i>=__min(nFirstSample,nLim))
-				speclim[i]=0.0;
-			else
-				speclim[i]=spec[i];
+    int nFirstSample=(int)(fCrispFactor*nSize*(m_levels[nLastTable].m_fMaxScanRate/lev.m_fMaxScanRate));
+    for (int i=0; i<nSize; i++)
+      if (i>=__min(nFirstSample,nLim))
+        speclim[i]=0.0;
+      else
+        speclim[i]=spec[i];
 
-		fft.FFT(speclim, genwave, true);
+    fft.FFT(speclim, genwave, true);
 
-		for (int i=0; i<nCount; i++)
-			pOut[i]=genwave[i*nSize/nCount].real();
+    for (int i=0; i<nCount; i++)
+      pOut[i]=genwave[i*nSize/nCount].real();
 
-		pOut[nCount]=pOut[0];
-		pOut[nCount+1]=pOut[1];
-		pOut[nCount+2]=pOut[2];
-		pOut[nCount+3]=pOut[3];
-		if (nCount<(nSize1>>1))
-			nLastTable=m_nLevels;
-		m_nLevels++;
+    pOut[nCount]=pOut[0];
+    pOut[nCount+1]=pOut[1];
+    pOut[nCount+2]=pOut[2];
+    pOut[nCount+3]=pOut[3];
+    if (nCount<(nSize1>>1))
+      nLastTable=m_nLevels;
+    m_nLevels++;
   }
 } 
 
