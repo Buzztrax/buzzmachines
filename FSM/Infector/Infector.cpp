@@ -573,6 +573,18 @@ CMachineParameter const paraFilterShape =
   100
 };
 
+CMachineParameter const paraFilterInertia = 
+{ 
+  pt_byte,                    // type
+  " - Inertia",
+  "Filter Intertia",          // description
+  0,                          // MinValue  
+  240,                          // MaxValue
+  255,                    // NoValue
+  MPF_STATE,                    // Flags // MPF_STATE
+  90
+};
+
 CMachineParameter const paraFilterTrack = 
 { 
   pt_byte,                    // type
@@ -729,18 +741,6 @@ CMachineParameter const paraAmpRelease =
   20
 };
 
-CMachineParameter const paraFilterInertia = 
-{ 
-  pt_byte,                    // type
-  " - Inertia",
-  "Filter Intertia",          // description
-  0,                          // MinValue  
-  240,                          // MaxValue
-  255,                    // NoValue
-  MPF_STATE,                    // Flags // MPF_STATE
-  90
-};
-
 CMachineParameter const paraLFOMode = 
 { 
   pt_byte,                    // type
@@ -753,6 +753,7 @@ CMachineParameter const paraLFOMode =
   0
 };
 
+#if 0
 CMachineParameter const paraLFOPhase = 
 { 
   pt_byte,                    // type
@@ -764,6 +765,7 @@ CMachineParameter const paraLFOPhase =
   0,                    // Flags // MPF_STATE
   0
 };
+#endif
 
 CMachineParameter const paraNote = 
 { 
@@ -773,7 +775,7 @@ CMachineParameter const paraNote =
   0,                          // MinValue  
   240,                          // MaxValue
   0,                    // NoValue
-  0,                    // Flags // MPF_STATE
+  0,                    // Flags
   0
 };
 
@@ -809,7 +811,7 @@ CMachineParameter const paraCommand1 =
   0,                          // MinValue  
   255,                          // MaxValue
   255,                    // NoValue
-  0,                    // Flags // MPF_STATE
+  0,                    // Flags
   0
 };
 
@@ -821,7 +823,7 @@ CMachineParameter const paraArgument1 =
   0,                          // MinValue  
   65535,                          // MaxValue
   0,                    // NoValue
-  0,                    // Flags // MPF_STATE
+  0,                    // Flags
   0
 };
 
@@ -833,7 +835,7 @@ CMachineParameter const paraCommand2 =
   0,                          // MinValue  
   255,                          // MaxValue
   255,                    // NoValue
-  0,                    // Flags // MPF_STATE
+  0,                    // Flags
   0
 };
 
@@ -845,10 +847,11 @@ CMachineParameter const paraArgument2 =
   0,                          // MinValue  
   65535,                          // MaxValue
   0,                    // NoValue
-  0,                    // Flags // MPF_STATE
+  0,                    // Flags
   0
 };
 
+#if 0
 CMachineParameter const paraVibrato2 = 
 { 
   pt_byte,                    // type
@@ -860,6 +863,7 @@ CMachineParameter const paraVibrato2 =
   0,                    // Flags // MPF_STATE
   0
 };
+#endif
 
 CMachineParameter const *pParameters[] = 
 { 
@@ -896,7 +900,7 @@ CMachineParameter const *pParameters[] =
   &paraLFOShape,
 
   &paraLFO2Rate,
-  &paraLFO2Amount1, 
+  &paraLFO2Amount1,     // 30
   &paraLFO2Amount2,
   &paraLFO2Shape,
 
@@ -906,6 +910,7 @@ CMachineParameter const *pParameters[] =
   &paraAmpRelease,
 
   &paraLFOMode,
+  // = 38
 
   &paraNote,       
   &paraVelocity,     
@@ -914,6 +919,7 @@ CMachineParameter const *pParameters[] =
   &paraArgument1,
   &paraCommand2,
   &paraArgument2,
+  // = 7
 };
 
 CMachineAttribute const attrMIDIChannel = 
@@ -1035,6 +1041,7 @@ short const *mi::GetOscillatorTab(int const waveform)
 mi::mi()
 {
   //InitializeCriticalSection(&Crit);
+  printf("%s: GlobalVals :%p\n",__PRETTY_FUNCTION__,&gval);
   GlobalVals = &gval;
   TrackVals = tval;
   AttrVals = (int *)&aval;
@@ -1280,7 +1287,7 @@ static bool TablesReady = false;
 void mi::Init(CMachineDataInput * const pi)
 {
     if (!TablesReady) {
-        printf("Generating waves\n");
+        printf("%s: Generating waves\n",__PRETTY_FUNCTION__);
         fflush(stdout);
         GenerateWaves();
         TablesReady = true;
@@ -1382,9 +1389,10 @@ void mi::Tick()
   for (int i=0; i<38; i++)
     if (((byte *)&gval)[i]!=pParameters[i]->NoValue)
       ((byte *)&gvalAct)[i]=((byte *)&gval)[i];
-  printf("gval.wavA=%d\n", gval.vWaveformA);
-  printf("gvalAct.wavA=%d\n", gvalAct.vWaveformA);
-    fflush(stdout);
+
+  printf("%s: gval.wavA=%d\n",__PRETTY_FUNCTION__,gval.vWaveformA);
+  printf("%s: gvalAct.wavA=%d\n",__PRETTY_FUNCTION__, gvalAct.vWaveformA);
+  fflush(stdout);
 
   inrCutoff.SetInertia(gvalAct.vFilterInertia);
   inrResonance.SetInertia(gvalAct.vFilterInertia);

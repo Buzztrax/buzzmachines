@@ -1,3 +1,9 @@
+2007-11-23  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Infector.h:
+	  Some more debug logging and cleanups.
+
 2007-11-21  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Infector/Channel.cpp:
