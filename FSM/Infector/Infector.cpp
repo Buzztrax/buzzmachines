@@ -63,6 +63,8 @@ CBandlimitedTable *tablesC[]={&sintable,&tritable,&sawtable,&spstable,&sqrtable,
 void __attribute__ ((constructor)) GenerateWaves(void)
 {
   int i;
+  
+  printf("%s: Generating waves\n",__PRETTY_FUNCTION__);
 
   for (i=0; i<8193; i++)
   {
@@ -260,7 +262,7 @@ void __attribute__ ((constructor)) GenerateWaves(void)
 
 void __attribute__ ((destructor)) ReleaseWaves(void)
 {
-/*
+/* not needed as they are globals and they're getting destroyed automatically
   delete &sintable;
   delete &sawtable;
   delete &spstable;
@@ -1045,8 +1047,11 @@ mi::mi()
   GlobalVals = &gval;
   TrackVals = tval;
   AttrVals = (int *)&aval;
-  for (int i=0; i<38; i++)
+  for (int i=0; i<38; i++) {
     ((byte *)&gvalAct)[i]=pParameters[i]->DefValue;
+    if(i<5) printf("%s: GlobalVal[%02d] :%d\n",__PRETTY_FUNCTION__, i, ((byte *)&gvalAct)[i]);
+  }
+  fflush(stdout);
   for (int c=0; c<8; c++)
     for (int i=0; i<2048; i++)
       userwaves[c][i]=0.0f,
@@ -1065,6 +1070,7 @@ mi::mi()
 
 mi::~mi()
 {
+  printf("%s: GlobalVals :%p\n",__PRETTY_FUNCTION__,&gval);
   //if (hwndGUI)
   //  ::DestroyWindow(hwndGUI);
   //DeleteCriticalSection(&Crit);
@@ -1282,16 +1288,8 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
   pt->inrLFO2.SetInertia(1);
 }
 
-static bool TablesReady = false;
-
 void mi::Init(CMachineDataInput * const pi)
 {
-    if (!TablesReady) {
-        printf("%s: Generating waves\n",__PRETTY_FUNCTION__);
-        fflush(stdout);
-        GenerateWaves();
-        TablesReady = true;
-    }
   numTracks = 1;
 
   for (int c = 0; c < MAX_TRACKS; c++)
@@ -1313,11 +1311,6 @@ void mi::Init(CMachineDataInput * const pi)
     "\n\nIf you don't like that, send me some bug reports or suggestions\nfor improvements to kf@cw.pl...");
   pCB->MessageBox("And this message box is dedicated to DJLaser ! :-)");
   */
-/*
-  char buf[1024];
-  if (pi)
-    pi->Read(buf,1024);
-    */
   if (pi)
   {
     int nVersion;
@@ -1330,7 +1323,7 @@ void mi::Init(CMachineDataInput * const pi)
         GenerateUserWaves(i);
     }
     else
-      pCB->MessageBox("Unsupported waveform data format - download a newer version");
+      pCB->MessageBox("Unsupported user waveform data format - download a newer version");
   }
 }
 
@@ -1386,12 +1379,12 @@ void mi::ResetTrack(int const i)
 
 void mi::Tick()
 {
-  for (int i=0; i<38; i++)
+  printf("%s: GlobalVals :%p\n",__PRETTY_FUNCTION__,&gval);
+  for (int i=0; i<38; i++) {
     if (((byte *)&gval)[i]!=pParameters[i]->NoValue)
       ((byte *)&gvalAct)[i]=((byte *)&gval)[i];
-
-  printf("%s: gval.wavA=%d\n",__PRETTY_FUNCTION__,gval.vWaveformA);
-  printf("%s: gvalAct.wavA=%d\n",__PRETTY_FUNCTION__, gvalAct.vWaveformA);
+    if(i<5) printf("%s: GlobalVal[%02d] :%d, %d\n",__PRETTY_FUNCTION__, i, ((byte *)&gvalAct)[i],((byte *)&gval)[i]);
+  }
   fflush(stdout);
 
   inrCutoff.SetInertia(gvalAct.vFilterInertia);

@@ -86,11 +86,9 @@ CBandlimitedTable::CBandlimitedTable()
 
 CBandlimitedTable::~CBandlimitedTable()
 {
-/*
   for (int i=0; i<m_nLevels; i++)
     delete []m_levels[i].m_pData;
   m_nLevels=0;
-*/
 }
 
 CAnyWaveLevel *CBandlimitedTable::GetTable(float fScanRate)
