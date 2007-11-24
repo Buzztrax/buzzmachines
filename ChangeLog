@@ -1,3 +1,9 @@
+2007-11-24  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Infector.h:
+	  Enlarge fixed PWMBuffers. Remove debug log.
+
 2007-11-23  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Infector/Infector.cpp:
