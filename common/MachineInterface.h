@@ -17,6 +17,7 @@ typedef unsigned long dword;
 
 double const PI = 3.14159265358979323846;
 
+// max number of samples in work()
 #define MAX_BUFFER_LENGTH		256			// in number of samples
 
 // machine types

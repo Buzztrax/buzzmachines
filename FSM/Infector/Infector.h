@@ -220,9 +220,8 @@ public:
   CBandlimitedTable usertables[8];
   float userwaves[8][2048];
   CWaveSource usersources[8];
-  // FIXME. this depends on bmp and ticks_per_beat
-  int PWMBuffer1[16384];
-  int PWMBuffer2[16384];
+  int PWMBuffer1[MAX_BUFFER_LENGTH];
+  int PWMBuffer2[MAX_BUFFER_LENGTH];
   CPWMLFO Osc1PWM, Osc2PWM;
 
 private:

@@ -1,3 +1,13 @@
+2007-11-25  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Infector.h:
+	  Use MAX_BUFFER_LENGTH in code. Remove some assert that where added to
+	  track the problem but add one for numsamples.
+
+	* common/MachineInterface.h:
+	  Comment what MAX_BUFFER_LENGTH is used for.
+
 2007-11-24  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Infector/Infector.cpp:

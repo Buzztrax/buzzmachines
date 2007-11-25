@@ -1476,12 +1476,9 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
     int nTab=sizeof(tablesA)/4;
     int nTab2=sizeof(tablesC)/4;
     int nWavA=pmi->gvalAct.vWaveformA;
-      // added to check for garbage written into gvalAct - must diagnose why that happens later
-    assert(nWavA < 30);
     CAnyWaveLevel *pLevel1A=(nWavA<nTab ? tablesA[nWavA] : &pmi->usertables[(nWavA-nTab)&~1])->GetTable(Frequency1);
     CAnyWaveLevel *pLevel1B=(nWavA<nTab ? tablesB[nWavA] : &pmi->usertables[nWavA-nTab])->GetTable(Frequency1);
     int nWavB=pmi->gvalAct.vWaveformB;
-    assert(nWavB < 30);
     CAnyWaveLevel *pLevel2A=(nWavB<nTab ? tablesA[nWavB] : &pmi->usertables[(nWavB-nTab)&~1])->GetTable(Frequency2);
     CAnyWaveLevel *pLevel2B=(nWavB<nTab ? tablesB[nWavB] : &pmi->usertables[nWavB-nTab])->GetTable(Frequency2);
     CAnyWaveLevel *pLevel3;
@@ -1705,6 +1702,8 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
 
 bool mi::Work(float *psamples, int numsamples, int const mode)
 {
+  assert(numsamples <= MAX_BUFFER_LENGTH);
+  
   Osc1PWM.Set(300*gvalAct.vPWMRateA,__max(1<<31,int(65535*120/(gvalAct.vPWMRateA+120)*gvalAct.vPWMRangeA/240)));
   Osc2PWM.Set(300*gvalAct.vPWMRateB,__max(1<<31,int(65535*120/(gvalAct.vPWMRateB+120)*gvalAct.vPWMRangeB/240)));
   for (int i=0; i<numsamples; i++)
