@@ -1,3 +1,17 @@
+2007-12-09  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/ArpMan/ArpMan.cpp:
+	* FSM/Chorus/Chorus.cpp:
+	* FSM/Infector/Channel.cpp:
+	* FSM/Infector/Filters.cpp:
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Infector.h:
+	* FSM/Infector/Track.cpp:
+	* FSM/Infector/Vegetable.cpp:
+	* FSM/Kick/Kick.cpp:
+	* FSM/dspchips/DSPChips.h:
+	  Add license headers.
+
 2007-11-25  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Infector/Infector.cpp:

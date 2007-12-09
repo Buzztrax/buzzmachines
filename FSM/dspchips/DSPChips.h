@@ -1,3 +1,24 @@
+/* $Id$
+ *
+ * buzzmachines
+ * Copyright (C) 2007 Krzysztof Foltman  <kfoltman@users.sourceforge.net>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public License
+ * as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 #include <stdio.h>
 #include <malloc.h>
 #include <math.h>
@@ -336,7 +357,7 @@ public:
 	void SetResonantLP(float dCutoff, float Q, float dSampleRate)
 	{
 		float a=(float)PreWarp2(dCutoff, dSampleRate);
-		// wspó³czynniki filtru analogowego
+		// wspï¿½czynniki filtru analogowego
 		float B=(float)(sqrt(Q*Q-1)/Q);
 		float A=(float)(2*B*(1-B));
 		SetBilinear(1, 0, 0, 1, A*a, B*a*a);
@@ -344,7 +365,7 @@ public:
 	void SetResonantHP(float dCutoff, float Q, float dSampleRate) // DOESN'T WORK !!!!!!!!
 	{
 		float a=(float)PreWarp2((dSampleRate/2)/dCutoff, dSampleRate);
-		// wspó³czynniki filtru analogowego
+		// wspï¿½czynniki filtru analogowego
 		float B=(float)(sqrt(Q*Q-1)/Q);
 		float A=(float)(2*B*(1-B));
 		SetBilinear(0, 0, 1, B*a*a, A*a, 1);
@@ -685,7 +706,7 @@ public:
 	{
     float fValue=(float)((m_nState<=0)?(m_fStart+m_nTime*m_fSeries):(m_fStart*pow(m_fSeries,m_nTime)));
 		m_nTime+=nDeltaTime;
-		if (m_nState==-1 && m_nTime>=m_nStageTime) // skoñczy³ siê release
+		if (m_nState==-1 && m_nTime>=m_nStageTime) // skoï¿½czyï¿½ siï¿½ release
 		{
 			m_nState=4;
 			m_fStart=0;
@@ -693,7 +714,7 @@ public:
 			m_nTime=0;
 			m_nStageTime=1000000;
 		}
-		if (m_nState==0 && m_nTime>=m_nStageTime) // skoñczy³ siê attack
+		if (m_nState==0 && m_nTime>=m_nStageTime) // skoï¿½czyï¿½ siï¿½ attack
     {
 			m_nTime-=m_nStageTime;
 			m_nState=1;
@@ -702,7 +723,7 @@ public:
 			m_fSeries=pow((m_fSustLevel)/1.0,1.0/m_nDecayTime);
 			// if (m_fSeries>0.9999) m_fSeries=0.9999;
     }
-    if (m_nState==1 && m_nTime>=m_nStageTime) // skoñczy³ siê decay zaczyna siê sustain
+    if (m_nState==1 && m_nTime>=m_nStageTime) // skoï¿½czyï¿½ siï¿½ decay zaczyna siï¿½ sustain
     {
       m_nTime-=m_nStageTime;
       m_nState=2;
@@ -710,7 +731,7 @@ public:
       m_fSeries=1.0;
       m_nStageTime=m_nSustainTime;
     }
-    if (m_nState==2 && m_nTime>=m_nStageTime) // skoñczy³ siê sustain zaczyna siê release
+    if (m_nState==2 && m_nTime>=m_nStageTime) // skoï¿½czyï¿½ siï¿½ sustain zaczyna siï¿½ release
     {
 			m_nTime-=m_nStageTime;
 			m_nState=3;
@@ -1096,7 +1117,7 @@ public:
 
   CBandlimitedTable();
   ~CBandlimitedTable();
-  CAnyWaveLevel *GetTable(float fScanRate);// fScanRate = 1.0f dla czêstotliwoœci jeden okres/próbkê
+  CAnyWaveLevel *GetTable(float fScanRate);// fScanRate = 1.0f dla czï¿½stotliwoï¿½ci jeden okres/prï¿½bkï¿½
   void Make(float fMultiplyFactor, float fMaxScanRate, float fCrispFactor=-1);
 
 protected:

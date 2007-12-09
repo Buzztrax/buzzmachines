@@ -1,7 +1,28 @@
+/* $Id$
+ *
+ * buzzmachines
+ * Copyright (C) 2007 Krzysztof Foltman  <kfoltman@users.sourceforge.net>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public License
+ * as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
+
 // globalny tuning
-// zakres dla suwaków (cutoff, resonance, modulation)
+// zakres dla suwakï¿½w (cutoff, resonance, modulation)
 // lepszy tryb mono
-// sustain 0 -> b³¹d
+// sustain 0 -> bï¿½ï¿½d
 // startuje -> bzdury
 // bug w seq<->buzz
 
@@ -46,7 +67,7 @@ void C6thOrderFilter::CalcCoeffs1() // 6L Multipeak
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -63,7 +84,7 @@ void C6thOrderFilter::CalcCoeffs2() // 6L Separated
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=16000) cf=16000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=16000) cf=16000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/22000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -81,7 +102,7 @@ void C6thOrderFilter::CalcCoeffs3() // 6L HiSquelch
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -98,7 +119,7 @@ void C6thOrderFilter::CalcCoeffs4() // 4L Skull D
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/21000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -115,7 +136,7 @@ void C6thOrderFilter::CalcCoeffs5() // 4L TwinPeaks
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -132,7 +153,7 @@ void C6thOrderFilter::CalcCoeffs6() // 4L Killah
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -149,7 +170,7 @@ void C6thOrderFilter::CalcCoeffs7() // 4L Phlatt
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -166,7 +187,7 @@ void C6thOrderFilter::CalcCoeffs8() // 2L phlatt
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float fQ=(float)(1.0+4*(240-Resonance)/240.0);
 
@@ -181,7 +202,7 @@ void C6thOrderFilter::CalcCoeffs9() // 2L FrontFlt
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/22000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -198,7 +219,7 @@ void C6thOrderFilter::CalcCoeffs10() // 2L LaserOne
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -217,7 +238,7 @@ void C6thOrderFilter::CalcCoeffs11() // 2L FMish
 
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -236,7 +257,7 @@ void C6thOrderFilter::CalcCoeffs12()
 
   float CutoffFreq=(float)(132*pow(64,(240-CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -255,7 +276,7 @@ void C6thOrderFilter::CalcCoeffs13()
 
   float CutoffFreq=(float)(66*pow(64,(CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -274,7 +295,7 @@ void C6thOrderFilter::CalcCoeffs14()
 
   float CutoffFreq=(float)(66*pow(64,(CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
@@ -292,7 +313,7 @@ void C6thOrderFilter::CalcCoeffs15()
 
   float CutoffFreq=(float)(132*pow(64,(CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
