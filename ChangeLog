@@ -1,3 +1,8 @@
+2007-12-12  Stefan Kost  <ensonic@users.sf.net>
+
+	* common/MachineInterface.h:
+	  Fix gcc warnings.
+
 2007-12-09  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/ArpMan/ArpMan.cpp:
