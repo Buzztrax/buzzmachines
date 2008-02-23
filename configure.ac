@@ -58,6 +58,8 @@ AC_CONFIG_FILES(\
   FSM/Chorus/Makefile \
   FSM/Infector/Makefile \
   FSM/Kick/Makefile \
+  FSM/PhatMan/Makefile \
+  FSM/PanzerDelay/Makefile
 )
 
 AC_OUTPUT

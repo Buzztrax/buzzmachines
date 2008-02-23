@@ -1,3 +1,19 @@
+2008-02-23  Krzysztof Foltman  <wdev@foltman.com>
+
+	* FSM/Makefile.am:
+	* FSM/PanzerDelay:
+	* FSM/PanzerDelay/Delay.cpp:
+	* FSM/PanzerDelay/Makefile.am:
+	* FSM/PanzerDelay/panzer.rc:
+	* FSM/PanzerDelay/resource.h:
+	* FSM/PhatMan:
+	* FSM/PhatMan/Chorus.cpp:
+	* FSM/PhatMan/Makefile.am:
+	* FSM/PhatMan/chorus.rc:
+	* FSM/PhatMan/resource.h:
+	* configure.ac:
+          Add new machines (should work already, but they apparently don't)
+
 2007-12-12  Stefan Kost  <ensonic@users.sf.net>
 
 	* common/MachineInterface.h:
