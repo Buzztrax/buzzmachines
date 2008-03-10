@@ -1,3 +1,9 @@
+2008-03-10  Stefan Kost  <ensonic@users.sf.net>
+
+	* configure.ac:
+	  Add CFLAG to suppress gcc warning, that if we fix it would change the
+	  ABI. Need to revert the changes in the header still.
+
 2008-02-23  Krzysztof Foltman  <wdev@foltman.com>
 
 	* FSM/Makefile.am:

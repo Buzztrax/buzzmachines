@@ -41,7 +41,8 @@ plugindir="\$(libdir)/Gear"
 AC_SUBST(plugindir)
 
 # Compilation and Linker flags
-BM_CXXFLAGS="-I\$(top_srcdir)/common"
+# the -Wno-non-virtual-dtor is needed to suppress : virtual methods with no virtual destructor
+BM_CXXFLAGS="-I\$(top_srcdir)/common -Wno-non-virtual-dtor"
 BM_LIBS="-module -avoid-version"
 AC_SUBST(BM_CXXFLAGS)
 AC_SUBST(BM_LIBS)
