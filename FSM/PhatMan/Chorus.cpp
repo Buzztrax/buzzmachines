@@ -463,8 +463,13 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
         float vcos1=vcos*dcos-vsin*dsin;
         vsin=vsin1;vcos=vcos1;
         float floatPos=nPos-pos;
-        int intPos=f2i(floatPos);
+        int intPos=(int)(floatPos);
+        //int intPos=f2s(floatPos); <-- this produces garbage under linux/amd
         int intPos2=(intPos<MAX_DELAY-1)?(intPos+1):0;
+        
+        //printf("%d, %f -> %lf\n",nPos,pos,floatPos);
+        //printf("%d, %d, %d\n",intPos,intPos2,MAX_DELAY);
+        
         float delayed=INTERPOLATE(floatPos-intPos,pData[intPos],pData[intPos2]);
         if (first)
         {
