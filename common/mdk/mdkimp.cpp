@@ -1,10 +1,12 @@
 #include "mdk.h"
 #include "mdkimp.h"
 
+/*
 CMDKImplementation *NewMDKImp()
 {
 	return new CMDKImplementation;
 }
+*/
 
 void CopyStereoToMono(float *pout, float *pin, int numsamples, float amp)
 {
@@ -370,7 +372,7 @@ CMDKMachineInterface::~CMDKMachineInterface()
 
 void CMDKMachineInterface::Init(CMachineDataInput * const pi)
 {
-	pImp = new CMDKImplementation;
+    pImp = (CMDKImplementation*)pCB->GetNearestWaveLevel(-1,-1);
 	pImp->pmi = this;
 
 	CMDKMachineInterfaceEx *pex = GetEx();

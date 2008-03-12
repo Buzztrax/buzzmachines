@@ -1,12 +1,18 @@
 2008-03-12  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/PhatMan/Chorus.cpp:
+	* common/mdk/mdkimp.cpp:
+	  Get the mdk from host.
+
+2008-03-12  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/PhatMan/Chorus.cpp:
 	  Workaround for crasher on one machine.
 
 2008-03-10  Stefan Kost  <ensonic@users.sf.net>
 
 	* common/MachineInterface.h:
-	  Revert ABI break.
+	  Revert ABI breakage.
 
 2008-03-10  Stefan Kost  <ensonic@users.sf.net>
 

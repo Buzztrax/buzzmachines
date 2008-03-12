@@ -526,7 +526,7 @@ void mi::WorkTrackStereo(CTrack *trk, float *pin, float *pout, int numsamples, i
         float d1=FuncTable[nShift+((nPhasePos+1)&(TABLE_SIZE-1))];
         pos=pos0+dpos*(d0+(d1-d0)*fracPhase);
 
-        nPhasePos+=nPhaseShift; // przesuniêcie fazy
+        nPhasePos+=nPhaseShift; // przesuniï¿½cie fazy
         d0=FuncTable[nShift+((nPhasePos)&(TABLE_SIZE-1))];
         d1=FuncTable[nShift+((nPhasePos+1)&(TABLE_SIZE-1))];
         pos2=pos0+dpos*(d0+(d1-d0)*fracPhase);
@@ -546,7 +546,7 @@ void mi::WorkTrackStereo(CTrack *trk, float *pin, float *pout, int numsamples, i
             d1=FuncTable[nShift+((nPhasePos+1)&(TABLE_SIZE-1))];
             pos=pos0+dpos*(d0+(d1-d0)*fracPhase)+acpos;
 
-            nPhasePos+=nPhaseShift; // przesuniêcie fazy
+            nPhasePos+=nPhaseShift; // przesuniï¿½cie fazy
             d0=FuncTable[nShift+((nPhasePos)&(TABLE_SIZE-1))];
             d1=FuncTable[nShift+((nPhasePos+1)&(TABLE_SIZE-1))];
             pos2=pos0+dpos*(d0+(d1-d0)*fracPhase)+acpos2;
@@ -635,7 +635,7 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 
     if (mode & WM_READ)
     {
-        // memcpy(paux, psamples, numsamples*4);
+        //memcpy(paux, psamples, numsamples*4);
         nEmptySamples=0;
     }
     else
