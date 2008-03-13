@@ -633,6 +633,9 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 {
     float *paux = pCB->GetAuxBuffer();
 
+    //printf("%s:%s(%p,%d,%d)\n",__FILE__,__FUNCTION__,psamples,numsamples,mode);
+    //fflush(stdout);
+
     if (mode & WM_READ)
     {
         //memcpy(paux, psamples, numsamples*4);
@@ -649,6 +652,9 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 
     for (int c = 0; c < numTracks; c++)
         WorkTrack(Tracks + c, psamples, paux, numsamples, mode);
+
+    // now copy back to output
+    memcpy(psamples, paux, numsamples*2);
 
     return true;
 }

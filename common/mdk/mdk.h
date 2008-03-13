@@ -13,7 +13,7 @@ class CMDKMachineInterfaceEx;
 class CMDKMachineInterface : public CMachineInterface
 {
 public:
-  virtual ~CMDKMachineInterface();
+	virtual ~CMDKMachineInterface();
 	virtual void Init(CMachineDataInput * const pi);
 	virtual bool Work(float *psamples, int numsamples, int const mode);
 	virtual bool WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mode);
