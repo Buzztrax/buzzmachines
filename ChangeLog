@@ -1,3 +1,9 @@
+2008-03-20  Krzysztof Foltman <wdev@foltman.com>
+
+	* FSM/PhatMan/Chorus.cpp:
+	* FSM/dspchips/DSPChips.h:
+	  Attempt at making PhatMan actually work as expected.
+
 2008-03-13  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/PhatMan/Chorus.cpp:

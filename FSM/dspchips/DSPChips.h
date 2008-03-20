@@ -1026,9 +1026,14 @@ inline void KaiserWindow(float *vector, int samples, float alpha) // USELESS CRA
 
 inline int f2i(double d)
 {
+#ifdef WIN32
 	const double magic = 6755399441055744.0; // 2^51 + 2^52
-	double tmp = (d-0.5) + magic;
+	double tmp = d + magic;
 	return *(int*) &tmp;
+#else
+    // poor man's solution :)
+    return (int)d;
+#endif
 }
 
 inline double myfmod(double n, double d)

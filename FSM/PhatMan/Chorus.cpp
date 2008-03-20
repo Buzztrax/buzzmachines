@@ -553,11 +553,12 @@ void mi::WorkTrackStereo(CTrack *trk, float *pin, float *pout, int numsamples, i
 
             acpos*=0.9995f;acpos2*=0.9995f;
             float floatPos=nPos-pos;
-            int intPos=f2i(floatPos);
+            int intPos=(int)(floatPos);
             float delayed=INTERPOLATE(floatPos-intPos,pData[intPos&DELAY_MASK],pData[(intPos+1)&DELAY_MASK]);
 
             floatPos=nPos-pos2;
-            intPos=f2i(floatPos);
+            intPos=(int)(floatPos);
+            // printf("floatPos = %f, intPos = %d\n", floatPos, intPos);
             float delayed2=INTERPOLATE(floatPos-intPos,pData[intPos&DELAY_MASK],pData[(intPos+1)&DELAY_MASK]);
             if (first)
             {
@@ -633,9 +634,8 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 {
     float *paux = pCB->GetAuxBuffer();
 
-    //printf("%s:%s(%p,%d,%d)\n",__FILE__,__FUNCTION__,psamples,numsamples,mode);
-    //fflush(stdout);
-
+    // this officially doesn't work, and it's never used either
+    
     if (mode & WM_READ)
     {
         //memcpy(paux, psamples, numsamples*4);
@@ -654,9 +654,13 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
         WorkTrack(Tracks + c, psamples, paux, numsamples, mode);
 
     // now copy back to output
-    memcpy(psamples, paux, numsamples*2);
+    memcpy(psamples, paux, numsamples*4);
 
-    return true;
+    int *pint=(int *)paux;
+    for (int i=0; i<numsamples; i++)
+        if ((pint[i]&0x7FFFFFFF)>=0x3F800000)
+            return true;
+    return false;
 }
 
 bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
@@ -668,6 +672,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
     for (i=0; i<numTracks; i++)
         Fb+=(float)fabs(Tracks[i].Feedback*0.995);
     FeedbackLimiter=(float)((Fb>0.995)?(0.995/Fb):0.995);
+    //printf("MDKWorkStereo numsamples = %d, mode = %d\n", numsamples, mode);
     //FeedbackLimiter=1.0;
     if (mode & WM_READ)
     {
