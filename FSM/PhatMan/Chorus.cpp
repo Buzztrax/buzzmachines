@@ -400,6 +400,9 @@ void mi::MDKInit(CMachineDataInput * const pi)
   Pos=0;
 
   SetOutputMode(true);
+
+  printf("%s:%s()\n",__FILE__,__FUNCTION__);
+  fflush(stdout);
 }
 
 void mi::SetNumTracks(int const n)
@@ -462,9 +465,7 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
         float vsin1=vsin*dcos+vcos*dsin;
         float vcos1=vcos*dcos-vsin*dsin;
         vsin=vsin1;vcos=vcos1;
-        float floatPos=nPos-pos;
-        int intPos=(int)(floatPos);
-        //int intPos=f2s(floatPos); <-- this produces garbage under linux/amd
+        float floatPos=nPos-pos;        int intPos=f2i(floatPos);
         int intPos2=(intPos<MAX_DELAY-1)?(intPos+1):0;
         
         //printf("%d, %f -> %lf\n",nPos,pos,floatPos);
@@ -653,8 +654,11 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
     for (int c = 0; c < numTracks; c++)
         WorkTrack(Tracks + c, psamples, paux, numsamples, mode);
 
-    // now copy back to output
-    memcpy(psamples, paux, numsamples*4);
+    if (mode & WM_WRITE)
+    {
+        // now copy back to output
+        memcpy(psamples, paux, numsamples*4);
+    }
 
     int *pint=(int *)paux;
     for (int i=0; i<numsamples; i++)
@@ -714,8 +718,12 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
         so=end;
     }
     if (!(mode&WM_WRITE))
-        return mode;
+      return mode; // FIXME: it should return bool
+
+    // now copy back to output
     memcpy(psamples,paux,numsamples*8);
+
+    // check for silence?
     int *pint=(int *)paux;
     for (i=0; i<2*numsamples; i++)
         if ((pint[i]&0x7FFFFFFF)>=0x3F800000)

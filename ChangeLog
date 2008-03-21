@@ -1,3 +1,10 @@
+2008-03-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/PhatMan/Chorus.cpp:
+	* FSM/dspchips/DSPChips.h:
+	  Use rint() on linux. Revert the changer where I commented f2i out.
+	  Add some comments.
+
 2008-03-20  Krzysztof Foltman <wdev@foltman.com>
 
 	* FSM/PhatMan/Chorus.cpp:
