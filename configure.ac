@@ -50,17 +50,19 @@ AC_SUBST(BM_LIBS)
 AC_CONFIG_FILES(\
   Makefile \
   common/Makefile \
-  common/mdk/Makefile \
+    common/mdk/Makefile \
   Elak/Makefile \
-  Elak/Dist2/Makefile \
-  Elak/SVF/Makefile \
+    Elak/Dist2/Makefile \
+    Elak/SVF/Makefile \
+  Ensonic/Makefile \
+    Ensonic/CallbackTester/Makefile \
   FSM/Makefile \
-  FSM/ArpMan/Makefile \
-  FSM/Chorus/Makefile \
-  FSM/Infector/Makefile \
-  FSM/Kick/Makefile \
-  FSM/PhatMan/Makefile \
-  FSM/PanzerDelay/Makefile
+    FSM/ArpMan/Makefile \
+    FSM/Chorus/Makefile \
+    FSM/Infector/Makefile \
+    FSM/Kick/Makefile \
+    FSM/PhatMan/Makefile \
+    FSM/PanzerDelay/Makefile
 )
 
 AC_OUTPUT

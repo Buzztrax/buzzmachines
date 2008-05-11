@@ -1,3 +1,20 @@
+2008-05-11  Stefan Kost  <ensonic@users.sf.net>
+
+	* Ensonic/CallbackTester/CallbackTester.cpp:
+	* Ensonic/CallbackTester/Makefile.am:
+	* Ensonic/Makefile.am:
+	* Makefile.am:
+	* configure.ac:
+	  Add test plugin.
+
+	* FSM/Kick/Makefile.am:
+	  Fix Makefile
+	
+	* common/bw.h:
+	* common/dsplib.h:
+	* common/resample.h:
+	  Add more sdk files.
+
 2008-03-21  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/PhatMan/Chorus.cpp:
