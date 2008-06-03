@@ -1124,6 +1124,7 @@ public:
   ~CBandlimitedTable();
   CAnyWaveLevel *GetTable(float fScanRate);// fScanRate = 1.0f dla cz�stotliwo�ci jeden okres/pr�bk�
   void Make(float fMultiplyFactor, float fMaxScanRate, float fCrispFactor=-1);
+  int GetLevelCount() { return m_nLevels; }
 
 protected:
   CAnyWaveLevel m_levels[128];

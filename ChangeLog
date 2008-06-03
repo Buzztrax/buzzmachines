@@ -1,3 +1,11 @@
+2008-06-03  Krzysztof Foltman  <kfoltman@users.sf.net>
+
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Vegetable.cpp:
+	* FSM/dspchips/DSPChips.h:
+	  Fix Infector crash bug, add assertion to check if waves were built
+	  at all.
+
 2008-05-11  Stefan Kost  <ensonic@users.sf.net>
 
 	* Ensonic/CallbackTester/CallbackTester.cpp:

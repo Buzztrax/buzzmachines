@@ -81,9 +81,13 @@ CBandlimitedTable *tablesA[]={&sintable,&tritable,&spstable,&sawtable,&sqrtable,
 CBandlimitedTable *tablesB[]={&nultable,&tritable,&sp2table,&sawtable,&sqrtable,&hextable,&xt1table,&sqrtable,&fm1table,&sqrtable,&xt2table,&octtable,&prttable,&pr2table,&pr3table,&smntable};
 CBandlimitedTable *tablesC[]={&sintable,&tritable,&sawtable,&spstable,&sqrtable,&octtable,&prttable,&pr2table,&pr3table,&hextable,&fm1table,&xt1table,&xt2table};
 
-void __attribute__ ((constructor)) GenerateWaves(void)
+void GenerateWaves(void)
 {
   int i;
+  static bool inited = false;
+  if (inited)
+    return;
+  inited = true;
   
   for (i=0; i<8193; i++)
   {
@@ -277,29 +281,8 @@ void __attribute__ ((constructor)) GenerateWaves(void)
   sqrtable.m_pBuffer=sqrwave;
   sqrtable.m_nBufSize=2048;
   sqrtable.Make(1.1f,0.25);
-}
-
-void __attribute__ ((destructor)) ReleaseWaves(void)
-{
-/* not needed as they are globals and they're getting destroyed automatically
-  delete &sintable;
-  delete &sawtable;
-  delete &spstable;
-  delete &sp2table;
-  delete &sqrtable;
-  delete &tritable;
-  delete &hextable;
-  delete &nultable;
-  delete &fm1table;
-  delete &xt1table;
-  delete &xt2table;
-  delete &octtable;
-  delete &prttable;
-  delete &pr2table;
-  delete &pr3table;
-  delete &spltable;
-  delete &smntable;
-*/
+  
+  assert(sintable.GetLevelCount());
 }
 
 #ifdef __MSVC__
@@ -1306,6 +1289,7 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
 
 void mi::Init(CMachineDataInput * const pi)
 {
+  GenerateWaves();
   numTracks = 1;
 
   for (int c = 0; c < MAX_TRACKS; c++)

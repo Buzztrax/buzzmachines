@@ -114,6 +114,7 @@ CBandlimitedTable::~CBandlimitedTable()
 
 CAnyWaveLevel *CBandlimitedTable::GetTable(float fScanRate)
 {
+  assert(m_nLevels);
   for (int i=0; i<m_nLevels; i++)
   {
     if (fScanRate<=m_levels[i].m_fMaxScanRate)
@@ -127,10 +128,10 @@ CAnyWaveLevel *CBandlimitedTable::GetTable(float fScanRate)
   return &m_levels[m_nLevels-1];
 }
 
-static ZOSFFT<11> fft;
 
 void CBandlimitedTable::Make(float fMultiplyFactor, float fMaxScanRate, float fCrispFactor)
 {
+  static ZOSFFT<11> fft;
   if (fCrispFactor==-1)
     fCrispFactor=2.0f/fMultiplyFactor;
   for (int i=0; i<m_nLevels; i++)
@@ -201,5 +202,6 @@ void CBandlimitedTable::Make(float fMultiplyFactor, float fMaxScanRate, float fC
       nLastTable=m_nLevels;
     m_nLevels++;
   }
+  assert(m_nLevels);
 } 
 
