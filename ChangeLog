@@ -1,3 +1,10 @@
+2008-06-22  Stefan Kost  <ensonic@users.sf.net>
+
+	* configure.ac:
+	* common/dsplib/dsplib.cpp:
+	* common/dsplib/Makefile.am:
+	  Readd dsplib.
+
 2008-06-03  Krzysztof Foltman  <kfoltman@users.sf.net>
 
 	* FSM/Infector/Infector.cpp:

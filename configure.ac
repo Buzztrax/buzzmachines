@@ -50,6 +50,7 @@ AC_SUBST(BM_LIBS)
 AC_CONFIG_FILES(\
   Makefile \
   common/Makefile \
+    common/dsplib/Makefile \
     common/mdk/Makefile \
   Elak/Makefile \
     Elak/Dist2/Makefile \
@@ -63,6 +64,8 @@ AC_CONFIG_FILES(\
     FSM/Kick/Makefile \
     FSM/PhatMan/Makefile \
     FSM/PanzerDelay/Makefile
+  Jeskola/Makefile \
+    Jeskola/Ninja/Makefile \
 )
 
 AC_OUTPUT
