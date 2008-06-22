@@ -3,7 +3,8 @@
 	* configure.ac:
 	* common/dsplib/dsplib.cpp:
 	* common/dsplib/Makefile.am:
-	  Readd dsplib.
+	* Jeskola/Ninja/Ninja.cpp:
+	  Readd dsplib. Statically link it to Ninja.
 
 2008-06-03  Krzysztof Foltman  <kfoltman@users.sf.net>
 

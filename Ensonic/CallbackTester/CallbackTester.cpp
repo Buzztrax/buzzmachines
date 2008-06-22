@@ -113,7 +113,6 @@ CMachineParameter const paraTrigger =
 	0                                               // DefValue
 };
 
-
 CMachineParameter const *pParameters[] = {
     // global
     &paraTest,
@@ -171,7 +170,7 @@ CMachineInfo const MacInfo =
 {
 	MT_GENERATOR,							// type
 	MI_VERSION,
-	0,										// flags
+	MIF_PLAYS_WAVES,						// flags
 	1,										// min tracks
 	MAX_TRACKS,								// max tracks
 	1,										// numGlobalParameters
@@ -448,6 +447,14 @@ void mi::Tick()
 	for (int c = 0; c < numTracks; c++)
 		Tracks[c].Tick(tval[c]);
 
+    // the the host callbacks
+    const CWaveInfo *wi=pCB->GetWave(0);
+    if(wi) {
+      printf("CWaveInfo: %d : %f\n",wi->Flags, wi->Volume);
+    }
+    else {
+      printf("CWaveInfo: NULL\n");
+    }
 }
 
 bool mi::Work(float *psamples, int numsamples, int const)

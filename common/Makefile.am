@@ -1,5 +1,5 @@
-## $Id: Makefile.am,v 1.1 2007-11-10 17:24:48 ensonic Exp $
+## $Id$
 
-SUBDIRS = mdk
+SUBDIRS = mdk dsplib
 
 noinst_HEADERS = MachineInterface.h

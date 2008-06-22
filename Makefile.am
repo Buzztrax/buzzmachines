@@ -1,4 +1,4 @@
-## $Id: Makefile.am,v 1.2 2007-11-10 17:24:47 ensonic Exp $
+## $Id$
 
-SUBDIRS = common Elak Ensonic FSM
+SUBDIRS = common Elak Ensonic FSM Jeskola
 
