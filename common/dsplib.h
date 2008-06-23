@@ -43,11 +43,7 @@ typedef unsigned long dword;
 #ifdef _MSC_VER
 DI void __fastcall DSP_Init(int const samplerate);
 #else
-#if __LP64__
 DI void DSP_Init(int const samplerate);
-#else
-DI void __attribute__ ((fastcall)) DSP_Init(int const samplerate);
-#endif
 #endif
 
 // basic stuff
