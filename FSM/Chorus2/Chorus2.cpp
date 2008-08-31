@@ -181,11 +181,11 @@ CMachineInfo const MacInfo =
 	0, // sizeof(pAttributes)/4,                    // 1 (numAttributes)
 	NULL, //pAttributes,                 // pAttributes
 #ifdef _DEBUG
-	"BuzzFX Chorus (Debug build)",			// name
+	"BuzzFX Chorus2 (Debug build)",			// name
 #else
-	"BuzzFX Chorus",
+	"BuzzFX Chorus2",
 #endif
-	"Chorus",								// short name
+	"Chorus2",								// short name
 	"Krzysztof Foltman",						// author
 	NULL
 };

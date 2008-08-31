@@ -1,5 +1,14 @@
 2008-08-31  Stefan Kost  <ensonic@users.sf.net>
 
+	* FSM/Chorus2/Chorus2.cpp:
+	  Rename more.
+
+	* FSM/Makefile.am:
+	  Build both.
+	  
+
+2008-08-31  Stefan Kost  <ensonic@users.sf.net>
+
 	* FSM/Chorus/Chorus.cpp:
 	* FSM/Chorus2/Makefile.am:
 	* FSM/Chorus2/Chorus.cpp:
