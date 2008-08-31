@@ -60,6 +60,7 @@ AC_CONFIG_FILES(\
   FSM/Makefile \
     FSM/ArpMan/Makefile \
     FSM/Chorus/Makefile \
+    FSM/Chorus2/Makefile \
     FSM/Infector/Makefile \
     FSM/Kick/Makefile \
     FSM/PhatMan/Makefile \
