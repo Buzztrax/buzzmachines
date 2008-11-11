@@ -1,3 +1,8 @@
+2008-11-11  Krzysztof Foltman  <kfoltman@users.sf.net>
+
+	* FSM/PanzerDelay/Delay.cpp:
+	  fix initialization order bug causing valgrind warnings
+
 2008-11-11  Stefan Kost  <ensonic@users.sf.net>
 
 	* Ensonic/CallbackTester/CallbackTester.cpp:
