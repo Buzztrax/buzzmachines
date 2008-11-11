@@ -447,14 +447,18 @@ void mi::Tick()
 	for (int c = 0; c < numTracks; c++)
 		Tracks[c].Tick(tval[c]);
 
+#ifdef _DEBUG
     // the the host callbacks
     const CWaveInfo *wi=pCB->GetWave(0);
     if(wi) {
-      printf("CWaveInfo: %d : %f\n",wi->Flags, wi->Volume);
+      sprintf(DebugStr,"CWaveInfo: %d : %f\n",wi->Flags, wi->Volume);
+      OutputDebugString(DebugStr);
     }
     else {
-      printf("CWaveInfo: NULL\n");
+      sprintf(DebugStr,"CWaveInfo: NULL\n");
+      OutputDebugString(DebugStr);
     }
+#endif
 }
 
 bool mi::Work(float *psamples, int numsamples, int const)

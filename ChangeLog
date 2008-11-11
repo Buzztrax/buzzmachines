@@ -1,3 +1,8 @@
+2008-11-11  Stefan Kost  <ensonic@users.sf.net>
+
+	* Ensonic/CallbackTester/CallbackTester.cpp:
+	  Remove some debug output.
+
 2008-08-31  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Chorus2/Chorus2.cpp:
