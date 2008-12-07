@@ -1,4 +1,4 @@
-## $I$
+## $Id$
 
 noinst_LTLIBRARIES = libdsplib.la
 

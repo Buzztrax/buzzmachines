@@ -1,0 +1,10 @@
+= Filenames =
+Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
+extensions.
+
+= Includes ==
+replace any include for machineinterface.h with this
+#include <MachineInterface.h>
+
+replace any #include <windows.h> with
+#include <windef.h>

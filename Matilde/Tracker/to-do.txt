@@ -1,0 +1,28 @@
+MATILDE TRACKER TO DO:
+
+---- easy ----
+
+* PORTAMENTO TIME SLIDER
+by: Cameron Bonde
+
+* SAMPLE DIRECTION SLIDER (?)
+by: Cameron Bonde
+
+* ATTACK TIME SLIDER
+by: Void
+
+* EASY PLAY REVERSED
+by: Cameron Bonde
+parameter = offset
+
+* Keep the "gate" open a bit longer to avoid clicks in the effects after matilde tracker
+
+---- complex ----
+
+* BUG FIX AGAINST MC-1
+by: Cameron Bonde
+Do not use wave 0 as default, use wave 1 instead (it's probably un-initialized data somewhere in the code)
+
+* MIDI RECORD
+by: CyanPhase
+perhaps it should support both quantized and un-quantized mode (using sample delay ED command)

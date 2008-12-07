@@ -1,3 +1,51 @@
+2008-12-07  Stefan Kost  <ensonic@users.sf.net>
+
+	* HACKING:
+	  Takes porting notes.
+
+	* TODO:
+	  Next steps.
+
+	* Makefile.am:
+	* Matilde/Tracker/BuzzInstrument.cpp:
+	* Matilde/Tracker/BuzzInstrument.h:
+	* Matilde/Tracker/BuzzSample.cpp:
+	* Matilde/Tracker/BuzzSample.h:
+	* Matilde/Tracker/Channel.cpp:
+	* Matilde/Tracker/Channel.h:
+	* Matilde/Tracker/Envelope.cpp:
+	* Matilde/Tracker/Envelope.h:
+	* Matilde/Tracker/ExtResampler.cpp:
+	* Matilde/Tracker/ExtResampler.h:
+	* Matilde/Tracker/IInstrument.cpp:
+	* Matilde/Tracker/IInstrument.h:
+	* Matilde/Tracker/ISample.cpp:
+	* Matilde/Tracker/ISample.h:
+	* Matilde/Tracker/Makefile.am:
+	* Matilde/Tracker/SurfsDSPLib/Makefile.am:
+	* Matilde/Tracker/SurfsDSPLib/SRF_2PFilter.cpp:
+	* Matilde/Tracker/SurfsDSPLib/SRF_2PFilter.h:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Amp.cpp:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Amp.h:
+	* Matilde/Tracker/SurfsDSPLib/SRF_AutoGain.cpp:
+	* Matilde/Tracker/SurfsDSPLib/SRF_DSP.cpp:
+	* Matilde/Tracker/SurfsDSPLib/SRF_DSP.h:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Resampler.cpp:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Resampler.h:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Types.h:
+	* Matilde/Tracker/Track.cpp:
+	* Matilde/Tracker/Track.h:
+	* Matilde/Tracker/Tracker.cpp:
+	* Matilde/Tracker/Tracker.h:
+	* Matilde/Tracker/WavetableManager.cpp:
+	* Matilde/Tracker/WavetableManager.h:
+	* Matilde/Tracker/resource.h:
+	* Matilde/Tracker/to-do.txt:
+	* common/dsplib/Makefile.am:
+	* configure.ac:
+	  Port Matilde-Tracker. Resampler sounds fishy. Need build stuff for mono
+	  variant.
+
 2008-11-11  Krzysztof Foltman  <kfoltman@users.sf.net>
 
 	* FSM/PanzerDelay/Delay.cpp:

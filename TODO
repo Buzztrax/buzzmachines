@@ -6,3 +6,6 @@ http://lists.gnu.org/archive/html/automake/2004-05/msg00016.html
 http://www.gnu.org/software/libtool/manual.html#Makefile-rules
 ** avoid to install *.la files
 
+* install
+** install presets
+** install docs

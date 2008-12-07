@@ -67,6 +67,9 @@ AC_CONFIG_FILES(\
     FSM/PanzerDelay/Makefile
   Jeskola/Makefile \
     Jeskola/Ninja/Makefile \
+  Matilde/Makefile \
+    Matilde/Tracker/Makefile \
+    Matilde/Tracker/SurfsDSPLib/Makefile \
 )
 
 AC_OUTPUT

@@ -1,4 +1,4 @@
 ## $Id$
 
-SUBDIRS = common Elak Ensonic FSM Jeskola
+SUBDIRS = common Elak Ensonic FSM Jeskola Matilde
 
