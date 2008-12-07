@@ -1,5 +1,13 @@
 2008-12-07  Stefan Kost  <ensonic@users.sf.net>
 
+	* Matilde/Tracker/Makefile.am:
+	  Build mono variant too.
+
+	* TODO:
+	  Proper locations for data files.
+
+2008-12-07  Stefan Kost  <ensonic@users.sf.net>
+
 	* Matilde/Makefile.am:
 	  Add missing Makefile.
 

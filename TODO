@@ -7,5 +7,5 @@ http://www.gnu.org/software/libtool/manual.html#Makefile-rules
 ** avoid to install *.la files
 
 * install
-** install presets
-** install docs
+** install presets: $prefix/share/Gear/<plugin>.prs
+** install docs: $prefix/share/Gear/<plugin>.(txt,html)
