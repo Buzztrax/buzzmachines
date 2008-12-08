@@ -1,3 +1,11 @@
+2008-12-08  Stefan Kost  <ensonic@users.sf.net>
+
+	* README:
+	* TODO:
+	* autogen.sh:
+	* configure.ac:
+	  Clean up configure.
+
 2008-12-07  Stefan Kost  <ensonic@users.sf.net>
 
 	* Matilde/Tracker/Makefile.am:

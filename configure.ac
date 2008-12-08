@@ -1,4 +1,4 @@
-dnl $Id: configure.ac,v 1.3 2007-11-13 14:48:46 ensonic Exp $
+dnl $Id$
 
 dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.59)
@@ -24,7 +24,6 @@ AC_PROG_LIBTOOL
 AC_CHECK_LIB([msvcrt], [main])
 
 # Checks for header files.
-AC_PATH_X
 AC_HEADER_STDC
 AC_CHECK_HEADERS([float.h malloc.h stddef.h stdlib.h string.h])
 
@@ -73,3 +72,12 @@ AC_CONFIG_FILES(\
 )
 
 AC_OUTPUT
+
+echo "
+
+Configuration
+	Version                    : ${VERSION}
+	Source code location       : ${srcdir}
+	Prefix                     : ${prefix}
+	Compiler                   : ${CC}
+"
