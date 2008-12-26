@@ -2,9 +2,16 @@
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
 extensions.
 
-= Includes ==
+= Includes =
 replace any include for machineinterface.h with this
 #include <MachineInterface.h>
 
 replace any #include <windows.h> with
 #include <windef.h>
+
+= Misc =
+* Matilde/Tracker is a example of how to build various variants of the same code
+  (mono/stereo)
+* if the machine has UI, don't rip it out, use #ifdef HAVE_WIN32_UI, maybe we
+  can do something useful in the future
+  
