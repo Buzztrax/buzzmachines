@@ -3,11 +3,9 @@ dnl $Id$
 dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.61)
 AC_INIT([buzzmachines],[0.1.0],[buzztard-devel@lists.sourceforge.net])
+AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options])
 AC_CONFIG_SRCDIR([ChangeLog])
 AC_CONFIG_HEADER([config.h])
-
-dnl Initialise the automake tool
-AM_INIT_AUTOMAKE([check-news])
 
 # Checks for programs.
 AC_PROG_CXX
