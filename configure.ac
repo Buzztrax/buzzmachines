@@ -6,6 +6,7 @@ AC_INIT([buzzmachines],[0.1.0],[buzztard-devel@lists.sourceforge.net])
 AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options])
 AC_CONFIG_SRCDIR([ChangeLog])
 AC_CONFIG_HEADER([config.h])
+AC_CONFIG_MACRO_DIR(m4)
 
 # Checks for programs.
 AC_PROG_CXX
