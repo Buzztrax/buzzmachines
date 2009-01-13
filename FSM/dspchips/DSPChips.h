@@ -29,6 +29,8 @@
 
 #ifdef __MSVC__
 #define copysign(x,y) _copysign(x,y);
+#else
+#define _copysign(x,y) copysign(x,y)
 #endif
 
 

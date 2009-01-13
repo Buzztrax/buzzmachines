@@ -63,6 +63,7 @@ AC_CONFIG_FILES(\
     FSM/Kick/Makefile \
     FSM/PhatMan/Makefile \
     FSM/PanzerDelay/Makefile
+    FSM/WahMan/Makefile
   Jeskola/Makefile \
     Jeskola/Ninja/Makefile \
   Matilde/Makefile \

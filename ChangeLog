@@ -1,3 +1,13 @@
+2009-01-13  Krzysztof Foltman  <kfoltman@users.sf.net>
+
+	* FSM/Makefile.am:
+	* FSM/WahMan:
+	* FSM/WahMan/Makefile.am:
+	* FSM/WahMan/WahMan.cpp:
+	* FSM/dspchips/DSPChips.h:
+	* configure.ac:
+	  Add ported WahMan.
+
 2008-12-30  Stefan Kost  <ensonic@users.sf.net>
 
 	* Makefile.am:
