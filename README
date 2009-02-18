@@ -19,6 +19,7 @@ Add the path to the BML_PATH env var:
 
 The native one will be installed to $prefix/lib/Gear right now.
 
-= building =
-
+= building from svn =
+To build use autogen.sh instead of configure. This accept the same options like
+configure. Later one can use autoregen.sh to rerun the bootstrapping.
 

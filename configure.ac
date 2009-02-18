@@ -74,7 +74,6 @@ AC_CONFIG_FILES(\
 AC_OUTPUT
 
 echo "
-
 Configuration
 	Version                    : ${VERSION}
 	Source code location       : ${srcdir}
