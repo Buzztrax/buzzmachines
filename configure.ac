@@ -45,8 +45,8 @@ BM_LIBS="-module -avoid-version"
 AC_SUBST(BM_CXXFLAGS)
 AC_SUBST(BM_LIBS)
 
-AC_CONFIG_FILES(\
-  Makefile \
+SHAVE_INIT([.])
+AC_CONFIG_FILES(Makefile shave shave-libtool \
   common/Makefile \
     common/dsplib/Makefile \
     common/mdk/Makefile \
