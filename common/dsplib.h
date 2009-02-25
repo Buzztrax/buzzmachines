@@ -38,6 +38,7 @@ typedef unsigned long dword;
 
 // initialization
 
+#if 0
 // you don't need to call DSP_Init in machines
 // buzz uses the same dll so it has done it already
 #ifdef _MSC_VER
@@ -45,6 +46,9 @@ DI void __fastcall DSP_Init(int const samplerate);
 #else
 DI void DSP_Init(int const samplerate);
 #endif
+#endif
+// machines that link dsplib statically need to call DSP_Init()
+DI void DSP_Init(int const samplerate);
 
 // basic stuff
 
