@@ -282,6 +282,7 @@ public:
 };
 
 
+// FIXME: unused
 class avals
 {
 public:
@@ -737,7 +738,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 
   int so=0, maxs=96;
 
-  if (numTracks>1)
+  if (numTracks>0)
   {
     for (int i=0; i<numTracks; i++)
     {
@@ -748,7 +749,8 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
     }
   }
 
-  if (!aval.lfoshape)
+  // FIXME: unused
+  //if (!aval.lfoshape)
     for (int i=0; i<numTracks; i++)
       PrepareTrack(i);
 

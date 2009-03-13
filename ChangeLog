@@ -1,3 +1,9 @@
+2009-03-13  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Kick/Kick.cpp:
+	* FSM/PanzerDelay/Delay.cpp:
+	  Don't access uninitialized values.
+
 2009-02-25  Stefan Kost  <ensonic@users.sf.net>
 
 	* Makefile.am:

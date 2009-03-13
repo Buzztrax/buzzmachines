@@ -309,6 +309,7 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
 void mi::Init(CMachineDataInput * const pi)
 {
 	numTracks = 1;
+        InitTrack(0);
 
 	for (int c = 0; c < MAX_TAPS; c++)
 	{
