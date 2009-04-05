@@ -145,7 +145,7 @@ void DSP_BW_InitBandreject(CBWState &s, float const f, float const bw)
 
 bool DSP_BW_Work(CBWState &s, float *ps, dword const n, int const mode)
 {
-	int i;
+	dword i;
 	float y;
 
 	for(i = 0; i < n; i++) {
@@ -187,7 +187,7 @@ bool DSP_BW_Work(CBWState &s, float *ps, dword const n, int const mode)
 
 bool DSP_BW_WorkStereo(CBWState &s, float *ps, dword const n, int const mode)
 {
-	int i;
+	dword i;
 	float y, yr;
 
 	for(i = 0; i < n; i++) {

@@ -1,3 +1,17 @@
+2009-04-05  Stefan Kost  <ensonic@users.sf.net>
+
+	* configure.ac:
+	  Add --enable-debug which is a kind of "developer-mode". Among other things
+	  it turns compile warnings into errors.
+
+	* FSM/ArpMan/ArpMan.cpp:
+	* FSM/Chorus/Chorus.cpp:
+	* FSM/Chorus2/Chorus2.cpp:
+	* FSM/Infector/Filters.cpp:
+	* FSM/dspchips/DSPChips.h:
+	* common/dsplib/dsplib.cpp:
+	  Fix a first batch of warnings.
+
 2009-03-13  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Kick/Kick.cpp:

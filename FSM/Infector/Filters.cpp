@@ -63,8 +63,6 @@ void C6thOrderFilter::CalcCoeffs(int nType, float _CurCutoff, float _Resonance, 
 
 void C6thOrderFilter::CalcCoeffs1() // 6L Multipeak
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -80,8 +78,6 @@ void C6thOrderFilter::CalcCoeffs1() // 6L Multipeak
 
 void C6thOrderFilter::CalcCoeffs2() // 6L Separated
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=16000) cf=16000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -98,8 +94,6 @@ void C6thOrderFilter::CalcCoeffs2() // 6L Separated
 
 void C6thOrderFilter::CalcCoeffs3() // 6L HiSquelch
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -115,8 +109,6 @@ void C6thOrderFilter::CalcCoeffs3() // 6L HiSquelch
 
 void C6thOrderFilter::CalcCoeffs4() // 4L Skull D
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -132,8 +124,6 @@ void C6thOrderFilter::CalcCoeffs4() // 4L Skull D
 
 void C6thOrderFilter::CalcCoeffs5() // 4L TwinPeaks
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -149,8 +139,6 @@ void C6thOrderFilter::CalcCoeffs5() // 4L TwinPeaks
 
 void C6thOrderFilter::CalcCoeffs6() // 4L Killah
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -166,8 +154,6 @@ void C6thOrderFilter::CalcCoeffs6() // 4L Killah
 
 void C6thOrderFilter::CalcCoeffs7() // 4L Phlatt
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -183,8 +169,6 @@ void C6thOrderFilter::CalcCoeffs7() // 4L Phlatt
 
 void C6thOrderFilter::CalcCoeffs8() // 2L phlatt
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -198,8 +182,6 @@ void C6thOrderFilter::CalcCoeffs8() // 2L phlatt
 
 void C6thOrderFilter::CalcCoeffs9() // 2L FrontFlt
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -215,8 +197,6 @@ void C6thOrderFilter::CalcCoeffs9() // 2L FrontFlt
 
 void C6thOrderFilter::CalcCoeffs10() // 2L LaserOne
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -234,8 +214,6 @@ void C6thOrderFilter::CalcCoeffs10() // 2L LaserOne
 
 void C6thOrderFilter::CalcCoeffs11() // 2L FMish
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -253,13 +231,11 @@ void C6thOrderFilter::CalcCoeffs11() // 2L FMish
 
 void C6thOrderFilter::CalcCoeffs12()
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,(240-CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
-  float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
+  // float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
 
   float q=0.1f+Resonance*0.6f/240.0f;
@@ -272,13 +248,11 @@ void C6thOrderFilter::CalcCoeffs12()
 
 void C6thOrderFilter::CalcCoeffs13()
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(66*pow(64,(CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
-  float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
+  // float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
 
   float q=0.71f+Resonance*2.6f/240.0f;
@@ -291,8 +265,6 @@ void C6thOrderFilter::CalcCoeffs13()
 
 void C6thOrderFilter::CalcCoeffs14()
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(66*pow(64,(CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
@@ -309,13 +281,11 @@ void C6thOrderFilter::CalcCoeffs14()
 
 void C6thOrderFilter::CalcCoeffs15()
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(132*pow(64,(CurCutoff)/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
-  float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
+  // float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=1.0;
 
   float q=2.1f+Resonance*9.6f/240.0f;
@@ -327,8 +297,6 @@ void C6thOrderFilter::CalcCoeffs15()
 
 void C6thOrderFilter::CalcCoeffs16()
 {
-	int sr=44100;
-
   float q=2.1f+Resonance*32.6f/240.0f;
 
 	if (CurCutoff<0) CurCutoff=0;
@@ -344,8 +312,6 @@ void C6thOrderFilter::CalcCoeffs16()
 
 void C6thOrderFilter::CalcCoeffs17()
 {
-	int sr=44100;
-
   float q=2.1f+Resonance*32.6f/240.0f;
 
 	if (CurCutoff<0) CurCutoff=0;

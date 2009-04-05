@@ -35,12 +35,28 @@ AC_C_INLINE
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([floor memset pow sqrt strchr])
 
+dnl enable runtime debugging code (this is more like a developer build mode)
+AC_MSG_CHECKING(whether to enable runtime debugging code)
+AC_ARG_ENABLE(
+	debug,
+	AS_HELP_STRING([--enable-debug],[enable runtime debugging code (default=no)]),
+	,
+	[enable_debug="no"])
+AC_MSG_RESULT($enable_debug)
+if test "$enable_debug" = "yes"; then
+	AC_DEFINE(USE_DEBUG, [1], [enable runtime debugging code])
+	DEBUG_CFLAGS="-O0 -Wall -Werror -g"
+else
+	DEBUG_CFLAGS=""
+fi
+
 plugindir="\$(libdir)/Gear"
 AC_SUBST(plugindir)
 
 # Compilation and Linker flags
-# the -Wno-non-virtual-dtor is needed to suppress : virtual methods with no virtual destructor
-BM_CXXFLAGS="-I\$(top_srcdir)/common -Wno-non-virtual-dtor"
+# -Wno-non-virtual-dtor suppresses: virtual methods with no virtual destructor
+# -Wno-unknown-pragmas  suppresses: ignoring #pragma xxx
+BM_CXXFLAGS="-I\$(top_srcdir)/common $DEBUG_CFLAGS -Wno-non-virtual-dtor -Wno-unknown-pragmas"
 BM_LIBS="-module -avoid-version"
 AC_SUBST(BM_CXXFLAGS)
 AC_SUBST(BM_LIBS)
@@ -79,4 +95,6 @@ Configuration
 	Source code location       : ${srcdir}
 	Prefix                     : ${prefix}
 	Compiler                   : ${CC}
+
+	Debug                      : ${enable_debug}
 "

@@ -439,15 +439,6 @@ void mi::ResetTrack(int const i)
 {
 }
 
-
-static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
-{
-#ifdef _DUMMY
-  return;
-#endif
-}
-
-
 void mi::WorkTrack(CTrack *pt, float *pin, float *pout, int numsamples, int const mode)
 {
 }

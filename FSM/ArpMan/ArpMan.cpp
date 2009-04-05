@@ -922,7 +922,7 @@ void mi::SetFilter_4PoleEQ1(CChannel &c, float CurCutoff, float Resonance)
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
-  float ScaleResonance=1.0;
+  // float ScaleResonance=1.0;
   // float fQ=(float)(1.01+30*Resonance*ScaleResonance/240.0);
 
   c.Biquad.SetParametricEQ(cf,(float)(1.0+Resonance/12.0),float(6+Resonance/30.0),(float)pMasterInfo->SamplesPerSec,0.3f/(1+(240-Resonance)/120.0f));
@@ -936,8 +936,8 @@ void mi::SetFilter_4PoleEQ2(CChannel &c, float CurCutoff, float Resonance)
 	if (cf>=20000) cf=20000; // pr�ba wprowadzenia nieliniowo�ci przy ko�cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
-  float ScaleResonance=1.0;
-  float fQ=(float)(1.01+30*Resonance*ScaleResonance/240.0);
+  // float ScaleResonance=1.0;
+  // float fQ=(float)(1.01+30*Resonance*ScaleResonance/240.0);
 
   c.Biquad.SetParametricEQ(cf,8.0f,9.0f,(float)pMasterInfo->SamplesPerSec,0.5f/(2+(240-Resonance)/240.0f));
   c.Biquad2.SetParametricEQ(float(cf/(3.5-2*Resonance/240.0)),8.0f,9.0f,(float)pMasterInfo->SamplesPerSec,0.4f);
@@ -947,8 +947,6 @@ void mi::SetFilter_4PoleEQ2(CChannel &c, float CurCutoff, float Resonance)
 
 void mi::SetFilter_Vocal1(CChannel &c, float CurCutoff, float Resonance)
 {
-	int sr=44100;
-
   float CutoffFreq=(float)CurCutoff;
   //if (CutoffFreq<0) CutoffFreq=0;
   //if (CutoffFreq>240) CutoffFreq=240;
@@ -963,8 +961,6 @@ void mi::SetFilter_Vocal1(CChannel &c, float CurCutoff, float Resonance)
 
 void mi::SetFilter_Vocal2(CChannel &c, float CurCutoff, float Resonance)
 {
-	int sr=44100;
-
   float CutoffFreq=(float)CurCutoff;
   //if (CutoffFreq<0) CutoffFreq=0;
   //if (CutoffFreq>240) CutoffFreq=240;
@@ -979,8 +975,6 @@ void mi::SetFilter_Vocal2(CChannel &c, float CurCutoff, float Resonance)
 
 void mi::SetFilter_AntiVocal1(CChannel &c, float CurCutoff, float Resonance)
 {
-	int sr=44100;
-
   float CutoffFreq=(float)CurCutoff;
   //if (CutoffFreq<0) CutoffFreq=0;
   //if (CutoffFreq>240) CutoffFreq=240;
@@ -997,8 +991,6 @@ void mi::SetFilter_AntiVocal1(CChannel &c, float CurCutoff, float Resonance)
 
 void mi::SetFilter_AntiVocal2(CChannel &c, float CurCutoff, float Resonance)
 {
-	int sr=44100;
-
   float CutoffFreq=(float)CurCutoff;
   float Cutoff1=(float)(240*pow(900/240.0,CutoffFreq/240.0));
   float Cutoff2=(float)(1000*pow(13000/1000.0,CutoffFreq/240.0));
@@ -1093,7 +1085,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *trk)
 
   CASREnvelope *pEnv=&trk->AmpEnv;
   float fSer=(float)pEnv->m_fSeries;
-  int *pTime=&pEnv->m_nTime;
+  // int *pTime=&pEnv->m_nTime;
   if (pmi->aval.hq)
   {
     for (i=0; i<c; i++)
@@ -1140,7 +1132,7 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *trk)
 
       }
 
-  //    pout[i]+=32000*atan(trk->Biquad2.ProcessSample(trk->Biquad.ProcessSample(output))/32000)*2.0/3.1415;
+      //pout[i]+=32000*atan(trk->Biquad2.ProcessSample(trk->Biquad.ProcessSample(output))/32000)*2.0/3.1415;
     
       pout[i]+=(float)(trk->Biquad2.ProcessSample(trk->Biquad.ProcessSample(amp*output)));
       //pout[i]+=output;

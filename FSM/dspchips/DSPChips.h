@@ -53,7 +53,7 @@ protected:
 public:
   float m_fAccum;
 public:
-  CInertia() : m_fAccum(0.0), m_fAI(1.0) {}
+  CInertia() : m_fAI(1.0), m_fAccum(0.0) {}
   void SetInertia(double dInertia)
   {
     m_fAI=(float)(exp(-(dInertia+128)*4.5/240.0));
@@ -273,7 +273,6 @@ public:
   void SetParametricEQ(double fc, double q, double v, double esr, float gain=1.0f)
   {
 		PreNewFilter();
-    float sq = (float)sqrt(2.0*(double)v);
     float omega = float(TWOPI_F*fc/esr);
     float k = (float) tan((double)omega*0.5);
     float kk = k*k;
@@ -414,7 +413,7 @@ public:
 		// static const double PI=4*atan(1.0);
 		double sinFi, cosFi, sinFi2, cosFi2;
 		double sinNFi, cosNFi, sinNFi2, cosNFi2;
-		double fi=m_dPhase, nfi=m_fHarms*fi;
+		double fi=m_dPhase;
 		sinFi=sin(fi);cosFi=cos(fi);
 		sinNFi=sin(m_fHarms*fi);cosNFi=cos(m_fHarms*fi);
 		double INVn=2.0/m_fHarms, val;
@@ -850,7 +849,7 @@ public:
   float m_fFactor;
   float m_fAttackCoeff, m_fReleaseCoeff;
 
-  CUglyLimiter(): m_fFactor(1.0f), m_fAccum(0.0f), m_fAttackCoeff(0.99f), m_fReleaseCoeff(1.01f) {}
+  CUglyLimiter(): m_fAccum(0.0f), m_fFactor(1.0f), m_fAttackCoeff(0.99f), m_fReleaseCoeff(1.01f) {}
 
   inline void AvoidExceptions()
   {
