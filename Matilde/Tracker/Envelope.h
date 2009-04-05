@@ -20,7 +20,7 @@ public:
 
 	int						GetPlayPos();
 
-	bool					HasEnded() { return IsValid() && m_iEnvelopeIndex>=m_iEnvelopeSize-1 || m_fEnvelopeTime>=1.0f; }
+	bool					HasEnded() { return IsValid() && (m_iEnvelopeIndex>=m_iEnvelopeSize-1 || m_fEnvelopeTime>=1.0f); }
 
 protected:
 	struct	SEnvelopePoint

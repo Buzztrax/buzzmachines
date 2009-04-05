@@ -3,7 +3,7 @@
 
 using namespace SurfDSPLib;
 
-const u_long	MAXFRACTION=0xFFFFFF;
+const long	MAXFRACTION=0xFFFFFF;
 const int		SHIFTFRACTION=24;
 
 #define	POINTERADD(p,n,sh)		(u_long(p)+((n)<<(sh)))
@@ -24,8 +24,8 @@ static inline int	absint( int i )
 static inline float	fscale( float r, long i )
 {
 	//i=(*(long *)&r)+(i<<23);
-	i=(*(long *)&r)+((i&0xFF)<<23);
-	return *(float *)&i;
+	i=(*(long *)((void *)&r))+((i&0xFF)<<23);
+	return *(float *)((void *)&i);
 }
 
 static	u_char	gSampleSizes[8]=

@@ -18,8 +18,8 @@ void	CAmp::AmpAndAdd( float *pLeft, float *pRight, float *pSrc, int iCount, floa
 
 	if( pRight )
 	{
-		float	lastl;
-		float	lastr;
+		float	lastl=0.0;
+		float	lastr=0.0;
 
 		if( m_fLeftVolumeRamp!=0.0f || m_fRightVolumeRamp!=0.0f )
 		{
@@ -82,7 +82,7 @@ void	CAmp::AmpAndAdd( float *pLeft, float *pRight, float *pSrc, int iCount, floa
 	}
 	else
 	{
-		float	lastf;
+		float	lastf=0.0;
 
 		if( m_fLeftVolumeRamp!=0.0f )
 		{
@@ -135,8 +135,8 @@ void	CAmp::AmpAndAdd_ToStereo( float *pStereo, float *pSrc, int iCount, float fA
 	float	*pStart=pStereo;
 	int		iTotal=iCount;
 
-	float	lastl;
-	float	lastr;
+	float	lastl=0.0;
+	float	lastr=0.0;
 
 	if( m_fLeftVolumeRamp!=0.0f || m_fRightVolumeRamp!=0.0f )
 	{
@@ -203,8 +203,8 @@ void	CAmp::AmpAndAdd_StereoToStereo( float *pStereo, float *pSrc, int iCount, fl
 	float	*pStart=pStereo;
 	int		iTotal=iCount;
 
-	float	lastl;
-	float	lastr;
+	float	lastl=0.0;
+	float	lastr=0.0;
 
 	if( m_fLeftVolumeRamp!=0.0f || m_fRightVolumeRamp!=0.0f )
 	{

@@ -1,3 +1,10 @@
+2009-04-05  Stefan Kost  <ensonic@users.sf.net>
+
+	* Matilde/Tracker/Envelope.h:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Amp.cpp:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Resampler.cpp:
+	  Fix compiler warnings here too.
+
 2009-04-05  Krzysztof Foltman  <kfoltman@users.sf.net>
 
 	* FSM/PanzerDelay/Delay.cpp:
