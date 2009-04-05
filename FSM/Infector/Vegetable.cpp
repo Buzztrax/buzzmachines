@@ -177,10 +177,8 @@ void CBandlimitedTable::Make(float fMultiplyFactor, float fMaxScanRate, float fC
     lev.m_nBits=(int)(log(nCount)/log(2)+0.5);
     lev.m_fMultiplier=(float)pow(2.0,-31+lev.m_nBits);
 
-    float *pIn=m_levels[nLastTable].m_pData;
     float *pOut=m_levels[m_nLevels].m_pData=new float[nCount+4];
     int nSize1=m_levels[nLastTable].m_nSize-1;
-    int scale=(nSize1+1)/nCount;
 
     int nFirstSample=(int)(fCrispFactor*nSize*(m_levels[nLastTable].m_fMaxScanRate/lev.m_fMaxScanRate));
     for (int i=0; i<nSize; i++)

@@ -1,3 +1,10 @@
+2009-04-05  Krzysztof Foltman  <kfoltman@users.sf.net>
+
+	* FSM/Infector/Infector.cpp:
+	* FSM/Infector/Vegetable.cpp:
+	* FSM/Kick/Kick.cpp:
+	  Clean up a bit.
+
 2009-04-05  Stefan Kost  <ensonic@users.sf.net>
 
 	* configure.ac:
