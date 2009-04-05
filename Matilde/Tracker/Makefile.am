@@ -20,12 +20,12 @@ plugin_LTLIBRARIES = libMatilde_Tracker.la libMatilde_Tracker_Mono.la
 libMatilde_Tracker_la_SOURCES = $(SOURCES)
 libMatilde_Tracker_la_CXXFLAGS = $(BM_CXXFLAGS)
 libMatilde_Tracker_la_LDFLAGS = $(BM_LIBS)
-libMatilde_Tracker_la_LIBADD = SurfsDSPLib/libdsplib.la
+libMatilde_Tracker_la_LIBADD = SurfsDSPLib/libdsplib.la $(top_builddir)/common/dsplib/libdsplib.la
 
 libMatilde_Tracker_Mono_la_SOURCES = $(SOURCES)
 libMatilde_Tracker_Mono_la_CXXFLAGS = $(BM_CXXFLAGS) -DMONO
 libMatilde_Tracker_Mono_la_LDFLAGS = $(BM_LIBS)
-libMatilde_Tracker_Mono_la_LIBADD = SurfsDSPLib/libdsplib.la
+libMatilde_Tracker_Mono_la_LIBADD = SurfsDSPLib/libdsplib.la $(top_builddir)/common/dsplib/libdsplib.la
 
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/libMatilde_Tracker*.la

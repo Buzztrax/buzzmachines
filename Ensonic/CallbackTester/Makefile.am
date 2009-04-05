@@ -5,6 +5,7 @@ plugin_LTLIBRARIES = libEnsonic_CallbackTester.la
 libEnsonic_CallbackTester_la_SOURCES = CallbackTester.cpp
 libEnsonic_CallbackTester_la_CXXFLAGS = $(BM_CXXFLAGS)
 libEnsonic_CallbackTester_la_LDFLAGS = $(BM_LIBS)
+libEnsonic_CallbackTester_la_LIBADD = $(top_builddir)/common/dsplib/libdsplib.la
 
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
