@@ -1,5 +1,11 @@
 2009-04-05  Krzysztof Foltman  <kfoltman@users.sf.net>
 
+	* FSM/PanzerDelay/Delay.cpp:
+	* FSM/WahMan/WahMan.cpp:
+	  Clean up, fix a potentially huge bug in PanzerDelay.
+
+2009-04-05  Krzysztof Foltman  <kfoltman@users.sf.net>
+
 	* FSM/Infector/Infector.cpp:
 	* FSM/Infector/Vegetable.cpp:
 	* FSM/Kick/Kick.cpp:

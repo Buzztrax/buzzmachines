@@ -379,7 +379,7 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
     for (int j=i; j<jmax; j++)
     {
       float in=pin[j];
-      float res=(float)(trk->a0*(in+x1+x1+x2)-a1*y1-a2*y2);
+      float res=(float)(a0*(in+x1+x1+x2)-a1*y1-a2*y2);
       if (res>-0.1 && res<0.1) res=0.0;
       if (res>320000) res=320000;
       if (res<-320000) res=-320000;
