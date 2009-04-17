@@ -124,7 +124,7 @@ void	CTrack::Release()
 int	CTrack::NewNote( bool oRetrig )
 {
 	int	r=0;
-
+    
 	if( m_pMachine->m_oVirtualChannels )
 		Release();
 	if( m_pChannel==NULL )

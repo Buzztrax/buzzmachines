@@ -1,3 +1,18 @@
+2009-04-17  Stefan Kost  <ensonic@users.sf.net>
+
+	* Matilde/Tracker/Makefile.am:
+	  Build api version 1 and 2 (its still the same, need to make the changes).
+
+	* Matilde/Tracker/SurfsDSPLib/Makefile.am:
+	  Add -DBUZZ for more resampler variants.
+
+	* Matilde/Tracker/Track.cpp:
+	* Matilde/Tracker/Tracker.cpp:
+	  Set interpolation mode to linear by default until spline is fixed.
+	
+	* common/MachineInterface.h:
+	  Comments.
+
 2009-04-05  Stefan Kost  <ensonic@users.sf.net>
 
 	* Ensonic/CallbackTester/Makefile.am:

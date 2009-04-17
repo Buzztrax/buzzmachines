@@ -258,7 +258,7 @@ const CMachineAttribute	CMachine::m_attrFilterMode=
 	"Filter Mode",
 	0,
 	2,
-	2,
+	1, /* FIXME: 2=spline is broekn right now */
 };
 
 const CMachineAttribute	CMachine::m_attrPitchEnvelopeDepth=

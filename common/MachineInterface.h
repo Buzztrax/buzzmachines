@@ -38,9 +38,9 @@ double const PI = 3.14159265358979323846;
 #define WAVE_NO					0
 
 // CMachineParameter flags
-#define MPF_WAVE				1
-#define MPF_STATE				2	
-#define MPF_TICK_ON_EDIT		4				
+#define MPF_WAVE				1   // refers to a wavetable slot
+#define MPF_STATE				2	// is continuously changing (not used for notes and triggers)
+#define MPF_TICK_ON_EDIT		4	// causes the host to send you a Tick() message immediatly after the user enters a value in the pattern or machine editor			
 
 // CMachineInfo flags
 #define MIF_MONO_TO_STEREO		(1<<0)
