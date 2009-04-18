@@ -1,3 +1,10 @@
+2009-04-18  Krzysztof Foltman  <kfoltman@users.sf.net>
+
+	* Matilde/Tracker/SurfsDSPLib/SRF_Resampler.cpp:
+	* Matilde/Tracker/Tracker.cpp:
+	  Unbreak and re-enable Matilde's spline interpolation mode by
+	  replacing a floating point hack with plain multiplication.
+
 2009-04-17  Stefan Kost  <ensonic@users.sf.net>
 
 	* Matilde/Tracker/Makefile.am:

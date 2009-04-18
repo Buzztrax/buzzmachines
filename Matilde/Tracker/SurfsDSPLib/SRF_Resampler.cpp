@@ -21,13 +21,6 @@ static inline int	absint( int i )
 	return i>=0?i:-i;
 }
 
-static inline float	fscale( float r, long i )
-{
-	//i=(*(long *)&r)+(i<<23);
-	i=(*(long *)((void *)&r))+((i&0xFF)<<23);
-	return *(float *)((void *)&i);
-}
-
 static	u_char	gSampleSizes[8]=
 {
 	0,
@@ -685,8 +678,8 @@ float	*	CResampler::ResampleSigned16ToFloatBuffer_Spline( float *pDest, int iCou
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	q0=-p0+fscale(p1,1)+p1-fscale(p2,1)-p2+p3;
-			float	q1=fscale(p0,1)-fscale(p1,2)-p1+fscale(p2,2)-p3;
+			float	q0=-p0+3*p1-3*p2+p3;
+			float	q1=2*p0-5*p1+4*p2-p3;
 			float	q2=-p0+p2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
@@ -725,8 +718,8 @@ float	*	CResampler::ResampleSigned16ToFloatBuffer_Spline( float *pDest, int iCou
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	q0=-p0+fscale(p1,1)+p1-fscale(p2,1)-p2+p3;
-			float	q1=fscale(p0,1)-fscale(p1,2)-p1+fscale(p2,2)-p3;
+			float	q0=-p0+3*p1-3*p2+p3;
+			float	q1=2*p0-5*p1+4*p2-p3;
 			float	q2=-p0+p2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
@@ -810,8 +803,8 @@ float	*	CResampler::ResampleStereoSigned16ToFloatBuffer_Spline( float *pDest, in
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	q0=-p0+fscale(p1,1)+p1-fscale(p2,1)-p2+p3;
-			float	q1=fscale(p0,1)-fscale(p1,2)-p1+fscale(p2,2)-p3;
+			float	q0=-p0+3*p1-3*p2+p3;
+			float	q1=2*p0-5*p1+4*p2-p3;
 			float	q2=-p0+p2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
@@ -850,8 +843,8 @@ float	*	CResampler::ResampleStereoSigned16ToFloatBuffer_Spline( float *pDest, in
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	q0=-p0+fscale(p1,1)+p1-fscale(p2,1)-p2+p3;
-			float	q1=fscale(p0,1)-fscale(p1,2)-p1+fscale(p2,2)-p3;
+			float	q0=-p0+3*p1-3*p2+p3;
+			float	q1=2*p0-5*p1+4*p2-p3;
 			float	q2=-p0+p2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
@@ -947,8 +940,8 @@ float	*	CResampler::ResampleSigned16ToStereoFloatBuffer_Spline( float *pDest, in
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	q0=-p0+fscale(p1,1)+p1-fscale(p2,1)-p2+p3;
-			float	q1=fscale(p0,1)-fscale(p1,2)-p1+fscale(p2,2)-p3;
+			float	q0=-p0+3*p1-3*p2+p3;
+			float	q1=2*p0-5*p1+4*p2-p3;
 			float	q2=-p0+p2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
@@ -989,8 +982,8 @@ float	*	CResampler::ResampleSigned16ToStereoFloatBuffer_Spline( float *pDest, in
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	q0=-p0+fscale(p1,1)+p1-fscale(p2,1)-p2+p3;
-			float	q1=fscale(p0,1)-fscale(p1,2)-p1+fscale(p2,2)-p3;
+			float	q0=-p0+3*p1-3*p2+p3;
+			float	q1=2*p0-5*p1+4*p2-p3;
 			float	q2=-p0+p2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
@@ -1093,11 +1086,11 @@ float	*	CResampler::ResampleStereoSigned16ToStereoFloatBuffer_Spline( float *pDe
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	lq0=-lp0+fscale(lp1,1)+lp1-fscale(lp2,1)-lp2+lp3;
-			float	lq1=fscale(lp0,1)-fscale(lp1,2)-lp1+fscale(lp2,2)-lp3;
+			float	lq0=-lp0+3*lp1-3*lp2+lp3;
+			float	lq1=2*lp0-5*lp1+4*lp2-lp3;
 			float	lq2=-lp0+lp2;
-			float	rq0=-rp0+fscale(rp1,1)+rp1-fscale(rp2,1)-rp2+rp3;
-			float	rq1=fscale(rp0,1)-fscale(rp1,2)-rp1+fscale(rp2,2)-rp3;
+			float	rq0=-rp0+3*rp1-3*rp2+rp3;
+			float	rq1=2*rp0-5*rp1+4*rp2-rp3;
 			float	rq2=-rp0+rp2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
@@ -1147,11 +1140,11 @@ float	*	CResampler::ResampleStereoSigned16ToStereoFloatBuffer_Spline( float *pDe
 	{
 		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
 		{
-			float	lq0=-lp0+fscale(lp1,1)+lp1-fscale(lp2,1)-lp2+lp3;
-			float	lq1=fscale(lp0,1)-fscale(lp1,2)-lp1+fscale(lp2,2)-lp3;
+			float	lq0=-lp0+3*lp1-3*lp2+lp3;
+			float	lq1=2*lp0-5*lp1+4*lp2-lp3;
 			float	lq2=-lp0+lp2;
-			float	rq0=-rp0+fscale(rp1,1)+rp1-fscale(rp2,1)-rp2+rp3;
-			float	rq1=fscale(rp0,1)-fscale(rp1,2)-rp1+fscale(rp2,2)-rp3;
+			float	rq0=-rp0+3*rp1-3*rp2+rp3;
+			float	rq1=2*rp0-5*rp1+4*rp2-rp3;
 			float	rq2=-rp0+rp2;
 
 			while( (m_iFraction<=MAXFRACTION) && iCount-- )
