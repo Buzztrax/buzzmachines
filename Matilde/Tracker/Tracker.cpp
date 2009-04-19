@@ -42,7 +42,12 @@ HINSTANCE dllInstance;
 
 // -----------------  GLOBAL  -----------------
 
+#ifdef API_V1
+#define NumberOfGlobalParameters 0
+#define NumberOfAttributes 9
+#else
 #define NumberOfGlobalParameters 4
+#define NumberOfAttributes 12
 
 // new by JM
 const CMachineParameter	CMachine::m_paraAmpDecay=
@@ -96,6 +101,8 @@ const CMachineParameter	CMachine::m_paraTuning=
 	0x7F											// default value
 };
 
+#endif
+
 // -----------------  TRACK  -----------------
 
 const CMachineParameter	CMachine::m_paraNote=
@@ -115,11 +122,19 @@ const CMachineParameter	CMachine::m_paraInstrument=
 	pt_byte,										// type
 	"Wave",
 	"Wave to use (01-C8)",							// description
-	0,												// MinValue	(was WAVE_MIN)
+#ifdef API_V1
+  WAVE_MIN,
+#else
+	0,												  // MinValue
+#endif
 	WAVE_MAX,										// MaxValue
-	WAVE_NO,										// NoValue (was WAVE_NO)
+	WAVE_NO,										// NoValue
 	MPF_WAVE|MPF_STATE,								// Flags
-	1
+#ifdef API_V1
+  WAVE_NO
+#else
+	1                           // DefValue
+#endif
 };
 
 const CMachineParameter	CMachine::m_paraVolume=
@@ -130,7 +145,11 @@ const CMachineParameter	CMachine::m_paraVolume=
 	0,												// MinValue
 	0xFE,											// MaxValue
 	0xFF,											// NoValue
+#ifdef API_V1
+  0,             								// Flags
+#else
 	MPF_STATE,										// Flags
+#endif
 	0
 };
 
@@ -184,11 +203,14 @@ const CMachineParameter	CMachine::m_paraArgument2=
 
 const CMachineParameter	*	CMachine::m_pParameters[]=
 {
-	// track
+  // global
+#ifndef API_V1
 	&m_paraAmpDecay,
 	&m_paraPercOffset,
 	&m_paraPercQuantize,
 	&m_paraTuning,
+#endif
+	// track
 	&m_paraNote,
 	&m_paraInstrument,
 	&m_paraVolume,
@@ -258,7 +280,11 @@ const CMachineAttribute	CMachine::m_attrFilterMode=
 	"Filter Mode",
 	0,
 	2,
+#ifdef API_V1
+  1,
+#else
 	2,
+#endif
 };
 
 const CMachineAttribute	CMachine::m_attrPitchEnvelopeDepth=
@@ -277,6 +303,7 @@ const CMachineAttribute	CMachine::m_attrVirtualChannels=
 	0,
 };
 
+#ifndef API_V1
 const CMachineAttribute	CMachine::m_attrLongLoopFit=
 {
 	"Long loop fit factor",
@@ -300,6 +327,7 @@ const CMachineAttribute	CMachine::m_attrTuningRange=
 	12,							// max
 	5,							// default
 };
+#endif
 
 const CMachineAttribute	*	CMachine::m_pAttributes[]=
 {
@@ -312,9 +340,11 @@ const CMachineAttribute	*	CMachine::m_pAttributes[]=
 	&m_attrFilterMode,
 	&m_attrPitchEnvelopeDepth,
 	&m_attrVirtualChannels,
+#ifndef API_V1
 	&m_attrLongLoopFit,
 	&m_attrOffsetGain,
 	&m_attrTuningRange,
+#endif
 	NULL
 };
 
@@ -332,14 +362,23 @@ const CMachineInfo	CMachine::m_MachineInfo =
 	NumberOfGlobalParameters,				// numGlobalParameters
 	7,										// numTrackParameters
 	m_pParameters,
-	12,
+  NumberOfAttributes,   // numAttributes
 	m_pAttributes,
-#ifdef	MONO
+#ifdef API_V1
+#ifdef MONO
+	"Matilde Tracker (Mono)",
+#else
+	"Matilde Tracker",
+#endif
+	"MTrk",									// short name
+#else
+#ifdef MONO
 	"Matilde Tracker2 (Mono)",
 #else
 	"Matilde Tracker2",
 #endif
-	"MTrk",									// short name
+	"MTrk2",									// short name
+#endif
 	"Carsten S�rensen & Joachim",			// author
 	"About..."
 };
@@ -813,6 +852,7 @@ void CMachine::Event(dword const data)
 
 char const *CMachine::DescribeValue(int const param, int const value)
 {
+#ifndef API_V1
 	static char txt[20];
 
 	if( param==2 )
@@ -827,6 +867,7 @@ char const *CMachine::DescribeValue(int const param, int const value)
 		sprintf(txt, "%+d", value-127 );
 		return txt;
 	}
+#endif
 
 	if( (param==3+NumberOfGlobalParameters) || (param==5+NumberOfGlobalParameters) )
 	{

@@ -1,3 +1,8 @@
+2009-04-19  Stefan Kost  <ensonic@users.sf.net>
+
+	* Matilde/Tracker/Tracker.cpp:
+	  Emulate V1 API.
+
 2009-04-18  Krzysztof Foltman  <kfoltman@users.sf.net>
 
 	* Matilde/Tracker/SurfsDSPLib/SRF_Resampler.cpp:
