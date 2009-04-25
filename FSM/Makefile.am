@@ -1,3 +1,3 @@
 ## $Id$
 
-SUBDIRS = ArpMan Chorus Chorus2 Infector Kick PhatMan PanzerDelay WahMan
+SUBDIRS = ArpMan Chorus Chorus2 Infector Kick PanzerDelay PhatMan WahMan

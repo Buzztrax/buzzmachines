@@ -1,5 +1,31 @@
 2009-04-25  Stefan Kost  <ensonic@users.sf.net>
 
+	* FSM/Makefile.am:
+	* FSM/Philta/Philta.cpp:
+	* FSM/ScatMan/ScatMan.cpp:
+	* FSM/ScrapMan/ScrapMan.cpp:
+	* FSM/SprayMan/SprayMan.cpp:
+	* FSM/TapMan/TapMan.cpp:
+	* FSM/TunaMan/TunaMan.cpp:
+	* FSM/WahManPro/WahManPro.cpp:
+	* FSM/TapMan (added):
+	* FSM/TapMan/TapMan.cpp (added):
+	* FSM/Philta (added):
+	* FSM/Philta/Philta.cpp (added):
+	* FSM/ScatMan (added):
+	* FSM/ScatMan/ScatMan.cpp (added):
+	* FSM/SprayMan (added):
+	* FSM/SprayMan/SprayMan.cpp (added):
+	* FSM/WahManPro (added):
+	* FSM/WahManPro/WahManPro.cpp (added):
+	* FSM/TunaMan (added):
+	* FSM/TunaMan/TunaMan.cpp (added):
+	* FSM/ScrapMan (added):
+	* FSM/ScrapMan/ScrapMan.cpp (added):
+	  Add unported FSM machines.
+
+2009-04-25  Stefan Kost  <ensonic@users.sf.net>
+
 	* Jeskola/Delay/Delay.cpp:
 	* Jeskola/Distortion/Distortion.cpp:
 	* Jeskola/Freeverb/allpass.cpp:
