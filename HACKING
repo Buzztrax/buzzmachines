@@ -1,6 +1,23 @@
 = Filenames =
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
-extensions.
+extensions. If the machine consist of a single cpp file, its a good idea to make
+it match the machine name.
+
+= Intermediate Files =
+- don't add Release/Debug folders from windows source snapshots.
+- don't add those
+  unnecessary Visual Studio files:
+  *.aps, *.clw, *.ncb, *.opt, *.plg
+  intermediate files:
+  *.obj, *.pch, *.exp, *.sbr, *.bsc, *.ilk, *.lib, *.pdb, *.res, *.idb
+
+= Build =
+- copy Makefile.am from a ported machine, changed names in the file.
+- add a Makefile.am for the machine author if not yet there
+- edit configure.ac, go to bottom and add the newly created Makefiles
+- if the port is not fully done, don't add the machine dir the the SUBDIRS var
+  in the Makefile.am on level up. One can still enter the dir directly and run
+  make
 
 = Includes =
 replace any include for machineinterface.h with this
@@ -14,4 +31,11 @@ replace any #include <windows.h> with
   (mono/stereo)
 * if the machine has UI, don't rip it out, use #ifdef HAVE_WIN32_UI, maybe we
   can do something useful in the future
-  
+ 
+= Testing =
+check if the plugin can be loaded:
+~/projects/buzztard/bml/src/bmltest_info ./.libs/libFSM_Kick.so
+
+test for memory leaks:
+GLIBCPP_FORCE_NEW=1 GLIBCXX_FORCE_NEW=1 valgrind --tool=memcheck --leak-check=full --leak-resolution=high --trace-children=yes --num-callers=20 -v ~/projects/buzztard/bml/src/bmltest_info ./.libs/libFSM_Kick.so
+

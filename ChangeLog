@@ -1,5 +1,10 @@
 2009-04-25  Stefan Kost  <ensonic@users.sf.net>
 
+	* HACKING:
+	  More howto info.
+
+2009-04-25  Stefan Kost  <ensonic@users.sf.net>
+
 	* FSM/Makefile.am:
 	* FSM/Philta/Philta.cpp:
 	* FSM/ScatMan/ScatMan.cpp:
