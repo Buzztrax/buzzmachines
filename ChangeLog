@@ -1,3 +1,11 @@
+2009-04-25  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Kick/Kick.cpp:
+	* FSM/PanzerDelay/Makefile.am:
+	* FSM/PanzerDelay/PanzerDelay.cpp (added):
+	* FSM/PanzerDelay/Delay.cpp (deleted):
+	  Renamings.
+
 2009-04-19  Stefan Kost  <ensonic@users.sf.net>
 
 	* Matilde/Tracker/Tracker.cpp:

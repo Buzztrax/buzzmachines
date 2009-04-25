@@ -116,7 +116,7 @@ CMachineParameter const *pParameters[] =
     &paraAmpDecay,
 };
 
-CMachineAttribute const attrMaxDelay = 
+CMachineAttribute const attrFloor = 
 {
     "Floor force",
     0,
@@ -126,7 +126,7 @@ CMachineAttribute const attrMaxDelay =
 
 CMachineAttribute const *pAttributes[] = 
 {
-    &attrMaxDelay
+    &attrFloor
 };
 
 #pragma pack(1)
