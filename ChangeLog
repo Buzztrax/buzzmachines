@@ -1,5 +1,45 @@
 2009-04-25  Stefan Kost  <ensonic@users.sf.net>
 
+	* Jeskola/Delay/Delay.cpp:
+	* Jeskola/Distortion/Distortion.cpp:
+	* Jeskola/Freeverb/allpass.cpp:
+	* Jeskola/Freeverb/allpass.h:
+	* Jeskola/Freeverb/comb.cpp:
+	* Jeskola/Freeverb/comb.h:
+	* Jeskola/Freeverb/denormals.h:
+	* Jeskola/Freeverb/main.cpp:
+	* Jeskola/Freeverb/main.h:
+	* Jeskola/Freeverb/revmodel.cpp:
+	* Jeskola/Freeverb/revmodel.h:
+	* Jeskola/Freeverb/tuning.h:
+	* Jeskola/Mul/Mul.cpp:
+	* Jeskola/Noise/Noise.cpp:
+	* Jeskola/Trilok/Trilok.cpp:
+	* Jeskola/Freeverb (added):
+	* Jeskola/Freeverb/allpass.cpp (added):
+	* Jeskola/Freeverb/comb.cpp (added):
+	* Jeskola/Freeverb/revmodel.h (added):
+	* Jeskola/Freeverb/main.cpp (added):
+	* Jeskola/Freeverb/allpass.h (added):
+	* Jeskola/Freeverb/comb.h (added):
+	* Jeskola/Freeverb/denormals.h (added):
+	* Jeskola/Freeverb/main.h (added):
+	* Jeskola/Freeverb/tuning.h (added):
+	* Jeskola/Freeverb/revmodel.cpp (added):
+	* Jeskola/Trilok (added):
+	* Jeskola/Trilok/Trilok.cpp (added):
+	* Jeskola/Noise (added):
+	* Jeskola/Noise/Noise.cpp (added):
+	* Jeskola/Mul (added):
+	* Jeskola/Mul/Mul.cpp (added):
+	* Jeskola/Delay (added):
+	* Jeskola/Delay/Delay.cpp (added):
+	* Jeskola/Distortion (added):
+	* Jeskola/Distortion/Distortion.cpp (added):
+	  Add unported Jeskola machines.
+
+2009-04-25  Stefan Kost  <ensonic@users.sf.net>
+
 	* FSM/Kick/Kick.cpp:
 	* FSM/PanzerDelay/Makefile.am:
 	* FSM/PanzerDelay/PanzerDelay.cpp (added):
