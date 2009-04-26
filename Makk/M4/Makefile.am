@@ -1,0 +1,11 @@
+## $Id$
+
+plugin_LTLIBRARIES = libMakk_M4.la
+
+libMakk_M4_la_SOURCES = M4.cpp
+libMakk_M4_la_CXXFLAGS = $(BM_CXXFLAGS)
+libMakk_M4_la_LDFLAGS = $(BM_LIBS)
+
+install-data-hook:
+	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
+	mv $(DESTDIR)$(plugindir)/libMakk_M4.so $(DESTDIR)$(plugindir)/Makk_M4.so

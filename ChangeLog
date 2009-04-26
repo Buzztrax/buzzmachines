@@ -1,5 +1,27 @@
 2009-04-26  Stefan Kost  <ensonic@users.sf.net>
 
+	* Jeskola/Ninja/Ninja.cpp:
+	  Use relative includes.
+
+	* Makk/M3/M3.cpp:
+	* Makk/M3/Makefile.am:
+	* Makk/M4/M4.cpp:
+	* Makk/M4/Makefile.am:
+	* Makk/Makefile.am:
+	* configure.ac:
+	* Makk (added):
+	* Makk/M3 (added):
+	* Makk/M3/M3.cpp (added):
+	* Makk/M3/Makefile.am (added):
+	* Makk/M4 (added):
+	* Makk/M4/M4.cpp (added):
+	* Makk/M4/Makefile.am (added):
+	* Makk/Makefile.am (added):
+	  Port M3 and almost M4. For M4 we need to port 2 tools to build the
+	  wavetable tools still.
+
+2009-04-26  Stefan Kost  <ensonic@users.sf.net>
+
 	* HACKING:
 	* gen_makefile_am.sh:
 	* gen_makefile_am.sh (added):

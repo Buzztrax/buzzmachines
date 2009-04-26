@@ -6,7 +6,7 @@
 #include <math.h>
 #include <float.h>
 #include <MachineInterface.h>
-#include "dsplib.h"
+#include <dsplib.h>
 
 double const SilentEnough = log(1.0 / 32768);
 
