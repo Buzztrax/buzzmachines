@@ -1,4 +1,4 @@
-## $I$
+## $Id$
 
 noinst_LTLIBRARIES = libmdk.la
 noinst_HEADERS = mdkimp.h

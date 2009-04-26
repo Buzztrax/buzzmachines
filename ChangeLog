@@ -1,3 +1,17 @@
+2009-04-26  Stefan Kost  <ensonic@users.sf.net>
+
+	* Elak/Dist2/Makefile.am:
+	* Elak/SVF/Makefile.am:
+	* FSM/ArpMan/Makefile.am:
+	* FSM/Chorus/Makefile.am:
+	* FSM/Chorus2/Makefile.am:
+	* FSM/Infector/Makefile.am:
+	* FSM/PanzerDelay/Makefile.am:
+	* FSM/PhatMan/Makefile.am:
+	* FSM/WahMan/Makefile.am:
+	* common/mdk/Makefile.am:
+	  Fix ID tokens
+
 2009-04-25  Stefan Kost  <ensonic@users.sf.net>
 
 	* HACKING:

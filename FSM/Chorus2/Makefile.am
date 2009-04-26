@@ -1,4 +1,4 @@
-## $I$
+## $Id$
 
 plugin_LTLIBRARIES = libFSM_Chorus2.la
 
