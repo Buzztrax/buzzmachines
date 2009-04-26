@@ -1,9 +1,9 @@
-
+#include <windef.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../../MachineInterface.h"
+#include <MachineInterface.h>
 
 #define MAX_TRACKS	4
 

@@ -82,6 +82,7 @@ AC_CONFIG_FILES(Makefile shave shave-libtool \
     FSM/WahMan/Makefile
   Jeskola/Makefile \
     Jeskola/Ninja/Makefile \
+    Jeskola/Trilok/Makefile \
   Matilde/Makefile \
     Matilde/Tracker/Makefile \
     Matilde/Tracker/SurfsDSPLib/Makefile \

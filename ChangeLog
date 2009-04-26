@@ -1,5 +1,19 @@
 2009-04-26  Stefan Kost  <ensonic@users.sf.net>
 
+	* HACKING:
+	* gen_makefile_am.sh:
+	* gen_makefile_am.sh (added):
+	  More tips in HACKING. Add script to generate Makefile.am for a machine.
+
+	* Jeskola/Makefile.am:
+	* Jeskola/Trilok/Makefile.am:
+	* Jeskola/Trilok/Trilok.cpp:
+	* configure.ac:
+	* Jeskola/Trilok/Makefile.am (added):
+	  Port Trilok.
+
+2009-04-26  Stefan Kost  <ensonic@users.sf.net>
+
 	* Elak/Dist2/Makefile.am:
 	* Elak/SVF/Makefile.am:
 	* FSM/ArpMan/Makefile.am:

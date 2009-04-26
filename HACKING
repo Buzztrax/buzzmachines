@@ -12,7 +12,8 @@ it match the machine name.
   *.obj, *.pch, *.exp, *.sbr, *.bsc, *.ilk, *.lib, *.pdb, *.res, *.idb
 
 = Build =
-- copy Makefile.am from a ported machine, changed names in the file.
+- enter then machine dir
+- run ../../gen_makefile_am.sh and check the resulting Makefile.am
 - add a Makefile.am for the machine author if not yet there
 - edit configure.ac, go to bottom and add the newly created Makefiles
 - if the port is not fully done, don't add the machine dir the the SUBDIRS var
@@ -20,10 +21,9 @@ it match the machine name.
   make
 
 = Includes =
-replace any include for machineinterface.h with this
+- replace any include for MachineInterface.h that uses a path with this
 #include <MachineInterface.h>
-
-replace any #include <windows.h> with
+- replace any #include <windows.h> with
 #include <windef.h>
 
 = Misc =
@@ -35,6 +35,9 @@ replace any #include <windows.h> with
 = Testing =
 check if the plugin can be loaded:
 ~/projects/buzztard/bml/src/bmltest_info ./.libs/libFSM_Kick.so
+
+try to process
+~/projects/buzztard/bml/src/bmltest_process ./.libs/libJeskola_Trilok.so $HOME/projects/buzztard/bml/src/input.raw $HOME/projects/buzztard/bml/src/output.raw
 
 test for memory leaks:
 GLIBCPP_FORCE_NEW=1 GLIBCXX_FORCE_NEW=1 valgrind --tool=memcheck --leak-check=full --leak-resolution=high --trace-children=yes --num-callers=20 -v ~/projects/buzztard/bml/src/bmltest_info ./.libs/libFSM_Kick.so
