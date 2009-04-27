@@ -1,3 +1,8 @@
+2009-04-27  Stefan Kost  <ensonic@users.sf.net>
+
+	* README:
+	  Update to mention the machines are to be used via bml+gst-buzztard.
+
 2009-04-26  Stefan Kost  <ensonic@users.sf.net>
 
 	* Jeskola/Ninja/Ninja.cpp:

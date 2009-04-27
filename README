@@ -6,7 +6,7 @@ is about. Buzztard is free software and distributed under the LGPL.
 
 = intro =
 This module provide a set of buzzmachines that have been released as open source.
-They can be used via bml library or in all gstreamer app via bml+gstbml.
+They can be used via bml library or in all gstreamer app via bml+gst-buzztard.
 
 = installing locally =
 You can install this module locally too.
