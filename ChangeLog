@@ -1,5 +1,10 @@
 2009-04-27  Stefan Kost  <ensonic@users.sf.net>
 
+	* Matilde/Tracker/Makefile.am:
+	  Remove TODO and add missing whitespace.
+
+2009-04-27  Stefan Kost  <ensonic@users.sf.net>
+
 	* README:
 	  Update to mention the machines are to be used via bml+gst-buzztard.
 

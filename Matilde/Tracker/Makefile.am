@@ -1,10 +1,8 @@
 ## $Id$
 
-# TODO we need API Version1 via -DAPI_V1
-
 SUBDIRS = SurfsDSPLib
 
-SOURCES= \
+SOURCES = \
 	BuzzInstrument.cpp BuzzInstrument.h \
 	BuzzSample.cpp BuzzSample.h \
 	Channel.cpp Channel.h \
