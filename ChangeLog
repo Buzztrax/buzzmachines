@@ -1,6 +1,11 @@
 2009-04-27  Stefan Kost  <ensonic@users.sf.net>
 
 	* Matilde/Tracker/Makefile.am:
+	  Fix "commands commence before first target." in Makefile.
+
+2009-04-27  Stefan Kost  <ensonic@users.sf.net>
+
+	* Matilde/Tracker/Makefile.am:
 	  Remove TODO and add missing whitespace.
 
 2009-04-27  Stefan Kost  <ensonic@users.sf.net>
