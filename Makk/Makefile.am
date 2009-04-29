@@ -1,4 +1,4 @@
 ## $Id$
 
-SUBDIRS = M3
+SUBDIRS = M3 M4
 

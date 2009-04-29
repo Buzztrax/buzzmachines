@@ -1,3 +1,529 @@
+2009-04-29  Stefan Kost  <ensonic@users.sf.net>
+
+	* Makk/M4/M4.cpp:
+	* Makk/M4/waves/303_01.h:
+	* Makk/M4/waves/303_01.wav:
+	* Makk/M4/waves/303_02.h:
+	* Makk/M4/waves/303_02.wav:
+	* Makk/M4/waves/303_03.h:
+	* Makk/M4/waves/303_03.wav:
+	* Makk/M4/waves/303_04.h:
+	* Makk/M4/waves/303_04.wav:
+	* Makk/M4/waves/303_05.h:
+	* Makk/M4/waves/303_05.wav:
+	* Makk/M4/waves/303_06.h:
+	* Makk/M4/waves/303_06.wav:
+	* Makk/M4/waves/303_07.h:
+	* Makk/M4/waves/303_07.wav:
+	* Makk/M4/waves/303_08.h:
+	* Makk/M4/waves/303_08.wav:
+	* Makk/M4/waves/303_09.h:
+	* Makk/M4/waves/303_09.wav:
+	* Makk/M4/waves/303_10.h:
+	* Makk/M4/waves/303_10.wav:
+	* Makk/M4/waves/303_11.h:
+	* Makk/M4/waves/303_11.wav:
+	* Makk/M4/waves/303_12.h:
+	* Makk/M4/waves/303_12.wav:
+	* Makk/M4/waves/BASS01.h:
+	* Makk/M4/waves/BASS02.h:
+	* Makk/M4/waves/BASS03.h:
+	* Makk/M4/waves/BASS04.h:
+	* Makk/M4/waves/BASS05.h:
+	* Makk/M4/waves/BASS06.h:
+	* Makk/M4/waves/BASS07.h:
+	* Makk/M4/waves/BASS08.h:
+	* Makk/M4/waves/BASS09.h:
+	* Makk/M4/waves/BASS10.h:
+	* Makk/M4/waves/BASS11.h:
+	* Makk/M4/waves/BASS12.h:
+	* Makk/M4/waves/BASS13.h:
+	* Makk/M4/waves/BASS14.h:
+	* Makk/M4/waves/BASS15.h:
+	* Makk/M4/waves/BASS16.h:
+	* Makk/M4/waves/BASS17.h:
+	* Makk/M4/waves/BASS18.h:
+	* Makk/M4/waves/BASS19.h:
+	* Makk/M4/waves/Bass01.wav:
+	* Makk/M4/waves/Bass02.wav:
+	* Makk/M4/waves/Bass03.wav:
+	* Makk/M4/waves/Bass04.wav:
+	* Makk/M4/waves/Bass05.wav:
+	* Makk/M4/waves/Bass06.wav:
+	* Makk/M4/waves/Bass07.wav:
+	* Makk/M4/waves/Bass08.wav:
+	* Makk/M4/waves/Bass09.wav:
+	* Makk/M4/waves/Bass10.wav:
+	* Makk/M4/waves/Bass11.wav:
+	* Makk/M4/waves/Bass12.wav:
+	* Makk/M4/waves/Bass13.wav:
+	* Makk/M4/waves/Bass14.wav:
+	* Makk/M4/waves/Bass15.wav:
+	* Makk/M4/waves/Bass16.wav:
+	* Makk/M4/waves/Bass17.wav:
+	* Makk/M4/waves/Bass18.wav:
+	* Makk/M4/waves/Bass19.wav:
+	* Makk/M4/waves/Convert.exe:
+	* Makk/M4/waves/Dir2c.exe:
+	* Makk/M4/waves/HARD01.h:
+	* Makk/M4/waves/HARD02.h:
+	* Makk/M4/waves/HARD03.h:
+	* Makk/M4/waves/HARD04.h:
+	* Makk/M4/waves/HARD05.h:
+	* Makk/M4/waves/HARD06.h:
+	* Makk/M4/waves/HARD07.h:
+	* Makk/M4/waves/Hard01.wav:
+	* Makk/M4/waves/Hard02.wav:
+	* Makk/M4/waves/Hard03.wav:
+	* Makk/M4/waves/Hard04.wav:
+	* Makk/M4/waves/Hard05.wav:
+	* Makk/M4/waves/Hard06.wav:
+	* Makk/M4/waves/Hard07.wav:
+	* Makk/M4/waves/Raw2h.exe:
+	* Makk/M4/waves/SAW01.h:
+	* Makk/M4/waves/SAW02.h:
+	* Makk/M4/waves/SAW03.h:
+	* Makk/M4/waves/SAW04.h:
+	* Makk/M4/waves/SAW05.h:
+	* Makk/M4/waves/SAW06.h:
+	* Makk/M4/waves/SAW07.h:
+	* Makk/M4/waves/SAW08.h:
+	* Makk/M4/waves/SAW09.h:
+	* Makk/M4/waves/SAW10.h:
+	* Makk/M4/waves/SAW_202.h:
+	* Makk/M4/waves/SAW_DIGI.h:
+	* Makk/M4/waves/SAW_MOOG.h:
+	* Makk/M4/waves/SAW_SPEK.h:
+	* Makk/M4/waves/SIN_DIGI.h:
+	* Makk/M4/waves/SMOOTH01.h:
+	* Makk/M4/waves/SMOOTH02.h:
+	* Makk/M4/waves/SMOOTH03.h:
+	* Makk/M4/waves/SMOOTH04.h:
+	* Makk/M4/waves/SMOOTH05.h:
+	* Makk/M4/waves/SPEK01.h:
+	* Makk/M4/waves/SPEK02.h:
+	* Makk/M4/waves/SPEK03.h:
+	* Makk/M4/waves/SPEK04.h:
+	* Makk/M4/waves/SPEK05.h:
+	* Makk/M4/waves/SPEK06.h:
+	* Makk/M4/waves/SPEK07.h:
+	* Makk/M4/waves/SPEK08.h:
+	* Makk/M4/waves/SPEK09.h:
+	* Makk/M4/waves/SPEK10.h:
+	* Makk/M4/waves/SPEK11.h:
+	* Makk/M4/waves/SPEK12.h:
+	* Makk/M4/waves/SQUARE01.h:
+	* Makk/M4/waves/SQUARE02.h:
+	* Makk/M4/waves/SQUARE03.h:
+	* Makk/M4/waves/SQUARE04.h:
+	* Makk/M4/waves/SQUARE05.h:
+	* Makk/M4/waves/SQUARE06.h:
+	* Makk/M4/waves/SQUARE07.h:
+	* Makk/M4/waves/SQUARE08.h:
+	* Makk/M4/waves/SQUARE09.h:
+	* Makk/M4/waves/SQUARE10.h:
+	* Makk/M4/waves/SQUA_DIG.h:
+	* Makk/M4/waves/SQUA_SPK.h:
+	* Makk/M4/waves/SYNTH01.h:
+	* Makk/M4/waves/SYNTH02.h:
+	* Makk/M4/waves/SYNTH03.h:
+	* Makk/M4/waves/SYNTH04.h:
+	* Makk/M4/waves/SYNTH05.h:
+	* Makk/M4/waves/SYNTH06.h:
+	* Makk/M4/waves/SYNTH07.h:
+	* Makk/M4/waves/SYNTH08.h:
+	* Makk/M4/waves/SYNTH09.h:
+	* Makk/M4/waves/SYNTH10.h:
+	* Makk/M4/waves/SYNTH11.h:
+	* Makk/M4/waves/SYNTH12.h:
+	* Makk/M4/waves/SYNTH13.h:
+	* Makk/M4/waves/SYNTH14.h:
+	* Makk/M4/waves/SYNTH15.h:
+	* Makk/M4/waves/SYNTH16.h:
+	* Makk/M4/waves/SYNTH17.h:
+	* Makk/M4/waves/SYNTH18.h:
+	* Makk/M4/waves/SYNTH19.h:
+	* Makk/M4/waves/SYNTH20.h:
+	* Makk/M4/waves/SYNTH21.h:
+	* Makk/M4/waves/SYNTH22.h:
+	* Makk/M4/waves/SYNTH23.h:
+	* Makk/M4/waves/SYNTH24.h:
+	* Makk/M4/waves/SYNTH25.h:
+	* Makk/M4/waves/SYNTH26.h:
+	* Makk/M4/waves/SYNTH27.h:
+	* Makk/M4/waves/SYNTH28.h:
+	* Makk/M4/waves/SYNTH29.h:
+	* Makk/M4/waves/SYNTH30.h:
+	* Makk/M4/waves/SYNTH31.h:
+	* Makk/M4/waves/SYNTH32.h:
+	* Makk/M4/waves/SYNTH33.h:
+	* Makk/M4/waves/SYNTH34.h:
+	* Makk/M4/waves/SYNTH35.h:
+	* Makk/M4/waves/SYNTH36.h:
+	* Makk/M4/waves/SYNTH37.h:
+	* Makk/M4/waves/SYNTH38.h:
+	* Makk/M4/waves/SYNTH39.h:
+	* Makk/M4/waves/SYNTH40.h:
+	* Makk/M4/waves/SYNTH41.h:
+	* Makk/M4/waves/Saw01.wav:
+	* Makk/M4/waves/Saw02.wav:
+	* Makk/M4/waves/Saw03.wav:
+	* Makk/M4/waves/Saw04.wav:
+	* Makk/M4/waves/Saw05.wav:
+	* Makk/M4/waves/Saw06.wav:
+	* Makk/M4/waves/Saw07.wav:
+	* Makk/M4/waves/Saw08.wav:
+	* Makk/M4/waves/Saw09.wav:
+	* Makk/M4/waves/Saw10.wav:
+	* Makk/M4/waves/Saw_202.wav:
+	* Makk/M4/waves/Saw_digi.wav:
+	* Makk/M4/waves/Saw_moog.wav:
+	* Makk/M4/waves/Saw_spek.wav:
+	* Makk/M4/waves/Sin_digi.wav:
+	* Makk/M4/waves/Smooth01.wav:
+	* Makk/M4/waves/Smooth02.wav:
+	* Makk/M4/waves/Smooth03.wav:
+	* Makk/M4/waves/Smooth04.wav:
+	* Makk/M4/waves/Smooth05.wav:
+	* Makk/M4/waves/Spek01.wav:
+	* Makk/M4/waves/Spek02.wav:
+	* Makk/M4/waves/Spek03.wav:
+	* Makk/M4/waves/Spek04.wav:
+	* Makk/M4/waves/Spek05.wav:
+	* Makk/M4/waves/Spek06.wav:
+	* Makk/M4/waves/Spek07.wav:
+	* Makk/M4/waves/Spek08.wav:
+	* Makk/M4/waves/Spek09.wav:
+	* Makk/M4/waves/Spek10.wav:
+	* Makk/M4/waves/Spek11.wav:
+	* Makk/M4/waves/Spek12.wav:
+	* Makk/M4/waves/Squa_dig.wav:
+	* Makk/M4/waves/Squa_spk.wav:
+	* Makk/M4/waves/Square01.wav:
+	* Makk/M4/waves/Square02.wav:
+	* Makk/M4/waves/Square03.wav:
+	* Makk/M4/waves/Square04.wav:
+	* Makk/M4/waves/Square05.wav:
+	* Makk/M4/waves/Square06.wav:
+	* Makk/M4/waves/Square07.wav:
+	* Makk/M4/waves/Square08.wav:
+	* Makk/M4/waves/Square09.wav:
+	* Makk/M4/waves/Square10.wav:
+	* Makk/M4/waves/Synth01.wav:
+	* Makk/M4/waves/Synth02.wav:
+	* Makk/M4/waves/Synth03.wav:
+	* Makk/M4/waves/Synth04.wav:
+	* Makk/M4/waves/Synth05.wav:
+	* Makk/M4/waves/Synth06.wav:
+	* Makk/M4/waves/Synth07.wav:
+	* Makk/M4/waves/Synth08.wav:
+	* Makk/M4/waves/Synth09.wav:
+	* Makk/M4/waves/Synth10.wav:
+	* Makk/M4/waves/Synth11.wav:
+	* Makk/M4/waves/Synth12.wav:
+	* Makk/M4/waves/Synth13.wav:
+	* Makk/M4/waves/Synth14.wav:
+	* Makk/M4/waves/Synth15.wav:
+	* Makk/M4/waves/Synth16.wav:
+	* Makk/M4/waves/Synth17.wav:
+	* Makk/M4/waves/Synth18.wav:
+	* Makk/M4/waves/Synth19.wav:
+	* Makk/M4/waves/Synth20.wav:
+	* Makk/M4/waves/Synth21.wav:
+	* Makk/M4/waves/Synth22.wav:
+	* Makk/M4/waves/Synth23.wav:
+	* Makk/M4/waves/Synth24.wav:
+	* Makk/M4/waves/Synth25.wav:
+	* Makk/M4/waves/Synth26.wav:
+	* Makk/M4/waves/Synth27.wav:
+	* Makk/M4/waves/Synth28.wav:
+	* Makk/M4/waves/Synth29.wav:
+	* Makk/M4/waves/Synth30.wav:
+	* Makk/M4/waves/Synth31.wav:
+	* Makk/M4/waves/Synth32.wav:
+	* Makk/M4/waves/Synth33.wav:
+	* Makk/M4/waves/Synth34.wav:
+	* Makk/M4/waves/Synth35.wav:
+	* Makk/M4/waves/Synth36.wav:
+	* Makk/M4/waves/Synth37.wav:
+	* Makk/M4/waves/Synth38.wav:
+	* Makk/M4/waves/Synth39.wav:
+	* Makk/M4/waves/Synth40.wav:
+	* Makk/M4/waves/Synth41.wav:
+	* Makk/M4/waves/TRI01.h:
+	* Makk/M4/waves/TRI02.h:
+	* Makk/M4/waves/TRI_DIGI.h:
+	* Makk/M4/waves/Tri01.wav:
+	* Makk/M4/waves/Tri02.wav:
+	* Makk/M4/waves/Tri_digi.wav:
+	* Makk/M4/waves/Wav2h.bat:
+	* Makk/M4/waves/wav2h.sh:
+	* Makk/M4/waves/wavename.inc:
+	* Makk/M4/waves/waves.cpp:
+	* Makk/Makefile.am:
+	* TODO:
+	* Makk/M4/waves (added):
+	* Makk/M4/waves/BASS01.h (added):
+	* Makk/M4/waves/Tri_digi.wav (added):
+	* Makk/M4/waves/SQUARE01.h (added):
+	* Makk/M4/waves/BASS09.h (added):
+	* Makk/M4/waves/SAW08.h (added):
+	* Makk/M4/waves/303_10.h (added):
+	* Makk/M4/waves/SPEK12.h (added):
+	* Makk/M4/waves/SQUARE09.h (added):
+	* Makk/M4/waves/SMOOTH01.h (added):
+	* Makk/M4/waves/SYNTH33.h (added):
+	* Makk/M4/waves/Spek03.wav (added):
+	* Makk/M4/waves/SYNTH16.h (added):
+	* Makk/M4/waves/Raw2h.exe (added):
+	* Makk/M4/waves/Synth12.wav (added):
+	* Makk/M4/waves/Spek07.wav (added):
+	* Makk/M4/waves/Synth16.wav (added):
+	* Makk/M4/waves/HARD05.h (added):
+	* Makk/M4/waves/BASS10.h (added):
+	* Makk/M4/waves/Bass03.wav (added):
+	* Makk/M4/waves/SQUARE10.h (added):
+	* Makk/M4/waves/BASS18.h (added):
+	* Makk/M4/waves/Bass07.wav (added):
+	* Makk/M4/waves/SPEK04.h (added):
+	* Makk/M4/waves/303_02.h (added):
+	* Makk/M4/waves/Spek12.wav (added):
+	* Makk/M4/waves/SYNTH25.h (added):
+	* Makk/M4/waves/303_02.wav (added):
+	* Makk/M4/waves/SYNTH08.h (added):
+	* Makk/M4/waves/SAW_202.h (added):
+	* Makk/M4/waves/Synth21.wav (added):
+	* Makk/M4/waves/303_06.wav (added):
+	* Makk/M4/waves/Smooth02.wav (added):
+	* Makk/M4/waves/Synth25.wav (added):
+	* Makk/M4/waves/Saw_202.wav (added):
+	* Makk/M4/waves/wavename.inc (added):
+	* Makk/M4/waves/Hard02.wav (added):
+	* Makk/M4/waves/Synth29.wav (added):
+	* Makk/M4/waves/BASS02.h (added):
+	* Makk/M4/waves/Hard06.wav (added):
+	* Makk/M4/waves/TRI_DIGI.h (added):
+	* Makk/M4/waves/SAW01.h (added):
+	* Makk/M4/waves/Bass12.wav (added):
+	* Makk/M4/waves/SQUARE02.h (added):
+	* Makk/M4/waves/Saw02.wav (added):
+	* Makk/M4/waves/SAW09.h (added):
+	* Makk/M4/waves/Bass16.wav (added):
+	* Makk/M4/waves/303_11.h (added):
+	* Makk/M4/waves/Saw06.wav (added):
+	* Makk/M4/waves/SMOOTH02.h (added):
+	* Makk/M4/waves/SYNTH34.h (added):
+	* Makk/M4/waves/303_11.wav (added):
+	* Makk/M4/waves/SYNTH17.h (added):
+	* Makk/M4/waves/Synth30.wav (added):
+	* Makk/M4/waves/Synth34.wav (added):
+	* Makk/M4/waves/HARD06.h (added):
+	* Makk/M4/waves/Synth38.wav (added):
+	* Makk/M4/waves/SAW_DIGI.h (added):
+	* Makk/M4/waves/BASS11.h (added):
+	* Makk/M4/waves/SAW10.h (added):
+	* Makk/M4/waves/BASS19.h (added):
+	* Makk/M4/waves/SYNTH01.h (added):
+	* Makk/M4/waves/SPEK05.h (added):
+	* Makk/M4/waves/303_03.h (added):
+	* Makk/M4/waves/Square03.wav (added):
+	* Makk/M4/waves/Square07.wav (added):
+	* Makk/M4/waves/SYNTH26.h (added):
+	* Makk/M4/waves/SYNTH09.h (added):
+	* Makk/M4/waves/Synth04.wav (added):
+	* Makk/M4/waves/Synth08.wav (added):
+	* Makk/M4/waves/SIN_DIGI.h (added):
+	* Makk/M4/waves/BASS03.h (added):
+	* Makk/M4/waves/SAW02.h (added):
+	* Makk/M4/waves/SQUARE03.h (added):
+	* Makk/M4/waves/SYNTH10.h (added):
+	* Makk/M4/waves/303_12.h (added):
+	* Makk/M4/waves/Spek04.wav (added):
+	* Makk/M4/waves/SMOOTH03.h (added):
+	* Makk/M4/waves/SYNTH35.h (added):
+	* Makk/M4/waves/SYNTH18.h (added):
+	* Makk/M4/waves/Synth13.wav (added):
+	* Makk/M4/waves/waves.cpp (added):
+	* Makk/M4/waves/Spek08.wav (added):
+	* Makk/M4/waves/Synth17.wav (added):
+	* Makk/M4/waves/HARD07.h (added):
+	* Makk/M4/waves/BASS12.h (added):
+	* Makk/M4/waves/TRI01.h (added):
+	* Makk/M4/waves/Bass04.wav (added):
+	* Makk/M4/waves/Wav2h.bat (added):
+	* Makk/M4/waves/Bass08.wav (added):
+	* Makk/M4/waves/SYNTH02.h (added):
+	* Makk/M4/waves/SPEK06.h (added):
+	* Makk/M4/waves/303_04.h (added):
+	* Makk/M4/waves/Convert.exe (added):
+	* Makk/M4/waves/303_03.wav (added):
+	* Makk/M4/waves/SYNTH27.h (added):
+	* Makk/M4/waves/Synth22.wav (added):
+	* Makk/M4/waves/303_07.wav (added):
+	* Makk/M4/waves/Smooth03.wav (added):
+	* Makk/M4/waves/Synth26.wav (added):
+	* Makk/M4/waves/Hard03.wav (added):
+	* Makk/M4/waves/Hard07.wav (added):
+	* Makk/M4/waves/Squa_spk.wav (added):
+	* Makk/M4/waves/BASS04.h (added):
+	* Makk/M4/waves/SQUA_DIG.h (added):
+	* Makk/M4/waves/SAW03.h (added):
+	* Makk/M4/waves/Dir2c.exe (added):
+	* Makk/M4/waves/Bass13.wav (added):
+	* Makk/M4/waves/Saw03.wav (added):
+	* Makk/M4/waves/SQUARE04.h (added):
+	* Makk/M4/waves/Bass17.wav (added):
+	* Makk/M4/waves/Saw07.wav (added):
+	* Makk/M4/waves/SYNTH11.h (added):
+	* Makk/M4/waves/303_12.wav (added):
+	* Makk/M4/waves/SMOOTH04.h (added):
+	* Makk/M4/waves/SYNTH36.h (added):
+	* Makk/M4/waves/Synth31.wav (added):
+	* Makk/M4/waves/SYNTH19.h (added):
+	* Makk/M4/waves/Synth35.wav (added):
+	* Makk/M4/waves/Synth39.wav (added):
+	* Makk/M4/waves/BASS13.h (added):
+	* Makk/M4/waves/TRI02.h (added):
+	* Makk/M4/waves/SYNTH20.h (added):
+	* Makk/M4/waves/SYNTH03.h (added):
+	* Makk/M4/waves/SPEK07.h (added):
+	* Makk/M4/waves/303_05.h (added):
+	* Makk/M4/waves/Square04.wav (added):
+	* Makk/M4/waves/Synth01.wav (added):
+	* Makk/M4/waves/Square08.wav (added):
+	* Makk/M4/waves/SYNTH28.h (added):
+	* Makk/M4/waves/Synth40.wav (added):
+	* Makk/M4/waves/Synth05.wav (added):
+	* Makk/M4/waves/Synth09.wav (added):
+	* Makk/M4/waves/Sin_digi.wav (added):
+	* Makk/M4/waves/BASS05.h (added):
+	* Makk/M4/waves/SAW04.h (added):
+	* Makk/M4/waves/Squa_dig.wav (added):
+	* Makk/M4/waves/SQUARE05.h (added):
+	* Makk/M4/waves/SYNTH12.h (added):
+	* Makk/M4/waves/Spek01.wav (added):
+	* Makk/M4/waves/Synth10.wav (added):
+	* Makk/M4/waves/SAW_SPEK.h (added):
+	* Makk/M4/waves/Spek05.wav (added):
+	* Makk/M4/waves/SMOOTH05.h (added):
+	* Makk/M4/waves/SYNTH37.h (added):
+	* Makk/M4/waves/HARD01.h (added):
+	* Makk/M4/waves/Synth14.wav (added):
+	* Makk/M4/waves/Spek09.wav (added):
+	* Makk/M4/waves/Synth18.wav (added):
+	* Makk/M4/waves/Saw_digi.wav (added):
+	* Makk/M4/waves/BASS14.h (added):
+	* Makk/M4/waves/Bass01.wav (added):
+	* Makk/M4/waves/Bass05.wav (added):
+	* Makk/M4/waves/Tri01.wav (added):
+	* Makk/M4/waves/Bass09.wav (added):
+	* Makk/M4/waves/SYNTH21.h (added):
+	* Makk/M4/waves/SYNTH04.h (added):
+	* Makk/M4/waves/Spek10.wav (added):
+	* Makk/M4/waves/303_06.h (added):
+	* Makk/M4/waves/SPEK08.h (added):
+	* Makk/M4/waves/303_04.wav (added):
+	* Makk/M4/waves/SYNTH29.h (added):
+	* Makk/M4/waves/Synth23.wav (added):
+	* Makk/M4/waves/303_08.wav (added):
+	* Makk/M4/waves/Smooth04.wav (added):
+	* Makk/M4/waves/Synth27.wav (added):
+	* Makk/M4/waves/Hard04.wav (added):
+	* Makk/M4/waves/BASS06.h (added):
+	* Makk/M4/waves/Bass10.wav (added):
+	* Makk/M4/waves/SAW05.h (added):
+	* Makk/M4/waves/Bass14.wav (added):
+	* Makk/M4/waves/Saw04.wav (added):
+	* Makk/M4/waves/SQUARE06.h (added):
+	* Makk/M4/waves/Bass18.wav (added):
+	* Makk/M4/waves/Saw08.wav (added):
+	* Makk/M4/waves/SYNTH30.h (added):
+	* Makk/M4/waves/SYNTH13.h (added):
+	* Makk/M4/waves/Synth32.wav (added):
+	* Makk/M4/waves/HARD02.h (added):
+	* Makk/M4/waves/SYNTH38.h (added):
+	* Makk/M4/waves/Saw_spek.wav (added):
+	* Makk/M4/waves/Synth36.wav (added):
+	* Makk/M4/waves/BASS15.h (added):
+	* Makk/M4/waves/SPEK01.h (added):
+	* Makk/M4/waves/Square01.wav (added):
+	* Makk/M4/waves/SYNTH22.h (added):
+	* Makk/M4/waves/wav2h.sh (added):
+	* Makk/M4/waves/SYNTH05.h (added):
+	* Makk/M4/waves/SPEK09.h (added):
+	* Makk/M4/waves/303_07.h (added):
+	* Makk/M4/waves/Square05.wav (added):
+	* Makk/M4/waves/Synth02.wav (added):
+	* Makk/M4/waves/Square09.wav (added):
+	* Makk/M4/waves/Synth41.wav (added):
+	* Makk/M4/waves/Synth06.wav (added):
+	* Makk/M4/waves/BASS07.h (added):
+	* Makk/M4/waves/SAW06.h (added):
+	* Makk/M4/waves/SPEK10.h (added):
+	* Makk/M4/waves/SQUARE07.h (added):
+	* Makk/M4/waves/Square10.wav (added):
+	* Makk/M4/waves/SYNTH31.h (added):
+	* Makk/M4/waves/SYNTH14.h (added):
+	* Makk/M4/waves/Spek02.wav (added):
+	* Makk/M4/waves/SAW_MOOG.h (added):
+	* Makk/M4/waves/Synth11.wav (added):
+	* Makk/M4/waves/Spek06.wav (added):
+	* Makk/M4/waves/SYNTH39.h (added):
+	* Makk/M4/waves/HARD03.h (added):
+	* Makk/M4/waves/Saw_moog.wav (added):
+	* Makk/M4/waves/Synth15.wav (added):
+	* Makk/M4/waves/Synth19.wav (added):
+	* Makk/M4/waves/BASS16.h (added):
+	* Makk/M4/waves/Bass02.wav (added):
+	* Makk/M4/waves/Bass06.wav (added):
+	* Makk/M4/waves/SPEK02.h (added):
+	* Makk/M4/waves/Tri02.wav (added):
+	* Makk/M4/waves/SYNTH40.h (added):
+	* Makk/M4/waves/SYNTH23.h (added):
+	* Makk/M4/waves/Spek11.wav (added):
+	* Makk/M4/waves/SYNTH06.h (added):
+	* Makk/M4/waves/303_01.wav (added):
+	* Makk/M4/waves/303_08.h (added):
+	* Makk/M4/waves/Synth20.wav (added):
+	* Makk/M4/waves/303_05.wav (added):
+	* Makk/M4/waves/Smooth01.wav (added):
+	* Makk/M4/waves/Synth24.wav (added):
+	* Makk/M4/waves/303_09.wav (added):
+	* Makk/M4/waves/Smooth05.wav (added):
+	* Makk/M4/waves/Hard01.wav (added):
+	* Makk/M4/waves/Synth28.wav (added):
+	* Makk/M4/waves/Hard05.wav (added):
+	* Makk/M4/waves/Bass11.wav (added):
+	* Makk/M4/waves/BASS08.h (added):
+	* Makk/M4/waves/SAW07.h (added):
+	* Makk/M4/waves/Saw01.wav (added):
+	* Makk/M4/waves/SPEK11.h (added):
+	* Makk/M4/waves/Bass15.wav (added):
+	* Makk/M4/waves/Saw05.wav (added):
+	* Makk/M4/waves/SQUARE08.h (added):
+	* Makk/M4/waves/Bass19.wav (added):
+	* Makk/M4/waves/Saw09.wav (added):
+	* Makk/M4/waves/SYNTH32.h (added):
+	* Makk/M4/waves/SYNTH15.h (added):
+	* Makk/M4/waves/303_10.wav (added):
+	* Makk/M4/waves/Synth33.wav (added):
+	* Makk/M4/waves/HARD04.h (added):
+	* Makk/M4/waves/Synth37.wav (added):
+	* Makk/M4/waves/BASS17.h (added):
+	* Makk/M4/waves/Saw10.wav (added):
+	* Makk/M4/waves/303_01.h (added):
+	* Makk/M4/waves/SPEK03.h (added):
+	* Makk/M4/waves/Square02.wav (added):
+	* Makk/M4/waves/SYNTH41.h (added):
+	* Makk/M4/waves/SYNTH24.h (added):
+	* Makk/M4/waves/SYNTH07.h (added):
+	* Makk/M4/waves/Square06.wav (added):
+	* Makk/M4/waves/303_09.h (added):
+	* Makk/M4/waves/Synth03.wav (added):
+	* Makk/M4/waves/Synth07.wav (added):
+	* Makk/M4/waves/SQUA_SPK.h (added):
+	  Ported Makk M4.
+
 2009-04-27  Stefan Kost  <ensonic@users.sf.net>
 
 	* Matilde/Tracker/Makefile.am:

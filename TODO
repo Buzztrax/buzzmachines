@@ -9,3 +9,4 @@ http://www.gnu.org/software/libtool/manual.html#Makefile-rules
 * install
 ** install presets: $prefix/share/Gear/<plugin>.prs
 ** install docs: $prefix/share/Gear/<plugin>.(txt,html)
+see notes in gst-buzztard/src/bml/gstbml.c

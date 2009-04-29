@@ -2084,6 +2084,10 @@ void mi::ComputeCoefs( float *coefs, int freq, int r, int t)
                 a1 =  -2*cs;
                 a2 =   1 - alpha;
                 break;
+        default:
+                a0 = 1;
+                a1 = a2 = b0 = b1 = b2 = 0;
+                break;
         }
 
         coefs[0] = b0/a0;
