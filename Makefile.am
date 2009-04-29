@@ -1,6 +1,6 @@
 ## $Id$
 
-SUBDIRS = common Elak Ensonic FSM Jeskola Matilde
+SUBDIRS = common Elak Ensonic FSM Jeskola Makk Matilde
 
 ACLOCAL_AMFLAGS = -I m4
 

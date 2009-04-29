@@ -1,5 +1,10 @@
 2009-04-29  Stefan Kost  <ensonic@users.sf.net>
 
+	* Makefile.am:
+	  Add Makk to the SUBDIRS.
+
+2009-04-29  Stefan Kost  <ensonic@users.sf.net>
+
 	* Makk/M4/M4.cpp:
 	* Makk/M4/waves/303_01.h:
 	* Makk/M4/waves/303_01.wav:
