@@ -56,6 +56,8 @@ presetdir="\$(datadir)/Gear"
 AC_SUBST(presetdir)
 userdocdir="\$(datadir)/Gear"
 AC_SUBST(userdocdir)
+demosongdir="\$(datadir)/buzztard/songs/Gear"
+AC_SUBST(demosongdir)
 
 # Compilation and Linker flags
 # -Wno-non-virtual-dtor suppresses: virtual methods with no virtual destructor
@@ -70,6 +72,8 @@ AC_CONFIG_FILES(Makefile shave shave-libtool \
   common/Makefile \
     common/dsplib/Makefile \
     common/mdk/Makefile \
+  CyanPhase/Makefile \
+    CyanPhase/DTMF/Makefile \
   Elak/Makefile \
     Elak/Dist2/Makefile \
     Elak/SVF/Makefile \
