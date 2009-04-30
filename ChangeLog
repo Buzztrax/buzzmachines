@@ -1,3 +1,20 @@
+2009-04-30  Stefan Kost  <ensonic@users.sf.net>
+
+	* NEWS:
+	  Prepare for pre-releasing.
+
+	* FSM/Infector/FSM_Infector.prs:
+	* FSM/Infector/Makefile.am:
+	* FSM/Kick/FSM_Kick.prs:
+	* FSM/Kick/Makefile.am:
+	  Install presets.
+
+	* Matilde/Tracker/Makefile.am:
+	  Fix typo.
+
+	* configure.ac:
+	  Use date as a version.
+
 2009-04-29  Stefan Kost  <ensonic@users.sf.net>
 
 	* Makefile.am:

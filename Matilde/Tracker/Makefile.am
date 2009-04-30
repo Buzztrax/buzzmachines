@@ -10,7 +10,7 @@ SRC = BuzzInstrument.cpp BuzzInstrument.h \
  ISample.cpp ISample.h \
  Track.cpp Track.h \
  Tracker.cpp Tracker.h \
- WavetableManager.cpp WavetabelManager.h
+ WavetableManager.cpp WavetableManager.h
 
 # unused
 # 	ExtResampler.cpp ExtResampler.h

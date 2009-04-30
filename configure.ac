@@ -2,7 +2,7 @@ dnl $Id$
 
 dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.61)
-AC_INIT([buzzmachines],[0.1.0],[buzztard-devel@lists.sourceforge.net])
+AC_INIT([buzzmachines],[20090430],[buzztard-devel@lists.sourceforge.net])
 AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options])
 AC_CONFIG_SRCDIR([ChangeLog])
 AC_CONFIG_HEADER([config.h])
@@ -52,6 +52,10 @@ fi
 
 plugindir="\$(libdir)/Gear"
 AC_SUBST(plugindir)
+presetdir="\$(datadir)/Gear"
+AC_SUBST(presetdir)
+userdocdir="\$(datadir)/Gear"
+AC_SUBST(userdocdir)
 
 # Compilation and Linker flags
 # -Wno-non-virtual-dtor suppresses: virtual methods with no virtual destructor

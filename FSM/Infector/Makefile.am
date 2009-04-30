@@ -11,3 +11,6 @@ noinst_HEADERS = Infector.h
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libFSM_Infector.so $(DESTDIR)$(plugindir)/FSM_Infector.so
+
+preset_DATA = FSM_Infector.prs
+
