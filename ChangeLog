@@ -1,5 +1,12 @@
 2009-05-02  Stefan Kost  <ensonic@users.sf.net>
 
+	* Jeskola/Ninja/Jeskola_NiNjA_dElaY.prs:
+	* Jeskola/Ninja/Makefile.am:
+	* Jeskola/Ninja/Jeskola_NiNjA_dElaY.prs (added):
+	  Add presets.
+
+2009-05-02  Stefan Kost  <ensonic@users.sf.net>
+
 	* HACKING:
 	  Point to example for preset and demo song.
 
