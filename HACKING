@@ -27,10 +27,15 @@ it match the machine name.
 #include <windef.h>
 
 = Misc =
-* Matilde/Tracker is a example of how to build various variants of the same code
-  (mono/stereo)
+* Matilde/Tracker is an example of how to build various variants of the same code
+  (mono/stereo and 2 api versions)
+* FSM/Infector ships a preset file and a demo song
+
+= Portability =
 * if the machine has UI, don't rip it out, use #ifdef HAVE_WIN32_UI, maybe we
   can do something useful in the future
+* whenever there is something windows specific that is not easily made portable,
+  it would be good to wrapp it with a #ifdef WIN32
  
 = Testing =
 check if the plugin can be loaded:

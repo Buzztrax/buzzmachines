@@ -512,16 +512,23 @@ private:
 
 #else
 
+#ifdef WIN32
 #define DLL_EXPORTS extern "C" { \
-	CMachineInfo const * __attribute__((__cdecl__)) GetInfo(void) { \
-		return &MacInfo; \
-	} \
-	CMachineInterface * __attribute__((__cdecl__)) CreateMachine(void) { \
-		return new mi; \
-	} \
-	} 
+        CMachineInfo const * __attribute__((__cdecl__)) GetInfo(void) { \
+            return &MacInfo; \
+        } \
+        CMachineInterface * __attribute__((__cdecl__)) CreateMachine(void) { \
+            return new mi; \
+        } \
+	}
+#else
+#define DLL_EXPORTS extern "C" { \
+        CMachineInfo const *GetInfo(void) { return &MacInfo; } \
+        CMachineInterface *CreateMachine(void) { return new mi; } \
+	}
+#endif /* WIN32 */
 
-#endif
+#endif /* STATIC_BUILD */
 
-#endif
+#endif /* __MACHINE_INTERFACE_H */
 

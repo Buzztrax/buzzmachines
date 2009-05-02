@@ -13,4 +13,5 @@ install-data-hook:
 	mv $(DESTDIR)$(plugindir)/libFSM_Infector.so $(DESTDIR)$(plugindir)/FSM_Infector.so
 
 preset_DATA = FSM_Infector.prs
+demosong_DATA = FSM_Infector_Demo.bmx
 

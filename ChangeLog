@@ -1,3 +1,20 @@
+2009-05-02  Stefan Kost  <ensonic@users.sf.net>
+
+	* HACKING:
+	  Point to example for preset and demo song.
+
+	* common/MachineInterface.h:
+	  Make __cdecl__ WIN32 specific. Its kind of superflous and causes compilter
+	  warnings on e.g. NetBSD.
+
+	* FSM/Infector/FSM_Infector_Demo.bmx:
+	* FSM/Infector/Makefile.am:
+	* FSM/Infector/FSM_Infector_Demo.bmx (added):
+	* FSM/Kick/FSM_Kick_Demo.bmx:
+	* FSM/Kick/Makefile.am:
+	* FSM/Kick/FSM_Kick_Demo.bmx (added):
+	  Add more demo songs.
+
 2009-04-30  Stefan Kost  <ensonic@users.sf.net>
 
 	* CyanPhase/DTMF/DTMF-1.cpp:

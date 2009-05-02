@@ -11,4 +11,5 @@ install-data-hook:
 	mv $(DESTDIR)$(plugindir)/libFSM_Kick.so $(DESTDIR)$(plugindir)/FSM_Kick.so
 
 preset_DATA = FSM_Kick.prs
+demosong_DATA = FSM_Kick_Demo.bmx
 
