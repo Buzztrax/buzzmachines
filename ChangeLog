@@ -1,5 +1,25 @@
 2009-05-02  Stefan Kost  <ensonic@users.sf.net>
 
+	* FSM/PanzerDelay/FSM_PanzerDelay.prs:
+	* FSM/PanzerDelay/Makefile.am:
+	* FSM/PanzerDelay/FSM_PanzerDelay.prs (added):
+	  Add presets.
+
+	* Jeskola/Freeverb/denormals.h:
+	* Jeskola/Freeverb/main.cpp:
+	* Jeskola/Freeverb/revmodel.cpp:
+	* Jeskola/Freeverb/revmodel.h:
+	* Jeskola/Makefile.am:
+	* configure.ac:
+	  It build, but I get "undefined symbol: _Z11DSP_BW_WorkR8CBWStatePfmi"
+	  which is DSP_BW_Work(CBWState&, float*, unsigned long, int) at runtime
+	  and this is from dsplib :/ 
+	  
+	* TODO:
+	  Plugin docs.
+
+2009-05-02  Stefan Kost  <ensonic@users.sf.net>
+
 	* Jeskola/Ninja/Jeskola_NiNjA_dElaY.prs:
 	* Jeskola/Ninja/Makefile.am:
 	* Jeskola/Ninja/Jeskola_NiNjA_dElaY.prs (added):

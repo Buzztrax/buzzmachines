@@ -11,7 +11,7 @@
 #include "allpass.h"
 #include "tuning.h"
 
-#include "../buzzlib/buzz/dsplib.h"	// for definition of byte
+#include <dsplib.h>	// for definition of byte
 
 class revmodel
 {

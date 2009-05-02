@@ -1,8 +1,8 @@
-#include <windows.h>
+#include <windef.h>
 #include <list>
-#include "../buzzlib/buzz/MachineInterface.h"
-#include "../buzzlib/buzz/mdk.h"
-#include "../buzzlib/buzz/dsplib.h"
+#include <MachineInterface.h>
+#include <mdk/mdk.h>
+#include <dsplib.h>
 #include "revmodel.h"
 #include "main.h"
 
@@ -12,7 +12,7 @@
 /*
 
 
-så jeg tror du må sette opp en delay(preDelay)->lowPass(loCut)->hiPass(hiCut) før du forer boksen
+sï¿½ jeg tror du mï¿½ sette opp en delay(preDelay)->lowPass(loCut)->hiPass(hiCut) fï¿½r du forer boksen
 
 
 original freeverb params:
@@ -220,8 +220,8 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode) {
 	} else	
 		faderCounter=0;
 
-	// så jeg tror du må sette opp en delay(preDelay)->lowPass(loCut)->hiPass(hiCut) før du forer boksen
-	// freeverb skrur seg aldri av = alle eq’er o.l i chain med freeverb blir fucked. vi får altså en bug på freeverb->eq7 som må fikses
+	// sï¿½ jeg tror du mï¿½ sette opp en delay(preDelay)->lowPass(loCut)->hiPass(hiCut) fï¿½r du forer boksen
+	// freeverb skrur seg aldri av = alle eqï¿½er o.l i chain med freeverb blir fucked. vi fï¿½r altsï¿½ en bug pï¿½ freeverb->eq7 som mï¿½ fikses
 
 	if (faderCounter>fadeLen)
 		faderCounter=fadeLen+1;

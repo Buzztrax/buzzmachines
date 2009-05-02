@@ -6,7 +6,7 @@ http://lists.gnu.org/archive/html/automake/2004-05/msg00016.html
 http://www.gnu.org/software/libtool/manual.html#Makefile-rules
 ** avoid to install *.la files
 
-* install
-** install presets: $prefix/share/Gear/<plugin>.prs
+* docs
 ** install docs: $prefix/share/Gear/<plugin>.(txt,html)
-see notes in gst-buzztard/src/bml/gstbml.c
+** use asciidocs for docs?
+   

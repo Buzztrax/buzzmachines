@@ -106,7 +106,7 @@ bool revmodel::processreplace(float *inputL, float *inputR, float *outputL, floa
 //	memcpy(buffer, inputL, numsamples*sizeof(float)*skip);
 
 	int numsamples2=numsamples;
-	float* inputL2=inputL, *outputL2=outputL;
+    float* outputL2=outputL;
 
 	if (skip==2) {
 		DSP_BW_WorkStereo(histate, outputL2, numsamples2, WM_READWRITE); 
