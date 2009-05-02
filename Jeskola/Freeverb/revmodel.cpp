@@ -105,7 +105,7 @@ bool revmodel::processreplace(float *inputL, float *inputR, float *outputL, floa
 
 //	memcpy(buffer, inputL, numsamples*sizeof(float)*skip);
 
-	int numsamples2=numsamples;
+	unsigned long numsamples2=numsamples;
     float* outputL2=outputL;
 
 	if (skip==2) {

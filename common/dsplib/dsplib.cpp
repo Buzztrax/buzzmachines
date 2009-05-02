@@ -12,7 +12,7 @@ typedef DWORD dword;
 #else
 #include "windef.h"
 #include <stdint.h>
-typedef uint32_t dword;
+typedef unsigned long dword;
 #endif
 
 
@@ -41,7 +41,7 @@ public:
 
 #define QUIET 0.1
 
-int sampleRate;
+static int sampleRate;
 
 void DSP_Init(int const samplerate)
 {

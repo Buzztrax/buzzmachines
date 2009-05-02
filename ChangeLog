@@ -1,3 +1,18 @@
+2009-05-03  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/PhatMan/FSM_PhatMan.prs:
+	* FSM/PhatMan/Makefile.am:
+	* FSM/PhatMan/FSM_PhatMan.prs (added):
+	* FSM/PhatMan/PhatMan.cpp (added):
+	* FSM/PhatMan/Chorus.cpp (deleted):
+	  Rename cpp and add presets.
+
+	* Jeskola/Freeverb/Makefile.am:
+	* Jeskola/Freeverb/revmodel.cpp:
+	* common/dsplib/dsplib.cpp:
+	* Jeskola/Freeverb/Makefile.am (added):
+	  Fix the linker error and add missing Makefile.am
+
 2009-05-02  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/PanzerDelay/FSM_PanzerDelay.prs:
