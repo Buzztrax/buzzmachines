@@ -1033,7 +1033,7 @@ inline int f2i(double d)
 	return *(int*) &tmp;
 #else
     // poor man's solution :)
-    return rint(d);
+    return (int)rint(d);
 #endif
 }
 

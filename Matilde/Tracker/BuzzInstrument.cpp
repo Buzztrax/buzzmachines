@@ -55,5 +55,3 @@ bool	CBuzzInstrument::IsSampleStillValid( CBuzzSample *pSmp )
 	else
 		return false;
 }
-
- 

@@ -1,5 +1,14 @@
 2009-05-04  Stefan Kost  <ensonic@users.sf.net>
 
+	* FSM/dspchips/DSPChips.h:
+	* Matilde/Tracker/BuzzInstrument.cpp:
+	* Matilde/Tracker/BuzzSample.cpp:
+	* Matilde/Tracker/SurfsDSPLib/SRF_Amp.h:
+	* Matilde/Tracker/Tracker.cpp:
+	  Build warning fixes.
+
+2009-05-04  Stefan Kost  <ensonic@users.sf.net>
+
 	* CyanPhase/DTMF/DTMF-1.cpp:
 	* CyanPhase/DTMF/Makefile.am:
 	* Ensonic/CallbackTester/CallbackTester.cpp:
