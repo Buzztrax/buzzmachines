@@ -4,8 +4,8 @@
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "MachineInterface.h"
-#include "dsplib.h"
+#include <MachineInterface.h>
+#include <dsplib.h>
 
 #pragma optimize ("a", on)
 
@@ -293,6 +293,9 @@ void mi::Init(CMachineDataInput * const pi)
 #ifdef _DEBUG
     sprintf(DebugStr,"  mi::Init(%p)",pi);
 	OutputDebugString(DebugStr);
+#endif
+#ifndef _MSC_VER
+    DSP_Init(pMasterInfo->SamplesPerSec);
 #endif
 	for (int c = 0; c < MAX_TRACKS; c++)
 	{

@@ -186,6 +186,10 @@ mi::~mi() { }
 
 void mi::Init(CMachineDataInput * const pi)
 {
+#ifndef _MSC_VER
+    DSP_Init(pMasterInfo->SamplesPerSec);
+#endif
+  
 	tone1value1 = 0.0f;
 	tone1value2 = 0.0f;
 	tone1coeff = 0.0f;

@@ -41,7 +41,9 @@ public:
 
 #define QUIET 0.1
 
-static int sampleRate;
+// we link to dsplib statically right now, so we need to call
+// DSP_Init() from mi::Init
+static int sampleRate /*=44100 */ ;
 
 void DSP_Init(int const samplerate)
 {
@@ -50,14 +52,14 @@ void DSP_Init(int const samplerate)
 
 void DSP_BW_Reset(CBWState &s)
 {
-	s.i[0] = 0;
-	s.i[1] = 0;
-	s.o[0] = 0;
-	s.o[1] = 0;
-	s.ri[0] = 0;
-	s.ri[1] = 0;
-	s.ro[0] = 0;
-	s.ro[1] = 0;
+	s.i[0] = 0.0;
+	s.i[1] = 0.0;
+	s.o[0] = 0.0;
+	s.o[1] = 0.0;
+	s.ri[0] = 0.0;
+	s.ri[1] = 0.0;
+	s.ro[0] = 0.0;
+	s.ro[1] = 0.0;
 	s.IdleCount = 0;
 }
 

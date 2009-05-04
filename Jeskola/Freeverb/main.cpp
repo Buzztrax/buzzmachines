@@ -159,6 +159,9 @@ mi::~mi() {
 }
 
 void mi::MDKInit(CMachineDataInput * const pi) {
+#ifndef WIN32
+    DSP_Init(pMasterInfo->SamplesPerSec);
+#endif
 	//reverb.mute();
 }
 
@@ -205,33 +208,38 @@ void mi::Tick() {
 
 
 bool mi::MDKWork(float *psamples, int numsamples, int const mode) {
-	float fadeLen =(FADE_LEN*(reverb.getroomsize()))*MAX_BUFFER_LENGTH + reverb.delaySamples + pMasterInfo->SamplesPerSec; // 1 second more for salely
-	//NOTE: fade length should based on numsamples everytime becoz nobody know how many samples will take audio drive. It may be 256
-	// or lower (for example ASIO driver).
+	float fadeLen=floor(FADE_LEN*(reverb.getroomsize()))*MAX_BUFFER_LENGTH + reverb.delaySamples + pMasterInfo->SamplesPerSec; // 1 second more for salely
+	//NOTE: fade length should based on numsamples everytime becoz nobody know
+    // how many samples will take audio drive. It may be 256 or lower
+    // (for example ASIO driver).
 
 	if (mode == WM_NOIO) {
-		//MessageBox(0, "No io", "no io", MB_OK);
 		return false;
 	} else
 	if (mode==WM_WRITE) {
-		// roomsize sier kanskje hvor fort vi skal fade ned
+		// roomsize tells how fast we're going to fade down
 		if (faderCounter>=fadeLen) return false;
 		faderCounter+=numsamples;
 	} else	
 		faderCounter=0;
 
-	// s� jeg tror du m� sette opp en delay(preDelay)->lowPass(loCut)->hiPass(hiCut) f�r du forer boksen
-	// freeverb skrur seg aldri av = alle eq�er o.l i chain med freeverb blir fucked. vi f�r alts� en bug p� freeverb->eq7 som m� fikses
+	// så jeg tror du må sette opp en delay(preDelay)->lowPass(loCut)->hiPass(hiCut) før du forer boksen
+	// freeverb skrur seg aldri av = alle eq’er o.l i chain med freeverb blir fucked. vi får altså en bug på freeverb->eq7 som må fikses
+    // so I think you need to set up a delay (preDelay) -> lowPass (loCut) -> hiPass (hiCut) before you list box
+    // free verb turns never of = all eq'er of the chain with free verbs are fucked. Thus we get a bug for free verb-> eq7 that must be fixed
 
 	if (faderCounter>fadeLen)
 		faderCounter=fadeLen+1;
-//	float amp=logf(FADE_LEN-faderCounter) / logf(FADE_LEN);
+
+    //float amp=logf(FADE_LEN-faderCounter) / logf(FADE_LEN);
 	float amp=dB_to_linear(((float)(faderCounter/MAX_BUFFER_LENGTH) / (float)fadeLen)*-60.0f);
 	bool processresult=reverb.processreplace(psamples, psamples, psamples, psamples, numsamples, 1, amp);
 	if ((faderCounter>=fadeLen || !processresult) && mode == WM_WRITE) {
-/*		reverb.mute();
+        /*
+        reverb.mute();
 		if (faderCounter<fadeLen)
-			faderCounter=fadeLen+1;*/
+			faderCounter=fadeLen+1;
+        */
 		processresult=false;
 	}
 	return processresult;
@@ -243,7 +251,6 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode) {
 	float fadeLen=floor(FADE_LEN*(reverb.getroomsize()))*MAX_BUFFER_LENGTH + reverb.delaySamples + pMasterInfo->SamplesPerSec;// read note @ MDKWork
 
 	if (mode == WM_NOIO) {
-		//MessageBox(0, "No io", "no io", MB_OK);
 		return false;
 	} else
 	if (mode==WM_WRITE) {
@@ -252,15 +259,15 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode) {
 	} else	
 		faderCounter=0;
 
-
 	if (faderCounter>fadeLen)
 		faderCounter=fadeLen+1;
-	float amp=dB_to_linear(((float)(faderCounter/MAX_BUFFER_LENGTH) / (float)fadeLen)*-60.0f);
 
+    float amp=dB_to_linear(((float)(faderCounter/MAX_BUFFER_LENGTH) / (float)fadeLen)*-60.0f);
 	bool processresult=reverb.processreplace(psamples, psamples+1, psamples, psamples+1, numsamples, 2, amp);
 
 	if ((faderCounter>=fadeLen || !processresult) && mode == WM_WRITE) {
-/*		reverb.mute();
+        /*		
+        reverb.mute();
 		if (faderCounter<fadeLen)
 			faderCounter=fadeLen+1;*/
 		processresult=false;

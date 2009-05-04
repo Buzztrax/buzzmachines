@@ -1,11 +1,11 @@
-
+#include <windef.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "../../MachineInterface.h"
-#include "../../dsplib/dsplib.h"
+#include <MachineInterface.h>
+#include <dsplib.h>
 
 #pragma optimize ("a", on)
 
@@ -240,6 +240,9 @@ void CTrack::Reset()
 
 void mi::Init(CMachineDataInput * const pi)
 {
+#ifndef _MSC_VER
+    DSP_Init(pMasterInfo->SamplesPerSec);
+#endif
 	for (int c = 0; c < MAX_TRACKS; c++)
 	{
 		Tracks[c].pmi = this;

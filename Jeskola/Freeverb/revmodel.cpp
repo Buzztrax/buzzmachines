@@ -64,7 +64,6 @@ revmodel::revmodel()
 	sethicut(0);
 	setlocut(0);
 
-
 	// Buffer will be full of rubbish - so we MUST mute them
 	mute();
 }
@@ -94,32 +93,26 @@ void revmodel::mute()
 	}
 }
 
+// mi:MDKWork calls this with input=output
 bool revmodel::processreplace(float *inputL, float *inputR, float *outputL, float *outputR, long numsamples, int skip, float amp)
 {
 	float outL,outR,input;
 	int i;
-
-	//float* bufp=buffer;
-
 	bool allZero=true;
-
-//	memcpy(buffer, inputL, numsamples*sizeof(float)*skip);
-
 	unsigned long numsamples2=numsamples;
-    float* outputL2=outputL;
-
+    
+    // apply hi and lowcut
 	if (skip==2) {
-		DSP_BW_WorkStereo(histate, outputL2, numsamples2, WM_READWRITE); 
-		DSP_BW_WorkStereo(lostate, outputL2, numsamples2, WM_READWRITE); 
+		DSP_BW_WorkStereo(histate, inputL, numsamples2, WM_READWRITE); 
+		DSP_BW_WorkStereo(lostate, inputL, numsamples2, WM_READWRITE); 
 	} else {
-		DSP_BW_Work(histate, outputL2, numsamples2, WM_READWRITE);
-		DSP_BW_Work(lostate, outputL2, numsamples2, WM_READWRITE);
+		DSP_BW_Work(histate, inputL, numsamples2, WM_READWRITE);
+		DSP_BW_Work(lostate, inputL, numsamples2, WM_READWRITE);
 	}
 
 	while(numsamples-- > 0)
 	{
 		outL = outR = 0;
-		//input = (*bufp + *(bufp+1)) * gain;
 		input = (*inputL + *inputR) * gain;
 
 		// Accumulate comb filters in parallel
@@ -144,7 +137,6 @@ bool revmodel::processreplace(float *inputL, float *inputR, float *outputL, floa
 		*outputL = (outL*wet1 + outR*wet2 + *inputL*dry) * amp;
 		*outputR = (outR*wet1 + outL*wet2 + *inputR*dry) * amp;
 
-
 		if (fabs(*outputL)>=0.5 || fabs(*outputR)>=0.5)
 			allZero=false;
 
@@ -160,9 +152,9 @@ bool revmodel::processreplace(float *inputL, float *inputR, float *outputL, floa
 		DSP_Add(outputL2, buffer, numsamples2, dry*amp);
 */
 	return allZero==false;
-
 }
 
+// not used
 bool revmodel::processmix(float *inputL, float *inputR, float *outputL, float *outputR, long numsamples, int skip)
 {
 	float outL,outR,input;
@@ -207,13 +199,14 @@ bool revmodel::processmix(float *inputL, float *inputR, float *outputL, float *o
 		inputR += skip;
 		outputL += skip;
 		outputR += skip;
-	}
+	}    
 	return allZero==false;
 }
 
 void revmodel::update()
 {
-// Recalculate internal values after parameter change
+    // Recalculate internal values after parameter change
+    // see tuning.h for constants
 
 	int i;
 
@@ -333,7 +326,6 @@ void revmodel::setlocut(float v) {
 	//DSP_BW_Reset(lostate);
 
 	// lo cut, is same as high pass
-
 	DSP_BW_InitHighpass(lostate, v);
 }
 

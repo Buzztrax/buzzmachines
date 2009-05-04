@@ -1571,6 +1571,9 @@ mi::~mi()
 
 void mi::Init(CMachineDataInput * const pi)
 {
+#ifndef _MSC_VER
+    DSP_Init(pMasterInfo->SamplesPerSec);
+#endif
         TabSizeDivSampleFreq = (float)(2048.0/pMasterInfo->SamplesPerSec);
 
         // Filter

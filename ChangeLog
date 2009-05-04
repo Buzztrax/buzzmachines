@@ -1,3 +1,30 @@
+2009-05-04  Stefan Kost  <ensonic@users.sf.net>
+
+	* CyanPhase/DTMF/DTMF-1.cpp:
+	* CyanPhase/DTMF/Makefile.am:
+	* Ensonic/CallbackTester/CallbackTester.cpp:
+	* Jeskola/Freeverb/main.cpp:
+	* Jeskola/Freeverb/revmodel.cpp:
+	* Jeskola/Makefile.am:
+	* Jeskola/Ninja/Ninja.cpp:
+	* Jeskola/Noise/Noise.cpp:
+	* Makk/M3/M3.cpp:
+	* Makk/M3/Makefile.am:
+	* Makk/M4/M4.cpp:
+	* Makk/M4/Makefile.am:
+	* common/dsplib/dsplib.cpp:
+	  Masssive dsplib usage fix. We nned to call DSP_Init from the plugins Init
+	  as we link statically to dsplib right now.
+	
+	* HACKING:
+	  More formatting and tips for porting.
+
+	* configure.ac:
+	  Add Jeskola Noise.
+	
+	* gen_makefile_am.sh:
+	  Add LIBADD if plugin uses dsplib or mdk.
+
 2009-05-03  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/PhatMan/FSM_PhatMan.prs:

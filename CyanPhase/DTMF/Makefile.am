@@ -5,6 +5,7 @@ plugin_LTLIBRARIES = libCyanPhase_DTMF.la
 libCyanPhase_DTMF_la_SOURCES = DTMF-1.cpp
 libCyanPhase_DTMF_la_CXXFLAGS = $(BM_CXXFLAGS)
 libCyanPhase_DTMF_la_LDFLAGS = $(BM_LIBS)
+libCyanPhase_DTMF_la_LIBADD = $(top_builddir)/common/dsplib/libdsplib.la
 
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)

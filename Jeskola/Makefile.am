@@ -1,4 +1,4 @@
 ## $Id$
 
-SUBDIRS = Ninja Trilok
+SUBDIRS = Freeverb Ninja Noise Trilok
 

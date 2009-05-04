@@ -91,6 +91,7 @@ AC_CONFIG_FILES(Makefile shave shave-libtool \
   Jeskola/Makefile \
     Jeskola/Freeverb/Makefile \
     Jeskola/Ninja/Makefile \
+    Jeskola/Noise/Makefile \
     Jeskola/Trilok/Makefile \
   Makk/Makefile \
     Makk/M3/Makefile \

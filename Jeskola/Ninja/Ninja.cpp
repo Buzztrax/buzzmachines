@@ -333,6 +333,9 @@ void mi::SetFilter(CTrack &t)
 
 void mi::Init(CMachineDataInput * const pi)
 {
+#ifndef _MSC_VER
+    DSP_Init(pMasterInfo->SamplesPerSec);
+#endif
 	numTracks = 1;
 	DryThru = true;
 
@@ -357,10 +360,6 @@ void mi::Init(CMachineDataInput * const pi)
 
 	IdleMode = true;
 	IdleCount = 0;
-
-#ifndef _MSC_VER
-    DSP_Init(pMasterInfo->SamplesPerSec);
-#endif
 }
 
 void mi::AttributesChanged()
