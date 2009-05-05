@@ -1,5 +1,15 @@
 2009-05-05  Stefan Kost  <ensonic@users.sf.net>
 
+	* Makk/M3/Makefile.am:
+	* Makk/M3/Makk_M3.prs:
+	* Makk/M4/Makefile.am:
+	* Makk/M4/Makk_M4.prs:
+	* Makk/M3/Makk_M3.prs (added):
+	* Makk/M4/Makk_M4.prs (added):
+	  Yes, more presets.
+
+2009-05-05  Stefan Kost  <ensonic@users.sf.net>
+
 	* HACKING:
 	  One more error added.
 

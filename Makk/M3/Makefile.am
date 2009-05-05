@@ -10,3 +10,6 @@ libMakk_M3_la_LIBADD = $(top_builddir)/common/dsplib/libdsplib.la
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libMakk_M3.so $(DESTDIR)$(plugindir)/Makk_M3.so
+
+preset_DATA = Makk_M3.prs
+
