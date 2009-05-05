@@ -1,5 +1,10 @@
 2009-05-05  Stefan Kost  <ensonic@users.sf.net>
 
+	* CyanPhase/DTMF/Makefile.am:
+	  Fix element name.
+
+2009-05-05  Stefan Kost  <ensonic@users.sf.net>
+
 	* Jeskola/Noise/Makefile.am:
 	* Jeskola/Noise/Makefile.am (added):
 	  Add missing Makefile.am.
