@@ -89,6 +89,7 @@ AC_CONFIG_FILES(Makefile shave shave-libtool \
     FSM/PanzerDelay/Makefile
     FSM/WahMan/Makefile
   Jeskola/Makefile \
+    Jeskola/Delay/Makefile \
     Jeskola/Freeverb/Makefile \
     Jeskola/Ninja/Makefile \
     Jeskola/Noise/Makefile \

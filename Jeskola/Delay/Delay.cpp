@@ -1,10 +1,10 @@
-
+#include <windef.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "MachineInterface.h"
+#include <MachineInterface.h>
 
 double const SilentEnough = log(1.0 / 32768);
 
@@ -364,7 +364,9 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
 
 void mi::Tick()
 {
-	for (int c = 0; c < numTracks; c++)
+	int c;
+
+	for (c = 0; c < numTracks; c++)
 		TickTrack(Tracks + c, tval+c);
 
 

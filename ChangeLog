@@ -1,5 +1,17 @@
 2009-05-05  Stefan Kost  <ensonic@users.sf.net>
 
+	* HACKING:
+	  One more error added.
+
+	* Jeskola/Delay/Delay.cpp:
+	* Jeskola/Delay/Makefile.am:
+	* Jeskola/Makefile.am:
+	* configure.ac:
+	* Jeskola/Delay/Makefile.am (added):
+	  Ported one more.
+
+2009-05-05  Stefan Kost  <ensonic@users.sf.net>
+
 	* CyanPhase/DTMF/Makefile.am:
 	  Fix element name.
 

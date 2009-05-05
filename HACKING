@@ -33,6 +33,10 @@ it match the machine name.
 error: ‘__min’ was not declared in this scope
 -> #include <windef.h>
 
+error: name lookup of ‘c’ changed for new ISO ‘for’ scoping
+error:   using obsolete binding at ‘c’
+-> move "int c" out of the for-loop
+
 
 = Misc =
 * Matilde/Tracker is an example of how to build various variants of the same code
