@@ -1,4 +1,4 @@
 ## $Id$
 
-SUBDIRS = Delay Freeverb Ninja Noise Trilok
+SUBDIRS = CrossDelay Delay Freeverb Ninja Noise Trilok
 

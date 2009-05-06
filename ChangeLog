@@ -1,3 +1,14 @@
+2009-05-06  Stefan Kost  <ensonic@users.sf.net>
+
+	* Jeskola/CrossDelay/CrossDelay.cpp:
+	* Jeskola/CrossDelay/Makefile.am:
+	* Jeskola/Makefile.am:
+	* configure.ac:
+	* Jeskola/CrossDelay (added):
+	* Jeskola/CrossDelay/Makefile.am (added):
+	* Jeskola/CrossDelay/CrossDelay.cpp (added):
+	  Rewrite CrossDelay from scratch (no source available).
+
 2009-05-05  Stefan Kost  <ensonic@users.sf.net>
 
 	* Makk/M3/Makefile.am:
