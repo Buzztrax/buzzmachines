@@ -401,8 +401,8 @@ void mi::MDKInit(CMachineDataInput * const pi)
 
   SetOutputMode(true);
 
-  printf("%s:%s()\n",__FILE__,__FUNCTION__);
-  fflush(stdout);
+  //printf("%s:%s()\n",__FILE__,__FUNCTION__);
+  //fflush(stdout);
 }
 
 void mi::SetNumTracks(int const n)
@@ -465,7 +465,8 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
         float vsin1=vsin*dcos+vcos*dsin;
         float vcos1=vcos*dcos-vsin*dsin;
         vsin=vsin1;vcos=vcos1;
-        float floatPos=nPos-pos;        int intPos=f2i(floatPos);
+        float floatPos=nPos-pos;
+        int intPos=f2i(floatPos);
         int intPos2=(intPos<MAX_DELAY-1)?(intPos+1):0;
         
         //printf("%d, %f -> %lf\n",nPos,pos,floatPos);
