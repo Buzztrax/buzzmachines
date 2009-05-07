@@ -1,0 +1,16 @@
+= Bass/Bass2/Bass3 =
+All needed waveforms are in the OscTable.
+
+== Bass ==
+global filter
+waveform: 1=saw/2=pulse/3=triangle
+no describe function (we could add it)
+
+== Bass 2 ==
+filter per track
+waveform: 0=sine/1=saw/2=pulse/3=triangle/4=noise
+
+== Bass 3 ==
+filter per track
+waveform: 0=sine/1=saw/2=pulse/3=triangle/4=noise/5=tb303sawtooth
+
