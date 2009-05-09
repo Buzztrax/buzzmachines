@@ -12,4 +12,5 @@ install-data-hook:
 	mv $(DESTDIR)$(plugindir)/libMakk_M4.so $(DESTDIR)$(plugindir)/Makk_M4.so
 
 preset_DATA = Makk_M4.prs
+demosong_DATA = Makk_M4.bmw
 

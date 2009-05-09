@@ -12,3 +12,5 @@ install-data-hook:
 	mv $(DESTDIR)$(plugindir)/libJeskola_NiNjA_dElaY.so $(DESTDIR)$(plugindir)/Jeskola_NiNjA_dElaY.so
 
 preset_DATA = Jeskola_NiNjA_dElaY.prs
+demosong_DATA = Jeskola_NiNjA_dElaY.bmx
+

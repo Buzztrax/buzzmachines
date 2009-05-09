@@ -10,3 +10,5 @@ install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libElak_SVF.so $(DESTDIR)$(plugindir)/Elak_SVF.so
 
+demosong_DATA = Elak_SVF.bmx
+
