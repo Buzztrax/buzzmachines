@@ -338,11 +338,13 @@ fi
 
 toplevel_check $srcfile
 
+# must be run before aclocal, as this installs some m4 files
+tool_run "$libtoolize" "--copy --force"
+
 # aclocal
 if test -f acinclude.m4; then rm acinclude.m4; fi
 tool_run "$aclocal" "-I m4 $ACLOCAL_FLAGS"
 
-tool_run "$libtoolize" "--copy --force"
 tool_run "$autoheader"
 
 # touch the stamp-h.in build stamp so we don't re-run autoheader in maintainer mode -- wingo
