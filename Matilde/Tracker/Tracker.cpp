@@ -32,12 +32,15 @@
 
 #define TRACKER_LOCK(pCB) CMILock __machinelock(pCB)
 
+#if HAVE_WIN32_UI
 HINSTANCE dllInstance;
+#endif
 
 // -------------  CONFIGURATION  -------------
 /*
 * MONO : build mono version
 * HAVE_UI : win32 ui support
+* API_V1 : old matilde V1 api
 */
 
 // -----------------  GLOBAL  -----------------
@@ -429,6 +432,12 @@ CMachineInterface *CreateMachine(void) { return new CMachine; }
 CMachine::CMachine()
 {
 	GlobalVals = m_GlobalValues;		// NULL - by jm
+#ifdef API_V1
+    m_GlobalValues[0].ampdecay=0;
+    m_GlobalValues[0].percoffset=0;
+    m_GlobalValues[0].percquantize=1;
+    m_GlobalValues[0].tuning=0x7F;
+#endif
 	TrackVals = m_TrackValues;
 	AttrVals = (int *)&m_Attributes;
 	numTracks=0;
