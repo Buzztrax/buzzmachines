@@ -440,7 +440,12 @@ CMachine::CMachine()
 #endif
 	TrackVals = m_TrackValues;
 	AttrVals = (int *)&m_Attributes;
-	numTracks=0;
+#ifdef API_V1
+    m_Attributes.iLongLoopFit=128;
+    m_Attributes.iOffsetGain=10;
+    m_Attributes.iTuningRange=5;
+#endif
+    numTracks=0;
 	m_iNextMIDITrack=0;
 	m_iWaveTrack=-1;
 	m_oSustainAllReleases=false;

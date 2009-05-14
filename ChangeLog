@@ -1,6 +1,11 @@
 2009-05-14  Stefan Kost  <ensonic@users.sf.net>
 
 	* Matilde/Tracker/Tracker.cpp:
+	  Do the V1 API fix for attributes too.
+
+2009-05-14  Stefan Kost  <ensonic@users.sf.net>
+
+	* Matilde/Tracker/Tracker.cpp:
 	  V1 API variants where one octave down, as we haven't initialized the
 	  hidden V2 params to their defaults.
 
