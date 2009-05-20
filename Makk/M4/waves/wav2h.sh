@@ -9,4 +9,8 @@ wine Raw2h.exe
 wine Dir2c.exe
 rm *.RAW
 sed -i -e "s/static char \*/static const char \*/" wavename.inc
+cd waves
+echo "" >>wavename.inc
+for hdr in *.h; do echo >>$hdr ""; done
+cd ..
 
