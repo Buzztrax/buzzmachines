@@ -1,3 +1,4 @@
+#include "dsplib.h"
 #include "mdk.h"
 #include "mdkimp.h"
 
@@ -45,108 +46,6 @@ void Add(float *pout, float *pin, int numsamples, float amp)
 		*pout++ += *pin++ * amp;
 	} while(--numsamples);
 }
-
-// begin dsplib --- 
-
-#define UNROLL		4			// how many times to unroll inner loops
-#define SUNROLL		2			// same for loops with stereo output
-
-void DSP_Copy(float *pout, float const *pin, dword const n, float const a)
-{
-
-	double const amp = a;	// copy a to fpu stack 
-
-
-	if (n >= UNROLL)
-	{
-		int c = n / UNROLL;
-		do
-		{
-			pout[0] = (float)(pin[0] * amp);
-			pout[1] = (float)(pin[1] * amp);
-			pout[2] = (float)(pin[2] * amp);
-			pout[3] = (float)(pin[3] * amp);
-			pin += UNROLL;
-			pout += UNROLL; 
-		} while(--c);
-	}
-
-	int c = n & (UNROLL-1);
-	while(c--)
-		*pout++ = (float)(*pin++ * amp);
-
- 
-}
-
-
-void DSP_Add(float *pout, float const *pin, dword const n, float const a)
-{
-
-	double const amp = a;	// copy a to fpu stack 
-
-
-	if (n >= UNROLL)
-	{
-		int c = n / UNROLL;
-		do
-		{
-			pout[0] += (float)(pin[0] * amp);
-			pout[1] += (float)(pin[1] * amp);
-			pout[2] += (float)(pin[2] * amp);
-			pout[3] += (float)(pin[3] * amp);
-			pin += UNROLL;
-			pout += UNROLL; 
-		} while(--c);
-	}
-
-	int c = n & (UNROLL-1);
-	while(c--)
-		*pout++ += (float)(*pin++ * amp);
-
- 
-}
-
-
-void DSP_AddM2S(float *pout, float const *pin, dword const n, float const a)
-{
-	double const amp = a;	// copy a to fpu stack 
-
-	if (n >= SUNROLL)
-	{
-		int c = n / SUNROLL;
-		do
-		{
-			double s = pin[0] * amp;
-			pout[0] += (float)s;
-			pout[1] += (float)s;
-			
-			s = pin[1] * amp;
-			pout[2] += (float)s;
-			pout[3] += (float)s;
-			
-			pin += SUNROLL;
-			pout += SUNROLL*2; 
-		} while(--c);
-	}
- 
-	int c = n & (SUNROLL-1);
-	while(c--)
-	{
-		double const s = *pin++ * amp;
-		pout[0] += (float)s;
-		pout[1] += (float)s;
-		pout += 2;
-	}
-} 
-
-
-void DSP_Copy(float *pout, float const *pin, dword const n)
-{
-	memcpy(pout, pin, n*sizeof(float));
-}
-
-// --- end dsplib
-
 
 void CMDKImplementation::AddInput(char const *macname, bool stereo)
 {

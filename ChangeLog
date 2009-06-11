@@ -1,3 +1,9 @@
+2009-06-11  Krzysztof Foltman  <kfoltman@users.sf.net>
+
+	* common/dsplib/dsplib.cpp:
+	* common/mdk/mdkimp.cpp:
+	  Use bml's implementations of dsplib functions.
+
 2009-05-20  Stefan Kost  <ensonic@users.sf.net>
 
 	* Makk/M4/waves/303_01.h:

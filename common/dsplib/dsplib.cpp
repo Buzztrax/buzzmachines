@@ -15,7 +15,6 @@ typedef DWORD dword;
 typedef unsigned long dword;
 #endif
 
-
 #ifndef M_PI
 #define M_PI 3.141592654
 #endif
@@ -49,6 +48,143 @@ void DSP_Init(int const samplerate)
 {
 	sampleRate = samplerate;
 }
+
+// basic stuff
+
+void DSP_Zero(float *pout, dword const n)
+{
+    for (dword i = 0; i < n; i++)
+        pout[i] = 0.f;
+}
+
+void DSP_Copy(float *pout, float const *pin, dword const n)
+{
+    for (dword i = 0; i < n; i++)
+        pout[i] = pin[i];
+}
+
+void DSP_Copy(float *pout, float const *pin, dword const n, float const a)
+{
+    for (dword i = 0; i < n; i++)
+        pout[i] = pin[i] * a;
+}
+
+void DSP_Add(float *pout, float const *pin, dword const n)
+{
+    for (dword i = 0; i < n; i++)
+        pout[i] += pin[i];
+}
+
+void DSP_Add(float *pout, float const *pin, dword const n, float const a)
+{
+    for (dword i = 0; i < n; i++)
+        pout[i] += pin[i] * a;
+}
+
+void DSP_CopyM2S(float *pout, float const *pin, dword const n)
+{
+    for (dword i = 0; i < n; i++)
+        pout[2 * i] = pout[2 * i + 1] = pin[i];
+}
+
+void DSP_CopyM2S(float *pout, float const *pin, dword const n, float const a)
+{
+    for (dword i = 0; i < n; i++)
+        pout[2 * i] = pout[2 * i + 1] = pin[i] * a;
+}
+
+void DSP_CopyM2S(float *pout, float const *pin, dword const n, float const la, float const ra)
+{
+    for (dword i = 0; i < n; i++)
+    {
+        pout[2 * i] = pin[i] * la;
+        pout[2 * i + 1] = pin[i] * ra;
+    }
+}
+
+void DSP_CopyS2MOneChannel(float *pout, float const *pin, dword const n, float const a)
+{
+    for (dword i = 0; i < n; i++)
+        pout[i] = pin[2 * i] * a;
+}
+
+void DSP_AddM2S(float *pout, float const *pin, dword const n)
+{
+    for (dword i = 0; i < n; i++)
+    {
+        pout[2 * i] += pin[i];
+        pout[2 * i + 1] += pin[i];
+    }
+}
+
+void DSP_AddM2S(float *pout, float const *pin, dword const n, float const a)
+{
+    for (dword i = 0; i < n; i++)
+    {
+        float ia = pin[i] * a;
+        pout[2 * i] += ia;
+        pout[2 * i + 1] += ia;
+    }
+}
+
+void DSP_AddM2S(float *pout, float const *pin, dword const n, float const la, float const ra)
+{
+    for (dword i = 0; i < n; i++)
+    {
+        pout[2 * i] += pin[i] * la;
+        pout[2 * i + 1] += pin[i] * ra;
+    }
+}
+
+void DSP_AddS2S(float *pout, float const *pin, dword const n)
+{
+    for (dword i = 0; i < 2 * n; i += 2)
+    {
+        pout[i] += pin[i];
+        pout[i + 1] += pin[i + 1];
+    }
+}
+
+void DSP_AddS2S(float *pout, float const *pin, dword const n, float const a)
+{
+    for (dword i = 0; i < 2 * n; i += 2)
+    {
+        pout[i] += pin[i] * a;
+        pout[i + 1] += pin[i + 1] * a;
+    }
+}
+
+void DSP_AddS2S(float *pout, float const *pin, dword const n, float const la, float const ra)
+{
+    for (dword i = 0; i < 2 * n; i += 2)
+    {
+        pout[i] += pin[i] * la;
+        pout[i + 1] += pin[i + 1] * ra;
+    }
+}
+
+void DSP_Amp(float *ps, dword const n, float const a)
+{
+    for (dword i = 0; i < n; i++)
+        ps[i] *= a;
+}
+
+void DSP_AddS2MOneChannel(float *pout, float const *pin, dword const n, float const a)
+{
+    for (dword i = 0; i < n; i++)
+        pout[i] += pin[2 * i] * a;
+}
+
+void DSP_AddS2SOneChannel(float *pout, float const *pin, dword const n, float const a)
+{
+    // huh?
+    for (dword i = 0; i < 2 * n; i += 2) {
+        pout[i] += pin[i] * a;
+        pout[i + 1] += pin[i] * a;
+    }
+}
+
+// second order butterworth filters
 
 void DSP_BW_Reset(CBWState &s)
 {
