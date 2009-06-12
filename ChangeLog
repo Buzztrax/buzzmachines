@@ -1,3 +1,9 @@
+2009-06-12  Stefan Kost  <ensonic@users.sf.net>
+
+	* HACKING:
+	* Makk/M4/M4.cpp:
+	  Fixing charset and add a note to HACKING.
+
 2009-06-11  Krzysztof Foltman  <kfoltman@users.sf.net>
 
 	* common/dsplib/dsplib.cpp:

@@ -1471,7 +1471,7 @@ char const *mi::DescribeValue(int const param, int const value)
                 break;
         case 4: // semi detune
                 if( value == 0x40)
-                        return "ï¿½0 halfnotes";
+                        return "±0 halfnotes";
                 else
                         if( value > 0x40)
                                 sprintf( txt, "+%i halfnotes", value-0x40);
@@ -1480,7 +1480,7 @@ char const *mi::DescribeValue(int const param, int const value)
                 break;
         case 5: // fine detune
                 if( value == 0x40)
-                        return "ï¿½0 cents";
+                        return "±0 cents";
                 else
                         if( value > 0x40)
                                 sprintf( txt, "+%i cents", (int)((value-0x40)*100.0/63));
@@ -1544,7 +1544,7 @@ char const *mi::DescribeValue(int const param, int const value)
                 break;
                 case 29: //LFO1PhaseDiff
                 case 34: //LFO2PhaseDiff
-                        sprintf( txt, "%iï¿½", value*360/128);
+                        sprintf( txt, "%i°", value*360/128);
                         break;
         default: return NULL;
                 }

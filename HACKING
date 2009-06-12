@@ -3,6 +3,8 @@ Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
 extensions. If the machine consist of a single cpp file, its a good idea to make
 it match the machine name.
 
+Be careful when editing the file thogh and please keep them in WINDOWS-1252 char
+format.
 
 = Intermediate Files =
 - don't add Release/Debug folders from windows source snapshots.
