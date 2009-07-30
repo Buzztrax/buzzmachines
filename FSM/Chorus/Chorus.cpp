@@ -156,6 +156,7 @@ public:
 class avals
 {
 public:
+  int dummy_attr;
 //	int maxdelay;
 };
 

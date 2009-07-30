@@ -334,7 +334,7 @@ void revmodel::setpredelay(byte v) {
 	float samples_pr_ms=44100.0f/1000.0f;
 	float ms_to_samples=(float)v*samples_pr_ms;
 
-	delaySamples=ms_to_samples;
+	delaySamples=int(ms_to_samples);
 
 	if (delayBuffer)
 		delete[] delayBuffer;

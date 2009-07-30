@@ -229,7 +229,7 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode) {
     // free verb turns never of = all eq'er of the chain with free verbs are fucked. Thus we get a bug for free verb-> eq7 that must be fixed
 
 	if (faderCounter>fadeLen)
-		faderCounter=fadeLen+1;
+		faderCounter=int(fadeLen+1);
 
     //float amp=logf(FADE_LEN-faderCounter) / logf(FADE_LEN);
 	float amp=dB_to_linear(((float)(faderCounter/MAX_BUFFER_LENGTH) / (float)fadeLen)*-60.0f);
@@ -260,7 +260,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode) {
 		faderCounter=0;
 
 	if (faderCounter>fadeLen)
-		faderCounter=fadeLen+1;
+		faderCounter=int(fadeLen+1);
 
     float amp=dB_to_linear(((float)(faderCounter/MAX_BUFFER_LENGTH) / (float)fadeLen)*-60.0f);
 	bool processresult=reverb.processreplace(psamples, psamples+1, psamples, psamples+1, numsamples, 2, amp);

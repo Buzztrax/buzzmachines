@@ -1369,10 +1369,10 @@ inline float CTrack::Filter( float x)
         // Cut
         int c, r;
         if( LFO_Cut)
-                c = Cutoff + Cut + // Cut = EnvMod
+			c = Cutoff + int(Cut) + // Cut = EnvMod
                 ((pwavetabLFO1[((unsigned)PhaseLFO1)>>21]*LFO1Amount)>>(7+8));
         else
-                c = Cutoff + Cut; // Cut = EnvMod
+			c = Cutoff + int(Cut); // Cut = EnvMod
         if( c < 0)
                 c = 0;
         else
@@ -1412,18 +1412,18 @@ inline void CTrack::NewPhases()
                 if( GlideActive) {
                         if( LFO_Osc1) {
                                 float pf = LFOOscTab[(pwavetabLFO1[((unsigned)PhaseLFO1)>>21]*LFO1Amount>>7) + 0x8000];
-                                Phase1 += PhaseAdd1*GlideFactor*PitchFactor*pf;
-                                PhaseSub += PhaseAdd1*GlideFactor*PitchFactor*pf/2;
+                                Phase1 += int(PhaseAdd1*GlideFactor*PitchFactor*pf);
+                                PhaseSub += int(PhaseAdd1*GlideFactor*PitchFactor*pf/2);
                         }
                         else {
-                                Phase1 += PhaseAdd1*GlideFactor*PitchFactor;
-                                PhaseSub += PhaseAdd1*GlideFactor*PitchFactor/2;
+							Phase1 += int(PhaseAdd1*GlideFactor*PitchFactor);
+							PhaseSub += int(PhaseAdd1*GlideFactor*PitchFactor/2);
                         }
                         if( LFO_Osc2)
-                                Phase2 += PhaseAdd2*GlideFactor*PitchFactor
-                                  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000];
+							Phase2 += int(PhaseAdd2*GlideFactor*PitchFactor
+										  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000]);
                         else
-                                Phase2 += PhaseAdd2*GlideFactor*PitchFactor;
+							Phase2 += int(PhaseAdd2*GlideFactor*PitchFactor);
                         GlideFactor *= GlideMul;
                         if( !GlideCount--) {
                                 GlideActive = false;
@@ -1434,18 +1434,18 @@ inline void CTrack::NewPhases()
                 else { // kein Glide
                         if( LFO_Osc1) {
                                 float pf = LFOOscTab[(pwavetabLFO1[((unsigned)PhaseLFO1)>>21]*LFO1Amount>>7) + 0x8000];
-                                Phase1 += PhaseAdd1*PitchFactor*pf;
-                                PhaseSub += PhaseAdd1*PitchFactor*pf/2;
+                                Phase1 += int(PhaseAdd1*PitchFactor*pf);
+                                PhaseSub += int(PhaseAdd1*PitchFactor*pf/2);
                         }
                         else {
-                                Phase1 += PhaseAdd1*PitchFactor;
-                                PhaseSub += PhaseAdd1*PitchFactor/2;
+							Phase1 += int(PhaseAdd1*PitchFactor);
+							PhaseSub += int(PhaseAdd1*PitchFactor/2);
                         }
                         if( LFO_Osc2)
-                                Phase2 += PhaseAdd2*PitchFactor
-                                  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000];
+							Phase2 += int(PhaseAdd2*PitchFactor
+										  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000]);
                         else
-                                Phase2 += PhaseAdd2*PitchFactor;
+							Phase2 += int(PhaseAdd2*PitchFactor);
                 }
 
                 PitchFactor *= PitchMul;
@@ -1464,18 +1464,18 @@ inline void CTrack::NewPhases()
                 if( GlideActive) {
                         if( LFO_Osc1) {
                                 float pf = LFOOscTab[(pwavetabLFO1[((unsigned)PhaseLFO1)>>21]*LFO1Amount>>7) + 0x8000];
-                                Phase1 += PhaseAdd1*GlideFactor*pf;
-                                PhaseSub += PhaseAdd1*GlideFactor*pf/2;
+                                Phase1 += int(PhaseAdd1*GlideFactor*pf);
+                                PhaseSub += int(PhaseAdd1*GlideFactor*pf/2);
                         }
                         else {
-                                Phase1 += PhaseAdd1*GlideFactor;
-                                PhaseSub += PhaseAdd1*GlideFactor/2;
+							Phase1 += int(PhaseAdd1*GlideFactor);
+							PhaseSub += int(PhaseAdd1*GlideFactor/2);
                         }
                         if( LFO_Osc2)
-                                Phase2 += PhaseAdd2*GlideFactor
-                                  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000];
+							Phase2 += int(PhaseAdd2*GlideFactor
+										  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000]);
                         else
-                                Phase2 += PhaseAdd2*GlideFactor;
+							Phase2 += int(PhaseAdd2*GlideFactor);
                         GlideFactor *= GlideMul;
                         if( !GlideCount--) {
                                 GlideActive = false;
@@ -1486,16 +1486,16 @@ inline void CTrack::NewPhases()
                 else {
                         if( LFO_Osc1) {
                                 float pf = LFOOscTab[(pwavetabLFO1[((unsigned)PhaseLFO1)>>21]*LFO1Amount>>7) + 0x8000];
-                                Phase1 += PhaseAdd1*pf;
-                                PhaseSub += PhaseAdd1*pf/2;
+                                Phase1 += int(PhaseAdd1*pf);
+                                PhaseSub += int(PhaseAdd1*pf/2);
                         }
                         else {
                                 Phase1 += PhaseAdd1;
                                 PhaseSub += PhaseAdd1/2;
                         }
                         if( LFO_Osc2)
-                                Phase2 += PhaseAdd2
-                                  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000];
+							Phase2 += int(PhaseAdd2
+										  *LFOOscTab[(pwavetabLFO2[((unsigned)PhaseLFO2)>>21]*LFO2Amount>>7) + 0x8000]);
                         else
                                 Phase2 += PhaseAdd2;
                 }
@@ -1544,14 +1544,14 @@ inline void CTrack::NewPhases()
         PhaseSub &= 0x7ffffff;
 
         if( Phase1 < center1)
-                Ph1 = Phase1*PhScale1A;
+			Ph1 = int(Phase1*PhScale1A);
         else
-                Ph1 = (Phase1 - center1)*PhScale1B + 0x4000000;
+			Ph1 = int((Phase1 - center1)*PhScale1B + 0x4000000);
 
         if( Phase2 < center2)
-                Ph2 = Phase2*PhScale2A;
+			Ph2 = int(Phase2*PhScale2A);
         else
-                Ph2 = (Phase2 - center2)*PhScale2B + 0x4000000;
+			Ph2 = int((Phase2 - center2)*PhScale2B + 0x4000000);
 
 		// LFOs
         PhaseLFO1 += PhaseAddLFO1;

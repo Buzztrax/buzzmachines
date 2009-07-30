@@ -147,6 +147,8 @@ CMachineAttribute const *pAttributes[] =
 
 class avals
 {
+public:
+	int dummy_attr;
 };
 
 class gvals

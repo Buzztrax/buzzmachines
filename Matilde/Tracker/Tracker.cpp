@@ -483,7 +483,7 @@ void CMachine::Init(CMachineDataInput * const pi)
 
 	m_Wavetable.Stop();
 	m_oVirtualChannels=false;
-	m_hDlg=NULL;
+	m_hDlg=0;
 	m_oDoTick=false;
 
 	//if( pi )
