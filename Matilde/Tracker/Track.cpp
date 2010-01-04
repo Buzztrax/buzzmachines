@@ -261,6 +261,9 @@ void	CTrack::Tick( CTrackVals &tv, CGlobalVals &gv )
 
 	if( !NONOTE(m_Vals.note) && iProbability2compare<iProbability2 )
 	{
+        //DEBUG
+        //printf("%p:%p: New note: %d\n", m_pMachine, this, m_Vals.note);
+        //DEBUG
 		m_iBaseNote=m_Vals.note;
 		if( (thesecommands&(1<<3)) == 0 /*(command!=3)&&(command!=5)*/ )
 		{

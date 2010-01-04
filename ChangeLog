@@ -1,3 +1,151 @@
+2010-01-05  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Kick/Kick.cpp:
+	  whitespace.
+
+	* Geonik/BuzzMachines/Makefile.am:
+	* Geonik/BuzzMachines/Mandpluk.h:
+	* Geonik/BuzzMachines/Mandpluk.sw:
+	* Geonik/BuzzMachines/Omega1.cpp:
+	* Geonik/BuzzMachines/PrimiFun.cpp:
+	* Geonik/DspClasses/Adsr.h:
+	* Geonik/DspClasses/Buffer.h:
+	* Geonik/DspClasses/BuzzOsc.h:
+	* Geonik/DspClasses/ColorMaps.h:
+	* Geonik/DspClasses/DcOffset.cpp:
+	* Geonik/DspClasses/DcOffset.h:
+	* Geonik/DspClasses/Delay.h:
+	* Geonik/DspClasses/DspAdd.h:
+	* Geonik/DspClasses/DspClasses.cpp:
+	* Geonik/DspClasses/DspClasses.h:
+	* Geonik/DspClasses/Fft.h:
+	* Geonik/DspClasses/Filter.h:
+	* Geonik/DspClasses/Generators.h:
+	* Geonik/DspClasses/InvSqrt.cpp:
+	* Geonik/DspClasses/LookUp.h:
+	* Geonik/DspClasses/Noise.h:
+	* Geonik/DspClasses/Saturator.h:
+	* Geonik/DspClasses/Sqrt.cpp:
+	* Geonik/DspClasses/Volume.h:
+	* Geonik/DspClasses/Wave.h:
+	* Geonik/DspClasses/WinBase.cpp:
+	* Geonik/Makefile.am:
+	* Geonik/readme.txt:
+	* Makefile.am:
+	* Matilde/Tracker/Track.cpp:
+	* Matilde/Tracker/Tracker.cpp:
+	* configure.ac:
+	  Added & ported first two Geonik machines.
+	
+	* Matilde/Tracker (svn:ignore):
+	* Geonik/BuzzMachines/Omega1.cpp (svn:keywords, svn:eol-style):
+	* FSM/PanzerDelay (svn:ignore):
+	* FSM/Chorus2 (svn:ignore):
+	* Jeskola/Trilok (svn:ignore):
+	* FSM/dspchips (svn:ignore):
+	* Geonik/BuzzMachines (svn:ignore):
+	* Elak (svn:ignore):
+	* CyanPhase (svn:ignore):
+	* Geonik/DspClasses/DcOffset.h (svn:keywords, svn:eol-style):
+	* common (svn:ignore):
+	* Geonik/DspClasses/DspClasses.h (svn:keywords, svn:eol-style):
+	* FSM/ScrapMan (svn:ignore):
+	* FSM (svn:ignore):
+	* Geonik/DspClasses/Filter.h (svn:keywords, svn:eol-style):
+	* Geonik/DspClasses/Wave.h (svn:keywords, svn:eol-style):
+	* Jeskola/Freeverb (svn:ignore):
+	* FSM/TunaMan (svn:ignore):
+	* Makk/M4 (svn:ignore):
+	* Makk/M3 (svn:ignore):
+	* FSM/Philta (svn:ignore):
+	* Geonik/DspClasses/Sqrt.cpp (svn:keywords, svn:eol-style):
+	* Ensonic (svn:ignore):
+	* Geonik/DspClasses/Noise.h (svn:keywords, svn:eol-style):
+	* Jeskola/Noise (svn:ignore):
+	* Geonik/BuzzMachines/Mandpluk.sw (svn:mime-type):
+	* Makk/M4/waves (svn:ignore):
+	* Geonik/BuzzMachines/Makefile.am (svn:keywords, svn:eol-style):
+	* Geonik/DspClasses/DcOffset.cpp (svn:keywords, svn:eol-style):
+	* Elak/Dist2 (svn:ignore):
+	* Geonik/DspClasses/ColorMaps.h (svn:keywords, svn:eol-style):
+	* FSM/Infector (svn:ignore):
+	* FSM/Kick (svn:ignore):
+	* Jeskola/Delay (svn:ignore):
+	* Geonik/readme.txt (svn:eol-style):
+	* common/dsplib (svn:ignore):
+	* Geonik/DspClasses/Adsr.h (svn:keywords, svn:eol-style):
+	* Jeskola/CrossDelay (svn:ignore):
+	* Geonik (svn:ignore):
+	* Geonik/Makefile.am (svn:keywords, svn:eol-style):
+	* FSM/ArpMan (svn:ignore):
+	* Geonik/DspClasses/Delay.h (svn:keywords, svn:eol-style):
+	* Geonik/DspClasses/WinBase.cpp (svn:keywords, svn:eol-style):
+	* FSM/TapMan (svn:ignore):
+	* Geonik/DspClasses (svn:ignore):
+	* Geonik/DspClasses/LookUp.h (svn:keywords, svn:eol-style):
+	* CyanPhase/DTMF (svn:ignore):
+	* Geonik/DspClasses/DspClasses.cpp (svn:keywords, svn:eol-style):
+	* Ensonic/CallbackTester (svn:ignore):
+	* Geonik/DspClasses/BuzzOsc.h (svn:keywords, svn:eol-style):
+	* common/mdk (svn:ignore):
+	* Jeskola/Distortion (svn:ignore):
+	* Geonik/DspClasses/DspAdd.h (svn:keywords, svn:eol-style):
+	*  (svn:ignore):
+	* Geonik/DspClasses/InvSqrt.cpp (svn:keywords, svn:eol-style):
+	* FSM/PhatMan (svn:ignore):
+	* Geonik/DspClasses/Saturator.h (svn:keywords, svn:eol-style):
+	* Matilde (svn:ignore):
+	* Geonik/DspClasses/Volume.h (svn:keywords, svn:eol-style):
+	* Geonik/BuzzMachines/Mandpluk.h (svn:keywords, svn:eol-style):
+	* FSM/SprayMan (svn:ignore):
+	* Jeskola/Ninja (svn:ignore):
+	* Matilde/Tracker/SurfsDSPLib (svn:ignore):
+	* Geonik/DspClasses/Fft.h (svn:keywords, svn:eol-style):
+	* FSM/Chorus (svn:ignore):
+	* Jeskola (svn:ignore):
+	* Elak/SVF (svn:ignore):
+	* Jeskola/Mul (svn:ignore):
+	* FSM/WahManPro (svn:ignore):
+	* m4 (svn:ignore):
+	* FSM/ScatMan (svn:ignore):
+	* Makk (svn:ignore):
+	* Geonik/BuzzMachines/PrimiFun.cpp (svn:keywords, svn:eol-style):
+	* Geonik/DspClasses/Generators.h (svn:keywords, svn:eol-style):
+	* Geonik/DspClasses/Buffer.h (svn:keywords, svn:eol-style):
+	* FSM/WahMan (svn:ignore):
+	* Geonik (added):
+	* Geonik/BuzzMachines (added):
+	* Geonik/BuzzMachines/Mandpluk.h (added):
+	* Geonik/BuzzMachines/Mandpluk.sw (added):
+	* Geonik/BuzzMachines/Makefile.am (added):
+	* Geonik/BuzzMachines/Omega1.cpp (added):
+	* Geonik/BuzzMachines/PrimiFun.cpp (added):
+	* Geonik/DspClasses (added):
+	* Geonik/DspClasses/Adsr.h (added):
+	* Geonik/DspClasses/DcOffset.h (added):
+	* Geonik/DspClasses/Delay.h (added):
+	* Geonik/DspClasses/DspClasses.cpp (added):
+	* Geonik/DspClasses/DspAdd.h (added):
+	* Geonik/DspClasses/ColorMaps.h (added):
+	* Geonik/DspClasses/BuzzOsc.h (added):
+	* Geonik/DspClasses/InvSqrt.cpp (added):
+	* Geonik/DspClasses/Wave.h (added):
+	* Geonik/DspClasses/DspClasses.h (added):
+	* Geonik/DspClasses/Volume.h (added):
+	* Geonik/DspClasses/LookUp.h (added):
+	* Geonik/DspClasses/Generators.h (added):
+	* Geonik/DspClasses/Buffer.h (added):
+	* Geonik/DspClasses/Noise.h (added):
+	* Geonik/DspClasses/Fft.h (added):
+	* Geonik/DspClasses/WinBase.cpp (added):
+	* Geonik/DspClasses/Saturator.h (added):
+	* Geonik/DspClasses/Sqrt.cpp (added):
+	* Geonik/DspClasses/Filter.h (added):
+	* Geonik/DspClasses/DcOffset.cpp (added):
+	* Geonik/Makefile.am (added):
+	* Geonik/readme.txt (added):
+	  svn maintenance.
+
 2009-07-30  Patric Schmitz  <berzerka@users.sf.net>
 
 	* FSM/Chorus/Chorus.cpp:

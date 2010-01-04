@@ -149,11 +149,11 @@ const CMachineParameter	CMachine::m_paraVolume=
 	0xFE,											// MaxValue
 	0xFF,											// NoValue
 #ifdef API_V1
-  0,             								// Flags
+	0,             								// Flags
 #else
 	MPF_STATE,										// Flags
 #endif
-	0
+	0 /* FIXME: wouldn't 0x7F be better */
 };
 
 const CMachineParameter	CMachine::m_paraEffect1=
@@ -365,7 +365,7 @@ const CMachineInfo	CMachine::m_MachineInfo =
 	NumberOfGlobalParameters,				// numGlobalParameters
 	7,										// numTrackParameters
 	m_pParameters,
-  NumberOfAttributes,   // numAttributes
+	NumberOfAttributes,   // numAttributes
 	m_pAttributes,
 #ifdef API_V1
 #ifdef MONO

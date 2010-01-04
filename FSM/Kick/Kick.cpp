@@ -320,7 +320,7 @@ void mi::SetNumTracks(int const n)
     else if (n < numTracks)
     {
         for (int c = n; c < numTracks; c++)
-            ResetTrack(c);    
+            ResetTrack(c);
     }
     numTracks = n;
 

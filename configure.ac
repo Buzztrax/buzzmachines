@@ -86,8 +86,10 @@ AC_CONFIG_FILES(Makefile shave shave-libtool \
     FSM/Infector/Makefile \
     FSM/Kick/Makefile \
     FSM/PhatMan/Makefile \
-    FSM/PanzerDelay/Makefile
-    FSM/WahMan/Makefile
+    FSM/PanzerDelay/Makefile \
+    FSM/WahMan/Makefile \
+  Geonik/Makefile \
+    Geonik/BuzzMachines/Makefile \
   Jeskola/Makefile \
     Jeskola/CrossDelay/Makefile \
     Jeskola/Delay/Makefile \
