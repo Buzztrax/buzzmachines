@@ -1,3 +1,10 @@
+2010-04-16  Stefan Kost  <ensonic@users.sf.net>
+
+	* configure.ac:
+	* shave.in (deleted):
+	* shave-libtool.in (deleted):
+	  Get rid of shave and switch to automake silent rules if available.
+
 2010-01-05  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/Kick/Kick.cpp:
