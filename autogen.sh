@@ -306,7 +306,7 @@ tool_run ()
   }
 }
 
-CONFIGURE_DEF_OPT='--enable-maintainer-mode --enable-compile-warnings --enable-shave'
+CONFIGURE_DEF_OPT='--enable-maintainer-mode --enable-compile-warnings'
 
 autogen_options $@
 
