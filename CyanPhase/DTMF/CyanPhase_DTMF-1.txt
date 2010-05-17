@@ -1,0 +1,18 @@
+CyanPhase DTMF-1
+
+Version 1.2 - Fixed clicking with analog A-R envelope
+
+My most useful generator yet!..
+
+NEW_ATOM really wanted this type of generator so... anyway
+this is a DTMF generator, which means that buzz can sound
+like a telephone. So you don't need cooledit to make them
+for you :P. the first column allows you to enter the
+numbers
+
+
+This machine comes also with the source code, it demonstrates
+how easy it is to calculate and use fast sine coefficients
+to generate nice sine waves without a using a buffer or
+wavetable.
+

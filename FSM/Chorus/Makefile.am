@@ -9,3 +9,6 @@ libFSM_Chorus_la_LDFLAGS = $(BM_LIBS)
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libFSM_Chorus.so $(DESTDIR)$(plugindir)/FSM_Chorus.so
+	
+preset_DATA = FSM_Chorus.prs
+

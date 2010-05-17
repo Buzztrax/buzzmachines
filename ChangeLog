@@ -1,3 +1,20 @@
+2010-05-17  Stefan Kost  <ensonic@users.sf.net>
+
+	* CyanPhase/DTMF/CyanPhase_DTMF-1.txt:
+	  Add a help file (not yet installed).
+
+	* FSM/Chorus/FSM_Chorus.prs:
+	* FSM/Chorus/Makefile.am:
+	  Add presets.
+
+	* configure.ac:
+	  Bump version.
+
+	* CyanPhase/DTMF/CyanPhase_DTMF-1.txt (svn:eol-style):
+	* FSM/Chorus/FSM_Chorus.prs (svn:mime-type):
+	* FSM/Chorus/FSM_Chorus.prs (added):
+	* CyanPhase/DTMF/CyanPhase_DTMF-1.txt (added):
+
 2010-05-13  Stefan Kost  <ensonic@users.sf.net>
 
 	* autogen.sh:
