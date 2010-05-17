@@ -1,3 +1,10 @@
+2010-05-18  Stefan Kost  <ensonic@users.sf.net>
+
+	* HACKING:
+	* exclude.lst:
+	* exclude.lst (added):
+	  Tell how to make a source snapshot (and include an initial exclude-list).
+
 2010-05-17  Stefan Kost  <ensonic@users.sf.net>
 
 	* CyanPhase/DTMF/CyanPhase_DTMF-1.txt:
