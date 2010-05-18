@@ -1,5 +1,16 @@
 2010-05-18  Stefan Kost  <ensonic@users.sf.net>
 
+	* README:
+	  Update README.
+
+	* COPYING:
+	* COPYING (added):
+	  Tell more about the legal status (and avoid that we get a GPL COPYING
+	  file from automake placed here).
+	
+
+2010-05-18  Stefan Kost  <ensonic@users.sf.net>
+
 	* HACKING:
 	* exclude.lst:
 	* exclude.lst (added):
