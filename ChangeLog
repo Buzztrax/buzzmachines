@@ -1,3 +1,14 @@
+2010-05-19  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/COPYING:
+	* FSM/Makefile.am:
+	* FSM/COPYING (added):
+	  Add a COPYING file as we have clarified the license for these long
+	  ago.
+
+	* NEWS:
+	  Bump version here to so that we can test make dist.
+
 2010-05-18  Stefan Kost  <ensonic@users.sf.net>
 
 	* README:
