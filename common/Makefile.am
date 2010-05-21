@@ -1,5 +1,6 @@
 ## $Id$
 
-SUBDIRS = mdk dsplib
+SUBDIRS = dsplib mdk
 
-noinst_HEADERS = MachineInterface.h
+noinst_HEADERS = MachineInterface.h \
+  bw.h dsplib.h resample.h windef.h

@@ -1,3 +1,12 @@
+2010-05-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* Jeskola/Freeverb/Makefile.am:
+	* common/mdk/Makefile.am:
+	  mdk needs dsplib, link it here.
+
+	* common/Makefile.am:
+	  Add missing includes (so that they would get disted).
+
 2010-05-19  Stefan Kost  <ensonic@users.sf.net>
 
 	* FSM/COPYING:
