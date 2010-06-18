@@ -179,6 +179,7 @@ void CTrack::PlayNote(byte note, byte _accent, byte _length, CMasterInfo *pMaste
   chn->Filter.m_filter.Reset();
   chn->Filter.m_filter2.Reset();
   chn->Filter.m_filter3.Reset();
+  chn->PhaseOSC1=chn->PhaseOSC2=chn->PhaseOSC3=0.0;
   lastnote=note;
   lastaccent=_accent;
   lastlength=_length;

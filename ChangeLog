@@ -1,3 +1,8 @@
+2010-06-18  Stefan Kost  <ensonic@users.sf.net>
+
+	* FSM/Infector/Track.cpp:
+	  Don't use uninitialized variable.
+
 2010-05-21  Stefan Kost  <ensonic@users.sf.net>
 
 	* Jeskola/Freeverb/Makefile.am:
