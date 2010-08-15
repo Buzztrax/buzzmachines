@@ -57,11 +57,14 @@ struct CBuzzOsc {
 		double		 pos	= fPos;
 		double		 step	= fRate;
 		do {
-			double		 res  = pos + d2i;
-			int			 ipos = *(int *)(void*)&res;
-			double const frac = pos - ipos;
-			double const s1	  = ptbl[ipos&omask];
-			double const s2   = ptbl[(ipos+1)&omask];
+		    union {
+		      double res;
+		      int    ipos;
+		    } type_pun;
+		    type_pun.res = pos + d2i;
+			double const frac = pos - type_pun.ipos;
+			double const s1	  = ptbl[type_pun.ipos & omask];
+			double const s2   = ptbl[(type_pun.ipos + 1) & omask];
 			*pout++ = (float)((s1 + (s2 - s1) * frac));
 			pos += step;
 		} while(--ns);
@@ -106,13 +109,16 @@ struct CPwPulse : public CBuzzOsc {
 		double		 pos	= fPos;
 		double		 step	= fRate;
 		do {
-			double		 res  = pos + d2i;
-			int			 ipos = *(int *)(void *)&res;
-			double const frac = pos - ipos;
-			double const s1	  = ptbl[(ipos)&omask];
-			double const s2   = ptbl[(ipos+1)&omask];
-			double const s3	  = ptbl[(ipos+dist)&omask];
-			double const s4   = ptbl[(ipos+dist+1)&omask];
+		    union {
+		      double res;
+		      int    ipos;
+		    } type_pun;
+		    type_pun.res = pos + d2i;
+			double const frac = pos - type_pun.ipos;
+			double const s1	  = ptbl[type_pun.ipos & omask];
+			double const s2   = ptbl[(type_pun.ipos + 1) & omask];
+			double const s3	  = ptbl[(type_pun.ipos + dist) & omask];
+			double const s4   = ptbl[(type_pun.ipos + dist + 1 )& omask];
 			*pout++ = (float)(s1 - s3 + (s2-s1)*frac - (s4-s3)*(frac+df));
 			pos += step;
 		} while(--ns);

@@ -7,8 +7,13 @@
 
 #ifndef _denormals_
 #define _denormals_
+#include "math.h"
 
+#ifdef FP_SUBNORMAL
+#define undenormalise(sample) if(!isnormal(sample)) sample=0.0f
+#else
 #define undenormalise(sample) if(((*(unsigned int*)((void*)&sample))&0x7f800000)==0) sample=0.0f
+#endif
 
 #endif//_denormals_
 

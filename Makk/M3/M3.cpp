@@ -778,7 +778,7 @@ void CTrack::Init()
 		PEGState = EGS_NONE;
         r1=26474; r2=13075; r3=18376; r4=31291; // randomGenerator
         noisePhase = Phase1 = Phase2 = PhaseSub = PhaseLFO1 = PhaseLFO2 = 0; // Osc starten neu
-        x1 = x2 = y1 = x2 = 0;
+        x1 = x2 = y1 = y2 = 0;
         pnoise = pmi->pCB->GetOscillatorTable( OWF_NOISE);
         OldOut = 0;
         pwavetab1=pwavetab2=pwavetabsub=pwavetabLFO1=pwavetabLFO2=
