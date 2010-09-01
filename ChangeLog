@@ -1,6 +1,11 @@
 2010-09-01  Stefan Kost  <ensonic@users.sf.net>
 
 	* Geonik/BuzzMachines/Makefile.am:
+	  Commit the changes again.
+
+2010-09-01  Stefan Kost  <ensonic@users.sf.net>
+
+	* Geonik/BuzzMachines/Makefile.am:
 	  Fix la cleaning rule.
 
 2010-08-15  Stefan Kost  <ensonic@users.sf.net>
