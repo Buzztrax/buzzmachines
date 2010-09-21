@@ -1,3 +1,8 @@
+2010-09-21  Stefan Kost  <ensonic@users.sf.net>
+
+	* Makefile.am:
+	  Remove some more shave leftovers.
+
 2010-09-01  Stefan Kost  <ensonic@users.sf.net>
 
 	* Geonik/BuzzMachines/Makefile.am:
