@@ -1,10 +1,10 @@
-
+#include <windef.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../../MachineInterface.h"
-#include "../../auxbus/auxbus.h"
+#include <MachineInterface.h>
+#include <auxbus/auxbus.h>
 
 CMachineParameter const paraDummy = { pt_byte, "Dummy", "Dummy", 0, 127, 255, MPF_STATE, 0 };
 

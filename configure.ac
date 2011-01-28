@@ -98,6 +98,7 @@ AC_CONFIG_FILES(Makefile \
     Jeskola/CrossDelay/Makefile \
     Jeskola/Delay/Makefile \
     Jeskola/Freeverb/Makefile \
+    Jeskola/Mul/Makefile \
     Jeskola/Ninja/Makefile \
     Jeskola/Noise/Makefile \
     Jeskola/Trilok/Makefile \

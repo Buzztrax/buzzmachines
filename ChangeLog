@@ -1,3 +1,43 @@
+2011-01-28  Stefan Kost  <ensonic@users.sf.net>
+
+	* Jeskola/Mul/Makefile.am:
+	* Jeskola/Mul/Mul.cpp:
+	* common/auxbus/EditorDlg.cpp:
+	* common/auxbus/EditorDlg.h:
+	* common/auxbus/StdAfx.cpp:
+	* common/auxbus/StdAfx.h:
+	* common/auxbus/auxbus.cpp:
+	* common/auxbus/auxbus.dsp:
+	* common/auxbus/auxbus.h:
+	* common/auxbus/auxbus.rc:
+	* common/auxbus/internal.h:
+	* common/auxbus/resource.h:
+	* configure.ac:
+	* common/auxbus/auxbus.cpp (svn:keywords, svn:eol-style):
+	* common/auxbus/auxbus.dsp (svn:eol-style):
+	* common/auxbus/resource.h (svn:keywords, svn:eol-style):
+	* common/auxbus/auxbus.h (svn:keywords, svn:eol-style):
+	* common/auxbus/EditorDlg.h (svn:keywords, svn:eol-style):
+	* common/auxbus/StdAfx.cpp (svn:keywords, svn:eol-style):
+	* common/auxbus/EditorDlg.cpp (svn:keywords, svn:eol-style):
+	* Jeskola/Mul/Makefile.am (svn:keywords, svn:eol-style):
+	* common/auxbus/StdAfx.h (svn:keywords, svn:eol-style):
+	* common/auxbus/internal.h (svn:keywords, svn:eol-style):
+	* common/auxbus (added):
+	* common/auxbus/StdAfx.h (added):
+	* common/auxbus/internal.h (added):
+	* common/auxbus/EditorDlg.h (added):
+	* common/auxbus/auxbus.cpp (added):
+	* common/auxbus/auxbus.rc (added):
+	* common/auxbus/StdAfx.cpp (added):
+	* common/auxbus/auxbus.dsp (added):
+	* common/auxbus/resource.h (added):
+	* common/auxbus/auxbus.h (added):
+	* common/auxbus/EditorDlg.cpp (added):
+	* Jeskola/Mul/Makefile.am (added):
+	  Mul auxbus element is compiling. Move Ausbus lib to the right place.
+	  Needs a better cocncept for the UI (AB_ShowEditor).
+
 2010-09-21  Stefan Kost  <ensonic@users.sf.net>
 
 	* Makefile.am:
