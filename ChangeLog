@@ -1,3 +1,8 @@
+2011-06-25  Stefan Sauer  <ensonic@users.sf.net>
+
+	* FSM/Infector/Infector.cpp:
+	  Fix array size calculation for 64bit arch.
+
 2011-01-28  Stefan Kost  <ensonic@users.sf.net>
 
 	* Jeskola/Mul/Makefile.am:

@@ -1473,8 +1473,8 @@ static bool DoWorkChannel(float *pout, mi *pmi, int c, CChannel *chn)
   // bool bKey=GetKeyState(VK_SHIFT)<0; //XXXKF
   CADSREnvelope *pEnv=&chn->AmpEnv;
   {
-    int nTab=sizeof(tablesA)/4;
-    int nTab2=sizeof(tablesC)/4;
+    int nTab=sizeof(tablesA)/sizeof(CBandlimitedTable *);
+    int nTab2=sizeof(tablesC)/sizeof(CBandlimitedTable *);
     int nWavA=pmi->gvalAct.vWaveformA;
     CAnyWaveLevel *pLevel1A=(nWavA<nTab ? tablesA[nWavA] : &pmi->usertables[(nWavA-nTab)&~1])->GetTable(Frequency1);
     CAnyWaveLevel *pLevel1B=(nWavA<nTab ? tablesB[nWavA] : &pmi->usertables[nWavA-nTab])->GetTable(Frequency1);
