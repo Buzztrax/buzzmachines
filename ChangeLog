@@ -1,6 +1,31 @@
 2011-08-20  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/Makefile.am:
+	* FSM/ScatMan/Makefile.am:
+	* FSM/ScatMan/ScatMan.cpp:
+	* FSM/ScrapMan/Makefile.am:
+	* FSM/ScrapMan/ScrapMan.cpp:
+	* FSM/SprayMan/Makefile.am:
+	* FSM/SprayMan/SprayMan.cpp:
+	* FSM/TapMan/Makefile.am:
+	* FSM/TapMan/TapMan.cpp:
+	* FSM/TunaMan/Makefile.am:
+	* FSM/TunaMan/TunaMan.cpp:
+	* FSM/WahMan/WahMan.cpp:
+	* FSM/WahManPro/Makefile.am:
+	* FSM/WahManPro/WahManPro.cpp:
+	* configure.ac:
+	* FSM/TapMan/Makefile.am (added):
+	* FSM/ScatMan/Makefile.am (added):
+	* FSM/SprayMan/Makefile.am (added):
+	* FSM/WahManPro/Makefile.am (added):
+	* FSM/TunaMan/Makefile.am (added):
+	* FSM/ScrapMan/Makefile.am (added):
+	  Port more FSM effects.
+
+2011-08-20  Stefan Sauer  <ensonic@users.sf.net>
+
+	* FSM/Makefile.am:
 	* FSM/Philta/Makefile.am:
 	* FSM/Philta/Philta.cpp:
 	* configure.ac:

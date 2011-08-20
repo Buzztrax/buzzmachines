@@ -5,8 +5,8 @@
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "../MachineInterface_Old.h"
-#include "dspchips.h"
+#include <MachineInterface.h>
+#include "../dspchips/DSPChips.h"
 
 double const SilentEnough = log(1.0 / 32768);
 
@@ -250,8 +250,6 @@ void CTrack::CalcCoeffs1()
 
 void CTrack::CalcCoeffs2()
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=8000) cf=8000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
@@ -265,15 +263,13 @@ void CTrack::CalcCoeffs2()
 
 void CTrack::CalcCoeffs3()
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=8000) cf=8000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
-  float fQ=(float)(1.01+30*Resonance*ScaleResonance/240.0);
+  //float fQ=(float)(1.01+30*Resonance*ScaleResonance/240.0);
 
   m_filter.SetParametricEQ(CutoffFreq,float(1.0+Resonance*ScaleResonance/6.0),32,44100);
 }
@@ -315,15 +311,13 @@ void CTrack::CalcCoeffs4()
 
 void CTrack::CalcCoeffs5()
 {
-	int sr=44100;
-
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
 	if (cf>=8000) cf=8000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
-  float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
-  float fQ=(float)(1.01+30*Resonance*ScaleResonance/240.0);
+  //float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
+  //float fQ=(float)(1.01+30*Resonance*ScaleResonance/240.0);
 
   m_filter.SetParametricEQ(CutoffFreq,(float)(1.0+Resonance/12.0),float(6+Resonance/30.0),44100);
   m_filter2.SetParametricEQ(float(CutoffFreq/(1+Resonance/240.0)),float(1.0+Resonance/12.0),float(6+Resonance/30.0),44100);
@@ -564,7 +558,6 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
     {
       for (int j=i; j<jmax; j++)
       {
-        float in=pin[j];
         pout[j]=trk->m_filter.ProcessSample(pin[j]);
       }
     }
@@ -572,7 +565,6 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
     {
       for (int j=i; j<jmax; j++)
       {
-        float in=pin[j];
         pout[j]=trk->m_filter2.ProcessSample(trk->m_filter.ProcessSample(pin[j]));
       }
     }

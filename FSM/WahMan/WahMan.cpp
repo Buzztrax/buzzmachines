@@ -429,4 +429,3 @@ void mi::Command(int const i)
   pCB->MessageBox("FSM WahMan version 1.1 !\nWritten by Krzysztof Foltman (kf@cw.pl), Gfx by Oom\n\n"
     "For new songs, please don't use WahMan - FSM WahManPro2 is MUCH better !\n\n");
 }
-

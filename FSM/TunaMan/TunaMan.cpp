@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "..\MachineInterface.h"
-#include "..\WahMan3\DSPChips_vc.h"
+#include <MachineInterface.h>
+#include "../dspchips/DSPChips.h"
 
 double const SilentEnough = log(1.0 / 32768);
 

@@ -1,12 +1,12 @@
-// FSM ScrapMan
+// FSM SprayMan
 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "..\MachineInterface_Old.h"
-#include "..\WahMan3\DSPChips.h"
+#include <MachineInterface.h>
+#include "../dspchips/DSPChips.h"
 
 double const SilentEnough = log(1.0 / 32768);
 
@@ -348,11 +348,13 @@ DLL_EXPORTS
 
 mi::mi()
 {
+  int i;
+
 	GlobalVals = NULL;
 	TrackVals = &gval;
 	AttrVals = (int *)&aval;
   Buffer = new float[MAX_DELAY];
-  for (int i=0; i<GRANULE_SIZE; i++)
+  for (i=0; i<GRANULE_SIZE; i++)
     Rise[i]=(float)(sin(i*PI/(2*GRANULE_SIZE))),
     Fall[i]=(float)(cos(i*PI/(2*GRANULE_SIZE)));
   for (i=0; i<GRANULE_SIZE; i++)
@@ -504,14 +506,6 @@ void mi::Tick()
 
 #define INTERPOLATE(pos,start,end) ((start)+(pos)*((end)-(start)))
 
-inline int f2i(double d)
-{
-	const double magic = 6755399441055744.0; // 2^51 + 2^52
-	double tmp = (d-0.5) + magic;
-	return *(int*) &tmp;
-}
-
-
 inline float Window(float Phase, float SmoothTime)
 {
   return (Phase<SmoothTime)?Phase/SmoothTime:1.0f;
@@ -546,7 +540,7 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c)
         pGran->Phase++;
         if (pGran->Phase>=3)
         {
-	        int EnvLength=GRANULE_SIZE*256/(depAttack+depSustain+depRelease)+DELAY_MAX;
+	        //int EnvLength=GRANULE_SIZE*256/(depAttack+depSustain+depRelease)+DELAY_MAX;
           float Left=float((1-pmi->Pan/240.0)*(1-pmi->Spread/100.0));
           float Right=float(1-(pmi->Pan/240.0)*(1-pmi->Spread/100.0));
           pGran->Pan=Left+(Right-Left)*(rand()&255)/256.0f;
@@ -575,7 +569,7 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c)
         }
         //pGran->Offset=200;
       }
-      int nPos=pmi->Pos;
+      //int nPos=pmi->Pos;
       int dep=256;
       float *pEnv=NULL;
 

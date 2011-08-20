@@ -4,12 +4,9 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include <windows.h>
-#define __max max
-#define __min min
-#include "..\MachineInterface.h"
-#include "..\DSPLib\dsplib.h"
-#include "..\WahMan3\dspchips.h"
+#include <MachineInterface.h>
+#include <dsplib.h>
+#include "../dspchips/DSPChips.h"
 
 double const SilentEnough = log(1.0 / 32768);
 
@@ -385,9 +382,10 @@ char const *mi::DescribeValue(int const param, int const value)
 
 void mi::Init(CMachineDataInput * const pi)
 {
+  int c;
 	numTracks = 1;
 
-	for (int c = 0; c < MAX_TAPS; c++)
+	for (c = 0; c < MAX_TAPS; c++)
 	{
     CTrack *pt=Tracks+c;
     pt->delaylen=paraDelayLen.DefValue;
@@ -541,12 +539,13 @@ void mi::WorkTrack(CTrack *pt, float *pin, float *pout, int numsamples, int cons
 bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mode)
 {
   float *pData=Buffer;
+  int c,i;
 
   if (Pos>=MAX_DELAY || Pos<0)
     Pos=0;
 
   Gain=0.0;
-  for (int c = 0; c < numTracks; c++)
+  for (c = 0; c < numTracks; c++)
 		Gain+=pow(fabs((Tracks[c].feedback-120)/120.0),1.0/Tracks[c].DelaySamples);
 
   if (Gain<1.0)
@@ -575,7 +574,6 @@ bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mod
     for (int i=0; i<numsamples; i++)
       pout[2*i]=pin[i]*LeftAmp,
       pout[2*i+1]=pin[i]*RightAmp;
-    int nPos=Pos;
   }
   else
   {
@@ -584,7 +582,7 @@ bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mod
 
   {
     int nPos=Pos;
-    for (int i=0; i<numsamples; i++)
+    for (i=0; i<numsamples; i++)
     {
       if (nPos>=MAX_DELAY) nPos-=MAX_DELAY;
       pData[nPos++]=pin[i];
@@ -629,7 +627,7 @@ bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mod
   Pos=nPos;
 
   int *pint=(int *)pout;
-  for (int i=0; i<2*numsamples; i++)
+  for (i=0; i<2*numsamples; i++)
     if ((pint[i]&0x7FFFFFFF)>=0x3F800000)
       return true;
 	return false;

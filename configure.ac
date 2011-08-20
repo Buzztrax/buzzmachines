@@ -89,10 +89,16 @@ AC_CONFIG_FILES(Makefile \
     FSM/Chorus2/Makefile \
     FSM/Infector/Makefile \
     FSM/Kick/Makefile \
+    FSM/PanzerDelay/Makefile \
     FSM/PhatMan/Makefile \
     FSM/Philta/Makefile \
-    FSM/PanzerDelay/Makefile \
+    FSM/ScatMan/Makefile \
+    FSM/ScrapMan/Makefile \
+    FSM/SprayMan/Makefile \
+    FSM/TapMan/Makefile \
+    FSM/TunaMan/Makefile \
     FSM/WahMan/Makefile \
+    FSM/WahManPro/Makefile \
   Geonik/Makefile \
     Geonik/BuzzMachines/Makefile \
   Jeskola/Makefile \

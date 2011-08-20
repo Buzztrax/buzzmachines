@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "..\MachineInterface_Old.h"
-#include "..\WahMan3\DSPChips.h"
+#include <MachineInterface.h>
+#include "../dspchips/DSPChips.h"
 
 double const SilentEnough = log(1.0 / 32768);
 
@@ -344,7 +344,7 @@ inline float mi::GetWindow()
 
 bool mi::Work(float *psamples, int numsamples, int const mode)
 {
-	float *paux = pCB->GetAuxBuffer();
+	//float *paux = pCB->GetAuxBuffer();
 
 	if (mode & WM_READ)
   {
@@ -423,11 +423,12 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 				else
 					PlayPos=0;
 			}
-			if (PlayPos<0)
+			if (PlayPos<0) {
 				if (Direction&2)
 					Delta=+1, PlayPos=1;
 				else
 					PlayPos=LoopTime-1;
+			}
 
 			if (ASR.m_nState==3)
 				Mode=0;
