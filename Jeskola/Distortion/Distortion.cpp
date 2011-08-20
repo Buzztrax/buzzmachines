@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../../MachineInterface.h"
+#include <MachineInterface.h>
 
 CMachineParameter const paraThreshold = 
 { 

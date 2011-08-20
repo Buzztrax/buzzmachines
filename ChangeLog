@@ -1,5 +1,14 @@
 2011-08-20  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Jeskola/Distortion/Distortion.cpp:
+	* Jeskola/Distortion/Makefile.am:
+	* Jeskola/Makefile.am:
+	* configure.ac:
+	* Jeskola/Distortion/Makefile.am (added):
+	  Port another machine.
+
+2011-08-20  Stefan Sauer  <ensonic@users.sf.net>
+
 	* FSM/Makefile.am:
 	* FSM/ScatMan/Makefile.am:
 	* FSM/ScatMan/ScatMan.cpp:
