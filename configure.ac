@@ -90,6 +90,7 @@ AC_CONFIG_FILES(Makefile \
     FSM/Infector/Makefile \
     FSM/Kick/Makefile \
     FSM/PhatMan/Makefile \
+    FSM/Philta/Makefile \
     FSM/PanzerDelay/Makefile \
     FSM/WahMan/Makefile \
   Geonik/Makefile \

@@ -1,3 +1,23 @@
+/* $Id$
+ *
+ * buzzmachines
+ * Copyright (C) 2001-2007 Krzysztof Foltman  <kfoltman@users.sourceforge.net>
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public License
+ * as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ */
 
 #include <stdio.h>
 #include <string.h>
@@ -5,20 +25,12 @@
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "..\MachineInterface.h"
-#include "..\WahMan3\dspchips_vc.h"
+#include <MachineInterface.h>
+#include "../dspchips/DSPChips.h"
 
 double const SilentEnough = log(1.0 / 32768);
 
 #define MAX_TAPS		1
-// 200 ms przy 44100 Hz
-
-static int times[]={
-  1,2,3,4,
-  6,8,12,16,
-  24,28,32,48,
-  64,96,128
-};
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -465,7 +477,6 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
     int jmax=__min(i+64,c);
     for (int j=i; j<jmax; j++)
     {
-      float in=pin[j];
       pout[j]=2.0f*trk->m_filter.ProcessSample(pin[j]);
     }
     trk->LFOPhase+=(jmax-i)*trk->DeltaPhase;
@@ -551,8 +562,10 @@ void mi::Command(int const i)
     "Visit my homepage at www.mp3.com/FSMachine\n(buzz-generated goa trance) and hear my songs ! :-)");
 }
 
+/*
 void __declspec(dllexport) foo()
 {
   mi *pmi=NULL;
   delete pmi;
 }
+*/

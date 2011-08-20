@@ -1,3 +1,12 @@
+2011-08-20  Stefan Sauer  <ensonic@users.sf.net>
+
+	* FSM/Makefile.am:
+	* FSM/Philta/Makefile.am:
+	* FSM/Philta/Philta.cpp:
+	* configure.ac:
+	* FSM/Philta/Makefile.am (added):
+	  Ported Philta.
+
 2011-06-25  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/Infector/Infector.cpp:
