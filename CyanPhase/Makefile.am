@@ -1,4 +1,4 @@
 ## $Id$
 
-SUBDIRS = DTMF
+SUBDIRS = AtomStereoMeld DTMF
 

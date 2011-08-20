@@ -77,6 +77,7 @@ AC_CONFIG_FILES(Makefile \
     common/dsplib/Makefile \
     common/mdk/Makefile \
   CyanPhase/Makefile \
+    CyanPhase/AtomStereoMeld/Makefile \
     CyanPhase/DTMF/Makefile \
   Elak/Makefile \
     Elak/Dist2/Makefile \
