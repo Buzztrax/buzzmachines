@@ -76,6 +76,8 @@ AC_CONFIG_FILES(Makefile \
   common/Makefile \
     common/dsplib/Makefile \
     common/mdk/Makefile \
+  Chimp/Makefile \
+    Chimp/PitchShifter/Makefile \
   CyanPhase/Makefile \
     CyanPhase/AtomStereoMeld/Makefile \
     CyanPhase/DTMF/Makefile \

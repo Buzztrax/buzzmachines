@@ -1,5 +1,19 @@
 2011-08-20  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Chimp/Makefile.am:
+	* Chimp/PitchShifter/Makefile.am:
+	* Chimp/PitchShifter/PitchShifter.cpp:
+	* Makefile.am:
+	* configure.ac:
+	* Chimp (added):
+	* Chimp/Makefile.am (added):
+	* Chimp/PitchShifter (added):
+	* Chimp/PitchShifter/Makefile.am (added):
+	* Chimp/PitchShifter/PitchShifter.cpp (added):
+	  Add another effect. Also fix the memset use in the plugin.
+
+2011-08-20  Stefan Sauer  <ensonic@users.sf.net>
+
 	* CyanPhase/AtomStereoMeld/Makefile.am:
 	* CyanPhase/AtomStereoMeld/atom.cpp:
 	* CyanPhase/Makefile.am:

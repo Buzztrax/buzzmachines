@@ -1,0 +1,4 @@
+## $Id$
+
+SUBDIRS = PitchShifter
+
