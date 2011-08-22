@@ -1,6 +1,12 @@
 2011-08-22  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/ArpMan/ArpMan.cpp:
+	  Thanks stupid clipboard for eventually pasting totaly unrelated crap
+	  into the source code.
+
+2011-08-22  Stefan Sauer  <ensonic@users.sf.net>
+
+	* FSM/ArpMan/ArpMan.cpp:
 	  Improve the description for the ArpType parameter.
 
 2011-08-20  Stefan Sauer  <ensonic@users.sf.net>

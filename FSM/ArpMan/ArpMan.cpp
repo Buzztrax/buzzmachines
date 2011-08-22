@@ -278,7 +278,7 @@ CMachineParameter const paraArpType =
 { 
 	pt_byte,										// type
 	"Arp Type",
-	"Arpeggio Type (t:type, o:octaves, p:polyphony)",	t is type, o is octaves, p is polyphony				// description
+	"Arpeggio Type (t:type, o:octaves, p:polyphony)",				// description
 	0,												  // MinValue	
 	127,												  // MaxValue
 	255,										// NoValue
