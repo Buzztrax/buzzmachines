@@ -3,6 +3,8 @@
 	* Makefile.am:
 	* configure.ac:
 	* Ld/SLimit/slimit.cpp:
+	* Ld/Makefile.am:
+	* Ld/SLimit/Makefile.am:
 	  SLimit ported.
 
 2012-02-10  Stefan Sauer  <ensonic@users.sf.net>
