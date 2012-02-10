@@ -113,6 +113,8 @@ AC_CONFIG_FILES(Makefile \
     Jeskola/Ninja/Makefile \
     Jeskola/Noise/Makefile \
     Jeskola/Trilok/Makefile \
+  Ld/Makefile \
+    Ld/SLimit/Makefile \
   Makk/Makefile \
     Makk/M3/Makefile \
     Makk/M4/Makefile \
