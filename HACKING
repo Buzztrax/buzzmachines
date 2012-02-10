@@ -1,10 +1,35 @@
+= Porting =
+
+Below is a list of unported machines. Please remove them from the list when its
+ported and add them to the list, when you received source for a machine.
+We have a page on the wiki where the efforts of obtaining machines sources are
+listed (http://wiki.buzztard.org/index.php/BuzzMachineSources).
+
+Arguru
+  Compressor
+  Distortion
+AsDev
+  p4aFilter01
+CyanPhase
+  Notch
+Ld
+  Gate
+  SLimit
+Oomek
+  Aggressor
+WhiteNoise
+  Looper2
+  StereoDist
+  WhiteChorus
+
 = Filenames =
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
-extensions. If the machine consists of a single cpp file, its a good idea to make
-it match the machine name.
+extensions. If the machine consists of a single cpp file, its a good idea to
+make it match the machine name.
 
-Be careful when editing the file though and please keep them in WINDOWS-1252 char
-format.
+Be careful when editing the file though and please keep them in WINDOWS-1252 
+char format.
+
 
 = Intermediate Files =
 - don't add Release/Debug folders from windows source snapshots.
@@ -13,6 +38,7 @@ format.
   *.aps, *.clw, *.ncb, *.opt, *.plg
   intermediate files:
   *.obj, *.pch, *.exp, *.sbr, *.bsc, *.ilk, *.lib, *.pdb, *.res, *.idb
+
 
 = Build =
 - enter then machine dir
@@ -62,6 +88,7 @@ try to process
 
 test for memory leaks:
 GLIBCPP_FORCE_NEW=1 GLIBCXX_FORCE_NEW=1 valgrind --tool=memcheck --leak-check=full --leak-resolution=high --trace-children=yes --num-callers=20 -v ~/projects/buzztard/bml/src/bmltest_info ./.libs/libFSM_Kick.so
+
 
 = make a source snapshot (including uncommitted files) =
 cd ..

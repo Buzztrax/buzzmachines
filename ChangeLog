@@ -1,3 +1,19 @@
+2012-02-10  Stefan Sauer  <ensonic@users.sf.net>
+
+	* AsDev/a4pFilter01/a4pFilter01.cpp:
+	* HACKING:
+	* Ld/Gate/gate.cpp:
+	* Ld/SLimit/slimit.cpp:
+	* Ld (added):
+	* Ld/Gate (added):
+	* Ld/Gate/gate.cpp (added):
+	* Ld/SLimit (added):
+	* Ld/SLimit/slimit.cpp (added):
+	* AsDev (added):
+	* AsDev/a4pFilter01 (added):
+	* AsDev/a4pFilter01/a4pFilter01.cpp (added):
+	  Add more sources. Update the HACKING file.
+
 2011-08-22  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/ArpMan/ArpMan.cpp:
