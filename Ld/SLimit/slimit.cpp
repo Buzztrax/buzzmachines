@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../mdk.h"
+#include <mdk/mdk.h>
 
 
 #define WINDOWLEN 64
@@ -217,7 +217,7 @@ void mi::Tick()
 	}
 
 	if(gval.inputgain != 255) {
-		input = pow(10.0, ((double)(gval.input-128) * 6.0 / 16.0) / 20.0);
+		input = pow(10.0, ((double)(gval.inputgain-128) * 6.0 / 16.0) / 20.0);
 	}
 
 	if(gval.treshold != 255) {

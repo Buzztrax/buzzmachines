@@ -1,7 +1,7 @@
 //20:08 < ld0d> no copyright, no responsibility, no restrictions
 //20:08 < ld0d> but you can gpl them once you're done with them
 
-#include<windows.h>
+#include<windef.h>
 
 #include <string.h>
 #include <stdlib.h>
