@@ -1,5 +1,30 @@
 2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
 
+	* HACKING:
+	* MadBrain/4fm2f/4fm2f.cpp:
+	* MadBrain/4fm2f/4fm4f.prs:
+	* MadBrain/4fm2f/4fm_wf.c:
+	* MadBrain/4fm2f/waves2.h:
+	* MadBrain/Dynamite6/Dynamite6.cpp:
+	* MadBrain/Dynamite6/Dynamite6.prs:
+	* MadBrain/Dynamite6/Dynamite6_Demo.bmx:
+	* MadBrain/Dynamite6/Dynamite6.prs (svn:mime-type):
+	* MadBrain/4fm2f/4fm4f.prs (svn:mime-type):
+	* MadBrain/Dynamite6/Dynamite6_Demo.bmx (svn:mime-type):
+	* MadBrain (added):
+	* MadBrain/Dynamite6 (added):
+	* MadBrain/Dynamite6/Dynamite6.cpp (added):
+	* MadBrain/Dynamite6/Dynamite6.prs (added):
+	* MadBrain/Dynamite6/Dynamite6_Demo.bmx (added):
+	* MadBrain/4fm2f (added):
+	* MadBrain/4fm2f/4fm2f.cpp (added):
+	* MadBrain/4fm2f/4fm4f.prs (added):
+	* MadBrain/4fm2f/4fm_wf.c (added):
+	* MadBrain/4fm2f/waves2.h (added):
+	  Add two more machine sources.
+
+2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Zwar/Csi/CSI.CPP:
 	* Zwar/Csi/CSI.bmx:
 	* Zwar/Csi/CSI.bmx (svn:mime-type):
