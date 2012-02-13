@@ -1,3 +1,55 @@
+2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
+
+	* Arguru/Compressor/Compressor.cpp:
+	* Arguru/Compressor/Compressor.hpp:
+	* Arguru/Distortion/Distortion.cpp:
+	* Arguru/Distortion/Distortion.hpp:
+	* CyanPhase/Notch/notch.cpp:
+	* FSM/PanzerDelay/PanzerDelay.cpp:
+	* FrequencyUnknown/O-Delay/O-Delay.cpp:
+	* FrequencyUnknown/O-Delay/delaytest.bmx:
+	* FrequencyUnknown/O-Delay/sparkle.bmx:
+	* HACKING:
+	* Q/Rebond/rebond.cpp:
+	* Q/Zfilter/zfilter.cpp:
+	* WhiteNoise/StereoDist/Dist.cpp:
+	* WhiteNoise/WhiteChorus/Chorus.cpp:
+	* Zwar/11stereo/11-Stereo.bmx:
+	* Zwar/11stereo/11-Stereo.cpp:
+	* FrequencyUnknown/O-Delay/sparkle.bmx (svn:mime-type):
+	* FrequencyUnknown/O-Delay/delaytest.bmx (svn:mime-type):
+	* Zwar/11stereo/11-Stereo.bmx (svn:mime-type):
+	* FrequencyUnknown (added):
+	* FrequencyUnknown/O-Delay (added):
+	* FrequencyUnknown/O-Delay/O-Delay.html (added):
+	* FrequencyUnknown/O-Delay/delaytest.bmx (added):
+	* FrequencyUnknown/O-Delay/sparkle.bmx (added):
+	* FrequencyUnknown/O-Delay/O-Delay.cpp (added):
+	* Zwar (added):
+	* Zwar/11stereo (added):
+	* Zwar/11stereo/11-Stereo.cpp (added):
+	* Zwar/11stereo/11-Stereo.bmx (added):
+	* Q (added):
+	* Q/Zfilter (added):
+	* Q/Zfilter/zfilter.cpp (added):
+	* Q/Rebond (added):
+	* Q/Rebond/rebond.cpp (added):
+	* Arguru (added):
+	* Arguru/Compressor (added):
+	* Arguru/Compressor/Compressor.hpp (added):
+	* Arguru/Compressor/Compressor.cpp (added):
+	* Arguru/Distortion (added):
+	* Arguru/Distortion/Distortion.cpp (added):
+	* Arguru/Distortion/Distortion.hpp (added):
+	* CyanPhase/Notch (added):
+	* CyanPhase/Notch/notch.cpp (added):
+	* WhiteNoise (added):
+	* WhiteNoise/WhiteChorus (added):
+	* WhiteNoise/WhiteChorus/Chorus.cpp (added):
+	* WhiteNoise/StereoDist (added):
+	* WhiteNoise/StereoDist/Dist.cpp (added):
+	  Adding more sources and updating hacking file.
+
 2012-02-10  flip  <flip10000@users.sf.net>
 
 	* Makefile.am:

@@ -392,6 +392,8 @@ DLL_EXPORTS
 
 mi::mi()
 {
+    //fprintf(stderr,"%s:%s\n",__FILE__,__PRETTY_FUNCTION__);
+
     GlobalVals = &gval;
     TrackVals = tval;
     AttrVals = (int *)&aval;
@@ -402,6 +404,8 @@ mi::~mi()
 {
     delete []Buffer;
     numTracks=-1;
+    
+    //fprintf(stderr,"%s:%s\n",__FILE__,__PRETTY_FUNCTION__);
 }
 
 char const *mi::DescribeValue(int const param, int const value)

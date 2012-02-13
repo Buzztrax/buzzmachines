@@ -12,15 +12,20 @@ AsDev
   p4aFilter01
 CyanPhase
   Notch
+FrequencyUnknown
+  O-Delay
 Ld
-  Gate
-  SLimit
+  Gate (needs auxbus)
 Oomek
   Aggressor
+Q
+  Zfilter
+  Rebound
 WhiteNoise
-  Looper2
   StereoDist
   WhiteChorus
+Zwar
+  11stereo
 
 = Filenames =
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
@@ -41,7 +46,7 @@ char format.
 
 
 = Build =
-- enter then machine dir
+- enter then machine dir (e.g. cd Ensonic/CallbackTester)
 - run ../../gen_makefile_am.sh and check the resulting Makefile.am
 - add a Makefile.am for the machine author if not yet there
 - edit configure.ac, go to bottom and add the newly created Makefiles
