@@ -1,5 +1,22 @@
 2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Elenzil/FrequencyBomb/freqbomb.cpp:
+	* Elenzil/Modulator/amplitude_modulator.cpp:
+	* Elenzil/Modulator/amplitude_modulator.html:
+	* Elenzil/Modulator/elenzil_ampmod.bmx:
+	* HACKING:
+	* Elenzil/Modulator/elenzil_ampmod.bmx (svn:mime-type):
+	* Elenzil (added):
+	* Elenzil/FrequencyBomb (added):
+	* Elenzil/FrequencyBomb/freqbomb.cpp (added):
+	* Elenzil/Modulator (added):
+	* Elenzil/Modulator/elenzil_ampmod.bmx (added):
+	* Elenzil/Modulator/amplitude_modulator.cpp (added):
+	* Elenzil/Modulator/amplitude_modulator.html (added):
+	  Add two more machine sources.
+
+2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
+
 	* HACKING:
 	* MadBrain/4fm2f/4fm2f.cpp:
 	* MadBrain/4fm2f/4fm4f.prs:

@@ -1,0 +1,153 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (Windows NT 5.0; U) [Netscape]">
+   <meta name="Author" content="the elenzil break crew">
+   <title>elenzil_modulator</title>
+</head>
+<body text="#000000" bgcolor="#CCCCCC" link="#330033" vlink="#330033" alink="#330033">
+
+<center><font face="Arial,Helvetica"><font size=+4>Elenzil Amplitude Modulator</font></font></center>
+
+<center><table BORDER=0 CELLSPACING=6 CELLPADDING=0 WIDTH="90%" >
+<tr>
+<td><font face="Arial,Helvetica"><font size=-1>Use this machine wherever
+you'd have used Goenik's Amplitude Modulator.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>They serve the same purpose,
+but this one has a cleaner signal than Goenik's.</font></font>
+<p><b><font face="Arial,Helvetica"><font size=-1>General</font></font></b>
+<br><font face="Arial,Helvetica"><font size=-1>This effect oscillates the
+input between the left and right output. This can be used either to pan
+the sound left and right, or to alternate the sound between two different
+effects-paths. For example you can have your vocals alternate slowly between
+having a lot of reverb and a little, and/or move slowly (or quickly) between
+the left and right speakers.</font></font>
+<p>&nbsp;</td>
+</tr>
+</table></center>
+<b><font face="Arial,Helvetica"><font size=-1></font></font></b>
+<center><table BORDER=0 CELLSPACING=6 CELLPADDING=0 WIDTH="90%" >
+<tr>
+<td><b><font face="Arial,Helvetica"><font size=-1>Parameters</font></font></b></td>
+
+<td><font face="Arial,Helvetica"><font size=-1></font></font></td>
+</tr>
+
+<tr>
+<td><font face="Arial,Helvetica"><font size=-1>Speed</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- This is a generic value
+for the speed of the oscillation, and depends on the Speed Unit for interpretation.</font></font></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td><font face="Arial,Helvetica"><font size=-1>Speed Unit</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- This controls the meaning
+of Speed.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>00 = milliHertz. Speed 2000
+= 2 Cycles Per Second. Good for fast oscillations.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>01 = milliSeconds. Speed
+2000 = 2 Seconds Per Cycle. Good for slow oscillations.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>02 = tick. Speed 16 = 16
+Ticks Per Cycle. Good for slow oscillations that match your beat.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>03 = 256ths of a tick. Speed
+512 = 2 Ticks Per Cycle. Good for fast oscilltions that match your beat.</font></font></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td><font face="Arial,Helvetica"><font size=-1>Wave</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>-The shape of the oscillation.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>Sine, Square, Triangle,
+Saw, Inverse Saw.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>Note - in Version 1.0, i'm
+not using lookup tables, so Sin is more expensive to use than the others.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>Use triangle if you're concerned
+about CPU usage.</font></font></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td><font face="Arial,Helvetica"><font size=-1>Wave Power</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- The oscillation value
+(0 - 1) gets raised to this power. This tends to eliminate mid-range values
+and concentrate the action on either full left pan or full right pan. I
+find a power of 2 or 3 accentuates the panning effect, and values higher
+than that get sort of weird.</font></font></td>
+</tr>
+
+<tr>
+<td><font face="Arial,Helvetica"><font size=-1>Floor</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- The minimum of either
+output channel. Floor 1.0 = no modulation, floor 0.0 = full modulation</font></font></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td><font face="Arial,Helvetica"><font size=-1>Phase</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- The phase difference between
+output channels.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>0.0 = none, the channels
+modulate in sync. (mono)</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>1.0/-1.0 = the channels
+are offset by +/- half a full cycle.</font></font></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td><font face="Arial,Helvetica"><font size=-1>Slur</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- This softens the output.
+Good to leave up around 0.96.&nbsp; Without slur, when you change the phase
+or floor or wavetype, you'll probably get some clicks and pops.</font></font></td>
+</tr>
+
+<tr>
+<td><font face="Arial,Helvetica"><font size=-1>Gain</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- I use this effect so often
+that i threw in a gain to simplify my machine layouts.</font></font></td>
+</tr>
+
+<tr VALIGN=TOP>
+<td><font face="Arial,Helvetica"><font size=-1>Reset</font></font></td>
+
+<td><font face="Arial,Helvetica"><font size=-1>- (track param) This starts
+the oscillator wave over again at zero. This is useful if you're using
+the Tick based timing, and want the panning to be at a particular place
+at a particular time.</font></font></td>
+</tr>
+</table></center>
+<font face="Arial,Helvetica"><font size=+4></font></font>
+<center><table BORDER=0 CELLSPACING=6 CELLPADDING=0 WIDTH="90%" >
+<tr>
+<td><b><font face="Arial,Helvetica"><font size=-1>Notes</font></font></b>
+<br><font face="Arial,Helvetica"><font size=-1>Goenik's amplitude modulator
+was by far my most frequently used effect. I was addicted to the slowly
+changing atmospheric effects which it made possible. A song just didn't
+sound right unless each piece was panning at least a little bit from speaker
+to speaker. But, after spending hours in cooledit cleaning up the small
+artifacts introduced by the AM, i realized my love was not perfect. Hence
+the Elenzil amplitude modulator, which does not introduce those small fuzzy
+noises of the geonik.</font></font><font face="Arial,Helvetica"><font size=-1></font></font>
+<p><font face="Arial,Helvetica"><font size=-1>Since i built this machine
+for my own use, and i have a fast computer, i haven't given much attention
+to optimization. I'm actually calling sin() once per sample! Please feel
+free to imrove this with the lookup tables. Each instance of the machine
+uses about 1% of the cpu on my 1GHz thunderbird. If the source code wasn't
+distributed with this machine, it should be available at <a href="http://www.elenzil.com/progs/buzz">http://www.elenzil.com/progs/buzz</a>.
+Or <a href="mailto:elenzil@elenzil.com?subject=AM">email me</a>.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1></font></font>&nbsp;
+<br><font face="Arial,Helvetica"><font size=-1></font></font>&nbsp;<font face="Arial,Helvetica"><font size=-1></font></font>
+<p><font face="Arial,Helvetica"><font size=-1>Okay.</font></font>
+<br><font face="Arial,Helvetica"><font size=-1></font></font>&nbsp;<font face="Arial,Helvetica"><font size=-1></font></font>
+<p><font face="Arial,Helvetica"><font size=-1>Orion Elenzil</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>20010303</font></font>
+<br><font face="Arial,Helvetica"><font size=-1>santa cruz california</font></font>&nbsp;</td>
+</tr>
+</table></center>
+<font face="Arial,Helvetica"><font size=-1></font></font>
+</body>
+</html>
