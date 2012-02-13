@@ -1,5 +1,14 @@
 2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Fuzzpilz/UnwieldyTracker/unwieldy_tracker.cpp:
+	* HACKING:
+	* Fuzzpilz (added):
+	* Fuzzpilz/UnwieldyTracker (added):
+	* Fuzzpilz/UnwieldyTracker/unwieldy_tracker.cpp (added):
+	  And another element.
+
+2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Elenzil/FrequencyBomb/freqbomb.cpp:
 	* Elenzil/Modulator/amplitude_modulator.cpp:
 	* Elenzil/Modulator/amplitude_modulator.html:
