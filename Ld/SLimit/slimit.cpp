@@ -1,3 +1,5 @@
+// Stereo limiter
+
 //20:08 < ld0d> no copyright, no responsibility, no restrictions
 //20:08 < ld0d> but you can gpl them once you're done with them
 
@@ -191,6 +193,7 @@ void mi::reset(void)
 
 void mi::MDKInit(CMachineDataInput * const pi)
 {
+  SetOutputMode( true ); // No mono sounds
 	treshold = 1.0;
 	output = 1.0;
 
@@ -243,10 +246,7 @@ void mi::Tick()
 
 bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 {
-	if(mode == WM_WRITE || mode == WM_NOIO)
-		return false;
-	
-	return true;
+  return false;
 }
 
 bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
@@ -259,9 +259,8 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 	if(mode == WM_WRITE) {
 		idle = WINDOWLEN;
 	}*/
-	if(mode == WM_WRITE || mode == WM_NOIO) {
+	if(mode == WM_WRITE || mode == WM_NOIO)
 		return false;
-	}
 
 	if(mode == WM_READ || bypass) return true;
 

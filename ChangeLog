@@ -1,5 +1,10 @@
 2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Ld/SLimit/slimit.cpp:
+	  Fix setting output mode.
+
+2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
+
 	* TODO:
 	  A plan for machine docs.
 
