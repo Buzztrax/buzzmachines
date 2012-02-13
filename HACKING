@@ -26,6 +26,7 @@ WhiteNoise
   WhiteChorus
 Zwar
   11stereo
+  Csi
 
 = Filenames =
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase

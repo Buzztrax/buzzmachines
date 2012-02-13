@@ -1,5 +1,16 @@
 2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Zwar/Csi/CSI.CPP:
+	* Zwar/Csi/CSI.bmx:
+	* Zwar/Csi/CSI.bmx (svn:mime-type):
+	* Zwar/Csi (added):
+	* Zwar/Csi/CSI.CPP (added):
+	* Zwar/Csi/CSI.bmx (added):
+	* HACKING:
+	  Add another Effect.
+
+2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Ld/SLimit/slimit.cpp:
 	  Fix setting output mode.
 
