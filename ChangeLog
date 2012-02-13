@@ -1,5 +1,10 @@
 2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
 
+	* TODO:
+	  A plan for machine docs.
+
+2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Arguru/Compressor/Compressor.cpp:
 	* Arguru/Compressor/Compressor.hpp:
 	* Arguru/Distortion/Distortion.cpp:

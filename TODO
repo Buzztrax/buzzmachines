@@ -8,5 +8,9 @@ http://www.gnu.org/software/libtool/manual.html#Makefile-rules
 
 * docs
 ** install docs: $prefix/share/Gear/<plugin>.(txt,html)
+** this would not work with BML_PATH
+*** maybe support a combination of $prefix (for native machines)
+*** and BML_PATH for win32 dlls (so that people can point t to their mounted
+    buzz dir)
 ** use asciidocs for docs?
    
