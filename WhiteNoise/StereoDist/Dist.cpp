@@ -2,8 +2,8 @@
 
 #include <math.h>
 
-#include "../MachineInterface.h"
-#include "../mdk.h"
+#include <MachineInterface.h>
+#include <mdk/mdk.h>
 
 #define MIN_AMP					(0.0001 * (32768.0 / 0x7fffffff))
 

@@ -1,3 +1,15 @@
+2012-02-16  flip  <flip10000@users.sf.net>
+
+	* HACKING:
+	* Makefile.am:
+	* WhiteNoise/Makefile.am:
+	* WhiteNoise/StereoDist/Dist.cpp:
+	* WhiteNoise/StereoDist/Makefile.am:
+	* configure.ac:
+	* WhiteNoise/StereoDist/Makefile.am (added):
+	* WhiteNoise/Makefile.am (added):
+	  WhiteNoise StereoDist ported.
+
 2012-02-15  Stefan Sauer  <ensonic@users.sf.net>
 
 	* CyanPhase/AtomStereoMeld/atom.cpp:

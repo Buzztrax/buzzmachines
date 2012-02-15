@@ -121,6 +121,8 @@ AC_CONFIG_FILES(Makefile \
   Matilde/Makefile \
     Matilde/Tracker/Makefile \
     Matilde/Tracker/SurfsDSPLib/Makefile \
+  WhiteNoise/Makefile \
+    WhiteNoise/StereoDist/Makefile \
 )
 
 AC_OUTPUT
