@@ -140,6 +140,7 @@ public:
 
 };
 
+DLL_EXPORTS
 
 mi::mi() {  GlobalVals = &gval; }
 mi::~mi() { }

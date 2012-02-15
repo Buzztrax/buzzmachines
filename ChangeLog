@@ -1,5 +1,10 @@
 2012-02-15  Stefan Sauer  <ensonic@users.sf.net>
 
+	* CyanPhase/AtomStereoMeld/atom.cpp:
+	  Add missing DLL_EXPORT.
+
+2012-02-15  Stefan Sauer  <ensonic@users.sf.net>
+
 	* CyanPhase/DTMF/Makefile.am:
 	* HACKING:
 	* Matilde/Tracker/Makefile.am:
