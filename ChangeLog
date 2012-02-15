@@ -1,3 +1,14 @@
+2012-02-15  Stefan Sauer  <ensonic@users.sf.net>
+
+	* CyanPhase/DTMF/Makefile.am:
+	* HACKING:
+	* Matilde/Tracker/Makefile.am:
+	* TODO:
+	* Matilde/Tracker/Matilde_Tracker2.html (added):
+	* CyanPhase/DTMF/CyanPhase_DTMF_1.txt (added):
+	* CyanPhase/DTMF/CyanPhase_DTMF-1.txt (deleted):
+	  Install docs as well. Update HACKING+TODO.
+
 2012-02-13  Stefan Sauer  <ensonic@users.sf.net>
 
 	* Fuzzpilz/UnwieldyTracker/unwieldy_tracker.cpp:

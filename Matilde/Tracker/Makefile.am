@@ -44,3 +44,9 @@ install-data-hook:
 	mv $(DESTDIR)$(plugindir)/libMatilde_Tracker_Mono.so $(DESTDIR)$(plugindir)/Matilde_Tracker_Mono.so
 	mv $(DESTDIR)$(plugindir)/libMatilde_Tracker2.so $(DESTDIR)$(plugindir)/Matilde_Tracker2.so
 	mv $(DESTDIR)$(plugindir)/libMatilde_Tracker2_Mono.so $(DESTDIR)$(plugindir)/Matilde_Tracker2_Mono.so
+	$(LN_S) -f $(DESTDIR)$(userdocdir)/Matilde_Tracker2.html  $(DESTDIR)$(userdocdir)/Matilde_Tracker.html
+	$(LN_S) -f $(DESTDIR)$(userdocdir)/Matilde_Tracker2.html  $(DESTDIR)$(userdocdir)/Matilde_Tracker_Mono.html
+	$(LN_S) -f $(DESTDIR)$(userdocdir)/Matilde_Tracker2.html  $(DESTDIR)$(userdocdir)/Matilde_Tracker2_Mono.html
+
+userdoc_DATA = Matilde_Tracker2.html
+

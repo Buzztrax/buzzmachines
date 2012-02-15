@@ -12,4 +12,4 @@ install-data-hook:
 	mv $(DESTDIR)$(plugindir)/libCyanPhase_DTMF_1.so $(DESTDIR)$(plugindir)/CyanPhase_DTMF_1.so
 
 demosong_DATA = CyanPhase_DTMF-1_Demo.bmx
-
+userdoc_DATA = CyanPhase_DTMF_1.txt

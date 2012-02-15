@@ -6,11 +6,14 @@ http://lists.gnu.org/archive/html/automake/2004-05/msg00016.html
 http://www.gnu.org/software/libtool/manual.html#Makefile-rules
 ** avoid to install *.la files
 
+* resources
+** we ignore the resource files (including machine graphics)
+
 * docs
-** install docs: $prefix/share/Gear/<plugin>.(txt,html)
-** this would not work with BML_PATH
-*** maybe support a combination of $prefix (for native machines)
-*** and BML_PATH for win32 dlls (so that people can point t to their mounted
-    buzz dir)
-** use asciidocs for docs?
-   
+** use asciidoc for docs?
+
+* lost sources
+** have a script that generates machine boilerplate from introspecting a win32
+   machine
+** any tools to disassemble a win32 dll (wine?)
+

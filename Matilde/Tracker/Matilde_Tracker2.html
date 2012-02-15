@@ -1,0 +1,534 @@
+<HTML>
+<HEAD>
+<META NAME="GENERATOR" Content="Microsoft Developer Studio">
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<TITLE>Matilde Tracker v1.7beta</TITLE>
+ <style type="text/css"><!--
+  body { font-family: verdana, helvetica; font-size: 11px; }
+  td { font-family: verdana, helvetica; font-size: 9px; }
+  h1 { font-family: arial, verdana, helvetica; font-size: 19px; }
+  h2 { font-family: arial, verdana, helvetica; font-size: 15px; padding-bottom: 0px; }
+  .intro { font-family: verdana, helvetica; font-size: 12px; }
+ --></style>
+</HEAD>
+<body bgcolor="#B0B0B0" text="#000000" link="#000080" vlink="#300080" alink="#FFFFFF">
+
+<h1>Matilde Tracker v1.7beta for Buzz</h1>
+
+<table border="0" cellpadding="0" cellspacing="0">
+ <tr>
+ <td width="5%" bgcolor="#A0A0A0"><br></td>
+ <td width="90%" class="intro" style="padding: 0px 10px 0px 10px;">
+<h2>Introduction</h2>
+<p>Matilde Tracker is a tracker machine for Buzz which behaves more like
+Protracker than Jeskola Tracker.
+<p>All Protracker effects that make sense in Buzz are implemented and
+behave in a similar fashion to their Protracker cousins, so you'll feel
+right at home. The E/xy effects have been renamed to Ex/yy, read on.
+<p>Additionally you now have two effects per note, life is sweet!
+<p>The machine is a stereo generator, so you need Buzz 1.2 or later to use it.
+In fact, you'll probably need the latest beta too.
+If you think you need the newest version of Buzz, go to <a href="http://www.buzzmachines.com/">www.buzzmachines.com</a>.
+You'll also <a href="http://www.jeskola.com/ausbusdll.zip">auxbus.dll</a>.
+If stereo is annoying, there's a mono version you can use instead.
+<p>Volume, pitch and panning envelopes are supported, they take 64 ticks to complete.
+If this value is undesirable, it can be changed in the machine's attributes.
+<p>Have fun,<br>
+<a href="http://www.rift.dk/">Carsten Sørensen</a>
+ </td>
+ <td width="5%" bgcolor="#A0A0A0"><br></td>
+</tr></table>
+
+<h2>Known bugs - in order of severity, worst first:</h2>
+<ul>
+ <li> Playing with samples that are not present in the wavetable might crash buzz. This also affects peer stuff badly.<br>
+ <li> Slider positions are not initialized correctly on loading new module, unless you progam their settings in the pattern.<br>
+ <li> Note delay (ED) cannot be combined with certain effects.
+</ul>
+
+<h2>Requirements for going open-source</h2>
+<ul>
+ <li title="by SurfSmurf"> The stand-alone resampler part must be kept as a replaceable stand-alone
+ component, because SurfSmurf has future plans with this.
+ <li title="by JoaCHIP"> MTrk must also be functional without the Overloader
+ (even tho the absense of Overloader-specific features is acceptable)
+ <li title="by JoaCHIP"> Stability must have priority over adding features in
+ the development of MTrk.
+</ul>
+
+<h2>What's new in v1.7beta?</h2>
+<i>(All v1.7 additions by <a href="http://error.homepage.dk/">Joachim Michaelis</a>)</i>
+<ul>
+ <li>Attribute &quot;Filter Mode&quot; is now 2 by default instead of 1
+ <li>Changed NO_VALUE ass suggested by zeffii
+</ul>
+
+<h2>What's new in v1.6beta?</h2>
+<i>(All v1.6 additions by <a href="http://error.homepage.dk/">Joachim Michaelis</a>)</i>
+<ul>
+ <li>Changed name to avoid messing up old Buzz songs
+ <li>Volume now behaves more logaritmic - like analog gear
+ <li>Slider: Amplitude decay
+ <li>Slider: Sample offset
+ <li>Slider: Offset mode (quantized or free percussion-suitable)
+ <li>Slider: Tuning
+ <li>Command: 2F long loop fit
+ <li>Command: 30 probability without note off
+ <li>Attribute: Long loop fit factor
+ <li>Attribute: Offset volume gain
+</ul>
+
+<h2>What was new in v1.5?</h2>
+<ul>
+ <li>Virtual channels! Read more below.</li>
+ <li>New combined note delay and cut command (18)</li>
+ <li>New sustain pedal command (19)</li>
+ <li>New note cut (DC) command that releases note instead of setting volume to zero</li>
+ <li>Note delay (ED) command can now delay note off's</li>
+ <li>Bug fixed with looping stereo samples</li>
+ <li>About window made bigger</li>
+ <li>Bug fixed with some effects causing bi-di loops to mess up</li>
+ <li>Fixed CPU use problem with very volumes (<= -100dB)</li>
+</ul>
+
+<h2>What was new in v1.3?</h2>
+<ul>
+ <li>Small bug fixed regarding volume envelopes whose first point was zero</li>
+ <li>Bi-directional loops, works when Buzz 1.2 is released</li>
+ <li>Wavetable screen wave playing supported</li>
+ <li>Wavetable screen envelope cursor supported</li>
+ <li>Randomize volume command (14)</li>
+ <li>Random delay command (15)</li>
+ <li>Randomize pitch command (16)</li>
+ <li>Harmonic play command (17)</li>
+ <li>Spline interpolation (check attributes)</li>
+ <li>Envelopes for pan and pitch</li>
+ <li>Attribute for pitch envelope depth</li>
+</ul>
+Improved MIDI support:
+<ul>
+ <li>Attribute for MIDI wave to use</li>
+ <li>MIDI now uses full polyphony <b>or</b> free tracks only, yet another attribute</li>
+<comment>
+V2 TODO: Two virtual channels per track, selectable via attributes.
+V2 TODO: WAV harddisk streaming
+V2 MAYBE: Timestretch
+</comment>
+</ul>
+<h2>What was new in v1.2?</h2>
+<ul>
+ <li><b>Stereo wave support added.</b> You need the "latest" Buzz to use it.</li>
+ <li>Yet another reloading-waves-while-playing crash fixed.</li>
+ <li>Continued arpeggio problem fixed</li>
+ <li>Subdivision precision improved</li>
+ <li>Loop points are now set the same way as Jeskola Tracker</li>
+ <li>Default name changed by popular request</li>
+ <li>MIDI support added</li>
+ <li>Shuffle command added (command 13)</li>
+ <li>Loop fit command added (commands 11 and 12)</li>
+ <li>F/00 crash fixed</li>
+ <li>Command 2 crash fixed</li>
+ <li>WM errors fixed</li>
+</ul>
+<h2>What was new in v1.1?</h2>
+<ul>
+ <li>Probability command (10)</li>
+ <li>Sustain point and note off handled correctly</li>
+ <li>Reloading-waves-while-playing crash fixed</li>
+</ul>
+<h2>Virtual Channels</h2>
+Matilde Tracker supports "virtual channels." It's a bit like NNAs in Impulse Tracker, but on the other hand, it's not. To use them,
+you must enable them for the tracker machine in question - this is done through an attribute (see below.)
+<p>When enabled, the tracker supports 64 note polyphony, in much the same way a hardware sampler handles it. What it does exactly, is
+when you play a new note the last one is allowed to finish. This is great for chord riffs, plucked strings and a bunch of other stuff. So now,
+instead of going through the hassle of using more tracks, you can enable virtual channels instead.
+<p>Sometimes the note will be cut anyway to make sure no samples sit there and take up all the channels. This happens when you have
+a looping sample with no suitable volume envelope. This is a safety measure and completely intentional.
+<h2>Using MIDI</h2>
+Setting up MIDI input is now very easy - everything is controlled from the attributes.
+<p>You'll have to set up the attributes to the right channel. Now, the machine will respond to MIDI in events.<br>
+The tracks play the note with the last instrument used in the track, so a track will have to have played something before any
+sound is made. This is normally not what you want, using an attribute you can select the wave MIDI
+events will use instead.
+<p>The default behaviour for MIDI events is to use all available tracks in succession from left to right, including all unused tracks.
+You can change the behaviour using an attribute to use unused tracks <b>only</b> so you can jam along with your track.
+<p>For more information, refer to the attribute descriptions below.
+
+<h2>Machine attributes</h2>
+
+<table border="0" bordercolor="#808080" bordercolordark="#808080" bordercolorlight="#808080" cellpadding="3" cellspacing="3" width="640">
+ <tr>
+  <td align="center" bgcolor="#FFFFFF"><b>Attribute</b></td>
+  <td bgcolor="#FFFFFF"><b>Description</b></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">Volume Ramp</td>
+  <td bgcolor="#C0C0C0">The time in milliseconds micro volume-ramping takes. This is to avoid clicks.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">Volume Envelope Span</td>
+  <td bgcolor="#C0C0C0">The number of ticks a volume envelope spans from left to right.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">MIDI Channel</td>
+  <td bgcolor="#C0C0C0">The MIDI channel the machine responds to. 0 means it doesn't respond.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">MIDI Velocity Sensitivity</td>
+  <td bgcolor="#C0C0C0">How sensitive the machine is to MIDI velocity. 0 means it doesn't care, 256 means it cares a lot ;)</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">MIDI Wave</td>
+  <td bgcolor="#C0C0C0">MIDI notes will use this waveform.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">MIDI Uses Free Tracks</td>
+  <td bgcolor="#C0C0C0">If 1 - MIDI notes will only use free tracks. If not, all tracks.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">Filter</td>
+  <td bgcolor="#C0C0C0">Filtering mode when playing waveforms. 0=none, 1=linear, 2=spline. Spline is much slower than linear, so only use it if you can handle it.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">Pitch Envelope Depth</td>
+  <td bgcolor="#C0C0C0">Pitch envelope will range between +- this attribute.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">Enable Virtual Channels</td>
+  <td bgcolor="#C0C0C0">0=normal behaviour, 1=virtual channels enabled</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">Long loop fit factor</td>
+  <td bgcolor="#C0C0C0">Adjust the length of the units of the 2F command. If you specify 1,
+  the 2F command will be just like the 12 command. If you specify 2, it will loop fit twice
+  as long breakbeats etc.</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">Offset volume gain</td>
+  <td bgcolor="#C0C0C0">Drum sounds ususally fade out towards the end, so when you use the
+  offset slider, the sound will attenuate. This attribute can resolve this problem by raising
+  the volume correspondingly. The default value of 10 will cause a slight increase in volume, when
+  you use the Offset slider in "percussion" mode.<br>0=volume is unchanged regardless of the Offset
+  slider's position.  </td>
+ </tr>
+</table>
+
+<h2>Pattern editor</h2>
+<table border="0" bordercolor="#808080" bordercolordark="#808080" bordercolorlight="#808080" cellpadding="3" cellspacing="3" width="640">
+ <tr>
+  <td align="center" bgcolor="#FFFFFF"><b>Column</b></td>
+  <td bgcolor="#FFFFFF"><b>Description</b></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">1</td>
+  <td bgcolor="#C0C0C0">The note to play</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">2</td>
+  <td bgcolor="#C0C0C0">The current wave. If empty, the previously selected wave will be used</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">3</td>
+  <td bgcolor="#C0C0C0">Volume. 0=mute, 40=half, 80=full, FE=about double the volume</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">4 and 6</td>
+  <td bgcolor="#C0C0C0">Effect to use, see below for description</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">5 and 7</td>
+  <td bgcolor="#C0C0C0">Argument to the effect</td>
+ </tr>
+</table>
+
+<h2>Obsolete/changed/ignored Protracker/FT2 effects</h2>
+<table border="0" bordercolor="#808080" bordercolordark="#808080" bordercolorlight="#808080" cellpadding="3" cellspacing="3" width="640">
+ <tr>
+  <td align="center" bgcolor="#FFFFFF"><b>Command</b></td>
+  <td bgcolor="#FFFFFF"><b>Description</b></td>
+  <td bgcolor="#FFFFFF"><b>Reason</b></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">5/xy</td>
+  <td bgcolor="#C0C0C0">Keep tone portamento'ing and do volume slide with argument</td>
+  <td bgcolor="#C0C0C0">Obsolete, there's two effects columns</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">6/xy</td>
+  <td bgcolor="#C0C0C0">Keep vibrato'ing and do volume slide with argument</td>
+  <td bgcolor="#C0C0C0">Obsolete, there's two effects columns</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">B/xx</td>
+  <td bgcolor="#C0C0C0">Break to position</td>
+  <td bgcolor="#C0C0C0">Not possible, machines have no control over the songposition</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">C/xx</td>
+  <td bgcolor="#C0C0C0">Set volume</td>
+  <td bgcolor="#C0C0C0">Replaced by the volume parameter</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">D/xx</td>
+  <td bgcolor="#C0C0C0">Break to next position, step <i>xx</i></td>
+  <td bgcolor="#C0C0C0">Not possible, machines have no control over the songposition</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E/0x</td>
+  <td bgcolor="#C0C0C0">Set filter state</td>
+  <td bgcolor="#C0C0C0">Not implemented, use a filter machine instead</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E/3x</td>
+  <td bgcolor="#C0C0C0">Set glissando</td>
+  <td bgcolor="#C0C0C0">Not implemented</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E/43, E/47</td>
+  <td bgcolor="#C0C0C0">Set vibrato waveform to noise</td>
+  <td bgcolor="#C0C0C0">Not implemented</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E/6x</td>
+  <td bgcolor="#C0C0C0">Pattern loop</td>
+  <td bgcolor="#C0C0C0">Not possible, machines have no control over the songposition</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E/73, E/77</td>
+  <td bgcolor="#C0C0C0">Set tremolo waveform to noise</td>
+  <td bgcolor="#C0C0C0">Not implemented</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E/Ex</td>
+  <td bgcolor="#C0C0C0">Patterndelay</td>
+  <td bgcolor="#C0C0C0">Not possible, machines have no control over the songposition</td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E/Fx</td>
+  <td bgcolor="#C0C0C0">Invert loop</td>
+  <td bgcolor="#C0C0C0">Not implemented</td>
+ </tr>
+</table>
+
+<h2>Implemented effects</h2>
+<table border="0" bordercolor="#808080" bordercolordark="#808080" bordercolorlight="#808080" cellpadding="3" cellspacing="3" width="640">
+ <tr>
+  <td align="center" bgcolor="#FFFFFF"><b>Command</b></td>
+  <td align="center" bgcolor="#FFFFFF"><b>Argument</b></td>
+  <td bgcolor="#FFFFFF"><b>Description</b></td>
+  <td bgcolor="#FFFFFF"><b>Notes</b></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">00</td><td bgcolor="#C0C0C0" align="center">xy</td><td bgcolor="#C0C0C0">Arpeggio<br>
+  <font size="-1">On subdivision step 0, the original note will be played. Step one will play the
+  original note+<i>x</i> halftones. Step two will play the original note+<i>y</i> halftones. Step three
+  will restart the process</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">01</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Slide up <i>xx</i> notches</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">02</td><td  bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Slide down <i>xx</i> notches</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">03</td><td  bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Tone portamento<br>
+  <font size="-1">If <i>xx</i> is zero, keep portamento'ing</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">04</td><td  bgcolor="#C0C0C0" align="center">xy</td><td bgcolor="#C0C0C0">Vibrato<br>
+  <font size="-1"><i>x</i> - speed<br>
+  <i>y</i> - depth<br>
+  If either is zero, use previous value</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">05</td><td  bgcolor="#C0C0C0" align="center">xy</td><td  bgcolor="#C0C0C0">Slide panning<br>
+  <font size="-1"><i>x</i> - amount to slide panning left<br>
+  <i>y</i> - amount to slide panning right</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">06</td><td  bgcolor="#C0C0C0" align="center">xy</td><td  bgcolor="#C0C0C0">Autopan<br>
+  <font size="-1"><i>x</i> - speed<br>
+  <i>y</i> - depth<br>
+  If either is zero, use previous value</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">07</td><td  bgcolor="#C0C0C0" align="center">xy</td><td  bgcolor="#C0C0C0">Tremolo<br>
+  <font size="-1"><i>x</i> - speed<br>
+  <i>y</i> - depth<br>
+  If either is zero, use previous value</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">08</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Set panning position<br>
+  <font size="-1">0=left, 80=middle, FF=right</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">09</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Sample offset<br>
+  <font size="-1"><i>xx</i> - offset into sample.<br>
+  Unlike Protracker this is not an absolute offset
+  but scales to the whole length of the sample, ie a value of 80 will
+  start from the middle of the sample. If there's no argument, the sample
+  offset will be set right at the end, useful for E8/01.</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">0A</td><td  bgcolor="#C0C0C0" align="center">xy</td><td  bgcolor="#C0C0C0">Volume slide<br>
+  <font size="-1"><i>x</i> - amount to slide volume up<br>
+  <i>y</i> - amount to slide volume down</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">0F</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Subdivide amount<br>
+  <font size="-1">This is the same as the Protracker Fxx command, except
+  it doesn't actually change the speed of the song, only the speed of the track's
+  effects. If the subdivide amount is higher, effects will be updated more
+  often, making them run faster. The default value is 6.</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">10</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Probability (with note-off)<br>
+  <font size="-1"><i>xx</i> - Probability for sample being played. 01=will almost certainly not be played, 80=50%, FF=almost certain.
+  When notes are not played, the previous wave is interrupted.</font> (see also command 30)</td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">11</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Loop fit<br>
+  <font size="-1"><i>xx</i> - Number of ticks the waveform's loop should take to complete. Changes the frequency of the waveform.</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">12</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Loop fit<br>
+  <font size="-1"><i>xx</i> - Same as 11, but tracks song speed changes and adjust the frequency accordingly.</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">13</td><td  bgcolor="#C0C0C0" align="center">xy</td><td  bgcolor="#C0C0C0">Auto shuffle<br>
+  <font size="-1"><i>x</i> - Ticks to shuffle. 2 shuffles every other step, 3 every third step and so on.<br>y=Shuffle amount. 0=none, F=almost a full tick. change the subdivision amount to, say, 10 for greater precision.</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">14</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Randomize volume<br>
+  <font size="-1"><i>xx</i> - Maximum amount the volume will be randomized</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">15</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Random delay<br>
+  <font size="-1"><i>xx</i> - Maximum number of subdivision steps the note will be delayed</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">16</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Randomize pitch<br>
+  <font size="-1"><i>xx</i> - Maximum number of notches the pitch will be randomized</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">17</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Harmonic play<br>
+  <font size="-1"><i>xx</i> - The base frequency will be multiplied by xx</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">18</td><td  bgcolor="#C0C0C0" align="center">xy</td><td  bgcolor="#C0C0C0">Combined note delay and cut<br>
+  <font size="-1"><i>x</i> - The subdivision step to trigger the note<br>
+  <i>y</i> - The subdivision step to release the note</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">19</td><td  bgcolor="#C0C0C0" align="center">xy</td><td  bgcolor="#C0C0C0">Sustain pedal<br>
+  <font size="-1"><i>y</i> - Subdivision step to trigger command</font><br>
+  <font size="-1"><i>x</i>=1 - Depress sustain pedal</font><br>
+  <font size="-1"><i>x</i>=2 - Release sustain pedal</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">2F</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Long loop fit<br>
+  <font size="-1"><i>xx</i> - Same as 12, but multiplied by 128</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">30</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Probability (without note-off)<br>
+  <font size="-1"><i>xx</i> - Probability for sample being played. 01=will almost certainly not be played, 80=50%, FF=almost certain</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">DC</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Note cutoff, releases note<br>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E1</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Fine slide up <i>xx</i> notches</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E2</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Fine slide down <i>xx</i> notches</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E4</td><td  bgcolor="#C0C0C0" align="center">0x</td><td  bgcolor="#C0C0C0">Set vibrato type<br>
+  <font size="-1"><i>x</i> - 0 - sine, retrig waveform at samplestart<br>
+  <i>x</i> - 1 - saw, retrig waveform at samplestart<br>
+  <i>x</i> - 2 - square, retrig waveform at samplestart<br>
+  <i>x</i> - 4 - sine, don't retrig waveform at samplestart<br>
+  <i>x</i> - 5 - saw, don't retrig waveform at samplestart<br>
+  <i>x</i> - 6 - square, don't retrig waveform at samplestart<br></font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E5</td><td  bgcolor="#C0C0C0" align="center">xx</td><td  bgcolor="#C0C0C0">Set finetune for track<br>
+  <font size="-1">00 = -1/2 halfnote, 80 = 0, FF = ~+1/2 halfnote</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E6</td><td  bgcolor="#C0C0C0" align="center">0x</td><td  bgcolor="#C0C0C0">Set panning type<br>
+  <font size="-1">See E4/0x for parameter</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E7</td><td bgcolor="#C0C0C0" align="center">0x</td><td bgcolor="#C0C0C0">Set tremolo type<br>
+   <font size="-1">See E4/0x for parameter</font></td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E8</td><td bgcolor="#C0C0C0" align="center">01</td><td bgcolor="#C0C0C0">Reverse direction of sample being played</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">E9</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Retrig sample<br>
+  <font size="-1"><i>xx</i> - subdivision count at which sample is retriggered</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">EA</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Fine volume slide up</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">EB</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Fine volume slide down</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">EC</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Note cutoff, set volume to zero<br>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">ED</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Note delay<br>
+  <font size="-1">Delay samplestart for <i>xx</i> subdivision steps</font></td>
+  <td bgcolor="#C0C0C0"><font size="-1">Use with a note</font></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">EE</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Fine panning slide left</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+ <tr>
+  <td align="center" bgcolor="#C0C0C0">EF</td><td bgcolor="#C0C0C0" align="center">xx</td><td bgcolor="#C0C0C0">Fine panning slide right</td>
+  <td bgcolor="#C0C0C0"></td>
+ </tr>
+</table>
+
+</body>
+</html>
