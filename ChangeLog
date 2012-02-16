@@ -1,3 +1,46 @@
+2012-02-16  flip  <flip10000@users.sf.net>
+
+	* AsDev/Makefile.am:
+	* AsDev/a4pFilter01/Makefile.am:
+	* AsDev/a4pFilter01/a4pFilter01.cpp:
+	* Elenzil/FrequencyBomb/Makefile.am:
+	* Elenzil/FrequencyBomb/freqbomb.cpp:
+	* Elenzil/Makefile.am:
+	* Elenzil/Modulator/Makefile.am:
+	* Elenzil/Modulator/amplitude_modulator.cpp:
+	* HACKING:
+	* MadBrain/4fm2f/4fm2f.cpp:
+	* MadBrain/4fm2f/Makefile.am:
+	* MadBrain/Dynamite6/Dynamite6.cpp:
+	* MadBrain/Dynamite6/Makefile.am:
+	* MadBrain/Makefile.am:
+	* Makefile.am:
+	* Q/Makefile.am:
+	* Q/Rebond/Makefile.am:
+	* Q/Rebond/rebond.cpp:
+	* Q/Zfilter/Makefile.am:
+	* Q/Zfilter/zfilter.cpp:
+	* configure.ac:
+	* Q/Zfilter/Makefile.am (added):
+	* Q/Rebond/Makefile.am (added):
+	* Q/Makefile.am (added):
+	* AsDev/Makefile.am (added):
+	* AsDev/a4pFilter01/Makefile.am (added):
+	* Elenzil/FrequencyBomb/Makefile.am (added):
+	* Elenzil/Modulator/Makefile.am (added):
+	* Elenzil/Makefile.am (added):
+	* MadBrain/Dynamite6/Makefile.am (added):
+	* MadBrain/Makefile.am (added):
+	* MadBrain/4fm2f/Makefile.am (added):
+	Ported:
+	AsDev a4pFilter01
+  Elenzil FrequencyBomb
+  Elenzil Modulator
+  MadBrain 4fm2f
+  MadBrain Dynamite6
+  Q Rebond
+  Q Zfilter
+
 2012-02-16  Stefan Sauer  <ensonic@users.sf.net>
 
 	* WhiteNoise/StereoDist/Dist.cpp:

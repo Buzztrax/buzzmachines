@@ -1,6 +1,6 @@
 ## $Id$
 
-SUBDIRS = common Chimp CyanPhase Elak Ensonic FSM Geonik Jeskola Ld Makk Matilde WhiteNoise
+SUBDIRS = common AsDev Chimp CyanPhase Elak Elenzil Ensonic FrequencyUnknown FSM Geonik Jeskola Ld MadBrain Makk Matilde Q WhiteNoise Zwar
 
 ACLOCAL_AMFLAGS = -I m4
 

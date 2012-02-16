@@ -8,8 +8,8 @@
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "../MachineInterface.h"
-#include "../dsplib/dsplib.h"
+#include <MachineInterface.h>
+#include <dsplib.h>
 
 #include "waves2.h"
 
@@ -65,7 +65,7 @@ int speedtable[] =
 	0x4000000  //32(turbo)
 };
 
-char *speednames[] =
+const char *speednames[] =
 {
 	"infinite",//0
 	 "16.0 s", //1
@@ -1117,12 +1117,12 @@ class eg
 {
 
 public:
-	inline void eg::work();
-	void eg::on(int fact);
-	void eg::off();
-	void eg::init();
-	void eg::stop();
-	int eg::calc_level(unsigned char n);
+	inline void work();
+	void on(int fact);
+	void off();
+	void init();
+	void stop();
+	int calc_level(unsigned char n);
 
 	// State
 public:
@@ -1252,7 +1252,7 @@ public:
 
 	virtual void SetNumTracks(int const n);
 	virtual void Stop();
-	virtual char const *mi::DescribeValue(int const param, int const value);
+	virtual char const *DescribeValue(int const param, int const value);
 
 public:
 	gvals gval;	// Store your global parameters here

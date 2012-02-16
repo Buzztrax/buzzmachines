@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "C:\progra~1\zik\buzz\dev\MachineInterface.h"
+#include <MachineInterface.h>
 
 double const Silence = log(1.0 / 32768);
 

@@ -9,8 +9,8 @@
 #include <assert.h>
 #include <math.h>
 #include <float.h>
-#include "../MachineInterface.h"
-#include "../dsplib/dsplib.h"
+#include <MachineInterface.h>
+#include <dsplib.h>
 #pragma optimize ("a", on)
 
 #define MAX_CHANNELS 32
@@ -665,10 +665,10 @@ class env
 {
 
 public:
-	inline void env::work();
-	void env::on();
-	void env::off();
-	void env::init();
+	inline void work();
+	void on();
+	void off();
+	void init();
 
 	// State
 public:
@@ -771,7 +771,7 @@ public:
 
 	virtual void SetNumTracks(int const n);
 	virtual void Stop();
-	virtual char const *mi::DescribeValue(int const param, int const value);
+	virtual char const *DescribeValue(int const param, int const value);
 
 public:
 	gvals gval;	// Store your global parameters here
@@ -905,7 +905,7 @@ void pipe::stop()
 void channel::stop()
 {
 	int i;
-	input_env.init;
+	input_env.init();
 	input_env.s.val=0;
 	input_env.s.dir=0;
 	input_env.s.time=0;

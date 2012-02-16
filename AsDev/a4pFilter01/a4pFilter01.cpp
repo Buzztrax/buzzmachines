@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../../MachineInterface.h"
+#include <MachineInterface.h>
 
 #define MAX_TAPS		1
 #define	FILTER_SECTIONS	2					/* 2 filter sections for 24 db/oct filter */

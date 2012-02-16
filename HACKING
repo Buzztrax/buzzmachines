@@ -8,32 +8,14 @@ listed (http://wiki.buzztard.org/index.php/BuzzMachineSources).
 Arguru
   Compressor
   Distortion
-AsDev
-  p4aFilter01
 CyanPhase
   Notch
-Elenzil
-  FrequencyBomb
-  Modulator
-FrequencyUnknown
-  O-Delay
 Fuzzpilz
   UnwieldyTracker
 Ld
   Gate (needs auxbus)
-MadBrain
-  4fm2f
-  Dynamite6
 Oomek
   Aggressor
-Q
-  Zfilter
-  Rebound
-WhiteNoise
-  WhiteChorus
-Zwar
-  11stereo
-  Csi
 
 = Filenames =
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
@@ -79,8 +61,21 @@ error:   using obsolete binding at ‘c’
 -> move "int c" out of the for-loop
 
 = Extra files (demo-songs, presets and help) =
-* FSM/Infector ships a preset file and a demo song
-* Matilde/Tracker and CyanPhase/DTMF-1 ship a help file
+* Preset file:
+  * FSM/Infector
+  * MadBrain Dynamite6
+* Help file:
+  * CyanPhase/DTMF-1
+  * Elenzil Modulator
+  * FrequencyUnknown ODelay
+  * Matilde/Tracker
+* Demo song:
+  * Elenzil Modulator
+  * FrequencyUnknown ODelay
+  * FSM/Infector
+  * MadBrain Dynamite6
+  * Zwar 11Stereo
+  * Zwar Csi
 
 = Misc =
 * Matilde/Tracker is an example of how to build various variants of the same code

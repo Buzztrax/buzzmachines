@@ -21,8 +21,8 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../MachineInterface.h"
-#include "../dsplib/dsplib.h"
+#include <MachineInterface.h>
+#include <dsplib.h>
 #include <time.h>
 
 double const SilentEnough = log(1.0 / 32768);
@@ -362,7 +362,7 @@ char const *mi::DescribeValue(int const param, int const value)
 		strcat(txt, tmp);
 		break;
 	case 3:		// m_Wave
-		char*	s;
+		const char*	s;
 		switch(val)
 			{
 			case OWF_SINE		: s = "sine"		; break;

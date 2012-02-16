@@ -76,6 +76,8 @@ AC_CONFIG_FILES(Makefile \
   common/Makefile \
     common/dsplib/Makefile \
     common/mdk/Makefile \
+  AsDev/Makefile \
+    AsDev/a4pFilter01/Makefile \
   Chimp/Makefile \
     Chimp/PitchShifter/Makefile \
   CyanPhase/Makefile \
@@ -84,8 +86,13 @@ AC_CONFIG_FILES(Makefile \
   Elak/Makefile \
     Elak/Dist2/Makefile \
     Elak/SVF/Makefile \
+  Elenzil/Makefile \
+    Elenzil/FrequencyBomb/Makefile \
+    Elenzil/Modulator/Makefile \
   Ensonic/Makefile \
     Ensonic/CallbackTester/Makefile \
+  FrequencyUnknown/Makefile \
+    FrequencyUnknown/ODelay/Makefile \
   FSM/Makefile \
     FSM/ArpMan/Makefile \
     FSM/Chorus/Makefile \
@@ -115,14 +122,24 @@ AC_CONFIG_FILES(Makefile \
     Jeskola/Trilok/Makefile \
   Ld/Makefile \
     Ld/SLimit/Makefile \
+  MadBrain/Makefile \
+    MadBrain/Dynamite6/Makefile \
+    MadBrain/4fm2f/Makefile \
   Makk/Makefile \
     Makk/M3/Makefile \
     Makk/M4/Makefile \
   Matilde/Makefile \
     Matilde/Tracker/Makefile \
     Matilde/Tracker/SurfsDSPLib/Makefile \
+  Q/Makefile \
+    Q/Rebond/Makefile \
+    Q/Zfilter/Makefile \
   WhiteNoise/Makefile \
     WhiteNoise/StereoDist/Makefile \
+    WhiteNoise/WhiteChorus/Makefile \
+  Zwar/Makefile \
+    Zwar/11Stereo/Makefile \
+    Zwar/Csi/Makefile \
 )
 
 AC_OUTPUT
