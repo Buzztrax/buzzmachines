@@ -1,5 +1,13 @@
 2012-02-16  flip  <flip10000@users.sf.net>
 
+	* Zwar/11stereo/11-Stereo.cpp (deleted):
+	* Zwar/11stereo/11-Stereo.bmx (deleted):
+	* Zwar/Csi/CSI.CPP (deleted):
+	* Zwar/Csi/CSI.bmx (deleted):
+	Remove old files.
+
+2012-02-16  flip  <flip10000@users.sf.net>
+
 	* AsDev/Makefile.am:
 	* AsDev/a4pFilter01/Makefile.am:
 	* AsDev/a4pFilter01/a4pFilter01.cpp:
