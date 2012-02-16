@@ -1,5 +1,11 @@
 2012-02-16  flip  <flip10000@users.sf.net>
 
+	* Zwar/Makefile.am:
+	* Zwar/Makefile.am (added):
+	Added Makefile for Zwar.
+
+2012-02-16  flip  <flip10000@users.sf.net>
+
 	* HACKING:
 	* Makefile.am:
 	* configure.ac:
