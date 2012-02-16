@@ -1,5 +1,31 @@
 2012-02-16  flip  <flip10000@users.sf.net>
 
+	* Zwar/11Stereo/11Stereo.bmx:
+	* Zwar/11Stereo/11Stereo.cpp:
+	* Zwar/11Stereo/Makefile.am:
+	* Zwar/Csi/Csi.bmx:
+	* Zwar/Csi/Csi.cpp:
+	* Zwar/Csi/Makefile.am:
+	* Zwar/11Stereo/11Stereo.bmx (svn:mime-type):
+	* Zwar/Csi/Csi.bmx (svn:mime-type):
+	* Zwar/11Stereo (added):
+	* Zwar/11Stereo/11Stereo.cpp (added):
+	* Zwar/11Stereo/11Stereo.bmx (added):
+	* Zwar/11Stereo/Makefile.am (added):
+	* Zwar/Csi/Csi.cpp (added):
+	* Zwar/Csi/Csi.bmx (added):
+	* Zwar/Csi/Makefile.am (added):
+	Ported:
+	Zwar 11Stereo
+	Zwar Csi
+
+2012-02-16  flip  <flip10000@users.sf.net>
+
+	* Zwar/11stereo (deleted):
+	Remove old files.
+
+2012-02-16  flip  <flip10000@users.sf.net>
+
 	* Zwar/11stereo/11-Stereo.cpp (deleted):
 	* Zwar/11stereo/11-Stereo.bmx (deleted):
 	* Zwar/Csi/CSI.CPP (deleted):
