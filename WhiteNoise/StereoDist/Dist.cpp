@@ -353,9 +353,6 @@ void mi::Tick()
 
 bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 {
-	int index1, index2;
-	int s_int;
-
 	if (!(mode & WM_READ) || !(mode & WM_WRITE))
 	{
 		return false;

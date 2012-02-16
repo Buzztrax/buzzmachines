@@ -1,3 +1,8 @@
+2012-02-16  Stefan Sauer  <ensonic@users.sf.net>
+
+	* WhiteNoise/StereoDist/Dist.cpp:
+	  Fix unused variable warnings.
+
 2012-02-16  flip  <flip10000@users.sf.net>
 
 	* HACKING:
