@@ -10,12 +10,16 @@ Arguru
   Distortion
 CyanPhase
   Notch
+FrequencyUnknown
+  Odelay
 Fuzzpilz
   UnwieldyTracker
 Ld
   Gate (needs auxbus)
 Oomek
   Aggressor
+WhiteNoise
+  WhiteChorus
 
 = Filenames =
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase

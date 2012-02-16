@@ -1,5 +1,12 @@
 2012-02-16  flip  <flip10000@users.sf.net>
 
+	* HACKING:
+	* Makefile.am:
+	* configure.ac:
+	Updated HACKING and Makefile.
+
+2012-02-16  flip  <flip10000@users.sf.net>
+
 	* Zwar/11Stereo/11Stereo.bmx:
 	* Zwar/11Stereo/11Stereo.cpp:
 	* Zwar/11Stereo/Makefile.am:

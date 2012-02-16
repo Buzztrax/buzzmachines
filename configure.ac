@@ -91,8 +91,6 @@ AC_CONFIG_FILES(Makefile \
     Elenzil/Modulator/Makefile \
   Ensonic/Makefile \
     Ensonic/CallbackTester/Makefile \
-  FrequencyUnknown/Makefile \
-    FrequencyUnknown/ODelay/Makefile \
   FSM/Makefile \
     FSM/ArpMan/Makefile \
     FSM/Chorus/Makefile \
@@ -136,7 +134,6 @@ AC_CONFIG_FILES(Makefile \
     Q/Zfilter/Makefile \
   WhiteNoise/Makefile \
     WhiteNoise/StereoDist/Makefile \
-    WhiteNoise/WhiteChorus/Makefile \
   Zwar/Makefile \
     Zwar/11Stereo/Makefile \
     Zwar/Csi/Makefile \
