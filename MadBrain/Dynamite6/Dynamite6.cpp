@@ -528,6 +528,7 @@ CMachineParameter const paraVolume =
 	0xff,						// NoValue
 	MPF_STATE,				// Flags
 	0x80  					// Default
+
 };
 
 // Parameter Declaration
@@ -1028,7 +1029,6 @@ inline float channel::generate()
 void pipe::tick()
 {
 	int i,old;
-	char txt[128];
 
 	if (pv.length != 0)
 	{
@@ -1166,8 +1166,7 @@ void mi::Tick()
 
 bool mi::Work(float *psamples, int numsamples, int const)
 {
-	int i,j,k;
-	float sum;
+	int i,j;
 	int flag=0;
 	int active[MAX_CHANNELS];
 
@@ -1346,6 +1345,8 @@ char const *mi::DescribeValue(int const param, int const value)
 		sprintf(txt,"Bug!"); 
 		break;
 	}
+
+	return txt;
 }
 
 void mi::Stop()

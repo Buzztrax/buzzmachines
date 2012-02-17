@@ -169,7 +169,6 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 		if (--buffcount<0) buffcount = 8*44100-1;
 		if (mode & WM_WRITE)
 		{
-			int j0=DeltaT;
 			float p=1;
 
 			j=0;

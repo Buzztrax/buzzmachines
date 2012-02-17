@@ -361,7 +361,7 @@ char*	CommaPrint(char* txt, int const value)
 
 char const *mi::DescribeValue(int const param, int const value)
 {
-	static char txt[16];
+	static char txt[30];
 	char	tmp[9];
 	int		val;
 
@@ -400,6 +400,7 @@ char const *mi::DescribeValue(int const param, int const value)
 			case WAVE_SAW		: s = "saw"			; break;
 			case WAVE_INVSAW	: s = "inv. saw"	; break;
 			case WAVE_CRAZY		: s = "crazy"		; break;
+			default                 : s = ""                ; break;
 			}
 			sprintf(txt, "%s (%.2x)", s, val);
 		break;

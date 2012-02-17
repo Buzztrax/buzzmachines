@@ -1231,6 +1231,7 @@ public:
 	// State
 public:
 
+
 	gvals gv;
 	tvals tv;
 
@@ -1512,7 +1513,10 @@ void filter::tick(int sr)
 	}
 
 	cutoff_target = pow(0.5,(118-(cutoff + note_adj*kf/128.0) )/16.0);
-	cutoff_bias = *((int *)(&cutoff_target)) - 0x3f800000;
+	
+	union { unsigned int ui; float d; } float_as_bits;
+	float_as_bits.d = cutoff_target;
+	cutoff_bias = float_as_bits.ui - 0x3f800000;
 	cutoff_bias >>= 1;
 	
 	if (tv.note == NOTE_OFF)

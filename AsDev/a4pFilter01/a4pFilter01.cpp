@@ -241,7 +241,7 @@ void mi::Tick()
 		doit = true;
 	}
 
-	if (doit=true)
+	if (doit==true)
 	{
 		k = 1.0;
 		coef = iir.coef + 1;	

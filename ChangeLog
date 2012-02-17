@@ -1,3 +1,13 @@
+2012-02-17  Stefan Sauer  <ensonic@users.sf.net>
+
+	* AsDev/a4pFilter01/a4pFilter01.cpp:
+	* Elenzil/FrequencyBomb/freqbomb.cpp:
+	* Elenzil/Modulator/amplitude_modulator.cpp:
+	* MadBrain/4fm2f/4fm2f.cpp:
+	* MadBrain/Dynamite6/Dynamite6.cpp:
+	* Q/Rebond/rebond.cpp:
+	  Fix compiler warnings/errors.
+
 2012-02-16  flip  <flip10000@users.sf.net>
 
 	* Zwar/Makefile.am:

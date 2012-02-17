@@ -368,8 +368,9 @@ char const *mi::DescribeValue(int const param, int const value)
 			case OWF_SINE		: s = "sine"		; break;
 			case OWF_PULSE		: s = "square"		; break;
 			case OWF_TRIANGLE	: s = "triangle"	; break;
-			case OWF_SAWTOOTH	: s = "saw"			; break;
+			case OWF_SAWTOOTH	: s = "saw"		; break;
 			case OWF_NOISE		: s = "noise"		; break;
+			default                 :s = ""                 ; break;
 			}
 			sprintf(txt, "%s (%.2x)", s, val);
 		break;
