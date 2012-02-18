@@ -549,8 +549,6 @@ bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mod
 	inum	=	numsamples;
 	j		=	0;
 
-	int		op;
-	op		=	pos;
 	pos		+=	pMasterInfo ->	PosInTick - pos2;
 	pos2	=	pMasterInfo ->	PosInTick;
 

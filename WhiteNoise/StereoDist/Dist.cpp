@@ -360,7 +360,7 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 	
 	do
 	{
-		double f, s, DC;
+		double f, s;
 
 		f = s = *psamples;
 
@@ -369,9 +369,7 @@ bool mi::MDKWork(float *psamples, int numsamples, int const mode)
 
 		f = f * drive;
 
-		DC = (threshold_top + threshold_bottom);
-
-			//"Top Mode (Limit, Zero, Rectify, Pixelate, Saturate)", 
+		//"Top Mode (Limit, Zero, Rectify, Pixelate, Saturate)", 
 		if(f > threshold_top)
 			switch(mode_top)
 			{
@@ -457,7 +455,6 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 	{
 		double l = psamples[0];
 		double r = psamples[1];
-		double DC;
 		double fl, fr;		// filter left and right
 
 		fl = l;
@@ -468,8 +465,6 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 
 		fl = fl * drive;
 		fr = fr * drive;
-
-		DC = (threshold_top + threshold_bottom);
 
 		if(fl > threshold_top)
 			switch(mode_top)

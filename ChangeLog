@@ -1,3 +1,9 @@
+2012-02-18  Stefan Sauer  <ensonic@users.sf.net>
+
+	* Elenzil/Modulator/amplitude_modulator.cpp:
+	* WhiteNoise/StereoDist/Dist.cpp:
+	  Fix more compiler warnings.
+
 2012-02-17  Stefan Sauer  <ensonic@users.sf.net>
 
 	* AsDev/a4pFilter01/a4pFilter01.cpp:
