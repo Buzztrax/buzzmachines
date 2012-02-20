@@ -1,3 +1,12 @@
+2012-02-20  Stefan Sauer  <ensonic@users.sf.net>
+
+	* FSM/Infector/FSM_Infector.html:
+	* FSM/Infector/Makefile.am:
+	* FSM/Infector/FSM_Infector.html (added):
+	  Add docs for Infector.
+	* HACKING:
+	  Mention space issues in filenames.
+
 2012-02-18  Stefan Sauer  <ensonic@users.sf.net>
 
 	* Elenzil/Modulator/amplitude_modulator.cpp:

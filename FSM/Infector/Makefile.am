@@ -14,4 +14,4 @@ install-data-hook:
 
 preset_DATA = FSM_Infector.prs
 demosong_DATA = FSM_Infector_Demo.bmx
-
+userdoc_DATA = FSM_Infector.html
