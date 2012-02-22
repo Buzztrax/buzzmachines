@@ -10,8 +10,6 @@ Arguru
   Distortion
 CyanPhase
   Notch
-FrequencyUnknown
-  Odelay
 Fuzzpilz
   UnwieldyTracker
 Ld
@@ -68,6 +66,10 @@ error:   using obsolete binding at ‘c’
 -> move "int c" out of the for-loop
 
 = Extra files (demo-songs, presets and help) =
+Preset and Help files need to follow the pattern Author_Machine.extension. For
+presets the extension is prs, for help files it can be txt,htm and html (all
+lowercase).
+
 * Preset file:
   * FSM/Infector
   * MadBrain Dynamite6

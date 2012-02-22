@@ -9,3 +9,5 @@ libAsDev_a4pFilter01_la_LDFLAGS = $(BM_LIBS)
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libAsDev_a4pFilter01.so $(DESTDIR)$(plugindir)/AsDev_a4pFilter01.so
+
+userdoc_DATA = AsDev_a4pFilter01.html

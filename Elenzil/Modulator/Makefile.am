@@ -9,3 +9,5 @@ libElenzil_Modulator_la_LDFLAGS = $(BM_LIBS)
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libElenzil_Modulator.so $(DESTDIR)$(plugindir)/Elenzil_Modulator.so
+
+userdoc_DATA = Elenzil_Modulator.html

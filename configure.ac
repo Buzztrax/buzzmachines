@@ -91,6 +91,8 @@ AC_CONFIG_FILES(Makefile \
     Elenzil/Modulator/Makefile \
   Ensonic/Makefile \
     Ensonic/CallbackTester/Makefile \
+  FrequencyUnknown/Makefile \
+    FrequencyUnknown/O-Delay/Makefile \
   FSM/Makefile \
     FSM/ArpMan/Makefile \
     FSM/Chorus/Makefile \

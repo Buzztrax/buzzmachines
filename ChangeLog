@@ -1,3 +1,27 @@
+2012-02-22  Stefan Sauer  <ensonic@users.sf.net>
+
+	* AsDev/a4pFilter01/AsDev_a4pFilter01.html:
+	* AsDev/a4pFilter01/Makefile.am:
+	* Elenzil/Modulator/Makefile.am:
+	* FrequencyUnknown/Makefile.am:
+	* FrequencyUnknown/O-Delay/Makefile.am:
+	* HACKING:
+	* Makefile.am:
+	* configure.ac:
+	* AsDev/a4pFilter01/AsDev_a4pFilter01.html (added):
+	* FrequencyUnknown/Makefile.am (added):
+	* FrequencyUnknown/O-Delay/FrequencyUnknown_O-Delay_sparkle.bmx (added):
+	* FrequencyUnknown/O-Delay/Makefile.am (added):
+	* FrequencyUnknown/O-Delay/FrequencyUnknown_O-Delay.html (added):
+	* FrequencyUnknown/O-Delay/FrequencyUnknown_O-Delay_delaytest.bmx (added):
+	* Elenzil/Modulator/Elenzil_Modulator.html (added):
+	* FrequencyUnknown/O-Delay/delaytest.bmx (deleted):
+	* FrequencyUnknown/O-Delay/sparkle.bmx (deleted):
+	* FrequencyUnknown/O-Delay/O-Delay.html (deleted):
+	* Elenzil/Modulator/amplitude_modulator.html (deleted):
+	  Added more docs and fixed some doc file names. Ported
+	  FrequencyUnknown/O-Delay.
+
 2012-02-20  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/Infector/FSM_Infector.html:
