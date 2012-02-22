@@ -1,5 +1,14 @@
 2012-02-22  Stefan Sauer  <ensonic@users.sf.net>
 
+	* AseDev/a4pFilter01/Makefile.am:
+	* Makefile.am:
+	* configure.ac:
+	* AseDev/a4pFilter01/AseDev_a4pFilter01.html (added):
+	* AseDev/a4pFilter01/AsDev_a4pFilter01.html (deleted):
+	  Fix Author name.
+
+2012-02-22  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Arguru/Distortion/Distortion.cpp:
 	* Arguru/Distortion/Makefile.am:
 	* Arguru/GoaSlicer/goaslicer.cpp:

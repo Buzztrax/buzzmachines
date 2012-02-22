@@ -77,8 +77,8 @@ AC_CONFIG_FILES(Makefile \
     common/dsplib/Makefile \
     common/mdk/Makefile \
     Arguru/Distortion/Makefile \
-  AsDev/Makefile \
-    AsDev/a4pFilter01/Makefile \
+  AseDev/Makefile \
+    AseDev/a4pFilter01/Makefile \
   Chimp/Makefile \
     Chimp/PitchShifter/Makefile \
   CyanPhase/Makefile \
