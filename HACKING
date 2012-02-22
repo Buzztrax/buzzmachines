@@ -5,15 +5,16 @@ ported and add them to the list, when you received source for a machine.
 We have a page on the wiki where the efforts of obtaining machines sources are
 listed (http://wiki.buzztard.org/index.php/BuzzMachineSources).
 
-Arguru
+Arguru (never released as buzzmachines)
   Compressor
   Distortion
+  GoaSlider
 CyanPhase
   Notch
 Fuzzpilz
   UnwieldyTracker
 Ld
-  Gate (needs auxbus)
+  Gate (build, but needs auxbus)
 Oomek
   Aggressor
 WhiteNoise
@@ -53,6 +54,9 @@ char format.
 = Includes =
 - replace any include for MachineInterface.h that uses a path with this
 #include <MachineInterface.h>
+- likewise include other subsystems from common as
+#include <mdk/mdk.h>
+#include <auxbus/auxbus.h>
 - replace any #include <windows.h> with
 #include <windef.h>
 
@@ -64,6 +68,12 @@ error: ‘__min’ was not declared in this scope
 error: name lookup of ‘c’ changed for new ISO ‘for’ scoping
 error:   using obsolete binding at ‘c’
 -> move "int c" out of the for-loop
+
+error: dereferencing type-punned pointer will break strict-aliasing rules
+- often used for bitacess of floats
+  can be fixed using unions as in MadBrain/4fm2f/4fm2f.cpp in float_as_bits
+- zero-check *(int*)&float_var -> float_var!=0.0
+
 
 = Extra files (demo-songs, presets and help) =
 Preset and Help files need to follow the pattern Author_Machine.extension. For

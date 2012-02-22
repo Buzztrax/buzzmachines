@@ -1,14 +1,15 @@
 //20:08 < ld0d> no copyright, no responsibility, no restrictions
 //20:08 < ld0d> but you can gpl them once you're done with them
 
-#include<windef.h>
+#include <windef.h>
 
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../mdk.h"
-#include "/buzzdevel/auxbus/auxbus.h"
+#include <MachineInterface.h>
+#include <mdk/mdk.h>
+#include <auxbus/auxbus.h>
 
 CMachineParameter const paraBypass =
 {
@@ -192,7 +193,7 @@ public:
 	bool WorkAuxbus(float *psamples, int numsamples, int const m);
 	bool WorkStereoAuxbus(float *psamples, int numsamples, int const m);
 
-	virtual char const *mi::DescribeValue(int const param, int const value);
+	virtual char const *DescribeValue(int const param, int const value);
 
 	void DisconnectAux();
 
@@ -295,8 +296,11 @@ void mi::Command(int const i) {
 		AB_Disconnect(this);
 		Channel = -1;
 		memset(auxdelayline, 0, 4096 * 4);
-	} else
-		MessageBox(NULL, "ld gate v0.1\n(C) Lauri Koponen 2002\nld0d@kolumbus.fi\n\nHint: you will probably want to set the\nlook-ahead time to be the same as attack time.\n\n\nSignal is delayed by the look-ahead time.\n12ms look-ahead = 12ms delay", "About ld gate", MB_OK | MB_ICONINFORMATION);
+	}
+#ifdef WIN32
+  else
+    MessageBox(NULL, "ld gate v0.1\n(C) Lauri Koponen 2002\nld0d@kolumbus.fi\n\nHint: you will probably want to set the\nlook-ahead time to be the same as attack time.\n\n\nSignal is delayed by the look-ahead time.\n12ms look-ahead = 12ms delay", "About ld gate", MB_OK | MB_ICONINFORMATION);
+#endif
 }
 
 mi::mi()
@@ -348,8 +352,6 @@ void mi::MDKInit(CMachineDataInput * const pi)
 
 void mi::Tick()
 {
-	int i;
-
 	if(gval.bypass == SWITCH_ON)
 		bypass = true;
 	else if(gval.bypass == SWITCH_OFF)
@@ -443,7 +445,7 @@ bool mi::WorkAuxbus(float *psamples, int numsamples, int const m)
 			}
 
 			if(invert) {
-				if(*(int*)&level)
+				if(level!=0.0)
 					*psamples = out * (quiet / level);
 				else {
 					*psamples = out;
@@ -598,7 +600,7 @@ bool mi::MDKWork(float *psamples, int numsamples, int const m)
 			}
 
 			if(invert) {
-				if(*(int*)&level)
+				if(level!=0.0)
 					*psamples = out * (quiet / level);
 				else {
 					*psamples = out;
@@ -730,7 +732,7 @@ bool mi::WorkStereoAuxbus(float *psamples, int numsamples, int const m)
 			}
 
 			if(invert) {
-				if(*(int*)&level) {
+				if(level!=0.0) {
 					float invlevel = (quiet / level);
 					*psamples = outl * invlevel;
 					*(psamples + 1) = outr * invlevel;
@@ -944,13 +946,13 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const m)
 				*(psamples + 1) = outr * level2;
 
 				if(invert) {
-					if(*(int*)&level) {
+					if(level!=0.0) {
 						*psamples = outl * (quiet / level);
 					} else {
 						*psamples = outl;
 						active = true;
 					}
-					if(*(int*)&level2) {
+					if(level2!=0.0) {
 						*(psamples + 1) = outr * (quiet / level2);
 					} else {
 						*(psamples + 1) = outr;
@@ -1122,7 +1124,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const m)
 				}
 
 				if(invert) {
-					if(*(int*)&level) {
+					if(level!=0.0) {
 						float invlevel = (quiet / level);
 						*psamples = outl * invlevel;
 						*(psamples + 1) = outr * invlevel;

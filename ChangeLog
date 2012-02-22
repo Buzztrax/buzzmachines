@@ -1,5 +1,27 @@
 2012-02-22  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Arguru/Distortion/Distortion.cpp:
+	* Arguru/Distortion/Makefile.am:
+	* Arguru/GoaSlicer/goaslicer.cpp:
+	* Arguru/GoaSlicer (added):
+	* Arguru/GoaSlicer/goaslicer.cpp (added):
+	* Arguru/README (added):
+	* Arguru/Distortion/Makefile.am (added):
+	* Arguru/Distortion/Distortion.hpp (deleted):
+	* Arguru/README:
+	  Add a Readme explaining the origin of the sources. Try a backport for
+	  distortion.
+
+	* Ld/Gate/gate.cpp:
+	  Make it build. We can use that to get auxbus working.
+
+	* HACKING:
+	* configure.ac:
+	  Updates for halfported machines.
+	  
+
+2012-02-22  Stefan Sauer  <ensonic@users.sf.net>
+
 	* AsDev/a4pFilter01/AsDev_a4pFilter01.html:
 	* AsDev/a4pFilter01/Makefile.am:
 	* Elenzil/Modulator/Makefile.am:

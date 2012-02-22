@@ -76,6 +76,7 @@ AC_CONFIG_FILES(Makefile \
   common/Makefile \
     common/dsplib/Makefile \
     common/mdk/Makefile \
+    Arguru/Distortion/Makefile \
   AsDev/Makefile \
     AsDev/a4pFilter01/Makefile \
   Chimp/Makefile \
@@ -121,6 +122,7 @@ AC_CONFIG_FILES(Makefile \
     Jeskola/Noise/Makefile \
     Jeskola/Trilok/Makefile \
   Ld/Makefile \
+    Ld/Gate/Makefile \
     Ld/SLimit/Makefile \
   MadBrain/Makefile \
     MadBrain/Dynamite6/Makefile \

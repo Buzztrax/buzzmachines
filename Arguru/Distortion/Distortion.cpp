@@ -1,51 +1,188 @@
-#include <cstdio>
-#include <cmath>
-#include <algorithm>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <math.h>
+#include <stdio.h>
 
-#include "Distortion.hpp"
+#include <MachineInterface.h>
 
-using namespace std;
+CMachineParameter const paraPreGain = 
+{
+      pt_word,
+      "Input Gain",
+      "Input Gain",
+      0x0001,
+      0x0800,
+      0xFFFF,
+      MPF_STATE,
+      0x0100,
+};
+CMachineParameter const paraThresholdNeg =
+{
+      pt_word,
+      "Threshold (-)",
+      "Threshold level (negative)",
+      0x0001,
+      0x8000,
+      0xFFFF,
+      MPF_STATE,
+      0x200,
+};
+CMachineParameter const paraThreshold =
+{
+      pt_word,
+      "Threshold (+)",
+      "Threshold level (positive)",
+      0x0001,
+      0x8000,
+      0xFFFF,
+      MPF_STATE,
+      0x200
+};
+CMachineParameter const paraGain =
+{
+      pt_word,
+      "Output Gain",
+      "Output Gain",
+      0x0001,
+      0x0800,
+      0xFFFF,
+      MPF_STATE,
+      0x0400
+};
+CMachineParameter const paraInvert =
+{
+      pt_byte,
+      "Phase inversor",
+      "Stereo phase inversor",
+      0x00,
+      0x01,
+      0xFF,
+      MPF_STATE,
+      0x00
+};
+CMachineParameter const paraMode =
+{
+      pt_byte,
+      "Mode",
+      "Operational mode",
+      0x00,
+      0x01,
+      0xFF,
+      MPF_STATE,
+      0x00
+};
 
-Distortion::Distortion() {
-  global_values = &gval;
-  attributes = 0;
-  track_values = 0;
+CMachineParameter const *pParameters[] =
+{
+	// global
+	&paraPreGain,
+	&paraThresholdNeg,
+	&paraThreshold,
+	&paraGain,
+	&paraInvert,
+	&paraMode,
+};
+
+#pragma pack(1)
+
+class gvals
+{
+public:
+  word paraPreGain;
+  word paraThresholdNeg;
+  word paraThreshold;
+  word paraGain;
+  byte paraInvert;
+  byte paraMode;
+};
+
+#pragma pack()
+
+CMachineInfo const MacInfo =
+{
+	MT_EFFECT,								// type
+	MI_VERSION,
+	0,										// flags
+	0,										// min tracks
+	0,										// max tracks
+	6,										// numGlobalParameters
+	0,										// numTrackParameters
+	pParameters,
+	0,
+	0,
+#ifdef _DEBUG
+	"Arguru Distortion (Debug build)",				// name
+#else
+	"Arguru Distortion",					// name
+#endif
+	"Distortion",									// short name
+	"Arguru",									// author
+	NULL
+};
+
+class mi : public CMachineInterface
+{
+public:
+	mi();
+	virtual ~mi();
+
+	virtual void Init(CMachineDataInput * const pi);
+	virtual void Tick();
+	virtual bool Work(float *psamples, int numsamples, int const mode);
+	virtual char const *DescribeValue(int const param, int value);
+
+private:
+  gvals gval;
+
+  inline void Clip(float *psamplesleft, float const threshold, 
+		   float const negthreshold, float const wet);
+  inline void Saturate(float *psamplesleft, float const threshold,
+		       float const negthreshold, float const wet);
+
+  float leftLim;
+  float rightLim;
+  int Vals[6];
+};
+
+DLL_EXPORTS
+
+mi::mi()
+{
+	GlobalVals = &gval;
 }
 
-Distortion::~Distortion() {
-  delete this;
+mi::~mi()
+{
 }
 
-void Distortion::init(zzub::archive* pi) {
-
+void mi::Init(CMachineDataInput * const pi)
+{
 }
 
-void Distortion::destroy() {
-
-}
-
-void Distortion::process_events() {
-  if (gval.paraPreGain != paraPreGain->value_none) {
+void mi::Tick()
+{
+  if (gval.paraPreGain != paraPreGain.NoValue) {
     Vals[4] = gval.paraPreGain;
   }
-  if (gval.paraThresholdNeg != paraThresholdNeg->value_none) {
+  if (gval.paraThresholdNeg != paraThresholdNeg.NoValue) {
     Vals[5] = gval.paraThresholdNeg;
   }
-  if (gval.paraThreshold != paraThreshold->value_none) {
+  if (gval.paraThreshold != paraThreshold.NoValue) {
     Vals[0] = gval.paraThreshold;
   }
-  if (gval.paraGain != paraGain->value_none) {
+  if (gval.paraGain != paraGain.NoValue) {
     Vals[1] = gval.paraGain;
   }
-  if (gval.paraInvert != paraInvert->value_none) {
+  if (gval.paraInvert != paraInvert.NoValue) {
     Vals[2] = gval.paraInvert;
   }
-  if (gval.paraMode != paraMode->value_none) {
+  if (gval.paraMode != paraMode.NoValue) {
     Vals[3] = gval.paraMode;
   }
 }
 
-inline void Distortion::Clip(float *psamplesleft, float const threshold, 
+inline void mi::Clip(float *psamplesleft, float const threshold, 
 			     float const negthreshold, float const wet ) {
   float sl = *psamplesleft;
   if (sl > threshold)
@@ -55,7 +192,7 @@ inline void Distortion::Clip(float *psamplesleft, float const threshold,
   *psamplesleft = sl * wet;
 }
 
-inline void Distortion::Saturate(float * psamplesleft, float const threshold, 
+inline void mi::Saturate(float * psamplesleft, float const threshold, 
 				 float const negthreshold, float const wet) {
   const float s_in = (*psamplesleft);
   float sl = s_in * leftLim;
@@ -70,6 +207,47 @@ inline void Distortion::Saturate(float * psamplesleft, float const threshold,
   *psamplesleft = sl * wet;
 }
 
+bool mi::Work(float *psamples, int numsamples, int const mode)
+{
+  float const threshold = (float)(Vals[0]) / float(0x8000);
+  float const negthreshold = -(float)(Vals[5]) / float(0x8000);
+
+  float const wet = (float)Vals[1] * 0.00390625f;
+
+  float const pre_gain = (float)Vals[4] * 0.00390625f;
+  
+  for (int i = 0; i < numsamples; i++) {
+    psamples[i] = psamples[i] * pre_gain;
+  }
+
+  if (Vals[3] == 0) {
+    if (Vals[2] == 0) {
+      // Clip, No Phase inversion
+      for (int i = 0; i < numsamples; i++) {
+	Clip(&psamples[i], threshold, negthreshold, wet);
+      }
+    } else {
+      // Clip, Phase inversion
+      for (int i = 0; i < numsamples; i++) {
+	Clip(&psamples[i], threshold, negthreshold, wet);
+      }
+    }
+  } else {
+    if (Vals[2] == 0) {
+      // Saturate, No Phase inversion
+      for (int i = 0; i < numsamples; i++) {
+	Saturate(&psamples[i], threshold, negthreshold, wet);
+      }
+    } else {
+      // Saturate, Phase inversion
+      for (int i = 0; i < numsamples; i++) {
+	Saturate(&psamples[i], threshold, negthreshold, wet);
+      }
+    } 
+  }
+  return true;
+}
+/*
 bool Distortion::process_stereo(float **pin, float **pout, 
 				int numsamples, int mode) {
   float *psamplesleft = pin[0];
@@ -123,8 +301,9 @@ bool Distortion::process_stereo(float **pin, float **pout,
   }
   return true;
 }
+*/
 
-const char *Distortion::describe_value(int param, int value) {
+char const *mi::DescribeValue(int const param, int value) {
   static char txt[20];
   switch(param) {
   case 0: {
@@ -158,11 +337,11 @@ const char *Distortion::describe_value(int param, int value) {
   case 4: {
     switch(value) {
       case 0:
-	sprintf(txt, "Off");	
-	break;
+        sprintf(txt, "Off");	
+        break;
       case 1:
-	sprintf(txt, "On");	
-	break;
+        sprintf(txt, "On");	
+        break;
     }
     return txt;
   }
