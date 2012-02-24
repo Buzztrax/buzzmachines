@@ -1,5 +1,12 @@
 2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
 
+	* FrequencyUnknown/O-Delay/O-Delay.cpp:
+	  Fix gcc error
+ 	  "operation on ‘((mi*)this)->mi::lrbpos’ may be undefined"
+	  [-Werror=sequence-point]
+
+2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Ld/Gate/Makefile.am:
 	* Oomek/Makefile.am:
 	* Ld/Gate/Makefile.am (added):

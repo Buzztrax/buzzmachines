@@ -261,8 +261,8 @@ bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mod
 			*pout = rringbuff[rrbpos];
 			pout++;
 			pin++;
-			lrbpos = (++lrbpos) % lrblen;
-			rrbpos = (++rrbpos) % rrblen;
+			lrbpos = (lrbpos + 1) % lrblen;
+			rrbpos = (rrbpos + 1) % rrblen;
 		}
 		while (--numsamples);
 	}
@@ -278,8 +278,8 @@ bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mod
 			*pout = rringbuff[rrbpos] + dryAmt * *pin;
 			pout++;
 			pin++;
-			lrbpos = (++lrbpos) % lrblen;
-			rrbpos = (++rrbpos) % rrblen;
+			lrbpos = (lrbpos + 1) % lrblen;
+			rrbpos = (rrbpos + 1) % rrblen;
 		}
 		while (--numsamples);
 	}
