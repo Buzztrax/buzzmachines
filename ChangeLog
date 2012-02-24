@@ -1,5 +1,13 @@
 2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Ld/Gate/Makefile.am:
+	* Oomek/Makefile.am:
+	* Ld/Gate/Makefile.am (added):
+	* Oomek/Makefile.am (added):
+	  Add missing makefiles.
+
+2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Makefile.am:
 	* configure.ac:
 	  Add Oomek to the build.
