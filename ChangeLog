@@ -1,3 +1,30 @@
+2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
+
+	* Zwar/11Stereo/Makefile.am:
+	  Install song.
+	  
+	* Oomek (added):
+	* Oomek/Exciter (added):
+	* Oomek/Exciter/Exciter.int.cpp (added):
+	* Oomek/Exciter/test.bmx (added):
+	* Oomek/Exciter/Exciter.cpp (added):
+	* Oomek/Exciter/909.bmx (added):
+	* Oomek/Exciter/909_excite.bmx (added):
+	* Oomek/Exciter/Exciter.float.cpp (added):
+	* Oomek/Exciter/_README.txt (added):
+	* Oomek/Masterizer (added):
+	* Oomek/Masterizer/Masterizer.cpp (added):
+	* Oomek/Masterizer/Masterizer_test.bmx (added):
+	* Oomek/Masterizer/_README.txt (added):
+	* Oomek/Aggressor (added):
+	* Oomek/Aggressor/Oomek_Aggressor_demo.bmx (added):
+	* Oomek/Aggressor/Oomek_Aggressor_ctrack.bmx (added):
+	* Oomek/Aggressor/fft.h (added):
+	* Oomek/Aggressor/303.cpp (added):
+	* Oomek/Aggressor/Makefile.am (added):
+	  Add sources for Oomek machines and port Aggressor. Thanks a lot to
+	  Oomek!
+
 2012-02-22  Stefan Sauer  <ensonic@users.sf.net>
 
 	* AseDev/a4pFilter01/Makefile.am:
