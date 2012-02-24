@@ -1,5 +1,11 @@
 2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Makefile.am:
+	* configure.ac:
+	  Add Oomek to the build.
+
+2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
+
 	* HACKING:
 	  Update todo list
 

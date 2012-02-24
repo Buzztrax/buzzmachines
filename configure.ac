@@ -133,6 +133,8 @@ AC_CONFIG_FILES(Makefile \
   Matilde/Makefile \
     Matilde/Tracker/Makefile \
     Matilde/Tracker/SurfsDSPLib/Makefile \
+  Oomek/Makefile \
+    Oomek/Aggressor/Makefile \
   Q/Makefile \
     Q/Rebond/Makefile \
     Q/Zfilter/Makefile \
