@@ -1,5 +1,12 @@
 2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
 
+	* Oomek/Aggressor/303.cpp:
+	  Fix buffer overflow.
+	* Oomek/Aggressor/fft.h:
+	  Make fft func static.
+
+2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
+
 	* FrequencyUnknown/O-Delay/O-Delay.cpp:
 	  Fix gcc error
  	  "operation on ‘((mi*)this)->mi::lrbpos’ may be undefined"

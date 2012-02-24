@@ -1,5 +1,5 @@
 #define M_PI 3.14159265358979323846
-void IFFT(float *fftBuffer, long fftFrameSize, long sign)
+static void IFFT(float *fftBuffer, long fftFrameSize, long sign)
 
 /* 
 FFT routine, (C)1996 S.M.Sprenger. Sign = -1 is FFT, 1 is iFFT (inverse)

@@ -308,7 +308,7 @@ public:
 	float Cutfreq, Oscfreq;
 	float Qdown;
 	float cf;
-	float fftable[4096];
+	float fftable[2048+2048+2];
 	bool DoNothing;
 
 	float Envmod, Envmodphase, Envmodinc, Envmodsl, Envmodnew, EnvmodphaseY, EnvmodphaseZ;
