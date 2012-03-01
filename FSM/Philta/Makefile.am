@@ -2,7 +2,7 @@
 
 plugin_LTLIBRARIES = libFSM_Philta.la
 
-libFSM_Philta_la_SOURCES = Philta.cpp
+libFSM_Philta_la_SOURCES = Philta.cpp Filters.cpp
 libFSM_Philta_la_CXXFLAGS = $(BM_CXXFLAGS)
 libFSM_Philta_la_LDFLAGS = $(BM_LIBS)
 

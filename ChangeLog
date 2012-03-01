@@ -1,3 +1,10 @@
+2012-03-01  Stefan Sauer  <ensonic@users.sf.net>
+
+	* FSM/Philta/Filters.cpp:
+	* FSM/Philta/Makefile.am:
+	* FSM/Philta/Filters.cpp (added):
+	  Add missing filter implementation.
+
 2012-02-24  Stefan Sauer  <ensonic@users.sf.net>
 
 	* Oomek/Aggressor/303.cpp:
