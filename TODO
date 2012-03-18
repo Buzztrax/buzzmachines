@@ -17,3 +17,6 @@ http://www.gnu.org/software/libtool/manual.html#Makefile-rules
    machine
 ** any tools to disassemble a win32 dll (wine?)
 
+* tests
+** write a simple dlopen based test host
+** run it over all $top_builddir/*/*/.libs/*.so
