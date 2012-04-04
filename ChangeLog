@@ -1,3 +1,10 @@
+2012-04-04  Stefan Sauer  <ensonic@users.sf.net>
+
+	patch by: Joe Pea <trusktr@gmail.com>
+
+	* common/MachineInterface.h:
+	  Revert modifications from machineinterface
+
 2012-03-18  Stefan Sauer  <ensonic@users.sf.net>
 
 	* TODO:

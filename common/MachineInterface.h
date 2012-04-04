@@ -1,7 +1,7 @@
 // Copyright (C) 1997-2000 Oskari Tammelin (ot@iki.fi)
 // This header file may be used to write _freeware_ DLL "machines" for Buzz
 // Using it for anything else is not allowed without a permission from the author
-   
+
 #ifndef __MACHINE_INTERFACE_H
 #define __MACHINE_INTERFACE_H
 
@@ -10,7 +10,7 @@
 #include <string.h>
 
 #define MI_VERSION				15
-  
+
 typedef unsigned char byte;
 typedef unsigned short word;
 typedef unsigned long dword;
@@ -21,7 +21,7 @@ double const PI = 3.14159265358979323846;
 #define MAX_BUFFER_LENGTH		256			// in number of samples
 
 // machine types
-#define MT_MASTER				0 
+#define MT_MASTER				0
 #define MT_GENERATOR			1
 #define MT_EFFECT				2
 
@@ -40,10 +40,10 @@ double const PI = 3.14159265358979323846;
 // CMachineParameter flags
 #define MPF_WAVE				1   // refers to a wavetable slot
 #define MPF_STATE				2	// is continuously changing (not used for notes and triggers)
-#define MPF_TICK_ON_EDIT		4	// causes the host to send you a Tick() message immediatly after the user enters a value in the pattern or machine editor			
+#define MPF_TICK_ON_EDIT		4	// causes the host to send you a Tick() message immediatly after the user enters a value in the pattern or machine editor
 
 // CMachineInfo flags
-#define MIF_MONO_TO_STEREO		(1<<0)
+#define MIF_MONO_TO_STEREO		(1<<0)		// used for effect machines that can expand mono inputs to stereo
 #define MIF_PLAYS_WAVES			(1<<1)
 #define MIF_USES_LIB_INTERFACE	(1<<2)
 #define MIF_USES_INSTRUMENTS	(1<<3)
@@ -67,7 +67,7 @@ enum BEventType
 {
 	DoubleClickMachine,					// return true to ignore default handler (open parameter dialog), no parameters
 	gDeleteMachine						// data = CMachine *, param = ThisMac
-		
+
 };
 
 class CMachineInterface;
@@ -107,12 +107,12 @@ public:
 class CMasterInfo
 {
 public:
-	int BeatsPerMin;		// [16..500] 	
+	int BeatsPerMin;		// [16..500]
 	int TicksPerBeat;		// [1..32]
 	int SamplesPerSec;		// usually 44100, but machines should support any rate from 11050 to 96000
-	int SamplesPerTick;		// (int)((60 * SPS) / (BPM * TPB))  
+	int SamplesPerTick;		// (int)((60 * SPS) / (BPM * TPB))
 	int PosInTick;			// [0..SamplesPerTick-1]
-	float TicksPerSec;		// (float)SPS / (float)SPT  
+	float TicksPerSec;		// (float)SPS / (float)SPT
 
 };
 
@@ -143,25 +143,25 @@ public:
 // oscillator waveforms (used with GetOscillatorTable function)
 #define OWF_SINE			0
 #define OWF_SAWTOOTH		1
-#define OWF_PULSE			2		// square 
+#define OWF_PULSE			2		// square
 #define OWF_TRIANGLE		3
-#define OWF_NOISE			4	
+#define OWF_NOISE			4
 #define OWF_303_SAWTOOTH	5
 
 // each oscillator table contains one full cycle of a bandlimited waveform at 11 levels
-// level 0 = 2048 samples  
+// level 0 = 2048 samples
 // level 1 = 1024 samples
 // level 2 = 512 samples
-// ... 
-// level 9 = 8 samples 
+// ...
+// level 9 = 8 samples
 // level 10 = 4 samples
 // level 11 = 2 samples
 //
-// the waves are normalized to 16bit signed integers   
+// the waves are normalized to 16bit signed integers
 //
-// GetOscillatorTable retusns pointer to a table 
-// GetOscTblOffset returns offset in the table for a specified level 
- 
+// GetOscillatorTable retusns pointer to a table
+// GetOscTblOffset returns offset in the table for a specified level
+
 inline int GetOscTblOffset(int const level)
 {
 	assert(level >= 0 && level <= 10);
@@ -179,14 +179,14 @@ class CMachineInfo;
 class CMICallbacks
 {
 public:
-//	virtual ~CMICallbacks() {}
+	//virtual ~CMICallbacks() {}
 	virtual CWaveInfo const *GetWave(int const i);
 	virtual CWaveLevel const *GetWaveLevel(int const i, int const level);
 	virtual void MessageBox(char const *txt);
 	virtual void Lock();
 	virtual void Unlock();
-	virtual int GetWritePos();			
-	virtual int GetPlayPos();	
+	virtual int GetWritePos();
+	virtual int GetPlayPos();
 	virtual float *GetAuxBuffer();
 	virtual void ClearAuxBuffer();
 	virtual int GetFreeWave();
@@ -200,7 +200,7 @@ public:
 	virtual bool GetEnvPoint(int const wave, int const env, int const i, word &x, word &y, int &flags);
 
 	virtual CWaveLevel const *GetNearestWaveLevel(int const i, int const note);
-	
+
 	// pattern editing
 	virtual void SetNumberOfTracks(int const n);
 	virtual CPattern *CreatePattern(char const *name, int const length);
@@ -210,27 +210,27 @@ public:
 	virtual void DeletePattern(CPattern *ppat);
 	virtual int GetPatternData(CPattern *ppat, int const row, int const group, int const track, int const field);
 	virtual void SetPatternData(CPattern *ppat, int const row, int const group, int const track, int const field, int const value);
- 		
+
 	// sequence editing
 	virtual CSequence *CreateSequence();
 	virtual void DeleteSequence(CSequence *pseq);
-	
 
-	// special ppat values for GetSequenceData and SetSequenceData 
+
+	// special ppat values for GetSequenceData and SetSequenceData
 	// empty = NULL
 	// <break> = (CPattern *)1
 	// <mute> = (CPattern *)2
 	// <thru> = (CPattern *)3
 	virtual CPattern *GetSequenceData(int const row);
 	virtual void SetSequenceData(int const row, CPattern *ppat);
-		
+
 
 	// buzz v1.2 (MI_VERSION 15) additions start here
-	
+
 	virtual void SetMachineInterfaceEx(CMachineInterfaceEx *pex);
 	// group 1=global, 2=track
 	virtual void ControlChange__obsolete__(int group, int track, int param, int value);						// set value of parameter
-	
+
 	// direct calls to audiodriver, used by WaveInput and WaveOutput
 	// shouldn't be used for anything else
 	virtual int ADGetnumChannels(bool input);
@@ -269,9 +269,9 @@ class CLibInterface
 {
 public:
 //	virtual ~CLibInterface() {}
-	virtual void GetInstrumentList(CMachineDataOutput *pout) {}			
-	
-	// make some space to vtable so this interface can be extended later 
+	virtual void GetInstrumentList(CMachineDataOutput *pout) {}
+
+	// make some space to vtable so this interface can be extended later
 	virtual void Dummy1() {}
 	virtual void Dummy2() {}
 	virtual void Dummy3() {}
@@ -312,15 +312,15 @@ public:
 class CMachineInfo
 {
 public:
-	int Type;								// MT_GENERATOR or MT_EFFECT, 
+	int Type;								// MT_GENERATOR or MT_EFFECT,
 	int Version;							// MI_VERSION
 											// v1.2: high word = internal machine version
 											// higher version wins if two copies of machine found
-	int Flags;				
-	int minTracks;							// [0..256] must be >= 1 if numTrackParameters > 0 
-	int maxTracks;							// [minTracks..256] 
-	int numGlobalParameters;				
-	int numTrackParameters;					
+	int Flags;
+	int minTracks;							// [0..256] must be >= 1 if numTrackParameters > 0
+	int maxTracks;							// [minTracks..256]
+	int numGlobalParameters;
+	int numTrackParameters;
 	CMachineParameter const **Parameters;
 	int numAttributes;
 	CMachineAttribute const **Attributes;
@@ -409,16 +409,16 @@ public:
 
 
 public:
-	// initialize these members in the constructor 
+	// initialize these members in the constructor
 	void *GlobalVals;
 	void *TrackVals;
 	int *AttrVals;
-		
-	// these members are initialized by the 
+
+	// these members are initialized by the
 	// engine right after it calls CreateMachine()
 	// don't touch them in the constructor
 	CMasterInfo *pMasterInfo;
-	CMICallbacks *pCB;					
+	CMICallbacks *pCB;
 
 };
 
@@ -433,7 +433,7 @@ public:
 	virtual void GetSubMenu(int const i, CMachineDataOutput *pout) {}
 
 	virtual void AddInput(char const *macname, bool stereo) {}	// called when input is added to a machine
-	virtual void DeleteInput(char const *macename) {}			
+	virtual void DeleteInput(char const *macename) {}
 	virtual void RenameInput(char const *macoldname, char const *macnewname) {}
 
 	virtual void Input(float *psamples, int numsamples, float amp) {} // if MIX_DOES_INPUT_MIXING
@@ -444,7 +444,7 @@ public:
 
 	virtual bool HandleInput(int index, int amp, int pan) { return false; }
 
-	// make some space to vtable so this interface can be extended later 
+	// make some space to vtable so this interface can be extended later
 	virtual void Dummy1() {}
 	virtual void Dummy2() {}
 	virtual void Dummy3() {}
@@ -479,7 +479,7 @@ public:
 	virtual void Dummy32() {}
 
 };
- 
+
 class CMILock
 {
 public:
@@ -493,42 +493,36 @@ private:
 
 #ifdef STATIC_BUILD
 
-	typedef CMachineInfo const *(__attribute__((__cdecl__)) *GET_INFO)();	
-    typedef CMachineInterface *(__attribute__((__cdecl__)) *CREATE_MACHINE)();										
-	extern void RegisterMachine(CMachineInfo const *pmi, GET_INFO gi, CREATE_MACHINE cm);	
+	typedef CMachineInfo const *(__cdecl *GET_INFO)();
+	typedef CMachineInterface *(__cdecl *CREATE_MACHINE)();
 
-#define DLL_EXPORTS(INIT_FUNC)																			\
-	static CMachineInfo const * __attribute__((__cdecl__)) GetInfo(void) { return &MacInfo; }			\
-	static CMachineInterface * __attribute__((__cdecl__)) CreateMachine(void) { return new mi; }		\
+	extern void RegisterMachine(CMachineInfo const *pmi, GET_INFO gi, CREATE_MACHINE cm);
+
+#define DLL_EXPORTS(INIT_FUNC) \
+	static CMachineInfo const * __cdecl GetInfo() { return &MacInfo; } \
+	static CMachineInterface * __cdecl CreateMachine() { return new mi; } \
 	void INIT_FUNC() { RegisterMachine(&MacInfo, GetInfo, CreateMachine); }
 
 
-#define DLL_EXPORTS_NS(NS, INIT_FUNC) /* namespaced version */ 											\
-	static CMachineInfo const * __attribute__((__cdecl__)) GetInfo(void) { return &NS::MacInfo; }		\
-	static CMachineInterface * __attribute__((__cdecl__)) CreateMachine(void) { return new NS::mi; }	\
+#define DLL_EXPORTS_NS(NS, INIT_FUNC) /* namespaced version */ \
+	static CMachineInfo const * __cdecl GetInfo() { return &NS::MacInfo; } \
+	static CMachineInterface * __cdecl CreateMachine() { return new NS::mi; } \
 	void INIT_FUNC() { RegisterMachine(&NS::MacInfo, GetInfo, CreateMachine); }
-
-
 
 #else
 
 #ifdef WIN32
 #define DLL_EXPORTS extern "C" { \
-        CMachineInfo const * __attribute__((__cdecl__)) GetInfo(void) { \
-            return &MacInfo; \
-        } \
-        CMachineInterface * __attribute__((__cdecl__)) CreateMachine(void) { \
-            return new mi; \
-        } \
+        __declspec(dllexport) CMachineInfo const * __cdecl GetInfo() { return &MacInfo; } \
+        __declspec(dllexport) CMachineInterface * __cdecl CreateMachine() { return new mi; } \
 	}
 #else
 #define DLL_EXPORTS extern "C" { \
-        CMachineInfo const *GetInfo(void) { return &MacInfo; } \
-        CMachineInterface *CreateMachine(void) { return new mi; } \
+        CMachineInfo const *GetInfo() { return &MacInfo; } \
+        CMachineInterface *CreateMachine() { return new mi; } \
 	}
 #endif /* WIN32 */
 
 #endif /* STATIC_BUILD */
 
 #endif /* __MACHINE_INTERFACE_H */
-
