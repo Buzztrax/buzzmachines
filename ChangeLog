@@ -1,3 +1,13 @@
+2012-04-05  Stefan Sauer  <ensonic@users.sf.net>
+
+	* Geonik/BuzzMachines/Mandpluk.h:
+	  Convert the header to use short values instead of the hex
+	  representation of the 2-complements (which contains values that are
+	  out of of range for short).
+
+	* Geonik/BuzzMachines/PrimiFun.cpp:
+	  Fix struct<->class warning.
+
 2012-04-04  Stefan Sauer  <ensonic@users.sf.net>
 
 	patch by: Joe Pea <trusktr@gmail.com>

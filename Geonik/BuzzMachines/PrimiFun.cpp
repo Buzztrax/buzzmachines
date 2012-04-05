@@ -45,7 +45,7 @@ typedef unsigned char  ubyte;
  */
 
 class				 mi;
-struct				 CTrack;
+class				 CTrack;
 
 int					 g_iSampleRate;
 CMachineInterface	*dspcMachine;
