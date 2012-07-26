@@ -1051,7 +1051,6 @@ mi::mi()
   for (int i=0; i<38; i++) {
     ((byte *)&gvalAct)[i]=pParameters[i]->DefValue;
   }
-  fflush(stdout);
   for (int c=0; c<8; c++)
     for (int i=0; i<2048; i++)
       userwaves[c][i]=0.0f,
