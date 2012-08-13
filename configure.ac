@@ -22,6 +22,7 @@ AC_PROG_LN_S
 # We don't want *.a files
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
+AM_PROG_AR
 
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-lmsvcrt':

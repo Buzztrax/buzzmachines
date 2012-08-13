@@ -1,3 +1,8 @@
+2012-08-13  Stefan Sauer  <ensonic@users.sf.net>
+
+	* configure.ac:
+	  Add check for AR to fix the build.
+
 2012-07-26  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/Infector/Infector.cpp:
