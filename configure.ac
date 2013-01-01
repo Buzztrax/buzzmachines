@@ -4,9 +4,12 @@ dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.61)
 AC_INIT([buzzmachines],[20100517],[buzztard-devel@lists.sourceforge.net])
 AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options])
-AC_CONFIG_SRCDIR([ChangeLog])
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_SRCDIR([README])
+AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_MACRO_DIR(m4)
+LT_PREREQ([2.2])
+# We don't want *.a files
+LT_INIT([disable-static])
 
 # Support silent build rules, requires at least automake-1.11. Disable
 # by either passing --disable-silent-rules to configure or passing V=1
@@ -18,11 +21,7 @@ AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
-
-# We don't want *.a files
-AC_DISABLE_STATIC
-AC_PROG_LIBTOOL
-AM_PROG_AR
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-lmsvcrt':
