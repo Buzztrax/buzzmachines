@@ -1,5 +1,19 @@
 2013-01-06  Stefan Sauer  <ensonic@users.sf.net>
 
+	* FSM/Makefile.am:
+	* FSM/WahManPro2/FSM_WahManPro2.prs:
+	* FSM/WahManPro2/Makefile.am:
+	* FSM/WahManPro2/WahManPro2.cpp:
+	* configure.ac:
+	* FSM/WahManPro2/FSM_WahManPro2.prs (svn:mime-type):
+	* FSM/WahManPro2 (added):
+	* FSM/WahManPro2/FSM_WahManPro2.prs (added):
+	* FSM/WahManPro2/Makefile.am (added):
+	* FSM/WahManPro2/WahManPro2.cpp (added):
+	  Also port WahManPro2 (which comes with a preset).
+
+2013-01-06  Stefan Sauer  <ensonic@users.sf.net>
+
 	* FSM/Chorus/Chorus.cpp:
 	  Fix rounding by using the right version from dspchips.h.
 
