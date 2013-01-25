@@ -1,5 +1,14 @@
 2013-01-25  Stefan Sauer  <ensonic@users.sf.net>
 
+	* FSM/Makefile.am:
+	* FSM/WahPro2/Makefile.am:
+	* FSM/WahPro2/Makefile.am (added):
+	* FSM/WahPro2/WahManPro2.cpp (deleted):
+	* FSM/WahPro2/FSM_WahManPro2.prs (deleted):
+	  Fix machine name.
+
+2013-01-25  Stefan Sauer  <ensonic@users.sf.net>
+
 	* Matilde/Tracker/Makefile.am:
 	  make relative links.
 
