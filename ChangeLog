@@ -1,3 +1,8 @@
+2013-01-25  Stefan Sauer  <ensonic@users.sf.net>
+
+	* Matilde/Tracker/Makefile.am:
+	  make relative links.
+
 2013-01-06  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/Makefile.am:
