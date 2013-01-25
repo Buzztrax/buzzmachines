@@ -8,11 +8,11 @@ headers=`ls 2>/dev/null *.hpp || true`
 
 libadd=""
 
-grep >/dev/null "dsplib.h" *.cpp
+grep -i >/dev/null "dsplib.h" *.cpp
 if [ "$?" == "0" ]; then
   libadd="$libadd \$(top_builddir)/common/dsplib/libdsplib.la"
 fi 
-grep >/dev/null "mdk.h" *.cpp
+grep -i >/dev/null "mdk.h" *.cpp
 if [ "$?" == "0" ]; then
   libadd="$libadd \$(top_builddir)/common/mdk/libmdk.la"
 fi 
