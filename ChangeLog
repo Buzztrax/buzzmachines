@@ -1,5 +1,19 @@
 2013-01-25  Stefan Sauer  <ensonic@users.sf.net>
 
+	* FSM/Chorus/Chorus.cpp:
+	* FSM/Chorus2/Chorus2.cpp:
+	* FSM/PanzerDelay/PanzerDelay.cpp:
+	* FSM/Philta/Philta.cpp:
+	* FSM/ScatMan/ScatMan.cpp:
+	* FSM/ScrapMan/ScrapMan.cpp:
+	* FSM/SprayMan/SprayMan.cpp:
+	* FSM/TapMan/TapMan.cpp:
+	* FSM/TunaMan/TunaMan.cpp:
+	* FSM/WahManPro/WahManPro.cpp:
+	  Remove unused variable.
+
+2013-01-25  Stefan Sauer  <ensonic@users.sf.net>
+
 	* gen_makefile_am.sh:
 	  Handle incasesensitive names.
 

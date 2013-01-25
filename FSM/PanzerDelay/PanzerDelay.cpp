@@ -9,8 +9,6 @@
 #include <mdk/mdk.h>
 #include "../dspchips/DSPChips.h"
 
-double const SilentEnough = log(1.0 / 32768);
-
 #define MAX_TAPS        4
 // 200 ms at 44100 Hz
 #define MAX_DELAY   131072

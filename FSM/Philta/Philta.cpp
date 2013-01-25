@@ -28,8 +28,6 @@
 #include <MachineInterface.h>
 #include "../dspchips/DSPChips.h"
 
-double const SilentEnough = log(1.0 / 32768);
-
 #define MAX_TAPS		1
 
 ///////////////////////////////////////////////////////////////////////////////////

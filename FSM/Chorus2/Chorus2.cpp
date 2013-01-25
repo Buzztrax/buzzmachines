@@ -31,8 +31,6 @@
 #include "../dspchips/DSPChips.h"
 
 
-double const SilentEnough = log(1.0 / 32768);
-
 #define MAX_TAPS		1
 #define MAX_DELAY   32768
 #define DELAY_MASK  32767

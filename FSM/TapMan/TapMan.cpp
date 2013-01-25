@@ -8,8 +8,6 @@
 #include <dsplib.h>
 #include "../dspchips/DSPChips.h"
 
-double const SilentEnough = log(1.0 / 32768);
-
 #define MAX_TAPS		8
 // 200 ms przy 44100 Hz
 #define MAX_DELAY   (44100*4+10)
