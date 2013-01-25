@@ -110,7 +110,7 @@ AC_CONFIG_FILES(Makefile \
     FSM/TunaMan/Makefile \
     FSM/WahMan/Makefile \
     FSM/WahManPro/Makefile \
-    FSM/WahManPro2/Makefile \
+    FSM/WahPro2/Makefile \
   Geonik/Makefile \
     Geonik/BuzzMachines/Makefile \
   Jeskola/Makefile \
