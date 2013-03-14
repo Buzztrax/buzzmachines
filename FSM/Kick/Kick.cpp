@@ -256,7 +256,8 @@ void mi::Destructor()
     this->~mi();
 }
 
-#define LFOPAR2TIME(value) (0.05*pow(800.0,value/255.0))
+// unused
+//#define LFOPAR2TIME(value) (0.05*pow(800.0,value/255.0))
 
 char const *mi::DescribeValue(int const param, int const value)
 {
@@ -329,6 +330,7 @@ void mi::SetNumTracks(int const n)
 
 void mi::InitTrack(int const i)
 {
+    Tracks[i].LeftOver = 0;
     Tracks[i].EnvPhase = 0;
     Tracks[i].OscPhase = 0;
     Tracks[i].CurVolume = 0;
@@ -356,22 +358,23 @@ void mi::Tick()
 
 #pragma optimize ("a", on) 
 
-#define INTERPOLATE(pos,start,end) ((start)+(pos)*((end)-(start)))
+// unused
+//#define INTERPOLATE(pos,start,end) ((start)+(pos)*((end)-(start)))
 
-static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
+static bool DoWork(float *pout, mi *pmi, int c, CTrack *trk)
 {
-    trk->OscPhase=fmod(trk->OscPhase,1.0);
     float Ratio=trk->EndFrq/trk->StartFrq;
-    if (trk->AntiClick<-64000) trk->AntiClick=-64000;
-    if (trk->AntiClick>=64000) trk->AntiClick=64000;
     int i=0;
     double xSin=trk->xSin, xCos=trk->xCos;
     double dxSin=trk->dxSin, dxCos=trk->dxCos;
-    float LVal=0;
+    float LVal=0.0f;
     float AClick=trk->AntiClick;
+    if (AClick<-32000.0) AClick=-32000.0;
+    else if (AClick>=32000.0) AClick=32000.0;
     float Amp=trk->Amp;
     float MulAmp=trk->MulAmp;
     bool amphigh=Amp>=16;
+
     while(i<c)
     {
         if (trk->LeftOver<=0)
@@ -382,24 +385,28 @@ static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
             trk->Frequency=(float)(trk->StartFrq*pow(Ratio,__max(pmi->aval.Floor/100.0,ShapedPoint)));
             if (trk->Frequency>10000) trk->CurVolume=0.0;
             if (trk->CurVolume<1) trk->CurVolume=0.0;
-            trk->Amp=Amp=(float)(trk->CurVolume*pow(1.0/256.0,trk->ADecay*trk->EnvPhase/5000.0));
-            if (Amp<16 && fabs(AClick)<256)
-                return amphigh;
+            Amp=(float)(trk->CurVolume*pow(1.0/256.0,trk->ADecay*trk->EnvPhase/5000.0));
+            
+            if ((Amp<16) && (fabs(AClick)<256)) {
+                break;
+            }
 
+            trk->OscPhase=fmod(trk->OscPhase,1.0);
             trk->MulAmp=MulAmp=(float)pow(1.0/256.0,trk->ADecay/5000.0);
             xSin=(float)sin(2.0*3.141592665*trk->OscPhase);
             xCos=(float)cos(2.0*3.141592665*trk->OscPhase);
             dxSin=(float)sin(2.0*3.141592665*trk->Frequency/44100.0);
             dxCos=(float)cos(2.0*3.141592665*trk->Frequency/44100.0);
-            LVal=0.0;
+            LVal=0.0f;
             trk->dxSin=dxSin, trk->dxCos=dxCos;
         }
-        int max=min(i+trk->LeftOver,c);
+        int end=i+trk->LeftOver;
+        end=__min(end,c);
         if (Amp)
         {
-            for (int j=i; j<max; j++)
+            for (int j=i; j<end; j++)
             {
-                pout[j]+=float(LVal=float(AClick+Amp*xSin));
+                pout[j]+=LVal=float(AClick+Amp*xSin);
                 double xSin2=double(xSin*dxCos+xCos*dxSin);
                 double xCos2=double(xCos*dxCos-xSin*dxSin);
                 xSin=xSin2;xCos=xCos2;
@@ -407,16 +414,16 @@ static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
                 AClick*=0.98f;
             }
         }
-        trk->OscPhase+=(max-i)*trk->Frequency/44100.0;
-        trk->EnvPhase+=max-i;
-        trk->LeftOver-=max-i;
-        i=max;
+        trk->OscPhase+=(end-i)*trk->Frequency/44100.0;
+        trk->EnvPhase+=end-i;
+        trk->LeftOver-=end-i;
+        i=end;
     }
     trk->xSin=xSin, trk->xCos=xCos;
     trk->LastValue=LVal;
     trk->AntiClick=AClick;
     trk->Amp=Amp;
-    return (trk->Amp>=16) || amphigh;
+    return (Amp>=16) || amphigh;
 }
 
 
@@ -425,7 +432,7 @@ static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
 
 bool mi::WorkTrack(CTrack *pt, float *pin, float *pout, int numsamples, int const mode)
 {
-    return DoWork(pin,pout,this,numsamples,pt);
+    return DoWork(pout,this,numsamples,pt);
 }
 
 bool mi::Work(float *psamples, int numsamples, int const mode)

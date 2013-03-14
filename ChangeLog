@@ -1,3 +1,9 @@
+2013-03-14  Stefan Sauer  <ensonic@users.sf.net>
+
+	* FSM/Kick/Kick.cpp:
+	  Fix badly places fmod, which could cause us running into bad audio in
+	  silent buffers. Also avoid names like max for vars (shadow function).
+
 2013-01-25  Stefan Sauer  <ensonic@users.sf.net>
 
 	* FSM/Chorus/Chorus.cpp:
