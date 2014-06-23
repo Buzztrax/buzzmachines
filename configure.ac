@@ -61,7 +61,7 @@ presetdir="\$(datadir)/Gear"
 AC_SUBST(presetdir)
 userdocdir="\$(datadir)/Gear"
 AC_SUBST(userdocdir)
-demosongdir="\$(datadir)/buzztard/songs/Gear"
+demosongdir="\$(datadir)/buzztrax/songs/Gear"
 AC_SUBST(demosongdir)
 
 # Compilation and Linker flags
