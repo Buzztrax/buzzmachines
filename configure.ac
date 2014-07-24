@@ -3,7 +3,7 @@ dnl $Id$
 dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.61)
 AC_INIT([buzzmachines],[20100517],[buzztrax-devel@lists.sourceforge.net])
-AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options foreign])
+AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options foreign subdir-objects])
 AC_CONFIG_SRCDIR([README.md])
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_MACRO_DIR(m4)
@@ -125,6 +125,7 @@ AC_CONFIG_FILES(Makefile \
   Ld/Makefile \
     Ld/Gate/Makefile \
     Ld/SLimit/Makefile \
+    Ld/VocXP/Makefile \
   MadBrain/Makefile \
     MadBrain/Dynamite6/Makefile \
     MadBrain/4fm2f/Makefile \
