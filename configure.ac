@@ -125,7 +125,6 @@ AC_CONFIG_FILES(Makefile \
   Ld/Makefile \
     Ld/Gate/Makefile \
     Ld/SLimit/Makefile \
-    Ld/VocXP/Makefile \
   MadBrain/Makefile \
     MadBrain/Dynamite6/Makefile \
     MadBrain/4fm2f/Makefile \
