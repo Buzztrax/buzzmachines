@@ -7,6 +7,7 @@ AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options foreign subdir-objects])
 AC_CONFIG_SRCDIR([README.md])
 AC_CONFIG_HEADERS(config.h)
 AC_CONFIG_MACRO_DIR(m4)
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 LT_PREREQ([2.2])
 # We don't want *.a files
 LT_INIT([disable-static])
@@ -21,7 +22,6 @@ AC_PROG_CXX
 AC_PROG_CC
 AC_PROG_INSTALL
 AC_PROG_LN_S
-m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 # Checks for libraries.
 # FIXME: Replace `main' with a function in `-lmsvcrt':
