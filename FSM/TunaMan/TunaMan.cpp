@@ -298,7 +298,7 @@ mi::mi()
 
 mi::~mi()
 {
-  delete Buffer;
+  delete[] Buffer;
 }
 
 #define LFOPAR2SAMPLE(value) (pow(2.0,(value-120)/30.0))
