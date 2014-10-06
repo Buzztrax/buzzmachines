@@ -2,7 +2,7 @@ dnl $Id$
 
 dnl Initialise the autoconf/automake tool
 AC_PREREQ(2.61)
-AC_INIT([buzzmachines],[20100517],[buzztrax-devel@lists.sourceforge.net])
+AC_INIT([buzzmachines],[20100517],[buzztrax-devel@buzztrax.org])
 AM_INIT_AUTOMAKE([-Wall -Werror check-news std-options foreign subdir-objects])
 AC_CONFIG_SRCDIR([README.md])
 AC_CONFIG_HEADERS(config.h)
