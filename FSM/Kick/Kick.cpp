@@ -383,11 +383,11 @@ static bool DoWork(float *pout, mi *pmi, int c, CTrack *trk)
             double EnvPoint=trk->EnvPhase*trk->TDecay/400.0;
             double ShapedPoint=pow(EnvPoint,trk->TShape*2);
             trk->Frequency=(float)(trk->StartFrq*pow(Ratio,__max(pmi->aval.Floor/100.0,ShapedPoint)));
-            if (trk->Frequency>10000) trk->CurVolume=0.0;
-            if (trk->CurVolume<1) trk->CurVolume=0.0;
+            if (trk->Frequency>10000 || trk->CurVolume<1) trk->CurVolume=0.0;
             Amp=(float)(trk->CurVolume*pow(1.0/256.0,trk->ADecay*trk->EnvPhase/5000.0));
             
             if ((Amp<16) && (fabs(AClick)<256)) {
+                Amp = 0.0;
                 break;
             }
 
