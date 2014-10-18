@@ -197,7 +197,7 @@ void CTrack::CalcCoeffs()
 
   float A,B;
 
-  float ncf=(float)(1.0/tan(3.1415926*cf/(double)sr));
+  float ncf=(float)(1.0/tan(M_PI*cf/(double)sr));
   A=fA*ncf;      // denormalization and taking into account the sampling frequency (prewarping for bilinear transform)
   B=fB*ncf*ncf;
   a0=1/(1+A+B);// calculation of digital filter coefficients (bilinear transform)
@@ -281,9 +281,9 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
 {
   pt->thevfactor=aval.thevfactor;
   if (ptval->lforate != paraLFORate.NoValue)
-    pt->DeltaPhase = (float)(2*3.1415926*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
+    pt->DeltaPhase = (float)(2*M_PI*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
   if (ptval->lfophase != paraLFOPhase.NoValue)
-    pt->LFOPhase = (float)(2*3.1415926*ptval->lfophase/128.0);
+    pt->LFOPhase = (float)(2*M_PI*ptval->lfophase/128.0);
   if (ptval->lfodepth!= paraModDepth.NoValue)
     pt->LFODepth = (float)(ptval->lfodepth);
   if (ptval->inertia!= paraInertia.NoValue)

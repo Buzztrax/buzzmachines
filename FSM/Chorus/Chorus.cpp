@@ -295,7 +295,7 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
 	if (ptval->moddepth != paraModDepth.NoValue)
 		pt->ModDepth = (float)(pMasterInfo->SamplesPerSec * ptval->moddepth/10000.0);
 	if (ptval->lforate != paraLFORate.NoValue)
-		pt->DeltaPhase = (float)(2*3.1415926*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
+		pt->DeltaPhase = (float)(2*M_PI*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
   if (ptval->wetout != paraWetOut.NoValue)
     pt->WetOut = ptval->wetout?(float)pow(2.0,(ptval->wetout/10.0-24.0)/6.0):(float)0.0;
 	if (ptval->feedback != paraFeedback.NoValue)
@@ -417,7 +417,7 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
     // trk->Phase+=trk->DeltaPhase;
     nPos=(nPos+1)&DELAY_MASK;
   }
-  trk->Phase=fmod(trk->Phase+c*trk->DeltaPhase,2*3.141592665);
+  trk->Phase=fmod(trk->Phase+c*trk->DeltaPhase,2*M_PI);
   //if (last) pmi->Pos=nPos;
 }
 

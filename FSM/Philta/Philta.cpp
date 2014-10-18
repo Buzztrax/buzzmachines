@@ -346,7 +346,7 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
 	if (ptval->lforate != paraLFORate.NoValue)
     pt->DeltaPhase=LfoRateToDeltaPhase(ptval->lfodepth,pMasterInfo->TicksPerSec,pMasterInfo->SamplesPerSec);
 	if (ptval->lfophase != paraLFOPhase.NoValue)
-		pt->LFOPhase = (float)(2*3.1415926*ptval->lfophase/128.0);
+		pt->LFOPhase = (float)(2*M_PI*ptval->lfophase/128.0);
 	if (ptval->lfodepth!= paraLFODepth.NoValue)
 		pt->LFODepth = (float)(ptval->lfodepth);
 	if (ptval->inertia!= paraInertia.NoValue)

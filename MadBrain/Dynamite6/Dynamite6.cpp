@@ -1046,8 +1046,8 @@ void pipe::tick()
 		else
 			feedback = (pv.feedback/32768.0)-1.0;
 
-		sin_cache = sin(3.14159268*(pv.feedback-32768)/32768.0);
-		cos_cache = cos(3.14159268*(pv.feedback-32768)/32768.0);
+		sin_cache = sin(M_PI*(pv.feedback-32768)/32768.0);
+		cos_cache = cos(M_PI*(pv.feedback-32768)/32768.0);
 	}
 
 	if (pv.filter != 0)

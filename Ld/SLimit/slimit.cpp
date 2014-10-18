@@ -198,7 +198,7 @@ void mi::MDKInit(CMachineDataInput * const pi)
 	output = 1.0;
 
 	for(int i = 0; i < WINDOWLEN; i++) {
-		w[i] = cos((double)(i+1) * 3.14159265 / (double)(WINDOWLEN+1)) * 0.5 + 0.5;
+		w[i] = cos((double)(i+1) * M_PI / (double)(WINDOWLEN+1)) * 0.5 + 0.5;
 	}
 
 	rp = WINDOWLEN - 1;
@@ -238,7 +238,7 @@ void mi::Tick()
 		release = exp(-1.0/(releasems*(44100.0/1000.0)));
 
 		for(int i = 0; i < WINDOWLEN; i++) {
-			rw[i] = release * pow(1 / release, -cos((double)(i+1) * 0.5 * 3.14159265 / (double)(WINDOWLEN+1)) + 1);
+			rw[i] = release * pow(1 / release, -cos((double)(i+1) * 0.5 * M_PI / (double)(WINDOWLEN+1)) + 1);
 		}
 	}
 }

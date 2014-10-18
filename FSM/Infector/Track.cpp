@@ -226,9 +226,9 @@ void CTrack::DoLFO(mi *pmi, int c)
 
   float DeltaPhase;
   if (pmi->gvalAct.vLFORate<240)
-    DeltaPhase = (float)(2*3.1415926*LFOPAR2TIME(pmi->gvalAct.vLFORate)/pmi->pMasterInfo->SamplesPerSec);
+    DeltaPhase = (float)(2*M_PI*LFOPAR2TIME(pmi->gvalAct.vLFORate)/pmi->pMasterInfo->SamplesPerSec);
   else
-    DeltaPhase = (float)(2*3.1415926*(float(pmi->pMasterInfo->TicksPerSec))/(times[pmi->gvalAct.vLFORate-240]*pmi->pMasterInfo->SamplesPerSec));
+    DeltaPhase = (float)(2*M_PI*(float(pmi->pMasterInfo->TicksPerSec))/(times[pmi->gvalAct.vLFORate-240]*pmi->pMasterInfo->SamplesPerSec));
   LFOPhase+=c*DeltaPhase;
   if (LFOPhase>1024*PI)
     LFOPhase-=float(1024*PI);
@@ -237,9 +237,9 @@ void CTrack::DoLFO(mi *pmi, int c)
   CurLFO2=(float)(inrLFO2.Process(float(CalcLFO(pmi->gvalAct.vLFO2Shape,LFO2Phase)*30.0),c)/30.0);
 
   if (pmi->gvalAct.vLFO2Rate<240)
-    DeltaPhase = (float)(2*3.1415926*LFOPAR2TIME(pmi->gvalAct.vLFO2Rate)/pmi->pMasterInfo->SamplesPerSec);
+    DeltaPhase = (float)(2*M_PI*LFOPAR2TIME(pmi->gvalAct.vLFO2Rate)/pmi->pMasterInfo->SamplesPerSec);
   else
-    DeltaPhase = (float)(2*3.1415926*(float(pmi->pMasterInfo->TicksPerSec))/(times[pmi->gvalAct.vLFO2Rate-240]*pmi->pMasterInfo->SamplesPerSec));
+    DeltaPhase = (float)(2*M_PI*(float(pmi->pMasterInfo->TicksPerSec))/(times[pmi->gvalAct.vLFO2Rate-240]*pmi->pMasterInfo->SamplesPerSec));
   LFO2Phase+=c*DeltaPhase;
   if (LFO2Phase>1024*PI)
     LFO2Phase-=float(1024*PI);

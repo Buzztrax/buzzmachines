@@ -393,10 +393,10 @@ static bool DoWork(float *pout, mi *pmi, int c, CTrack *trk)
 
             trk->OscPhase=fmod(trk->OscPhase,1.0);
             trk->MulAmp=MulAmp=(float)pow(1.0/256.0,trk->ADecay/5000.0);
-            xSin=(float)sin(2.0*3.141592665*trk->OscPhase);
-            xCos=(float)cos(2.0*3.141592665*trk->OscPhase);
-            dxSin=(float)sin(2.0*3.141592665*trk->Frequency/44100.0);
-            dxCos=(float)cos(2.0*3.141592665*trk->Frequency/44100.0);
+            xSin=(float)sin(2.0*M_PI*trk->OscPhase);
+            xCos=(float)cos(2.0*M_PI*trk->OscPhase);
+            dxSin=(float)sin(2.0*M_PI*trk->Frequency/44100.0);
+            dxCos=(float)cos(2.0*M_PI*trk->Frequency/44100.0);
             LVal=0.0f;
             trk->dxSin=dxSin, trk->dxCos=dxCos;
         }

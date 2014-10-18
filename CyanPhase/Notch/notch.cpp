@@ -394,7 +394,7 @@ void mi::FixedFilterMe ()
 				if (fixedbw1 >= tfixedbw1) fixedbw1 = tfixedbw1;
 			};
 
-			omega = 2.0f * 3.141592654f * fixedfreq1 / pMasterInfo->SamplesPerSec;
+			omega = 2.0f * M_PI * fixedfreq1 / pMasterInfo->SamplesPerSec;
 			sn = (float)sin(omega); cs = (float)cos(omega);
 			alpha = sn * sinh( pow( fixedbw1 / 2000.0, 4.0) * 4.0 + 0.1 * omega/sn);
 			b0 =   1.0f;
@@ -430,7 +430,7 @@ void mi::FixedFilterMe ()
 				if (fixedbw2 >= tfixedbw2) fixedbw2 = tfixedbw2;
 			};
 
-			omega = 2.0f * 3.141592654f * fixedfreq2 / pMasterInfo->SamplesPerSec;
+			omega = 2.0f * M_PI * fixedfreq2 / pMasterInfo->SamplesPerSec;
 			sn = (float)sin(omega); cs = (float)cos(omega);
 			alpha = sn * sinh( pow( fixedbw2 / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 			b0 =   1.0f;
@@ -459,7 +459,7 @@ void mi::FixedFilterMe ()
 		curlfofreq = sin(phase1) * lfoamp1 + lfomid1;
 		curlfobw = sin(phase2) * lfoamp2 + lfomid2;
 
-		omega = 2.0f * 3.141592654f * curlfofreq / pMasterInfo->SamplesPerSec;
+		omega = 2.0f * M_PI * curlfofreq / pMasterInfo->SamplesPerSec;
 		sn = (float)sin(omega); cs = (float)cos(omega);
 		alpha = sn * sinh( pow( curlfobw / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 		b0 =   1.0f;
@@ -601,7 +601,7 @@ void mi::MDKInit(CMachineDataInput * const pi)
 	rbx1=0.0f; rby1=0.0f; rbx2=0.0f; rby2=0.0f;
 	rcx1=0.0f; rcy1=0.0f; rcx2=0.0f; rcy2=0.0f;
 
-	omega = 2.0f * 3.141592654f * fixedfreq1 / pMasterInfo->SamplesPerSec;
+	omega = 2.0f * M_PI * fixedfreq1 / pMasterInfo->SamplesPerSec;
 	sn = (float)sin(omega); cs = (float)cos(omega);
 	alpha = sn * sinh( pow( fixedbw1 / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 	b0 =   1.0f;
@@ -617,7 +617,7 @@ void mi::MDKInit(CMachineDataInput * const pi)
 	coefsTab1[3] = -a1/a0;
 	coefsTab1[4] = -a2/a0;
 
-	omega = 2.0f * 3.141592654f * fixedfreq2 / pMasterInfo->SamplesPerSec;
+	omega = 2.0f * M_PI * fixedfreq2 / pMasterInfo->SamplesPerSec;
 	sn = (float)sin(omega); cs = (float)cos(omega);
 	alpha = sn * sinh( pow( fixedbw2 / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 	b0 =   1.0f;
@@ -633,7 +633,7 @@ void mi::MDKInit(CMachineDataInput * const pi)
 	coefsTab2[3] = -a1/a0;
 	coefsTab2[4] = -a2/a0;
 	
-	omega = 2.0f * 3.141592654f * fixedfreq1 / pMasterInfo->SamplesPerSec;
+	omega = 2.0f * M_PI * fixedfreq1 / pMasterInfo->SamplesPerSec;
 	sn = (float)sin(omega); cs = (float)cos(omega);
 	alpha = sn * sinh( pow( fixedbw1 / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 	b0 =   1.0f;
@@ -1078,7 +1078,7 @@ void mi::Command(int const i)
 		rbx1=0.0f; rby1=0.0f; rbx2=0.0f; rby2=0.0f;
 		rcx1=0.0f; rcy1=0.0f; rcx2=0.0f; rcy2=0.0f;
 
-		omega = 2.0f * 3.141592654f * fixedfreq1 / pMasterInfo->SamplesPerSec;
+		omega = 2.0f * M_PI * fixedfreq1 / pMasterInfo->SamplesPerSec;
 		sn = (float)sin(omega); cs = (float)cos(omega);
 		alpha = sn * sinh( pow( fixedbw1 / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 		b0 =   1.0f;
@@ -1094,7 +1094,7 @@ void mi::Command(int const i)
 		coefsTab1[3] = -a1/a0;
 		coefsTab1[4] = -a2/a0;
 
-		omega = 2.0f * 3.141592654f * fixedfreq2 / pMasterInfo->SamplesPerSec;
+		omega = 2.0f * M_PI * fixedfreq2 / pMasterInfo->SamplesPerSec;
 		sn = (float)sin(omega); cs = (float)cos(omega);
 		alpha = sn * sinh( pow( fixedbw2 / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 		b0 =   1.0f;
@@ -1110,7 +1110,7 @@ void mi::Command(int const i)
 		coefsTab2[3] = -a1/a0;
 		coefsTab2[4] = -a2/a0;
 
-		omega = 2.0f * 3.141592654f * fixedfreq1 / pMasterInfo->SamplesPerSec;
+		omega = 2.0f * M_PI * fixedfreq1 / pMasterInfo->SamplesPerSec;
 		sn = (float)sin(omega); cs = (float)cos(omega);
 		alpha = sn * sinh( pow( fixedbw1 / 2000.0f, 4.0f)*4.0 + 0.1 * omega/sn);
 		b0 =   1.0f;

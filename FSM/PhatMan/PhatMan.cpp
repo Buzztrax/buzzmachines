@@ -364,7 +364,7 @@ void mi::TickTrack(CTrack *pt, tvals *ptval)
         pt->ModDepth = (float)(pMasterInfo->SamplesPerSec * ptval->moddepth/10000.0);
     if (ptval->lforate != paraLFORate.NoValue)
         pt->LFORate=ptval->lforate;
-//        pt->DeltaPhase = (float)(2*3.1415926*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
+//        pt->DeltaPhase = (float)(2*M_PI*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
     pt->DeltaPhase=(float)LfoRateToDeltaPhase(pt->LFORate,(int)pMasterInfo->TicksPerSec,(float)pMasterInfo->SamplesPerSec);
     if (ptval->wetout != paraWetOut.NoValue)
         pt->WetOut = ptval->wetout?(float)pow(2.0,(ptval->wetout/10.0-24.0)/6.0):(float)0.0;
@@ -485,7 +485,7 @@ static void DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
         }
         nPos=(nPos>=MAX_DELAY-1)?0:nPos+1;
     }
-    trk->Phase=fmod(trk->Phase+c*trk->DeltaPhase,2*3.141592665);
+    trk->Phase=fmod(trk->Phase+c*trk->DeltaPhase,2*M_PI);
 }
 
 
@@ -625,7 +625,7 @@ void mi::WorkTrackStereo(CTrack *trk, float *pin, float *pout, int numsamples, i
         trk->dsin=dsin, trk->dcos=dcos;
         trk->psin=psin, trk->pcos=pcos;
     }
-    trk->Phase=fmod(trk->Phase+numsamples*trk->DeltaPhase,2*3.141592665);
+    trk->Phase=fmod(trk->Phase+numsamples*trk->DeltaPhase,2*M_PI);
     trk->LastPos=pos;
     trk->LastPos2=pos2;
 }

@@ -898,7 +898,7 @@ void mi::SetFilter_4PoleLP(CChannel &c, float CurCutoff, float Resonance)
 
   float A,B;
 
-	float ncf=(float)(1.0/tan(3.1415926*cf/(double)sr));
+	float ncf=(float)(1.0/tan(M_PI*cf/(double)sr));
 	A=fA*ncf;      // denormalizacja i uwzgl�dnienie cz�stotliwo�ci pr�bkowania
 	B=fB*ncf*ncf;
   float a0=float(1/(1+A+B));
@@ -906,7 +906,7 @@ void mi::SetFilter_4PoleLP(CChannel &c, float CurCutoff, float Resonance)
 	c.Biquad.m_a1=a0*(2-B-B);
 	c.Biquad.m_a2=a0*(1-A+B);
 
-	ncf=(float)(1.0/tan(3.1415926*(cf*0.5)/(double)sr));
+	ncf=(float)(1.0/tan(M_PI*(cf*0.5)/(double)sr));
 	A=fA*ncf;      // denormalizacja i uwzgl�dnienie cz�stotliwo�ci pr�bkowania
 	B=fB*ncf*ncf;
   a0=float(1/(1+A+B));
@@ -1362,9 +1362,9 @@ void mi::DoLFO(int c)
   DestLFO=LFO;
   float DeltaPhase;
   if (gvalSteady.vLFORate<240)
-    DeltaPhase = (float)(2*3.1415926*LFOPAR2TIME(gvalSteady.vLFORate)/pMasterInfo->SamplesPerSec);
+    DeltaPhase = (float)(2*M_PI*LFOPAR2TIME(gvalSteady.vLFORate)/pMasterInfo->SamplesPerSec);
   else
-    DeltaPhase = (float)(2*3.1415926*(float(pMasterInfo->TicksPerSec))/(times[gvalSteady.vLFORate-240]*pMasterInfo->SamplesPerSec));
+    DeltaPhase = (float)(2*M_PI*(float(pMasterInfo->TicksPerSec))/(times[gvalSteady.vLFORate-240]*pMasterInfo->SamplesPerSec));
   LFOPhase+=c*DeltaPhase;
   if (LFOPhase>1024*PI)
     LFOPhase-=float(1024*PI);

@@ -225,7 +225,7 @@ void CTrack::CalcCoeffs1()
 
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
@@ -237,11 +237,11 @@ void CTrack::CalcCoeffs1()
 
   float A,B;
 
-	float ncf=(float)(1.0/tan(3.1415926*cf/(double)sr));
-	A=fA*ncf;      // denormalizacja i uwzglêdnienie czêstotliwoœci próbkowania
+	float ncf=(float)(1.0/tan(M_PI*cf/(double)sr));
+	A=fA*ncf;      // denormalizacja i uwzglï¿½dnienie czï¿½stotliwoï¿½ci prï¿½bkowania
 	B=fB*ncf*ncf;
   float a0=float(1/(1+A+B));
-	m_filter.m_b1=2*(m_filter.m_b2=m_filter.m_b0=a0);// obliczenie wspó³czynników filtru cyfrowego (przekszta³cenie dwuliniowe)
+	m_filter.m_b1=2*(m_filter.m_b2=m_filter.m_b0=a0);// obliczenie wspï¿½czynnikï¿½w filtru cyfrowego (przeksztaï¿½cenie dwuliniowe)
 	m_filter.m_a1=a0*(2-B-B);
 	m_filter.m_a2=a0*(1-A+B);
 }
@@ -250,7 +250,7 @@ void CTrack::CalcCoeffs2()
 {
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=8000) cf=8000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=8000) cf=8000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
@@ -263,7 +263,7 @@ void CTrack::CalcCoeffs3()
 {
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=8000) cf=8000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=8000) cf=8000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
@@ -278,7 +278,7 @@ void CTrack::CalcCoeffs4()
 
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=20000) cf=20000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=20000) cf=20000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
   float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
@@ -289,20 +289,20 @@ void CTrack::CalcCoeffs4()
 
   float A,B;
 
-	float ncf=(float)(1.0/tan(3.1415926*cf/(double)sr));
-	A=fA*ncf;      // denormalizacja i uwzglêdnienie czêstotliwoœci próbkowania
+	float ncf=(float)(1.0/tan(M_PI*cf/(double)sr));
+	A=fA*ncf;      // denormalizacja i uwzglï¿½dnienie czï¿½stotliwoï¿½ci prï¿½bkowania
 	B=fB*ncf*ncf;
   float a0=float(1/(1+A+B));
-	m_filter.m_b1=2*(m_filter.m_b2=m_filter.m_b0=a0);// obliczenie wspó³czynników filtru cyfrowego (przekszta³cenie dwuliniowe)
+	m_filter.m_b1=2*(m_filter.m_b2=m_filter.m_b0=a0);// obliczenie wspï¿½czynnikï¿½w filtru cyfrowego (przeksztaï¿½cenie dwuliniowe)
 	m_filter.m_a1=a0*(2-B-B);
 	m_filter.m_a2=a0*(1-A+B);
 
   cf=(float)(cf*(1.0-0.3*ThevFactor));
-  ncf=(float)(1.0/tan(3.1415926*(cf*0.7)/(double)sr));
-	A=fA*ncf;      // denormalizacja i uwzglêdnienie czêstotliwoœci próbkowania
+  ncf=(float)(1.0/tan(M_PI*(cf*0.7)/(double)sr));
+	A=fA*ncf;      // denormalizacja i uwzglï¿½dnienie czï¿½stotliwoï¿½ci prï¿½bkowania
 	B=fB*ncf*ncf;
   a0=float(1/(1+A+B));
-	m_filter2.m_b1=2*(m_filter2.m_b2=m_filter2.m_b0=a0);// obliczenie wspó³czynników filtru cyfrowego (przekszta³cenie dwuliniowe)
+	m_filter2.m_b1=2*(m_filter2.m_b2=m_filter2.m_b0=a0);// obliczenie wspï¿½czynnikï¿½w filtru cyfrowego (przeksztaï¿½cenie dwuliniowe)
 	m_filter2.m_a1=a0*(2-B-B);
 	m_filter2.m_a2=a0*(1-A+B);
 }
@@ -311,7 +311,7 @@ void CTrack::CalcCoeffs5()
 {
   float CutoffFreq=(float)(264*pow(32,CurCutoff/240.0));
 	float cf=(float)CutoffFreq;
-	if (cf>=8000) cf=8000; // próba wprowadzenia nieliniowoœci przy koñcu charakterystyki
+	if (cf>=8000) cf=8000; // prï¿½ba wprowadzenia nieliniowoï¿½ci przy koï¿½cu charakterystyki
 	if (cf<33) cf=(float)(33.0);
   // float ScaleResonance=(float)pow(cf/20000.0,0.5);
   //float ScaleResonance=(float)pow(cf/20000.0,ThevFactor);
@@ -428,9 +428,9 @@ char const *mi::DescribeValue(int const param, int const value)
 void mi::TickTrack(CTrack *pt, tvals *ptval)
 {
 	if (ptval->lforate != paraLFORate.NoValue)
-		pt->DeltaPhase = (float)(2*3.1415926*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
+		pt->DeltaPhase = (float)(2*M_PI*LFOPAR2TIME(ptval->lforate)/pMasterInfo->SamplesPerSec);
 	if (ptval->lfophase != paraLFOPhase.NoValue)
-		pt->LFOPhase = (float)(2*3.1415926*ptval->lfophase/128.0);
+		pt->LFOPhase = (float)(2*M_PI*ptval->lfophase/128.0);
 	if (ptval->lfodepth!= paraLFODepth.NoValue)
 		pt->LFODepth = (float)(ptval->lfodepth);
 	if (ptval->inertia!= paraInertia.NoValue)
