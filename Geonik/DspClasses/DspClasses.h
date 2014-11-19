@@ -128,7 +128,8 @@ _control87(_RC_DOWN,_MCW_RC);
 inline void DspFPUConfigReset(void) {
   _control87(__old_fpu_state,_MCW_RC);
 }
-#else
+#else /* WIN32 */
+#ifdef HAVE_FPU_CONTROL_H
 #include <fpu_control.h>
 
 static fpu_control_t __old_fpu_state=_FPU_DEFAULT;
@@ -145,5 +146,10 @@ inline void DspFPUConfigReset(void) {
   _FPU_SETCW(__old_fpu_state);
   __old_fpu_state=_FPU_DEFAULT;
 }
-
-#endif
+#else /* HAVE_FPU_CONTROL_H */
+inline void DspFPUConfigRoundDown(void) {
+}
+inline void DspFPUConfigReset(void) {
+}
+#endif /* ! HAVE_FPU_CONTROL_H */
+#endif /* ! WIN32 */

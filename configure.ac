@@ -40,6 +40,8 @@ AC_C_INLINE
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([floor memset pow sqrt strchr])
 
+AC_CHECK_HEADERS([fpu_control.h])
+
 dnl enable runtime debugging code (this is more like a developer build mode)
 AC_MSG_CHECKING(whether to enable runtime debugging code)
 AC_ARG_ENABLE(
