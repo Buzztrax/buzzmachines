@@ -9,17 +9,10 @@ Arguru (never released as buzzmachines)
   Compressor
   Distortion
   GoaSlider
-CyanPhase
-  Notch
 Fuzzpilz
   UnwieldyTracker
 Ld
-  Gate (build, but needs auxbus)
-Oomek
-  Exciter
-  Masterizer
-WhiteNoise
-  WhiteChorus
+  Gate (builds, but needs auxbus)
 
 = Filenames =
 Linux has case-sensitive filenames. Rename all *.CPP .H files to lowercase
@@ -106,7 +99,7 @@ lowercase).
   can do something useful in the future
 * whenever there is something windows specific that is not easily made portable,
   it would be good to wrap it with a #ifdef WIN32
-
+* replace uses of MessageBox by pCB->MessageBox and strip extra args
 
 = Testing =
 check if the plugin can be loaded:
