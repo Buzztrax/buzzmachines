@@ -1,8 +1,10 @@
-#include "../mdk/mdk.h"
-#include <windows.h>
 #include <math.h>
 #include <float.h>
 #include <assert.h>
+
+#include <MachineInterface.h>
+#include <mdk/mdk.h>
+
 #define ANTIDENORMAL 1.0E-12f
 
 #pragma optimize ("awy", on)
@@ -284,7 +286,7 @@ void mi::Command(int const i)
 	switch(i)
 	{
 	case 0:
-		MessageBox(NULL, "\n\nOomek's Exciter \n v1.1 (optimized & bugfixed)\n\nRadoslaw Dutkiewicz\nmailto:oomek@go2.pl\n\n","About Exciter",MB_OK|MB_SYSTEMMODAL);
+		pCB->MessageBox("\n\nOomek's Exciter \n v1.1 (optimized & bugfixed)\n\nRadoslaw Dutkiewicz\nmailto:oomek@go2.pl\n\n");
 		break;
 	default:
 		break;

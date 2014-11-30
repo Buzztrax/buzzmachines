@@ -1,1 +1,1 @@
-SUBDIRS = Aggressor
+SUBDIRS = Aggressor Exciter Masterizer

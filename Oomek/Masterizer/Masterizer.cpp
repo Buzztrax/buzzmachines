@@ -1,8 +1,10 @@
-#include "../mdk/mdk.h"
-#include <windows.h>
 #include <math.h>
 #include <float.h>
 #include <assert.h>
+#include <stdlib.h>
+
+#include <MachineInterface.h>
+#include <mdk/mdk.h>
 
 #define MAXDELAY	128
 #define ANTIDENORMAL 1.0E-10f
@@ -381,6 +383,7 @@ mi::~mi(){}
 void mi::MDKInit(CMachineDataInput *const pi)
 {
 	SetOutputMode(true);
+	int i;
 
 	LoLevelL = 1.0f;
 	MidLevelL = 1.0f;
@@ -390,7 +393,7 @@ void mi::MDKInit(CMachineDataInput *const pi)
 	MidLevelR = 1.0f;
 	HiLevelR = 1.0f;
 
-	for (int i=0; i<128; i++)
+	for (i=0; i<128; i++)
 	{
 		LoDelayL.DelayTable[i] = 0.0f;
 		LoDelayR.DelayTable[i] = 0.0f;
@@ -503,11 +506,11 @@ inline float mi::KneeValue(float in)
 
 	//	in = (float)( (exp((in * Knee) - Knee - 1.0f)) * KneeCoeff) + 1.0f;
 
-	if (in < (1.0f + KneeCoeff))
+	if (in < (1.0f + KneeCoeff)) {
 		if (in < (1.0f - KneeCoeff)) in = 1.0f;
 		else in = ((in + KneeCoeff - 1.0f) * Knee) * ((in + KneeCoeff - 1.0f) * Knee) + 1.0f;
 //		else in = (float)fpow(((in + KneeCoeff - 1.0f) * Knee), 2) + 1.0f;
-		
+	}
 	return in;
 }
 
@@ -724,7 +727,7 @@ void mi::Command(int const i)
 	switch(i)
 	{
 	case 0:
-		MessageBox(NULL, "\n\n  .: Oomek's Masterizer :. \n        a 3 band limiter\n              v1.0\n\n            ©2002\n    Radoslaw Dutkiewicz    \n        oomek@go2.pl         \n\n","About Masterizer",MB_OK|MB_SYSTEMMODAL);
+		pCB->MessageBox("\n\n  .: Oomek's Masterizer :. \n        a 3 band limiter\n              v1.0\n\n            ©2002\n    Radoslaw Dutkiewicz    \n        oomek@go2.pl         \n\n");
 		break;
 	default:
 		break;
@@ -736,7 +739,7 @@ void mi::Command(int const i)
 
 char const *mi::DescribeValue(int const param, int const value)
 {
-	static char txt[16];
+	static char txt[30];
 	switch(param)
 	{
 	case 0:

@@ -305,7 +305,7 @@ void mi::Command(int const i)
 	switch(i)
 	{
 	case 0:
-		MessageBox(NULL, "\n\nOomek's Exciter \n v1.1 (bugfixed)\n\nRadoslaw Dutkiewicz\nmailto:oomek@go2.pl\n\n","About Exciter",MB_OK|MB_SYSTEMMODAL);
+		pCB->MessageBox("\n\nOomek's Exciter \n v1.1 (bugfixed)\n\nRadoslaw Dutkiewicz\nmailto:oomek@go2.pl\n\n");
 		break;
 	default:
 		break;
