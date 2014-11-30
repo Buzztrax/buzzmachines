@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_PanzerDelay.la
 
 libFSM_PanzerDelay_la_SOURCES = PanzerDelay.cpp

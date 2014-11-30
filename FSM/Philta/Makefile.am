@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_Philta.la
 
 libFSM_Philta_la_SOURCES = Philta.cpp Filters.cpp

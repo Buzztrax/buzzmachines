@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libMadBrain_Dynamite6.la
 
 libMadBrain_Dynamite6_la_SOURCES = Dynamite6.cpp

@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libChimp_PitchShifter.la
 
 libChimp_PitchShifter_la_SOURCES = PitchShifter.cpp

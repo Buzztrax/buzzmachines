@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libOomek_Aggressor_303.la
 
 libOomek_Aggressor_303_la_SOURCES = 303.cpp

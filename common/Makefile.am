@@ -1,5 +1,3 @@
-## $Id$
-
 SUBDIRS = dsplib mdk
 
 noinst_HEADERS = MachineInterface.h \

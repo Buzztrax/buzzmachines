@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_Infector.la
 
 libFSM_Infector_la_SOURCES = Channel.cpp Filters.cpp Infector.cpp Track.cpp Vegetable.cpp

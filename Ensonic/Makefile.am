@@ -1,4 +1,2 @@
-## $Id$
-
 SUBDIRS = CallbackTester
 

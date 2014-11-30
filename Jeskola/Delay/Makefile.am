@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libJeskola_Delay.la
 
 libJeskola_Delay_la_SOURCES = Delay.cpp

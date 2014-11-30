@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libMakk_M3.la
 
 libMakk_M3_la_SOURCES = M3.cpp

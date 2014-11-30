@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_WahMan.la
 
 libFSM_WahMan_la_SOURCES = WahMan.cpp

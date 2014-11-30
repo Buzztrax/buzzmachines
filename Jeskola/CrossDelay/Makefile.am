@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libJeskola_Cross_Delay.la
 
 libJeskola_Cross_Delay_la_SOURCES = CrossDelay.cpp

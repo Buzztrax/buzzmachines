@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libGeonik_s_Omega1.la libGeonik_s_PrimiFun.la
 
 libGeonik_s_Omega1_la_SOURCES = Omega1.cpp

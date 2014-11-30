@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libMadBrain_4fm2f.la
 
 libMadBrain_4fm2f_la_SOURCES = 4fm2f.cpp

@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libJeskola_NiNjA_dElaY.la
 
 libJeskola_NiNjA_dElaY_la_SOURCES = Ninja.cpp

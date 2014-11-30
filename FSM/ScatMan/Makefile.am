@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_ScatMan.la
 
 libFSM_ScatMan_la_SOURCES = ScatMan.cpp

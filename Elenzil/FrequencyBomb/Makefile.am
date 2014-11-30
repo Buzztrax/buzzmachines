@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libElenzil_FrequencyBomb.la
 
 libElenzil_FrequencyBomb_la_SOURCES = freqbomb.cpp

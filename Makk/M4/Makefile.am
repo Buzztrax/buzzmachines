@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libMakk_M4.la
 
 libMakk_M4_la_SOURCES = M4.cpp waves/waves.cpp

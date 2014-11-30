@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFrequencyUnknown_O-Delay.la
 
 libFrequencyUnknown_O_Delay_la_SOURCES = O-Delay.cpp

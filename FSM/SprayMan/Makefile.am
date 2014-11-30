@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_SprayMan.la
 
 libFSM_SprayMan_la_SOURCES = SprayMan.cpp

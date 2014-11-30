@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libJeskola_Multiplier.la
 
 libJeskola_Multiplier_la_SOURCES = Mul.cpp

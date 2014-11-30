@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libWhiteNoise_StereoDist.la
 
 libWhiteNoise_StereoDist_la_SOURCES = Dist.cpp

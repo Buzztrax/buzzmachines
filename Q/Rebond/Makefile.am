@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libQ_Rebond.la
 
 libQ_Rebond_la_SOURCES = rebond.cpp

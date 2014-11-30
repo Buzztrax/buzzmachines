@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libArguru_Distortion.la
 
 libArguru_Distortion_la_SOURCES = Distortion.cpp

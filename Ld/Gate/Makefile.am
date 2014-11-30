@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libLd_Gate.la
 
 libLd_Gate_la_SOURCES = gate.cpp

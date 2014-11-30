@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libEnsonic_CallbackTester.la
 
 libEnsonic_CallbackTester_la_SOURCES = CallbackTester.cpp

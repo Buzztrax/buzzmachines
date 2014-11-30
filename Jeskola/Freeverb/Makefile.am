@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libJeskola_Freeverb.la
 
 libJeskola_Freeverb_la_SOURCES = allpass.cpp comb.cpp main.cpp revmodel.cpp

@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libAseDev_a4pFilter01.la
 
 libAseDev_a4pFilter01_la_SOURCES = a4pFilter01.cpp

@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libLd_SLimit.la
 
 libLd_SLimit_la_SOURCES = slimit.cpp

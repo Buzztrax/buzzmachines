@@ -1,4 +1,2 @@
-## $Id$
-
 SUBDIRS = M3 M4
 

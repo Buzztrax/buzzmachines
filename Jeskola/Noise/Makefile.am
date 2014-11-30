@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libJeskola_Noise.la
 
 libJeskola_Noise_la_SOURCES = Noise.cpp

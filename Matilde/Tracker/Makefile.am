@@ -1,5 +1,3 @@
-## $Id$
-
 SUBDIRS = SurfsDSPLib
 
 SRC = BuzzInstrument.cpp BuzzInstrument.h \

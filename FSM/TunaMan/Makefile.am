@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_TunaMan.la
 
 libFSM_TunaMan_la_SOURCES = TunaMan.cpp

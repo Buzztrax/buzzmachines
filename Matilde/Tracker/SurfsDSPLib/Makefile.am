@@ -1,5 +1,3 @@
-## $Id$
-
 noinst_LTLIBRARIES = libdsplib.la
 
 libdsplib_la_SOURCES = \

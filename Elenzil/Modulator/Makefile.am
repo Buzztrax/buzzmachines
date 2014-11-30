@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libElenzil_Modulator.la
 
 libElenzil_Modulator_la_SOURCES = amplitude_modulator.cpp

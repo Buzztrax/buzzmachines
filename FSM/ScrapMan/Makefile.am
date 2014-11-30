@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_ScrapMan.la
 
 libFSM_ScrapMan_la_SOURCES = ScrapMan.cpp

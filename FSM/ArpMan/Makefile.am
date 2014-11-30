@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_ArpMan.la
 
 libFSM_ArpMan_la_SOURCES = ArpMan.cpp

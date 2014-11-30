@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libZwar_11stereo.la
 
 libZwar_11stereo_la_SOURCES = 11Stereo.cpp

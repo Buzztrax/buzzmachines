@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libJeskola_Trilok.la
 
 libJeskola_Trilok_la_SOURCES = Trilok.cpp

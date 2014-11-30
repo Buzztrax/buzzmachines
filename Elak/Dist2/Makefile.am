@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libElak_Dist2.la
 
 libElak_Dist2_la_SOURCES = dist2.cpp

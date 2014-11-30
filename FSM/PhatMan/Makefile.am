@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_PhatMan.la
 
 libFSM_PhatMan_la_SOURCES = PhatMan.cpp

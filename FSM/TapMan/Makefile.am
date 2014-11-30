@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_TapMan.la
 
 libFSM_TapMan_la_SOURCES = TapMan.cpp

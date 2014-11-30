@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libZwar_Csi.la
 
 libZwar_Csi_la_SOURCES = Csi.cpp

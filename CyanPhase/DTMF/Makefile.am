@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libCyanPhase_DTMF_1.la
 
 libCyanPhase_DTMF_1_la_SOURCES = DTMF-1.cpp

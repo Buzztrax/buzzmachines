@@ -1,3 +1,1 @@
-## $Id$
-
 SUBDIRS = BuzzMachines

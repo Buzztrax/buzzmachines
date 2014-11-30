@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libQ_Zfilter.la
 
 libQ_Zfilter_la_SOURCES = zfilter.cpp

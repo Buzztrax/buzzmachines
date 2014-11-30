@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libElak_SVF.la
 
 libElak_SVF_la_SOURCES = svf.cpp

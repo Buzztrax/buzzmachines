@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_Kick.la
 
 libFSM_Kick_la_SOURCES = Kick.cpp

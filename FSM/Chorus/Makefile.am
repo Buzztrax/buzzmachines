@@ -1,5 +1,3 @@
-## $Id$
-
 plugin_LTLIBRARIES = libFSM_Chorus.la
 
 libFSM_Chorus_la_SOURCES = Chorus.cpp
