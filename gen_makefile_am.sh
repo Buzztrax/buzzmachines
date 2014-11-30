@@ -18,8 +18,6 @@ if [ "$?" == "0" ]; then
 fi 
 
 cat >Makefile.am <<EOF
-## \$Id\$
-
 plugin_LTLIBRARIES = lib${author}_${machine}.la
 
 lib${author}_${machine}_la_SOURCES = $sources
