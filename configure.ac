@@ -86,6 +86,7 @@ AC_CONFIG_FILES(Makefile \
   CyanPhase/Makefile \
     CyanPhase/AtomStereoMeld/Makefile \
     CyanPhase/DTMF/Makefile \
+    CyanPhase/Notch/Makefile \
   DedaCode/Makefile \
     DedaCode/Fade/Makefile \
     DedaCode/MovingAverage/Makefile \

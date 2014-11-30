@@ -1,8 +1,8 @@
-#include "../mdk/mdk.h"
 #include <float.h>
 #include <math.h>
-#include "resource.h"
-#include <windows.h>
+
+#include <MachineInterface.h>
+#include <mdk/mdk.h>
 
 #pragma optimize ("awy", on) 
 
@@ -655,8 +655,6 @@ void mi::MDKInit(CMachineDataInput * const pi)
 void mi::MDKSave(CMachineDataOutput * const po) { }
 
 void mi::Tick() {
-	int note, octv;
-
 	if (gval.filter1on != SWITCH_NO) filt1on = gval.filter1on ;
 	if (gval.filter2on != SWITCH_NO) filt2on = gval.filter2on ;
 	if (gval.filter3on != SWITCH_NO) filt3on = gval.filter3on ;
@@ -792,7 +790,7 @@ void mi::Tick() {
 	};
 	if (gval.lfonote2 != NOTE_NO) {
 		if (gval.lfonote2 != NOTE_OFF) {
-			note = (gval.lfonote2 & 15) - 1;
+			int note = (gval.lfonote2 & 15) - 1;
 			int octv = gval.lfonote2 >> 4;
 			lfofreq2 = (float)(NoteFreqs[note] * OctaveMul[octv]);
 		};
@@ -905,57 +903,6 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 	};
 
 	return true;
-}
-
-
-
-HINSTANCE dllInstance;
-mi *g_mi;
-
-BOOL WINAPI DllMain ( HANDLE hModule, DWORD fwdreason, LPVOID lpReserved )
-{
-	switch (fwdreason) {
-	case DLL_PROCESS_ATTACH:
-		dllInstance = (HINSTANCE) hModule;
-		break;
-
-	case DLL_THREAD_ATTACH:
-
-		break;
-
-	case DLL_THREAD_DETACH:
-		break;
-
-	case DLL_PROCESS_DETACH:
-		
-		break;
-	}
-	return TRUE;
-}
-
-BOOL APIENTRY AboutDialog(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	switch(uMsg) {
-	case WM_INITDIALOG:
-
-		return 1;
-
-	case WM_SHOWWINDOW:
-		return 1;
-	case WM_CLOSE:
-		EndDialog (hDlg, TRUE);
-
-	case WM_COMMAND:
-		switch ( LOWORD (wParam))
-		{
-		case IDOK:
-			EndDialog(hDlg, TRUE);
-			return 1;
-		default:
-			return 0;
-		}
-		break;
-	}
-	return 0;
 }
 
 void mi::Command(int const i)
@@ -1130,8 +1077,7 @@ void mi::Command(int const i)
 
 		break;
 	case 1:
-		g_mi=this;
-		DialogBox(dllInstance, MAKEINTRESOURCE (IDD_CYANABOUT), GetForegroundWindow(), (DLGPROC) &AboutDialog);
+		pCB->MessageBox("CyanPhase Notch by Edward L. Blake");
 
 		break;
 	default:
