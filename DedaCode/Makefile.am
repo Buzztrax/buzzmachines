@@ -1,2 +1,2 @@
-SUBDIRS = Fade
+SUBDIRS = Fade MovingAverage SFilterFIR StereoGain
 

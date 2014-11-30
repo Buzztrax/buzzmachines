@@ -88,6 +88,9 @@ AC_CONFIG_FILES(Makefile \
     CyanPhase/DTMF/Makefile \
   DedaCode/Makefile \
     DedaCode/Fade/Makefile \
+    DedaCode/MovingAverage/Makefile \
+    DedaCode/SFilterFIR/Makefile \
+    DedaCode/StereoGain/Makefile \
   Elak/Makefile \
     Elak/Dist2/Makefile \
     Elak/SVF/Makefile \

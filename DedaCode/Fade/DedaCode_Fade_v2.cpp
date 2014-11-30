@@ -256,46 +256,37 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 	double difq;
 	float sample = 0;
 	do{
-	  float in=*psamples;
 		if(Unit==0)
 			sample=pMasterInfo->SamplesPerTick*Length;
 		else if(Unit==1)
 			sample=pMasterInfo->SamplesPerSec*Length;
 		
 		if(Trigger==true){
+		  float p1;
 			if(Type==0){
 				if(Fade==0){
-					float p1=(count*1.00f)/sample;
-					*psamples++=(float)(p1*in);
-					*psamples++=(float)(p1*in);
+					p1=(count*1.00f)/sample;
 				}
 				else{
-					float p1=(sample-count*1.00f)/sample;
-					*psamples++=(float)(p1*in);
-					*psamples++=(float)(p1*in);
+					p1=(sample-count*1.00f)/sample;
 				}
-				count++;
 			}
 			else{
 				sq=(sample*sample);
 				xq=(sample-count)*(sample-count);
 				difq=((sample-count)*(sample-count));
 				
-				float p1=1.00/sq;
+				p1=1.00/sq;
 				if(Fade==0){
 					p1=p1*xq;
-					*psamples++=(float)(p1*in);
-					*psamples++=(float)(p1*in);
 				}
 				else{
 					p1=p1*difq;
-					*psamples++=(float)(p1*in);
-				  *psamples++=(float)(p1*in);
 				}
-				count++;
 			}
-
-
+      *psamples++ *=p1;
+      *psamples++ *=p1;
+			count++;
 		}
 		
 		if(count==sample)
