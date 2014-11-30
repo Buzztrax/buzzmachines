@@ -86,6 +86,8 @@ AC_CONFIG_FILES(Makefile \
   CyanPhase/Makefile \
     CyanPhase/AtomStereoMeld/Makefile \
     CyanPhase/DTMF/Makefile \
+  DedaCode/Makefile \
+    DedaCode/Fade/Makefile \
   Elak/Makefile \
     Elak/Dist2/Makefile \
     Elak/SVF/Makefile \
