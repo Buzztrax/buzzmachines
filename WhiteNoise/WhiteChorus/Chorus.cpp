@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <assert.h>
 #include <math.h>
-#include "../MachineInterface.h"
-#include "../mdk.h"
+
+#include <MachineInterface.h>
+#include <mdk/mdk.h>
 
 double const SilentEnough = log(1.0 / 32768);
 
@@ -295,6 +296,8 @@ mi::~mi()
 
 void mi::MDKInit(CMachineDataInput * const pi)
 {
+  int i;
+
 	MinDelay = 1;
 	DelayMod = 5;
 	DelaySpread = 0;
@@ -321,7 +324,7 @@ void mi::MDKInit(CMachineDataInput * const pi)
 	//memset(EchoBuffer[1], 0, BUFFERSIZE*sizeof(float)*2);
 	//memset(EchoBuffer[2], 0, BUFFERSIZE*sizeof(float)*2);
 
-	for(int i=0; i<BUFFERSIZE; i++)
+	for(i=0; i<BUFFERSIZE; i++)
 	{
 		ReadBuffer[i] = 0.0f;
 		EchoBuffer[0][i<<1] = 0.0f;
@@ -406,9 +409,14 @@ void mi::Tick()
 
 inline int f2i(double d)
 {
+#ifdef WIN32
   const double magic = 6755399441055744.0; // 2^51 + 2^52
   double tmp = (d-0.5) + magic;
   return *(int*) &tmp;
+#else
+  // poor man's solution :)
+  return (int)rint(d);
+#endif
 }
 
 inline float LInterpolateF(float x1, float x2, long frac)			// Res: 4096
