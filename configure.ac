@@ -121,6 +121,8 @@ AC_CONFIG_FILES(Makefile \
     FSM/WahPro2/Makefile \
   Geonik/Makefile \
     Geonik/BuzzMachines/Makefile \
+  Graue/Makefile \
+    Graue/SoftSat/Makefile \
   Jeskola/Makefile \
     Jeskola/CrossDelay/Makefile \
     Jeskola/Delay/Makefile \
