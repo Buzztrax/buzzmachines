@@ -81,6 +81,8 @@ AC_CONFIG_FILES(Makefile \
     Arguru/Distortion/Makefile \
   AseDev/Makefile \
     AseDev/a4pFilter01/Makefile \
+  Bigyo/Makefile \
+    Bigyo/FrequencyShifter/Makefile \
   Chimp/Makefile \
     Chimp/PitchShifter/Makefile \
   CyanPhase/Makefile \
