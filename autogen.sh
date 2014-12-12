@@ -316,7 +316,7 @@ version_check "autoconf" "$AUTOCONF autoconf autoconf-2.54 autoconf-2.53 autocon
               "ftp://ftp.gnu.org/pub/gnu/autoconf/" 2 52 || DIE=1
 version_check "automake" "$AUTOMAKE automake automake-1.7 automake17 automake-1.6" \
               "ftp://ftp.gnu.org/pub/gnu/automake/" 1 6 || DIE=1
-version_check "libtoolize" "libtoolize" \
+version_check "libtoolize" "libtoolize glibtoolize" \
               "ftp://ftp.gnu.org/pub/gnu/libtool/" 1 5 0 || DIE=1
 
 die_check $DIE
