@@ -185,7 +185,6 @@ void mi::Init(CMachineDataInput * const pi)
 
 void mi::Tick()
 {
-
 		if (gval.scatterInterval != paraScatterInterval.NoValue)
 		ScatterInterval = (gval.scatterInterval);
 
@@ -195,8 +194,6 @@ void mi::Tick()
 		if (gval.kindOf!= paraKindOf.NoValue)
 		KindOf = (gval.kindOf);
 }
-
-
 
 bool mi::Work(float *psamples, int numsamples, int const mode)
 {
@@ -210,7 +207,6 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 		return true;
 
 
-
 	if (KindOf == 1)
 	{
 		do 
@@ -221,19 +217,21 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 				{
 					count =0;
 					mR = rand()%(ScatterAmount);
-					*psamples = mR ;
+					*psamples = mR;
 				}
 	
 				count ++;
 
+				// FIXME: this never kicks in, above code should update 's'
+				// FIXME: only clamp if we change the output
+				// FIXME: clamp to 16bit: -32768 .. +32767
 				if (s >= 65534)
 					*psamples = 65534;
 				else if (s <= -65534)
 					*psamples = -65534;
 
 				psamples++;
-
-			
+	
 		} while(--numsamples);
 	}
 
@@ -251,14 +249,13 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 					mR2 = rand()%(2);
 					if (mR2==2)
 					{
-						*psamples = (*psamples + mR)/2 ;
+						*psamples = (s + mR)/2;
 					}
 					else
 					{
-						*psamples = (*psamples - mR)/2 ;
+						*psamples = (s - mR)/2 
+						;
 					}
-
-
 				}
 	
 				count ++;
@@ -270,30 +267,27 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 
 				psamples++;
 
-			
 		} while(--numsamples);
-
 	}
 
 	else if (KindOf == 3)
 	{
-
-				{
+		do
+		{
 			double const s = *psamples;
 	
 				if (count < ScatterInterval/2)
 				{
 					count =0;
-					mR = rand()%(ScatterAmount);
+					mR = rand()%(ScatterAmount); // FIXME: unused
 					if (s >= 0)
 					{
-						*psamples =- *psamples  ;
+						*psamples = (-s);
 					}
 					else
 					{
-						*psamples =+ *psamples ;		
+						*psamples = (+s); // FIXME: doesn't do anything
 					}
-
 				}
 	
 				count ++;
@@ -305,9 +299,7 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 
 				psamples++;
 
-			
 		} while(--numsamples);
-
 	}
 
 	return true;
