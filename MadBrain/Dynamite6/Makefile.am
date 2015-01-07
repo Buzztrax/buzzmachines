@@ -8,3 +8,7 @@ libMadBrain_Dynamite6_la_LIBADD = $(top_builddir)/common/mdk/libmdk.la
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libMadBrain_Dynamite6.so $(DESTDIR)$(plugindir)/MadBrain_Dynamite6.so
+
+preset_DATA = MadBrain_Dynamite6.prs
+demosong_DATA = MadBrain_Dynamite6_Demo.bmx
+
