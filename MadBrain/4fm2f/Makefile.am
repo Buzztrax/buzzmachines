@@ -7,3 +7,5 @@ libMadBrain_4fm2f_la_LDFLAGS = $(BM_LIBS)
 install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libMadBrain_4fm2f.so $(DESTDIR)$(plugindir)/MadBrain_4fm2f.so
+
+preset_DATA = MadBrain_4fm2f.prs
