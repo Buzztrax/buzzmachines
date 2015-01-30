@@ -289,7 +289,7 @@ bool mi::WorkMonoToStereo(float *pin, float *pout, int numsamples, int const mod
 
 char const* mi::DescribeValue(int const param, int const value)
 {
-	static char str[12];
+	static char str[30];
 	int temp1, temp2;
 
 	if (param == 0 || param == 2)
