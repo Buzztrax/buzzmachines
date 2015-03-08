@@ -98,7 +98,7 @@ CMachineAttribute const *maArray[]	= { &maHighFreq };
 CMachineInfo const MachineInfo = { 
 	MT_EFFECT,MI_VERSION,0,
 	0,0,4,0,mpArray,0,maArray,
-	"Geonik's Expression","Expression","George Nicolaidis aka Geonik","About..." };
+	"Geonik's "c_strName, c_strShortName,"George Nicolaidis aka Geonik","About..." };
 
 #pragma pack(1)		
 

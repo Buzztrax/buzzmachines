@@ -86,7 +86,7 @@ struct CAttributes					  { int DynRange; };
  */
 
 CMachineInfo const miMachineInfo = { 
-	MT_GENERATOR,MI_VERSION,0,
+	MT_EFFECT,MI_VERSION,0,
 	0,0,c_numControls,0,mpArray,0,maArray,
 	"Geonik's " c_strName,c_strShortName,"George Nicolaidis aka Geonik","About..." };
 
