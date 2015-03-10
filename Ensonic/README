@@ -1,0 +1,6 @@
+= Testing the buzzmachine loader =
+These machines are not build by default. If you want to work on the buzzmachine
+loader, you can cd here and run make to build them. These machines are neutral
+to the sounds, but log the host api calls. This way one can build them natively
+and for win32 using visual studio and compare the api invocations. 
+

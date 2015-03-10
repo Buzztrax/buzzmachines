@@ -1,5 +1,5 @@
 SUBDIRS = common \
-  AseDev Bigyo Chimp CyanPhase DedaCode Elak Elenzil Ensonic FrequencyUnknown \
+  AseDev Bigyo Chimp CyanPhase DedaCode Elak Elenzil FrequencyUnknown \
   FSM Geonik Graue Jeskola Ld MadBrain Makk Matilde Oomek Q WhiteNoise Zwar
 
 ACLOCAL_AMFLAGS = -I m4

@@ -1,7 +1,8 @@
 = Porting =
 
-Below is a list of unported machines. Please remove them from the list when its
-ported and add them to the list, when you received source for a machine.
+Below is a list of unported machines in this tree. Please remove them from the
+list when its ported and add them to the list, when you received source for a
+machine.
 We have a page on the wiki where the efforts of obtaining machines sources are
 listed (http://wiki.buzztrax.org/index.php/BuzzMachineSources).
 
@@ -36,8 +37,8 @@ char format.
   *.obj, *.pch, *.exp, *.sbr, *.bsc, *.ilk, *.lib, *.pdb, *.res, *.idb
 
 
-= Build =
-- enter then machine dir (e.g. cd Ensonic/CallbackTester)
+= Initial Build =
+- enter then machine dir (e.g. cd Author/AwesomeFilter)
 - run ../../gen_makefile_am.sh and check the resulting Makefile.am
 - add a Makefile.am for the machine author if not yet there
 - edit configure.ac, go to bottom and add the newly created Makefiles
@@ -112,9 +113,11 @@ test for memory leaks:
 GLIBCPP_FORCE_NEW=1 GLIBCXX_FORCE_NEW=1 valgrind --tool=memcheck --leak-check=full --leak-resolution=high --trace-children=yes --num-callers=20 -v ~/projects/buzztrax/bmltest_info ./.libs/libFSM_Kick.so
 
 = Check your songs for missing machines =
-
 Get a list of which machines you are missing most:
 while read -r f; do ./buzztrax-cmd -c i -i "$f" | grep "bml-" ; done < <(find /path/to/my/songs/ -name "*.bm?") | sort | uniq -c | sort -n
+
+Get a list of songs sorted by number of missing machines
+while read -r f; do num=$(./buzztrax-cmd -c i -i "$f" | grep -c "bml-"); if [ "$?" == "0" ]; then echo "$num, $f"; fi; done < <(find ~/Dropbox/buzz-songs/ensonic/work/ -name "*.bm?") | sort -
 
 = make a source snapshot (including uncommitted files) =
 cd ..
