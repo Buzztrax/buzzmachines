@@ -1,4 +1,9 @@
+#ifdef WIN32
+#include <windows.h>
+#else
 #include <windef.h>
+#endif
+
 #include <string.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -179,12 +184,12 @@ CMachineInfo const MacInfo =
 	1, 
 	pAttributes,
 #ifdef _DEBUG
-	"Buzztard Callback Tester (Debug build)",	// name
+	"Buzz Callback Tester G (Debug build)",	// name
 #else
-	"Buzztard Callback Tester",
+	"Buzz Callback Tester G",
 #endif
-	"BCT",									// short name
-	"Stefan Kost", 							// author
+	"BCT G",									// short name
+	"Stefan Sauer", 							// author
 	NULL
 };
 
