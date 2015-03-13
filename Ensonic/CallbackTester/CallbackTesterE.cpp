@@ -14,8 +14,6 @@
 
 #pragma optimize ("a", on)
 
-#define MAX_TRACKS				1
-
 #define EGS_ATTACK				0
 #define EGS_SUSTAIN				1 
 #define EGS_RELEASE				2
@@ -121,26 +119,13 @@ CMachineParameter const paraTrigger =
 CMachineParameter const *pParameters[] = {
     // global
     &paraTest,
-	// track
 	&paraAttack,
 	&paraSustain,
 	&paraRelease,
 	&paraColor,
 	&paraVolume,
 	&paraTrigger
-};
-
-CMachineAttribute const attrMaxDelay = 
-{
-	"Max Delay (ms)",
-	1,
-	100000,
-	1000	
-};
-
-CMachineAttribute const *pAttributes[] = 
-{
-	&attrMaxDelay
+	// track
 };
 
 #pragma pack(1)
@@ -149,24 +134,12 @@ class gvals
 {
 public:
 	word test;
-};
-
-class tvals
-{
-public:
 	word attack;
 	word sustain;
 	word release;
 	word color;
 	byte volume;
 	byte trigger;
-
-};
-
-class avals
-{
-public:
-	int maxdelay;
 };
 
 #pragma pack()
@@ -176,13 +149,13 @@ CMachineInfo const MacInfo =
 	MT_EFFECT,								// type
 	MI_VERSION,
 	0,										// flags
-	1,										// min tracks
-	MAX_TRACKS,								// max tracks
-	1,										// numGlobalParameters
-	6,										// numTrackParameters
+	0,										// min tracks
+	0,										// max tracks
+	7,										// numGlobalParameters
+	0,										// numTrackParameters
 	pParameters,
-	1, 
-	pAttributes,
+	0, 
+	NULL,
 #ifdef _DEBUG
 	"Buzz Callback Tester E(Debug build)",	// name
 #else
@@ -191,39 +164,6 @@ CMachineInfo const MacInfo =
 	"BCT E",									// short name
 	"Stefan Sauer", 							// author
 	NULL
-};
-
-class mi;
-
-class CTrack
-{
-public:
-	void Tick(tvals const &tv);
-	void Stop();
-	void Reset();
-	void Generate(float *psamples, int numsamples);
-	void Noise(float *psamples, int numsamples);
-
-	int MSToSamples(double const ms);
-
-public:
-	double Amp;
-	double AmpStep;
-	double S1;
-	double S2;
-
-	float Volume;
-	int Pos;
-	int Step;
-	int RandStat;
-	
-	int EGStage;
-	int EGCount;
-	int Attack;
-	int Sustain;
-	int Release;
-
-	mi *pmi;
 };
 
 class mi : public CMachineInterface
@@ -243,11 +183,7 @@ public:
 
 public:
 	int numTracks;
-	CTrack Tracks[MAX_TRACKS];
-
-    avals aval;
     gvals gval;
-	tvals tval[MAX_TRACKS];
 
 };
 
@@ -256,41 +192,11 @@ DLL_EXPORTS
 mi::mi()
 {
 	GlobalVals = &gval;
-	TrackVals = tval;
-	AttrVals = (int *)&aval;
 }
 
 mi::~mi()
 {
 
-}
-
-inline int CTrack::MSToSamples(double const ms)
-{
-	return (int)(pmi->pMasterInfo->SamplesPerSec * ms * (1.0 / 1000.0));
-}
-
-inline double CalcStep(double from, double to, int time)
-{
-	assert(from > 0);
-	assert(to > 0);
-	assert(time > 0);
-	return pow(to / from, 1.0 / time);
-}
-
-void CTrack::Reset()
-{
-	EGStage = EGS_NONE;
-
-	Attack = MSToSamples(16);
-	Sustain = MSToSamples(16);
-	Release = MSToSamples(512);
-
-	Pos = 0;
-	Step = 65536;
-	Volume = 1.0;
-	S1 = S2 = 0;
-	RandStat = 0x16BA2118;
 }
 
 void mi::Init(CMachineDataInput * const pi)
@@ -302,11 +208,6 @@ void mi::Init(CMachineDataInput * const pi)
 #ifndef _MSC_VER
     DSP_Init(pMasterInfo->SamplesPerSec);
 #endif
-	for (int c = 0; c < MAX_TRACKS; c++)
-	{
-		Tracks[c].pmi = this;
-		Tracks[c].Reset();
-	}
 
 #if 0
 	int i=-1,note=-1;
@@ -327,136 +228,22 @@ void mi::Init(CMachineDataInput * const pi)
 #endif
 
 #ifdef _DEBUG
-    sprintf(DebugStr,"    aval.maxdelay=%d",aval.maxdelay);
-	OutputDebugString(DebugStr);
     sprintf(DebugStr,"    gval.test=%d",gval.test);
-	OutputDebugString(DebugStr);
-    sprintf(DebugStr,"    tval[0].attack=%d",tval[0].attack);
 	OutputDebugString(DebugStr);
     OutputDebugString("  mi:Init() done");
 #endif
-}
-
-void CTrack::Tick(tvals const &tv)
-{
-	if (tv.attack != paraAttack.NoValue)
-		Attack = MSToSamples(tv.attack);
-
-	if (tv.sustain != paraSustain.NoValue)
-		Sustain = MSToSamples(tv.sustain);
-
-	if (tv.release != paraRelease.NoValue)
-		Release = MSToSamples(tv.release);
-
-	if (tv.color != paraColor.NoValue)
-		Step = tv.color * 16;	// 0..4096 -> 0..65536
-	
-	if (tv.volume != paraVolume.NoValue)
-		Volume = (float)(tv.volume * (1.0 / 0x80));
-
-	if (tv.trigger != SWITCH_NO)
-	{
-		if (Volume > 0)
-		{
-			EGStage = EGS_ATTACK;
-			EGCount = Attack;
-			Amp = MIN_AMP;
-			AmpStep = CalcStep(MIN_AMP, Volume * (32768.0 / 0x7fffffff), Attack);
-		}
-	}
-}
-
-void CTrack::Noise(float *psamples, int numsamples)
-{
-	double amp = Amp;
-	double const ampstep = AmpStep;		
-	double s1 = S1;
-	double s2 = S2;
-	int const step = Step;
-	int stat = RandStat;
-	int pos = Pos;
-
-	int c = numsamples;
-	do
-	{
-		*psamples++ = (float)(s1 + (s2 - s1) * (pos * 1.0 / 65536.0));
-		amp *= ampstep;
-
-		pos += step;
-		if (pos & 65536)
-		{
-			s1 = s2;
-			stat = ((stat * 1103515245 + 12345) & 0x7fffffff) - 0x40000000;
-			s2 = stat * amp;
-
-			pos -= 65536;
-		}
-
-	} while(--c);
-
-	Pos = pos;
-	S2 = s2;
-	S1 = s1;
-	RandStat = stat;
-	Amp = amp;
-}
-
-void CTrack::Generate(float *psamples, int numsamples) {
-	do
-	{
-		int const c = __min(EGCount, numsamples);
-		assert(c > 0);
-
-		if (EGStage != EGS_NONE)
-			Noise(psamples, c);
-		else
-			memset(psamples, 0, c * sizeof(float));
-		
-		numsamples -= c;
-		psamples += c;
-		EGCount -= c;
-
-		if (!EGCount)
-		{
-			switch(++EGStage)
-			{
-			case EGS_SUSTAIN:
-				EGCount = Sustain;
-				AmpStep = 1.0;
-				break;
-			case EGS_RELEASE:
-				EGCount = Release;
-				AmpStep = CalcStep(Amp, MIN_AMP, Release);
-				break;
-			case EGS_NONE:
-				EGCount = 0x7fffffff;
-				break;
-			}
-		}
-
-		
-
-	} while(numsamples > 0);
 }
  
 void mi::Tick()
 {
 #ifdef _DEBUG
-    sprintf(DebugStr,"    aval.maxdelay=%d",aval.maxdelay);
-	OutputDebugString(DebugStr);
     sprintf(DebugStr,"    gval.test=%d",gval.test);
-	OutputDebugString(DebugStr);
-    sprintf(DebugStr,"    tval[0].attack=%d",tval[0].attack);
 	OutputDebugString(DebugStr);
     // shouldn't this be initialy 0? (it is not)
     sprintf(DebugStr,"  mi::Tick(%d)",pMasterInfo->PosInTick);
 	OutputDebugString(DebugStr);
-#endif
-	for (int c = 0; c < numTracks; c++)
-		Tracks[c].Tick(tval[c]);
 
-#ifdef _DEBUG
-    // the the host callbacks
+	// the the host callbacks
     const CWaveInfo *wi=pCB->GetWave(0);
     if(wi) {
       sprintf(DebugStr,"CWaveInfo: %d : %f\n",wi->Flags, wi->Volume);
@@ -472,33 +259,12 @@ void mi::Tick()
 bool mi::Work(float *psamples, int numsamples, int const)
 {
 	bool gotsomething = false;
+	int i;
 
-	for (int c = 0; c < numTracks; c++)
-	{
-		if (Tracks[c].EGStage != EGS_NONE)
-		{
-			if (!gotsomething)
-			{
-				Tracks[c].Generate(psamples, numsamples);
-				gotsomething = true;
-			}
-			else
-			{
-				float *paux = pCB->GetAuxBuffer();
-				Tracks[c].Generate(paux, numsamples);
-
-				DSP_Add(psamples, paux, numsamples);
-
-			}
-		}
+	for (i=0; i<numsamples; i++) {
+	  psamples[i] = 0.0;
 	}
-
 	return gotsomething;
-}
-
-void CTrack::Stop()
-{
-	EGStage = EGS_NONE;
 }
 
 void mi::Stop()
@@ -506,17 +272,11 @@ void mi::Stop()
 #ifdef _DEBUG
 	OutputDebugString("  mi::Stop()");
 #endif
-	for (int c = 0; c < numTracks; c++)
-		Tracks[c].Stop();
 }
  
 void mi::AttributesChanged() {
 #ifdef _DEBUG
-    sprintf(DebugStr,"    aval.maxdelay=%d",aval.maxdelay);
-	OutputDebugString(DebugStr);
     sprintf(DebugStr,"    gval.test=%d",gval.test);
-	OutputDebugString(DebugStr);
-    sprintf(DebugStr,"    tval[0].attack=%d",tval[0].attack);
 	OutputDebugString(DebugStr);
 	OutputDebugString("  mi::AttributesChanged");
 #endif
@@ -531,11 +291,7 @@ void mi::Command(int const i) {
 
 void mi::SetNumTracks(int const n) {
 #ifdef _DEBUG
-    sprintf(DebugStr,"    aval.maxdelay=%d",aval.maxdelay);
-	OutputDebugString(DebugStr);
     sprintf(DebugStr,"    gval.test=%d",gval.test);
-	OutputDebugString(DebugStr);
-    sprintf(DebugStr,"    tval[0].attack=%d",tval[0].attack);
 	OutputDebugString(DebugStr);
 	sprintf(DebugStr,"  mi::SetNumTracks: %d->%d",numTracks,n);
 	OutputDebugString(DebugStr);
