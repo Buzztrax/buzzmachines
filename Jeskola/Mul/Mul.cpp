@@ -8,14 +8,14 @@
 
 CMachineParameter const paraDummy = { pt_byte, "Dummy", "Dummy", 0, 127, 255, MPF_STATE, 0 };
 
-CMachineParameter const *pParameters[] = 
-{ 
+CMachineParameter const *pParameters[] =
+{
 	// global
 	&paraDummy
 };
 
 
-#pragma pack(1)		
+#pragma pack(1)
 
 class gvals
 {
@@ -26,10 +26,10 @@ public:
 
 #pragma pack()
 
-CMachineInfo const MacInfo = 
+CMachineInfo const MacInfo =
 {
 	MT_EFFECT,								// type
-	MI_VERSION,	
+	MI_VERSION,
 	0,										// flags
 	0,										// min tracks
 	0,										// max tracks
@@ -65,13 +65,9 @@ public:
 	void DisconnectAux();
 
 private:
-			
-	
-
-private:
 	int Channel;
 
-	
+
 	gvals gval;
 
 };
@@ -106,11 +102,11 @@ void mi::Init(CMachineDataInput * const pi)
 		if (ver == VERSION)
 		{
 			pi->Read(Channel);
-			
+
 			if (Channel != -1)
 				AB_ConnectOutput(Channel, MacInfo.ShortName, cb, this);
 		}
-	
+
 	}
 	else
 	{
@@ -145,12 +141,12 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 			double a = *paux++ * (1.0 / 32868.0);
 
 			double o = i * a;
-			
+
 			if (o < -1.0)
 				o = -1.0;
 			else if (o > 1.0)
 				o = 1.0;
-			
+
 			*psamples++ = (float)(o * 32768.0);
 
 		} while(--numsamples);
@@ -162,7 +158,7 @@ bool mi::Work(float *psamples, int numsamples, int const mode)
 		// no aux connected or no input, pass signal thru unmodified
 		return mode & WM_READ;
 	}
-	
+
 }
 
 
