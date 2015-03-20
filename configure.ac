@@ -110,6 +110,7 @@ AC_CONFIG_FILES(Makefile \
     FSM/Chorus2/Makefile \
     FSM/Infector/Makefile \
     FSM/Kick/Makefile \
+    FSM/KickXP/Makefile \
     FSM/PanzerDelay/Makefile \
     FSM/PhatMan/Makefile \
     FSM/Philta/Makefile \
