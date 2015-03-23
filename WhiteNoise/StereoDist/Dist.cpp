@@ -175,7 +175,7 @@ CMachineInfo const MacInfo =
 	pParameters,
 	0,
 	NULL,		// pAttributes
-	"WhiteNoise Stereo-dist",					// name
+	"WhiteNoise Stereodist",					// name
 	"StereoDist",									// short name
 	"David Wallin",						// author
 	NULL
