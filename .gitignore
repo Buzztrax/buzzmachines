@@ -3,6 +3,7 @@ Makefile.in
 *.la
 *.lo
 .deps
+.dirstamp
 .libs
 INSTALL
 aclocal.m4
