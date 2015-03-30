@@ -9,3 +9,5 @@ install-data-hook:
 	$(RM) $(DESTDIR)$(plugindir)/$(plugin_LTLIBRARIES)
 	mv $(DESTDIR)$(plugindir)/libMakk_M4wII.so $(DESTDIR)$(plugindir)/Makk_M4wII.so
 
+preset_DATA = Makk_M4wII.prs
+
