@@ -144,6 +144,7 @@ AC_CONFIG_FILES(Makefile \
   Makk/Makefile \
     Makk/M3/Makefile \
     Makk/M4/Makefile \
+    Makk/M4wII/Makefile \
   Matilde/Makefile \
     Matilde/Tracker/Makefile \
     Matilde/Tracker/SurfsDSPLib/Makefile \
