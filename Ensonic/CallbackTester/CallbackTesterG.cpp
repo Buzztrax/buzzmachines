@@ -298,6 +298,10 @@ void mi::Init(CMachineDataInput * const pi)
 #ifdef _DEBUG
   sprintf(DebugStr,"  mi::Init(%p)",pi);
   OutputDebugString(DebugStr);
+  sprintf(DebugStr,"  GetThisMachine()=%p",pCB->GetThisMachine());
+  OutputDebugString(DebugStr);
+  sprintf(DebugStr,"  GetThisMachine()=%p",pCB->GetThisMachine());
+  OutputDebugString(DebugStr);
 #endif
 #ifndef _MSC_VER
     DSP_Init(pMasterInfo->SamplesPerSec);
