@@ -179,7 +179,6 @@ class CMachineInfo;
 class CMICallbacks
 {
 public:
-	virtual ~CMICallbacks() {}
 	virtual CWaveInfo const *GetWave(int const i);
 	virtual CWaveLevel const *GetWaveLevel(int const i, int const level);
 	virtual void MessageBox(char const *txt);
