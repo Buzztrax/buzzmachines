@@ -170,8 +170,8 @@ mi::mi()
 
 mi::~mi()
 {
-	delete[] iir.coef;
-	delete[] iir.history;
+	free(iir.coef);
+  free(iir.history);
 }
 
 char const *mi::DescribeValue(int const param, int const value)
