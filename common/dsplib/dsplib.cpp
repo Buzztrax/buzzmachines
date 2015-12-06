@@ -14,20 +14,12 @@ typedef DWORD dword;
 typedef unsigned long dword;
 #endif
 
+#define DI_EXPORT
+#include "dsplib.h"
+
 #ifndef M_PI
 #define M_PI 3.141592654
 #endif
-
-class CBWState
-{
-public:
-	float a[5];	// coefficients
-	float i[2];	// past inputs
-	float o[2];	// past outputs
-	float ri[2];	// past right inputs (for stereo mode)
-	float ro[2];	// past right outputs
-	int IdleCount;
-};
 
 // work modes
 #define WM_NOIO		0
@@ -43,56 +35,56 @@ public:
 // DSP_Init() from mi::Init
 static int sampleRate /*=44100 */ ;
 
-void DSP_Init(int const samplerate)
+void DSPCALL DSP_Init(int const samplerate)
 {
 	sampleRate = samplerate;
 }
 
 // basic stuff
 
-void DSP_Zero(float *pout, dword const n)
+void DSPCALL DSP_Zero(float *pout, dword const n)
 {
     for (dword i = 0; i < n; i++)
         pout[i] = 0.f;
 }
 
-void DSP_Copy(float *pout, float const *pin, dword const n)
+void DSPCALL DSP_Copy(float *pout, float const *pin, dword const n)
 {
     for (dword i = 0; i < n; i++)
         pout[i] = pin[i];
 }
 
-void DSP_Copy(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_Copy(float *pout, float const *pin, dword const n, float const a)
 {
     for (dword i = 0; i < n; i++)
         pout[i] = pin[i] * a;
 }
 
-void DSP_Add(float *pout, float const *pin, dword const n)
+void DSPCALL DSP_Add(float *pout, float const *pin, dword const n)
 {
     for (dword i = 0; i < n; i++)
         pout[i] += pin[i];
 }
 
-void DSP_Add(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_Add(float *pout, float const *pin, dword const n, float const a)
 {
     for (dword i = 0; i < n; i++)
         pout[i] += pin[i] * a;
 }
 
-void DSP_CopyM2S(float *pout, float const *pin, dword const n)
+void DSPCALL DSP_CopyM2S(float *pout, float const *pin, dword const n)
 {
     for (dword i = 0; i < n; i++)
         pout[2 * i] = pout[2 * i + 1] = pin[i];
 }
 
-void DSP_CopyM2S(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_CopyM2S(float *pout, float const *pin, dword const n, float const a)
 {
     for (dword i = 0; i < n; i++)
         pout[2 * i] = pout[2 * i + 1] = pin[i] * a;
 }
 
-void DSP_CopyM2S(float *pout, float const *pin, dword const n, float const la, float const ra)
+void DSPCALL DSP_CopyM2S(float *pout, float const *pin, dword const n, float const la, float const ra)
 {
     for (dword i = 0; i < n; i++)
     {
@@ -101,13 +93,13 @@ void DSP_CopyM2S(float *pout, float const *pin, dword const n, float const la, f
     }
 }
 
-void DSP_CopyS2MOneChannel(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_CopyS2MOneChannel(float *pout, float const *pin, dword const n, float const a)
 {
     for (dword i = 0; i < n; i++)
         pout[i] = pin[2 * i] * a;
 }
 
-void DSP_AddM2S(float *pout, float const *pin, dword const n)
+void DSPCALL DSP_AddM2S(float *pout, float const *pin, dword const n)
 {
     for (dword i = 0; i < n; i++)
     {
@@ -116,7 +108,7 @@ void DSP_AddM2S(float *pout, float const *pin, dword const n)
     }
 }
 
-void DSP_AddM2S(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_AddM2S(float *pout, float const *pin, dword const n, float const a)
 {
     for (dword i = 0; i < n; i++)
     {
@@ -126,7 +118,7 @@ void DSP_AddM2S(float *pout, float const *pin, dword const n, float const a)
     }
 }
 
-void DSP_AddM2S(float *pout, float const *pin, dword const n, float const la, float const ra)
+void DSPCALL DSP_AddM2S(float *pout, float const *pin, dword const n, float const la, float const ra)
 {
     for (dword i = 0; i < n; i++)
     {
@@ -135,7 +127,7 @@ void DSP_AddM2S(float *pout, float const *pin, dword const n, float const la, fl
     }
 }
 
-void DSP_AddS2S(float *pout, float const *pin, dword const n)
+void DSPCALL DSP_AddS2S(float *pout, float const *pin, dword const n)
 {
     for (dword i = 0; i < 2 * n; i += 2)
     {
@@ -144,7 +136,7 @@ void DSP_AddS2S(float *pout, float const *pin, dword const n)
     }
 }
 
-void DSP_AddS2S(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_AddS2S(float *pout, float const *pin, dword const n, float const a)
 {
     for (dword i = 0; i < 2 * n; i += 2)
     {
@@ -153,7 +145,7 @@ void DSP_AddS2S(float *pout, float const *pin, dword const n, float const a)
     }
 }
 
-void DSP_AddS2S(float *pout, float const *pin, dword const n, float const la, float const ra)
+void DSPCALL DSP_AddS2S(float *pout, float const *pin, dword const n, float const la, float const ra)
 {
     for (dword i = 0; i < 2 * n; i += 2)
     {
@@ -162,19 +154,19 @@ void DSP_AddS2S(float *pout, float const *pin, dword const n, float const la, fl
     }
 }
 
-void DSP_Amp(float *ps, dword const n, float const a)
+void DSPCALL DSP_Amp(float *ps, dword const n, float const a)
 {
     for (dword i = 0; i < n; i++)
         ps[i] *= a;
 }
 
-void DSP_AddS2MOneChannel(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_AddS2MOneChannel(float *pout, float const *pin, dword const n, float const a)
 {
     for (dword i = 0; i < n; i++)
         pout[i] += pin[2 * i] * a;
 }
 
-void DSP_AddS2SOneChannel(float *pout, float const *pin, dword const n, float const a)
+void DSPCALL DSP_AddS2SOneChannel(float *pout, float const *pin, dword const n, float const a)
 {
     // huh?
     for (dword i = 0; i < 2 * n; i += 2) {
@@ -185,7 +177,7 @@ void DSP_AddS2SOneChannel(float *pout, float const *pin, dword const n, float co
 
 // second order butterworth filters
 
-void DSP_BW_Reset(CBWState &s)
+void DSPCALL DSP_BW_Reset(CBWState &s)
 {
 	s.i[0] = 0.0;
 	s.i[1] = 0.0;
@@ -199,7 +191,7 @@ void DSP_BW_Reset(CBWState &s)
 }
 
 /* rbj */
-void DSP_BW_InitLowpass(CBWState &s, float const f)
+void DSPCALL DSP_BW_InitLowpass(CBWState &s, float const f)
 {
 	float w0 = 2.0 * M_PI * f / (float)sampleRate;
 	float alpha = sin(w0) / (2 * 1.0 / sqrt(2.0));
@@ -226,7 +218,7 @@ void DSP_BW_InitLowpass(CBWState &s, float const f)
 }
 
 /* rbj */
-void DSP_BW_InitHighpass(CBWState &s, float const f)
+void DSPCALL DSP_BW_InitHighpass(CBWState &s, float const f)
 {
 	float w0 = 2.0 * M_PI * f / (float)sampleRate;
 	float alpha = sin(w0) / (2 * 1.0 / sqrt(2.0));
@@ -253,7 +245,7 @@ void DSP_BW_InitHighpass(CBWState &s, float const f)
 }
 
 /* hacked by calvin */
-void DSP_BW_InitBandpass(CBWState &s, float const f, float const bw)
+void DSPCALL DSP_BW_InitBandpass(CBWState &s, float const f, float const bw)
 {
 	float a = tan((bw * M_PI) / sampleRate);
 	float b = 1.0f / a;
@@ -268,7 +260,7 @@ void DSP_BW_InitBandpass(CBWState &s, float const f, float const bw)
 }
 
 /* hacked by calvin */
-void DSP_BW_InitBandreject(CBWState &s, float const f, float const bw)
+void DSPCALL DSP_BW_InitBandreject(CBWState &s, float const f, float const bw)
 {
 	float a = tan((bw * M_PI) / sampleRate);
 	float b = f * M_PI;
@@ -280,7 +272,7 @@ void DSP_BW_InitBandreject(CBWState &s, float const f, float const bw)
 	s.a[4] = (1 - a) * s.a[0];
 }
 
-bool DSP_BW_Work(CBWState &s, float *ps, dword const n, int const mode)
+bool DSPCALL DSP_BW_Work(CBWState &s, float *ps, dword const n, int const mode)
 {
 	dword i;
 	float y;
@@ -322,7 +314,7 @@ bool DSP_BW_Work(CBWState &s, float *ps, dword const n, int const mode)
     return TRUE;
 }
 
-bool DSP_BW_WorkStereo(CBWState &s, float *ps, dword const n, int const mode)
+bool DSPCALL DSP_BW_WorkStereo(CBWState &s, float *ps, dword const n, int const mode)
 {
 	dword i;
 	float y, yr;
