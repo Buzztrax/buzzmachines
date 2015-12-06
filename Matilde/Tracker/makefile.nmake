@@ -10,7 +10,7 @@ clean:
 	cd SurfsDSPLib
 	nmake -f makefile.nmake CONFIGURATION=$(CONFIGURATION) clean
 	cd ..
-	del $(OUTDIR)\*.* /q
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
 "$(OUTDIR)\Matilde Tracker2.dll": $(OUTDIR)\BuzzInstrument.obj $(OUTDIR)\BuzzSample.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Envelope.obj $(OUTDIR)\ExtResampler.obj $(OUTDIR)\IInstrument.obj $(OUTDIR)\ISample.obj $(OUTDIR)\Track.obj $(OUTDIR)\Tracker.obj $(OUTDIR)\WaveTableManager.obj SurfsDSPLib\$(OUTDIR)\SurfsDSPLib.lib
 	if not exist $(OUTDIR) mkdir $(OUTDIR)

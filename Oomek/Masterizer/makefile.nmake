@@ -5,7 +5,7 @@ CFLAGS = $(CFLAGS)
 all: "$(OUTDIR)\Oomek Masterizer.dll"
 
 clean:
-	del $(OUTDIR)\*.* /q
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
 "$(OUTDIR)\Oomek Masterizer.dll": $(OUTDIR)\masterizer.obj 
 	if not exist $(OUTDIR) mkdir $(OUTDIR)

@@ -5,7 +5,7 @@ CFLAGS = $(CFLAGS) /DNOMINMAX /D_USE_MATH_DEFINES
 all: "$(OUTDIR)\FSM Infector.dll" "$(OUTDIR)\FSM Infector.prs" "$(OUTDIR)\FSM Infector.html"
 
 clean:
-	del $(OUTDIR)\*.* /q
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
 "$(OUTDIR)\FSM Infector.dll": $(OUTDIR)\Infector.obj $(OUTDIR)\Filters.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Track.obj $(OUTDIR)\Vegetable.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)

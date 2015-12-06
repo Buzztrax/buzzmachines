@@ -7,7 +7,7 @@ CFLAGS = $(CFLAGS)
 all: "$(OUTDIR)\mdk.lib"
 
 clean:
-	del $(OUTDIR)\*.* /q
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
 "$(OUTDIR)\mdk.lib": $(OUTDIR)\mdkimp.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
