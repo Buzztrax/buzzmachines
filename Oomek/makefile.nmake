@@ -1,0 +1,4 @@
+SUBDIRS_ALL = Aggressor.all
+SUBDIRS_CLEAN = Aggressor.clean
+
+!INCLUDE ..\subdirs.nmake

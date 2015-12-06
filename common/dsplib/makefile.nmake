@@ -1,0 +1,14 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS) 
+# TODO: /DHAVE_WIN32_UI
+#/D_USE_MATH_DEFINES /DNOMINMAX 
+
+all: "$(OUTDIR)\dsplib.lib"
+
+clean:
+	del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\dsplib.lib": $(OUTDIR)\dsplib.obj
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	lib /OUT:$@ $**

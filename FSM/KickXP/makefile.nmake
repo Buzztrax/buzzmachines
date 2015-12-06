@@ -1,0 +1,10 @@
+!INCLUDE ..\..\common.nmake
+
+all: "$(OUTDIR)\FSM KickXP.dll"
+
+clean:
+	del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\FSM KickXP.dll": $(OUTDIR)\KickXP.obj
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	cl $(LINKFLAGS) /Fe$@ $**

@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <string.h>
 #ifdef WIN32
-#include "stdafx.h"
 #include <windows.h>
 typedef DWORD dword;
 #else

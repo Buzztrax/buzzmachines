@@ -1,0 +1,16 @@
+
+all: $(SUBDIRS_ALL)
+
+clean: $(SUBDIRS_CLEAN)
+
+$(SUBDIRS_ALL): 
+	@echo Making in $* subdirectory...
+	@cd $*
+	@nmake -f makefile.nmake CONFIGURATION=$(CONFIGURATION)
+	@cd ..
+
+$(SUBDIRS_CLEAN): 
+	@echo Cleaning in $* subdirectory...
+	@cd $*
+	@nmake -f makefile.nmake CONFIGURATION=$(CONFIGURATION) clean
+	@cd ..

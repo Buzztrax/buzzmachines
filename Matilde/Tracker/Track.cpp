@@ -149,7 +149,7 @@ int	CTrack::NewNote( bool oRetrig )
 		r|=RETRIG_FREQ|RETRIG_INS;
 		if( !oRetrig )
 		{
-			m_fFreq      =(float) pow(2.0,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pSample->GetRootNote()))/12.0f) * m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
+			m_fFreq      =(float) pow(2.0f,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pSample->GetRootNote()))/12.0f) * m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
 			m_fBaseFreq  =m_fFreq;
 			m_fWantedFreq=m_fFreq;
 		}
@@ -274,7 +274,7 @@ void	CTrack::Tick( CTrackVals &tv, CGlobalVals &gv )
 		{
 			if( m_pSample )
 			{
-				m_fWantedFreq=(float) pow(2.0,(CONVNOTE(m_Vals.note)-CONVNOTE(m_pSample->GetRootNote()))/12.0f) * m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
+				m_fWantedFreq=(float) pow(2.0f,(CONVNOTE(m_Vals.note)-CONVNOTE(m_pSample->GetRootNote()))/12.0f) * m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
 			}
 			m_iBaseNote=m_Vals.note;
 		}
@@ -474,7 +474,7 @@ void	CTrack::Tick( CTrackVals &tv, CGlobalVals &gv )
 				{
 					if( m_pSample )
 					{
-						m_fFreq    =(float) pow(2.0,(CONVNOTE(m_Vals.note)-CONVNOTE(m_pSample->GetRootNote()))/12.0f) * (m_pSample->GetRootFrequency()*argument) / m_pMachine->pMasterInfo->SamplesPerSec;
+						m_fFreq    =(float) pow(2.0f,(CONVNOTE(m_Vals.note)-CONVNOTE(m_pSample->GetRootNote()))/12.0f) * (m_pSample->GetRootFrequency()*argument) / m_pMachine->pMasterInfo->SamplesPerSec;
 						m_fBaseFreq=m_fFreq;
 					}
 				}
@@ -1011,13 +1011,13 @@ void CTrack::Process( int iStep )
 						switch( iStep%3 )
 						{
 							case 0:
-								m_fFreq=(float) pow(2.0,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pChannel->m_pSample->GetRootNote()))/12.0f) * m_pChannel->m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
+								m_fFreq=(float) pow(2.0f,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pChannel->m_pSample->GetRootNote()))/12.0f) * m_pChannel->m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
 								break;
 							case 1:
-								m_fFreq=(float) pow(2.0,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pChannel->m_pSample->GetRootNote())+(argument>>4))/12.0f) * m_pChannel->m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
+								m_fFreq=(float) pow(2.0f,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pChannel->m_pSample->GetRootNote())+(argument>>4))/12.0f) * m_pChannel->m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
 								break;
 							case 2:
-								m_fFreq=(float) pow(2.0,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pChannel->m_pSample->GetRootNote())+(argument&0x0F))/12.0f) * m_pChannel->m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
+								m_fFreq=(float) pow(2.0f,(CONVNOTE(m_iBaseNote)-CONVNOTE(m_pChannel->m_pSample->GetRootNote())+(argument&0x0F))/12.0f) * m_pChannel->m_pSample->GetRootFrequency() / m_pMachine->pMasterInfo->SamplesPerSec;
 								break;
 						}
 						retrig|=RETRIG_FREQ;

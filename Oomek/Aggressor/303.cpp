@@ -333,6 +333,9 @@ mi::~mi(){}
 
 
 #ifdef WIN32
+
+#include <windows.h>
+
 //////////////dialog////////////////
 
 HINSTANCE dllInstance;

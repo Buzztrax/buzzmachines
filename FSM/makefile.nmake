@@ -1,0 +1,4 @@
+SUBDIRS_ALL = Infector.all KickXP.all
+SUBDIRS_CLEAN = Infector.clean KickXP.clean
+
+!INCLUDE ..\subdirs.nmake

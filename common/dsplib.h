@@ -31,7 +31,7 @@
 typedef unsigned long dword;
 
 #ifdef _MSC_VER
-#define DI __declspec(dllimport)
+#define DI //__declspec(dllimport) // NOTE: building dsplib as a static library
 #else
 #define DI
 #endif

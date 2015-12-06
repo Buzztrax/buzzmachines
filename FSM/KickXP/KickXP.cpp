@@ -650,8 +650,8 @@ static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
     {
       trk->LeftOver=32;
       double EnvPoint=trk->EnvPhase*trk->ThisTDecay;
-      double ShapedPoint=pow(EnvPoint,trk->ThisTShape*2);
-      trk->Frequency=(float)(trk->ThisStartFrq*pow(Ratio,ShapedPoint));
+      double ShapedPoint=pow(EnvPoint,trk->ThisTShape*2.0);
+      trk->Frequency=(float)(trk->ThisStartFrq*pow((double)Ratio,ShapedPoint));
       if (trk->Frequency>10000.f) trk->EnvPhase=6553600;
       if (trk->EnvPhase<trk->ThisDTime)
       {
@@ -676,15 +676,15 @@ static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
           return amphigh;
       }
 
-      trk->BAmp=BAmp=trk->BuzzAmt*(float)(pow(1.0/256.0,trk->ThisBDecay*trk->EnvPhase*(odsr*10)));
-      float CVal=(float)(pow(1.0/256.0,trk->ThisCDecay*trk->EnvPhase*(odsr*20)));
+      trk->BAmp=BAmp=trk->BuzzAmt*(float)(pow(1.0f/256.0f,trk->ThisBDecay*trk->EnvPhase*(odsr*10)));
+      float CVal=(float)(pow(1.0f/256.0f,trk->ThisCDecay*trk->EnvPhase*(odsr*20)));
       trk->CAmp=CAmp=trk->ClickAmt*CVal;
       trk->Frequency*=(1+2*trk->PunchAmt*CVal*CVal*CVal);
       if (trk->Frequency>10000) trk->Frequency=10000;
       if (trk->Frequency<trk->ThisPitchLimit) trk->Frequency=trk->ThisPitchLimit;
 
-      trk->MulBAmp=MulBAmp=(float)pow(1.0/256.0,trk->ThisBDecay*(10*odsr));
-      trk->MulCAmp=MulCAmp=(float)pow(1.0/256.0,trk->ThisCDecay*(10*odsr));
+      trk->MulBAmp=MulBAmp=(float)pow(1.0f/256.0f,trk->ThisBDecay*(10*odsr));
+      trk->MulCAmp=MulCAmp=(float)pow(1.0f/256.0f,trk->ThisCDecay*(10*odsr));
       xSin=(float)sin(2.0*3.141592665*trk->OscPhase);
       xCos=(float)cos(2.0*3.141592665*trk->OscPhase);
       dxSin=(float)sin(2.0*3.141592665*trk->Frequency/sr);

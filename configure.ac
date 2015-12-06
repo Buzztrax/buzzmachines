@@ -67,7 +67,7 @@ AC_SUBST(demosongdir)
 # Compilation and Linker flags
 # -Wno-non-virtual-dtor suppresses: virtual methods with no virtual destructor
 # -Wno-unknown-pragmas  suppresses: ignoring #pragma xxx
-BM_CXXFLAGS="-I\$(top_srcdir)/common $DEBUG_CFLAGS -Wno-non-virtual-dtor -Wno-unknown-pragmas"
+BM_CXXFLAGS="-I\$(top_srcdir)/common -I\$(top_srcdir)/common/windef $DEBUG_CFLAGS -Wno-non-virtual-dtor -Wno-unknown-pragmas"
 BM_LIBS="-module -avoid-version"
 AC_SUBST(BM_CXXFLAGS)
 AC_SUBST(BM_LIBS)

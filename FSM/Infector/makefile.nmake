@@ -1,0 +1,20 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS) /DNOMINMAX /D_USE_MATH_DEFINES
+
+all: "$(OUTDIR)\FSM Infector.dll" "$(OUTDIR)\FSM Infector.prs" "$(OUTDIR)\FSM Infector.html"
+
+clean:
+	del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\FSM Infector.dll": $(OUTDIR)\Infector.obj $(OUTDIR)\Filters.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Track.obj $(OUTDIR)\Vegetable.obj
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	cl $(LINKFLAGS) /Fe$@ $**
+	
+"$(OUTDIR)\FSM Infector.prs": FSM_Infector.prs
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	copy $** $@
+
+"$(OUTDIR)\FSM Infector.html": FSM_Infector.html
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	copy $** $@
