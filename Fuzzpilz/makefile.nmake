@@ -1,0 +1,4 @@
+SUBDIRS_ALL = UnwieldyTracker.all
+SUBDIRS_CLEAN = UnwieldyTracker.clean
+
+!INCLUDE ..\subdirs.nmake

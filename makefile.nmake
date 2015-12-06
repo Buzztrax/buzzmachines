@@ -10,7 +10,7 @@
 # 
 #   nmake -f makefile.nmake CONFIGURATION=Debug PLATFORM=x64 clean
 
-SUBDIRS_ALL = common.all FSM.all Matilde.all Oomek.all
-SUBDIRS_CLEAN = common.clean FSM.clean Matilde.clean Oomek.clean
+SUBDIRS_ALL = common.all FSM.all Fuzzpilz.all Matilde.all Oomek.all
+SUBDIRS_CLEAN = common.clean FSM.clean Fuzzpilz.clean Matilde.clean Oomek.clean
 
 !INCLUDE subdirs.nmake

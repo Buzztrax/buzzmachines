@@ -1,4 +1,4 @@
-SUBDIRS_ALL = Aggressor.all
-SUBDIRS_CLEAN = Aggressor.clean
+SUBDIRS_ALL = Aggressor.all Masterizer.all Exciter.all
+SUBDIRS_CLEAN = Aggressor.clean Masterizer.clean Exciter.clean
 
 !INCLUDE ..\subdirs.nmake

@@ -1,10 +1,17 @@
 #include <string.h>
 #include <float.h>
 #include <math.h>
+#if defined(WIN32)
 #include <windows.h>
 #include <commctrl.h>
-#include "buzz/mdk.h"
 #include "resource.h"
+#else
+#include <windef.h>
+void ZeroMemory(void* ptr, int length) {
+	memset(ptr, 0, length);
+}
+#endif
+#include <mdk/mdk.h>
 
 #define MAX_TRACKS 16
 #define SEMI 1.0594630943592952645618252949461
@@ -1231,7 +1238,7 @@ bool focs=false;
 bool focp=false;
 int snum=-1;
 
-BOOL APIENTRY PoolDialog(HWND hDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
+INT_PTR APIENTRY PoolDialog(HWND hDlg,UINT uMsg,WPARAM wParam,LPARAM lParam)
 {
 	mi *pmi=(mi *)lParam;
 

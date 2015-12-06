@@ -1,0 +1,14 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS) /Zc:forScope-
+
+all: "$(OUTDIR)\UnwieldyTracker.dll"
+
+clean:
+	del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\UnwieldyTracker.dll": $(OUTDIR)\unwieldy_tracker.obj
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	cl $(LINKFLAGS) /Fe$@ $** user32.lib comctl32.lib advapi32.lib
+	
+	
