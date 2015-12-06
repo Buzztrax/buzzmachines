@@ -36,7 +36,7 @@ typedef unsigned long dword;
 #else
     #define DI __declspec(dllimport)
 #endif
-#if defined(_M_X86)
+#if defined(_M_IX86)
 #define DSPCALL __fastcall
 #else
 #define DSPCALL

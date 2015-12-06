@@ -413,21 +413,13 @@ const CEnvelopeInfo	*	CMachine::m_Envelopes[4]=
 };
 
 extern "C" {
-#ifdef WIN32
+#if defined(WIN32)
 
-#if _MSC_VER
-#define CDECL __cdecl
-#else
-#define CDECL __attribute__((__cdecl__))
-#endif
-
-//__declspec(dllexport) CMachineInfo const * __cdecl GetInfo()
-CMachineInfo const * CDECL GetInfo(void) {
+__declspec(dllexport) CMachineInfo const * __cdecl GetInfo(void) {
 	return &CMachine::m_MachineInfo;
 }
 
-//__declspec(dllexport) CMachineInterface * __cdecl CreateMachine()
-CMachineInterface * CDECL CreateMachine(void) {
+__declspec(dllexport) CMachineInterface * __cdecl CreateMachine(void) {
 	return new CMachine;
 }
 #else
