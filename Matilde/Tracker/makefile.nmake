@@ -1,0 +1,26 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS) 
+# TODO: /DHAVE_WIN32_UI
+#/D_USE_MATH_DEFINES /DNOMINMAX 
+
+all: "$(OUTDIR)\Matilde Tracker2.dll" "$(OUTDIR)\Matilde Tracker2.html"
+
+clean:
+	cd SurfsDSPLib
+	nmake -f makefile.nmake CONFIGURATION=$(CONFIGURATION) clean
+	cd ..
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\Matilde Tracker2.dll": $(OUTDIR)\BuzzInstrument.obj $(OUTDIR)\BuzzSample.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Envelope.obj $(OUTDIR)\ExtResampler.obj $(OUTDIR)\IInstrument.obj $(OUTDIR)\ISample.obj $(OUTDIR)\Track.obj $(OUTDIR)\Tracker.obj $(OUTDIR)\WaveTableManager.obj SurfsDSPLib\$(OUTDIR)\SurfsDSPLib.lib
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	cl $(LINKFLAGS) /Fe$@ $**
+
+"$(OUTDIR)\Matilde Tracker2.html": Matilde_Tracker2.html
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	copy $** $@
+
+SurfsDSPLib\$(OUTDIR)\SurfsDSPLib.lib: 
+	cd SurfsDSPLib
+	nmake -f makefile.nmake CONFIGURATION=$(CONFIGURATION)
+	cd ..

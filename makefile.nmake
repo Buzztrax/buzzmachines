@@ -1,0 +1,16 @@
+# Build with nmake in "VS x86 Native Tools Command Prompt" or "VS x64 Cross 
+# Tools Command Prompt" for either 32 or 64 bit machines respectively.
+#
+# Supports either Release or Debug configurations. F.ex:
+#
+#   nmake -f makefile.nmake CONFIGURATION=Release PLATFORM=x86
+#   nmake -f makefile.nmake CONFIGURATION=Debug PLATFORM=x64
+#
+# Supports the "clean" make target:
+# 
+#   nmake -f makefile.nmake CONFIGURATION=Debug PLATFORM=x64 clean
+
+SUBDIRS_ALL = common.all FSM.all Fuzzpilz.all Matilde.all Oomek.all
+SUBDIRS_CLEAN = common.clean FSM.clean Fuzzpilz.clean Matilde.clean Oomek.clean
+
+!INCLUDE subdirs.nmake

@@ -1,0 +1,16 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS) /DNOMINMAX /D_USE_MATH_DEFINES
+
+all: "$(OUTDIR)\FSM PanzerDelay.dll" "$(OUTDIR)\FSM PanzerDelay.prs"
+
+clean:
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\FSM PanzerDelay.dll": $(OUTDIR)\PanzerDelay.obj
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	cl $(LINKFLAGS) /Fe$@ $** ..\..\common\mdk\$(OUTDIR)\mdk.lib ..\..\common\dsplib\$(OUTDIR)\dsplib.lib
+	
+"$(OUTDIR)\FSM PanzerDelay.prs": FSM_PanzerDelay.prs
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	copy $** $@

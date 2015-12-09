@@ -1,0 +1,13 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS)
+
+all: "$(OUTDIR)\Oomek Exciter.dll"
+
+clean:
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\Oomek Exciter.dll": $(OUTDIR)\exciter.obj 
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	cl $(LINKFLAGS) /Fe$@ $** ..\..\common\mdk\$(OUTDIR)\mdk.lib ..\..\common\dsplib\$(OUTDIR)\dsplib.lib
+

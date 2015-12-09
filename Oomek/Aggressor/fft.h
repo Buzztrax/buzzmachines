@@ -23,7 +23,7 @@ Fills fftBuffer[0...2*fftFrameSize-1] with the Fourier transform of the time dom
 			*p1 = *p2; *p2 = temp;
 		}
 	}
-	for (k = 0, le = 2; k < log(fftFrameSize)/log(2.); k++) {
+	for (k = 0, le = 2; k < log((float)fftFrameSize)/log(2.0f); k++) {
 		le <<= 1;
 		le2 = le>>1;
 		ur = 1.0;

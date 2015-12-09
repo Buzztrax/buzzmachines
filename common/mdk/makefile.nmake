@@ -1,0 +1,14 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS) 
+# TODO: /DHAVE_WIN32_UI
+#/D_USE_MATH_DEFINES /DNOMINMAX 
+
+all: "$(OUTDIR)\mdk.lib"
+
+clean:
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\mdk.lib": $(OUTDIR)\mdkimp.obj
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	lib /OUT:$@ $**

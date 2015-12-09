@@ -819,10 +819,12 @@ inline float LfoRateToDeltaPhase(byte lforate, int TicksPerSec, float SamplesPer
 #define HANDLE_PARAM(ptvalName, paraName) if (ptval->ptvalName != para##paraName.NoValue) pt->paraName = ptval->ptvalName;
 #define HANDLE_PARAM2(ptvalName) if (ptval->ptvalName != 255) pt->ptvalName = ptval->ptvalName;
 
+#if 0
 inline void Brk()
 {
   __asm (" int 0x03; ");
 }
+#endif
 
 inline int DelayLenToSamples(int DelayUnit, int DelayLen, int SamplesPerTick, int SamplesPerSec)
 {

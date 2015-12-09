@@ -1,0 +1,121 @@
+//{{NO_DEPENDENCIES}}
+// Microsoft Developer Studio generated include file.
+// Used by res.rc
+//
+#define IDD_MABOUT                      101
+#define IDB_BITMAP1                     102
+#define IDB_FLOGO                       103
+#define IDD_SAMPOOL                     112
+#define IDD_TRACKCONTROL                114
+#define IDC_ABTEXT                      1004
+#define IDC_LOGOP                       1005
+#define IDC_MUNO                        1007
+#define IDC_COMCHAN                     1008
+#define IDC_SONO                        1009
+#define IDC_RENO                        1010
+#define IDC_T1                          1011
+#define IDC_T2                          1012
+#define IDC_INPOOL                      1012
+#define IDC_T3                          1013
+#define IDC_SAMPLES                     1013
+#define IDC_T4                          1014
+#define IDC_ADD                         1014
+#define IDC_T5                          1015
+#define IDC_REMOVE                      1015
+#define IDC_T6                          1016
+#define IDC_CLEAR                       1016
+#define IDC_T7                          1017
+#define IDC_POOLNUM                     1017
+#define IDC_T8                          1018
+#define IDC_T9                          1019
+#define IDC_TA                          1020
+#define IDC_TB                          1021
+#define IDC_TC                          1022
+#define IDC_TD                          1023
+#define IDC_SPIN                        1023
+#define IDC_TE                          1024
+#define IDC_POOLNAME                    1024
+#define IDC_TF                          1025
+#define IDC_BITS                        1025
+#define IDC_MS                          1026
+#define IDC_LENGTH                      1027
+#define IDC_SAMPLERATE                  1028
+#define IDC_T0                          1029
+#define IDC_SNAME                       1029
+#define IDC_PREVIEWPLAY                 1030
+#define IDC_MUTE1                       1033
+#define IDC_SOLO1                       1034
+#define IDC_MUTE2                       1035
+#define IDC_SOLO2                       1036
+#define IDC_MUTE3                       1037
+#define IDC_SOLO3                       1038
+#define IDC_MUTE4                       1039
+#define IDC_SOLO4                       1040
+#define IDC_MUTE5                       1041
+#define IDC_SOLO5                       1042
+#define IDC_MUTE6                       1043
+#define IDC_SOLO6                       1044
+#define IDC_MUTE7                       1045
+#define IDC_SOLO7                       1046
+#define IDC_MUTE8                       1047
+#define IDC_SOLO8                       1048
+#define IDC_MUTE9                       1049
+#define IDC_SOLO9                       1050
+#define IDC_MUTE10                      1051
+#define IDC_SOLO10                      1052
+#define IDC_MUTE11                      1053
+#define IDC_SOLO11                      1054
+#define IDC_MUTE12                      1055
+#define IDC_SOLO12                      1056
+#define IDC_MUTE13                      1057
+#define IDC_SOLO13                      1058
+#define IDC_MUTE14                      1059
+#define IDC_SOLO14                      1060
+#define IDC_MUTE15                      1061
+#define IDC_SOLO15                      1062
+#define IDC_MUTE16                      1063
+#define IDC_SOLO16                      1064
+#define IDC_L1                          1065
+#define IDC_L2                          1066
+#define IDC_L3                          1067
+#define IDC_L4                          1068
+#define IDC_L5                          1069
+#define IDC_L6                          1070
+#define IDC_L7                          1071
+#define IDC_L8                          1072
+#define IDC_L9                          1073
+#define IDC_L10                         1074
+#define IDC_L11                         1075
+#define IDC_L12                         1076
+#define IDC_L13                         1077
+#define IDC_L14                         1078
+#define IDC_L15                         1079
+#define IDC_L16                         1080
+#define IDC_OUTPUT1                     1083
+#define IDC_OUTPUT2                     1085
+#define IDC_VELOMIN                     1085
+#define IDC_OUTPUT3                     1086
+#define IDC_OUTPUT4                     1087
+#define IDC_OUTPUT5                     1088
+#define IDC_OUTPUT6                     1089
+#define IDC_OUTPUT7                     1090
+#define IDC_OUTPUT8                     1091
+#define IDC_OUTPUT9                     1092
+#define IDC_OUTPUT10                    1093
+#define IDC_OUTPUT11                    1094
+#define IDC_OUTPUT12                    1095
+#define IDC_OUTPUT13                    1096
+#define IDC_OUTPUT14                    1097
+#define IDC_OUTPUT15                    1098
+#define IDC_OUTPUT16                    1099
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        115
+#define _APS_NEXT_COMMAND_VALUE         40001
+#define _APS_NEXT_CONTROL_VALUE         1086
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif

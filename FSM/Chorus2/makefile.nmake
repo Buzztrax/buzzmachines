@@ -1,0 +1,12 @@
+!INCLUDE ..\..\common.nmake
+
+CFLAGS = $(CFLAGS) /DNOMINMAX /D_USE_MATH_DEFINES
+
+all: "$(OUTDIR)\FSM Chorus2.dll"
+
+clean:
+	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
+
+"$(OUTDIR)\FSM Chorus2.dll": $(OUTDIR)\Chorus2.obj
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	cl $(LINKFLAGS) /Fe$@ $** ..\..\common\mdk\$(OUTDIR)\mdk.lib ..\..\common\dsplib\$(OUTDIR)\dsplib.lib

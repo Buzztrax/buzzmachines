@@ -1,0 +1,42 @@
+# Common compiler and linker settings to build 32 and 64 bit Bu machines 
+# with Debug and Release configurations. This file is shared by all machine
+# makefiles.
+
+# PLATFORM is an environment variable set by the VS build env to x64 or
+# manually to x86
+
+!IF "$(CONFIGURATION)" != "Debug" && "$(CONFIGURATION)" != "Release"
+!ERROR Pass CONFIGURATION=Debug or Release
+!ENDIF
+
+!IF "$(PLATFORM)" == ""
+!ERROR Expected PLATFORM=x86 or x64
+!ENDIF
+
+OUTDIR=$(PLATFORM)\$(CONFIGURATION)
+
+!MESSAGE PLATFORM = $(PLATFORM)
+!MESSAGE OUTDIR = $(OUTDIR)
+
+!IF "$(PLATFORM)" == "x86"
+CFLAGS = /DWIN32 /D_WINDLL /D__MSVC__ /D_X86_ /I..\..\common
+LINKFLAGS = 
+!ELSEIF "$(PLATFORM)" == "x64"
+CFLAGS = /DWIN32 /DWIN64 /D_WINDLL /D__MSVC__ /D_AMD64_ /I..\..\common
+LINKFLAGS = 
+!ENDIF
+
+!IF "$(CONFIGURATION)" == "Debug"
+CFLAGS = /Od /Zi /MTd /D_DEBUG $(CFLAGS) 
+LINKFLAGS = /LDd $(LINKFLAGS) 
+!ELSEIF "$(CONFIGURATION)" == "Release"
+CFLAGS = /MT $(CFLAGS) 
+LINKFLAGS = /LD $(LINKFLAGS)
+!ENDIF
+
+
+# Default inference rule
+
+.cpp{$(OUTDIR)}.obj:
+	if not exist $(OUTDIR) mkdir $(OUTDIR)
+	$(CC) $(CFLAGS) /c $< /Fo$*.obj
