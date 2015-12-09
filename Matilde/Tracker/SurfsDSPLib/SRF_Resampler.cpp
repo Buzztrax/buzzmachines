@@ -1,3 +1,4 @@
+#include <limits>
 #include	<stdlib.h>
 #include	"SRF_DSP.h"
 
@@ -6,31 +7,45 @@ using namespace SurfDSPLib;
 const long	MAXFRACTION=0xFFFFFF;
 const int		SHIFTFRACTION=24;
 
-#define	POINTERADD(p,n,sh)		(u_long(p)+((n)<<(sh)))
-#define	POINTERSUB(p1,p2,sh)	((u_long(p1)-u_long(p2))>>(sh))
-#define	READFLOAT(p,n)			(((float *)(p))[n])
-#define	READSIGNED8(p,n)		(*((char *)((u_long(p)+(n))^1)))
-#define	READSIGNED16(p,n)		(((short *)(p))[n])
+#define	POINTERADD(p,n,mu)		(u_long(p)+((n)*(mu)))
+#define	POINTERSUB(p1,p2,mu)	((u_long(p1)-u_long(p2))/(mu))
 
-#define	READLEFTSIGNED16(p,n)	(((short *)(p))[(n)<<1])
-#define	READRIGHTSIGNED16(p,n)	(((short *)(p))[((n)<<1)+1])
-#define	READSTEREOSIGNED16(p,n)	((int(READLEFTSIGNED16(p,n))+int(READRIGHTSIGNED16(p,n)))>>1)
-
-static inline int	absint( int i )
-{
-	return i>=0?i:-i;
+static inline float	fscale( float r, long i ) {
+	//i=(*(long *)&r)+((i&0xFF)<<23);
+	//return *(float *)&i;
+	return r * (1 << i);
 }
 
-static	u_char	gSampleSizes[8]=
+static inline stereofloat fscale( stereofloat r, long i ) {
+	stereofloat z;
+	/*long t = (*(long *)&r.l)+((i&0xFF)<<23);
+	z.l = *(float *)&t;
+	t = (*(long *)&r.r)+((i&0xFF)<<23);
+	z.r = *(float *)&t;*/
+	z.l = r.l * (1 << i);
+	z.r = r.r * (1 << i);
+	return z;
+}
+
+static	u_char	gSampleSizes[16]=
 {
-	0,
-	0,
-	2,
-	1,
-	1,
-	1,
-	3,
-	2,
+	1, // SMP_SIGNED8=0,
+	1, // SMP_SIGNED8SWAPPED=1,
+	4, // SMP_FLOAT=2,
+	2, // SMP_SIGNED16=3,
+	3, // SMP_SIGNED24=4,
+	4, // SMP_SIGNED32=5,
+
+	0,	// 6 - unused
+	0,	// 7 - unused
+
+	2, // SMP_SIGNED8_STEREO=SMP_SIGNED8|SMP_FLAG_STEREO,
+	2, // SMP_SIGNED8SWAPPED_STEREO=SMP_SIGNED8SWAPPED|SMP_FLAG_STEREO,
+	8, // SMP_FLOAT_STEREO=SMP_FLOAT|SMP_FLAG_STEREO,
+	4, // SMP_SIGNED16_STEREO=SMP_SIGNED16|SMP_FLAG_STEREO,
+	6, // SMP_SIGNED24_STEREO=SMP_SIGNED24|SMP_FLAG_STEREO,
+	8, // SMP_SIGNED32_STEREO=SMP_SIGNED32|SMP_FLAG_STEREO,
+
 };
 
 void	CResampler::CLocation::AdvanceLocation( int i )
@@ -93,6 +108,8 @@ llong	CResampler::GetSamplesToEnd()
 
 void	CResampler::SetFrequency( float f )
 {
+	// ae: limit for max freq here
+	if (f >= 64.0f) f = 64.0f - std::numeric_limits<float>::epsilon();
 	m_iFreq=u_long(f*(1<<SHIFTFRACTION));
 }
 
@@ -101,1155 +118,78 @@ bool	CResampler::Active()
 	return m_Location.m_pStart && m_iFreq;
 }
 
-#ifndef	BUZZ
-float	*	CResampler::ResampleFloatToFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		*pDest++ = READFLOAT(m_Location.m_pStart,m_iPosition);
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
+void CopyStereoChannel(float* pDest, float* pSrc, int iCount, int iDestOfs, int iSrcOfs) {
+	pDest += iDestOfs;
+	pSrc += iSrcOfs;
+	while (iCount--) {
+		*pDest++ = *pSrc++;
 	}
-
-	return pDest;
 }
-
-float	*	CResampler::ResampleFloatToStereoFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		float	d=READFLOAT(m_Location.m_pStart,m_iPosition);
-
-		*pDest++ = d;
-		*pDest++ = d;
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-#endif
-
-float	*	CResampler::ResampleSigned16ToFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		*pDest++ = READSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleSigned16ToStereoFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		float	d=READSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-
-		*pDest++ = d;
-		*pDest++ = d;
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleStereoSigned16ToFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		*pDest++ = READSTEREOSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleStereoSigned16ToStereoFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		*pDest++ = READLEFTSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		*pDest++ = READRIGHTSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-#ifndef	BUZZ
-float	*	CResampler::ResampleSigned8ToFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		*pDest++ = READSIGNED8(m_Location.m_pStart,m_iPosition)*(1.0f/128.0f);
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleSigned8ToStereoFloatBuffer_Normal( float *pDest, int iCount )
-{
-	while( iCount-- )
-	{
-		float	d=READSIGNED8(m_Location.m_pStart,m_iPosition)*(1.0f/128.0f);
-
-		*pDest++ = d;
-		*pDest++ = d;
-		m_iFraction+=m_iFreq;
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleFloatToFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-	
-	while( (iCount>0) && (m_iPosition<iLast) )
-	{
-		float	s=READFLOAT(m_Location.m_pStart,m_iPosition);
-		float	d=READFLOAT(m_Location.m_pStart,m_iPosition+1);
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( iCount>0 )
-	{
-		float	s=READFLOAT(m_Location.m_pStart,m_iPosition);
-		float	d;
-
-		if( m_Loop.m_pStart )
-			d=READFLOAT(m_Loop.m_pStart,0);
-		else
-			d=0;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleFloatToStereoFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-	
-	while( (iCount>0) && (m_iPosition<iLast) )
-	{
-		float	s=READFLOAT(m_Location.m_pStart,m_iPosition);
-		float	d=READFLOAT(m_Location.m_pStart,m_iPosition+1);
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			float	t=d*m_iFraction+s;
-			*pDest++ = t;
-			*pDest++ = t;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( iCount>0 )
-	{
-		float	s=READFLOAT(m_Location.m_pStart,m_iPosition);
-		float	d;
-
-		if( m_Loop.m_pStart )
-			d=READFLOAT(m_Loop.m_pStart,0);
-		else
-			d=0;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			float	t=d*m_iFraction+s;
-
-			*pDest++ = t;
-			*pDest++ = t;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-#endif
-
-float	*	CResampler::ResampleSigned16ToFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-
-	while( (iCount>0) && (m_iPosition<iLast) && (m_iPosition>=0) )
-	{
-		float	s=READSIGNED16(m_Location.m_pStart,m_iPosition)*(1/32768.0f);
-		float	d=READSIGNED16(m_Location.m_pStart,m_iPosition+1)*(1/32768.0f);
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( m_iPosition<0 )
-		iCount=iCount;
-
-	if( iCount>0 )
-	{
-		float	s=READSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		float	d;
-
-		if( m_Loop.m_pStart )
-			d=READSIGNED16(m_Loop.m_pStart,0)*(1.0f/32768.0f);
-		else
-			d=0;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleSigned16ToStereoFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-
-	while( (iCount>0) && (m_iPosition<iLast) && (m_iPosition>=0) )
-	{
-		float	s=READSIGNED16(m_Location.m_pStart,m_iPosition)*(1/32768.0f);
-		float	d=READSIGNED16(m_Location.m_pStart,m_iPosition+1)*(1/32768.0f);
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			float	t=d*m_iFraction+s;
-			*pDest++ = t;
-			*pDest++ = t;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( m_iPosition<0 )
-		iCount=iCount;
-
-	if( iCount>0 )
-	{
-		float	s=READSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		float	d;
-
-		if( m_Loop.m_pStart )
-			d=READSIGNED16(m_Loop.m_pStart,0)*(1.0f/32768.0f);
-		else
-			d=0;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			float	t=d*m_iFraction+s;
-			*pDest++ = t;
-			*pDest++ = t;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleStereoSigned16ToFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-
-	while( (iCount>0) && (m_iPosition<iLast) && (m_iPosition>=0) )
-	{
-		float	s=READSTEREOSIGNED16(m_Location.m_pStart,m_iPosition)*(1/32768.0f);
-		float	d=READSTEREOSIGNED16(m_Location.m_pStart,m_iPosition+1)*(1/32768.0f);
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( m_iPosition<0 )
-		iCount=iCount;
-
-	if( iCount>0 )
-	{
-		float	s=READSTEREOSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		float	d;
-
-		if( m_Loop.m_pStart )
-			d=READSTEREOSIGNED16(m_Loop.m_pStart,0)*(1.0f/32768.0f);
-		else
-			d=0;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleStereoSigned16ToStereoFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-
-	while( (iCount>0) && (m_iPosition<iLast) && (m_iPosition>=0) )
-	{
-		float	ls=READLEFTSIGNED16(m_Location.m_pStart,m_iPosition)*(1/32768.0f);
-		float	ld=READLEFTSIGNED16(m_Location.m_pStart,m_iPosition+1)*(1/32768.0f);
-		float	rs=READRIGHTSIGNED16(m_Location.m_pStart,m_iPosition)*(1/32768.0f);
-		float	rd=READRIGHTSIGNED16(m_Location.m_pStart,m_iPosition+1)*(1/32768.0f);
-
-		ld=(ld-ls)*(1.0f/(1<<SHIFTFRACTION));
-		rd=(rd-rs)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = ld*m_iFraction+ls;
-			*pDest++ = rd*m_iFraction+rs;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( m_iPosition<0 )
-		iCount=iCount;
-
-	if( iCount>0 )
-	{
-		float	ls=READLEFTSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		float	ld;
-		float	rs=READRIGHTSIGNED16(m_Location.m_pStart,m_iPosition)*(1.0f/32768.0f);
-		float	rd;
-
-		if( m_Loop.m_pStart )
-		{
-			ld=READLEFTSIGNED16(m_Loop.m_pStart,0)*(1.0f/32768.0f);
-			rd=READRIGHTSIGNED16(m_Loop.m_pStart,0)*(1.0f/32768.0f);
-		}
-		else
-		{
-			ld=0;
-			rd=0;
-		}
-
-		ld=(ld-ls)*(1.0f/(1<<SHIFTFRACTION));
-		rd=(rd-rs)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = ld*m_iFraction+ls;
-			*pDest++ = rd*m_iFraction+rs;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-#ifndef	BUZZ
-float	*	CResampler::ResampleSigned8ToFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-
-	while( (iCount>0) && (m_iPosition<iLast) )
-	{
-		float	s=READSIGNED8(m_Location.m_pStart,m_iPosition)/128.0f;
-		float	d=READSIGNED8(m_Location.m_pStart,m_iPosition+1)/128.0f;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( iCount>0 )
-	{
-		float	s=READSIGNED8(m_Location.m_pStart,m_iPosition)/128.0f;
-		float	d;
-
-		if( m_Loop.m_pStart )
-			d=READSIGNED8(m_Loop.m_pStart,0)/128.0f;
-		else
-			d=0;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			*pDest++ = d*m_iFraction+s;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleSigned8ToStereoFloatBuffer_Filter( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-
-	while( (iCount>0) && (m_iPosition<iLast) )
-	{
-		float	s=READSIGNED8(m_Location.m_pStart,m_iPosition)/128.0f;
-		float	d=READSIGNED8(m_Location.m_pStart,m_iPosition+1)/128.0f;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			float	t=d*m_iFraction+s;
-			*pDest++ = t;
-			*pDest++ = t;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	if( iCount>0 )
-	{
-		float	s=READSIGNED8(m_Location.m_pStart,m_iPosition)/128.0f;
-		float	d;
-
-		if( m_Loop.m_pStart )
-			d=READSIGNED8(m_Loop.m_pStart,0)/128.0f;
-		else
-			d=0;
-
-		d=(d-s)*(1.0f/(1<<SHIFTFRACTION));
-
-		while( (m_iFraction<=MAXFRACTION) && iCount-- )
-		{
-			float	t=d*m_iFraction+s;
-			*pDest++ = t;
-			*pDest++ = t;
-			m_iFraction+=m_iFreq;
-		}
-
-		m_iPosition+=m_iFraction>>SHIFTFRACTION;
-		m_iFraction&=MAXFRACTION;
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleFloatToFloatBuffer_Spline( float *pDest, int iCount )
-{
-	return ResampleFloatToFloatBuffer_Filter( pDest, iCount );
-}
-#endif
-
-float	*	CResampler::ResampleSigned16ToFloatBuffer_Spline( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-	long	iLoopPos=0;
-
-	float	p0,p1,p2,p3;
-	int		n0,n1,n2,n3;
-
-	n1=m_iPosition;
-	p1=READSIGNED16(m_Location.m_pStart,n1)*(1.0f/32768.0f);
-	n0=n1-1;
-	if( n0<0 )
-		n0=0;
-	p0=READSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-	n2=m_iPosition+1;
-	if( n2>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			p2=READSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-			p2=0;
-	}
-	else
-		p2=READSIGNED16(m_Location.m_pStart,n2)*(1.0f/32768.0f);
-	n3=n2+1;
-	if( n3>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			p3=READSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-			p3=0;
-	}
-	else
-		p3=READSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-
-	if( m_iFreq>0 )
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	q0=-p0+3*p1-3*p2+p3;
-			float	q1=2*p0-5*p1+4*p2-p3;
-			float	q2=-p0+p2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				*pDest++ = ((fTime*q0+q1)*fTime+q2)*fTime*0.5f+p1;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt-- )
-			{
-				p0=p1;
-				p1=p2;
-				p2=p3;
-				n3+=1;
-				if( n3>=iLast )
-				{
-					if( m_Loop.m_pStart )
-					{
-						p3=READSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-						p3=0;
-				}
-				else
-					p3=READSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-	else
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	q0=-p0+3*p1-3*p2+p3;
-			float	q1=2*p0-5*p1+4*p2-p3;
-			float	q2=-p0+p2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				*pDest++ = ((fTime*q0+q1)*fTime+q2)*fTime*0.5f+p1;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt++ )
-			{
-				p3=p2;
-				p2=p1;
-				p1=p0;
-				n0-=1;
-				if( n0<0 )
-				{
-					if( m_Loop.m_pStart )
-					{
-						p0=READSIGNED16(m_Loop.m_pEnd,n0)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-						p0=0;
-				}
-				else
-					p0=READSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleStereoSigned16ToFloatBuffer_Spline( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-	long	iLoopPos=0;
-
-	float	p0,p1,p2,p3;
-	int		n0,n1,n2,n3;
-
-	n1=m_iPosition;
-	p1=READSTEREOSIGNED16(m_Location.m_pStart,n1)*(1.0f/32768.0f);
-	n0=n1-1;
-	if( n0<0 )
-		n0=0;
-	p0=READSTEREOSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-	n2=m_iPosition+1;
-	if( n2>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			p2=READSTEREOSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-			p2=0;
-	}
-	else
-		p2=READSTEREOSIGNED16(m_Location.m_pStart,n2)*(1.0f/32768.0f);
-	n3=n2+1;
-	if( n3>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			p3=READSTEREOSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-			p3=0;
-	}
-	else
-		p3=READSTEREOSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-
-	if( m_iFreq>0 )
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	q0=-p0+3*p1-3*p2+p3;
-			float	q1=2*p0-5*p1+4*p2-p3;
-			float	q2=-p0+p2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				*pDest++ = ((fTime*q0+q1)*fTime+q2)*fTime*0.5f+p1;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt-- )
-			{
-				p0=p1;
-				p1=p2;
-				p2=p3;
-				n3+=1;
-				if( n3>=iLast )
-				{
-					if( m_Loop.m_pStart )
-					{
-						p3=READSTEREOSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-						p3=0;
-				}
-				else
-					p3=READSTEREOSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-	else
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	q0=-p0+3*p1-3*p2+p3;
-			float	q1=2*p0-5*p1+4*p2-p3;
-			float	q2=-p0+p2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				*pDest++ = ((fTime*q0+q1)*fTime+q2)*fTime*0.5f+p1;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt++ )
-			{
-				p3=p2;
-				p2=p1;
-				p1=p0;
-				n0-=1;
-				if( n0<0 )
-				{
-					if( m_Loop.m_pStart )
-					{
-						p0=READSTEREOSIGNED16(m_Loop.m_pEnd,n0)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-						p0=0;
-				}
-				else
-					p0=READSTEREOSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-
-	return pDest;
-}
-
-#ifndef	BUZZ
-float	*	CResampler::ResampleSigned8ToFloatBuffer_Spline( float *pDest, int iCount )
-{
-	return ResampleSigned8ToFloatBuffer_Filter( pDest, iCount );
-}
-
-float	*	CResampler::ResampleFloatToStereoFloatBuffer_Spline( float *pDest, int iCount )
-{
-	return ResampleFloatToStereoFloatBuffer_Filter( pDest, iCount );
-}
-#endif
-
-float	*	CResampler::ResampleSigned16ToStereoFloatBuffer_Spline( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-	long	iLoopPos=0;
-
-	float	p0,p1,p2,p3;
-	int		n0,n1,n2,n3;
-
-	n1=m_iPosition;
-	p1=READSIGNED16(m_Location.m_pStart,n1)*(1.0f/32768.0f);
-	n0=n1-1;
-	if( n0<0 )
-		n0=0;
-	p0=READSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-	n2=m_iPosition+1;
-	if( n2>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			p2=READSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-			p2=0;
-	}
-	else
-		p2=READSIGNED16(m_Location.m_pStart,n2)*(1.0f/32768.0f);
-	n3=n2+1;
-	if( n3>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			p3=READSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-			p3=0;
-	}
-	else
-		p3=READSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-
-	if( m_iFreq>0 )
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	q0=-p0+3*p1-3*p2+p3;
-			float	q1=2*p0-5*p1+4*p2-p3;
-			float	q2=-p0+p2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				float	d=((fTime*q0+q1)*fTime+q2)*fTime*0.5f+p1;
-				*pDest++ = d;
-				*pDest++ = d;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt-- )
-			{
-				p0=p1;
-				p1=p2;
-				p2=p3;
-				n3+=1;
-				if( n3>=iLast )
-				{
-					if( m_Loop.m_pStart )
-					{
-						p3=READSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-						p3=0;
-				}
-				else
-					p3=READSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-	else
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	q0=-p0+3*p1-3*p2+p3;
-			float	q1=2*p0-5*p1+4*p2-p3;
-			float	q2=-p0+p2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				float	d=((fTime*q0+q1)*fTime+q2)*fTime*0.5f+p1;
-				*pDest++ = d;
-				*pDest++ = d;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt++ )
-			{
-				p3=p2;
-				p2=p1;
-				p1=p0;
-				n0-=1;
-				if( n0<0 )
-				{
-					if( m_Loop.m_pStart )
-					{
-						p0=READSIGNED16(m_Loop.m_pEnd,n0)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-						p0=0;
-				}
-				else
-					p0=READSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-
-	return pDest;
-}
-
-float	*	CResampler::ResampleStereoSigned16ToStereoFloatBuffer_Spline( float *pDest, int iCount )
-{
-	long	iLast=m_Location.GetLength()-1;
-	long	iLoopPos=0;
-
-	float	lp0,lp1,lp2,lp3;
-	float	rp0,rp1,rp2,rp3;
-	int		n0,n1,n2,n3;
-
-	n1=m_iPosition;
-	lp1=READLEFTSIGNED16(m_Location.m_pStart,n1)*(1.0f/32768.0f);
-	rp1=READRIGHTSIGNED16(m_Location.m_pStart,n1)*(1.0f/32768.0f);
-	n0=n1-1;
-	if( n0<0 )
-		n0=0;
-	lp0=READLEFTSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-	rp0=READRIGHTSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-	n2=m_iPosition+1;
-	if( n2>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			lp2=READLEFTSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			rp2=READRIGHTSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-		{
-			lp2=0;
-			rp2=0;
-		}
-	}
-	else
-	{
-		lp2=READLEFTSIGNED16(m_Location.m_pStart,n2)*(1.0f/32768.0f);
-		rp2=READRIGHTSIGNED16(m_Location.m_pStart,n2)*(1.0f/32768.0f);
-	}
-	n3=n2+1;
-	if( n3>=iLast )
-	{
-		if( m_Loop.m_pStart )
-		{
-			lp3=READLEFTSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			rp3=READRIGHTSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-			iLoopPos+=1;
-		}
-		else
-		{
-			lp3=0;
-			rp3=0;
-		}
-	}
-	else
-	{
-		lp3=READLEFTSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-		rp3=READRIGHTSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-	}
-
-	if( m_iFreq>0 )
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	lq0=-lp0+3*lp1-3*lp2+lp3;
-			float	lq1=2*lp0-5*lp1+4*lp2-lp3;
-			float	lq2=-lp0+lp2;
-			float	rq0=-rp0+3*rp1-3*rp2+rp3;
-			float	rq1=2*rp0-5*rp1+4*rp2-rp3;
-			float	rq2=-rp0+rp2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				*pDest++ = ((fTime*lq0+lq1)*fTime+lq2)*fTime*0.5f+lp1;
-				*pDest++ = ((fTime*rq0+rq1)*fTime+rq2)*fTime*0.5f+rp1;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt-- )
-			{
-				lp0=lp1;
-				lp1=lp2;
-				lp2=lp3;
-				rp0=rp1;
-				rp1=rp2;
-				rp2=rp3;
-				n3+=1;
-				if( n3>=iLast )
-				{
-					if( m_Loop.m_pStart )
-					{
-						lp3=READLEFTSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-						rp3=READRIGHTSIGNED16(m_Loop.m_pStart,iLoopPos)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-					{
-						lp3=0;
-						rp3=0;
-					}
-				}
-				else
-				{
-					lp3=READLEFTSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-					rp3=READRIGHTSIGNED16(m_Location.m_pStart,n3)*(1.0f/32768.0f);
-				}
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-	else
-	{
-		while( (iCount>0) && (m_iPosition<=iLast) && (m_iPosition>=0) )
-		{
-			float	lq0=-lp0+3*lp1-3*lp2+lp3;
-			float	lq1=2*lp0-5*lp1+4*lp2-lp3;
-			float	lq2=-lp0+lp2;
-			float	rq0=-rp0+3*rp1-3*rp2+rp3;
-			float	rq1=2*rp0-5*rp1+4*rp2-rp3;
-			float	rq2=-rp0+rp2;
-
-			while( (m_iFraction<=MAXFRACTION) && iCount-- )
-			{
-				float	fTime=m_iFraction*(1.0f/(MAXFRACTION+1));
-				*pDest++ = ((fTime*lq0+lq1)*fTime+lq2)*fTime*0.5f+lp1;
-				*pDest++ = ((fTime*rq0+rq1)*fTime+rq2)*fTime*0.5f+rp1;
-				m_iFraction+=m_iFreq;
-			}
-
-			int	cnt=m_iFraction>>SHIFTFRACTION;
-
-			while( cnt++ )
-			{
-				lp3=lp2;
-				lp2=lp1;
-				lp1=lp0;
-				rp3=rp2;
-				rp2=rp1;
-				rp1=rp0;
-				n0-=1;
-				if( n0<0 )
-				{
-					if( m_Loop.m_pStart )
-					{
-						lp0=READLEFTSIGNED16(m_Loop.m_pEnd,n0)*(1.0f/32768.0f);
-						rp0=READRIGHTSIGNED16(m_Loop.m_pEnd,n0)*(1.0f/32768.0f);
-						iLoopPos+=1;
-					}
-					else
-					{
-						lp0=0;
-						rp0=0;
-					}
-				}
-				else
-				{
-					lp0=READLEFTSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-					rp0=READRIGHTSIGNED16(m_Location.m_pStart,n0)*(1.0f/32768.0f);
-				}
-			}
-			m_iPosition+=m_iFraction>>SHIFTFRACTION;
-			m_iFraction&=MAXFRACTION;
-		}
-	}
-
-	return pDest;
-}
-
-#ifndef	BUZZ
-float	*	CResampler::ResampleSigned8ToStereoFloatBuffer_Spline( float *pDest, int iCount )
-{
-	return ResampleSigned8ToStereoFloatBuffer_Filter( pDest, iCount );
-}
-#endif
 
 void	CResampler::ResampleToFloatBuffer_Raw( float *pDest, int iCount )
 {
 	if( m_Location.m_eFiltering==FILTER_SPLINE )
 	{
-#ifndef	BUZZ
 		if( m_Location.m_eFormat==SMP_FLOAT )
-			pDest=ResampleFloatToFloatBuffer_Spline( pDest, iCount );
-		else
-#endif
-		if( m_Location.m_eFormat==SMP_SIGNED16 )
-			pDest=ResampleSigned16ToFloatBuffer_Spline( pDest, iCount );
+			pDest=ResampleTToFloatBuffer_Spline<float, float, float>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_FLOAT_STEREO )
+			pDest=ResampleTToFloatBuffer_Spline<float, float, stereofloat>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED16 )
+			pDest=ResampleTToFloatBuffer_Spline<short, float, float>( pDest, iCount );
 		else if( m_Location.m_eFormat==SMP_SIGNED16_STEREO )
-			pDest=ResampleStereoSigned16ToFloatBuffer_Spline( pDest, iCount );
-#ifndef	BUZZ
+			pDest=ResampleTToFloatBuffer_Spline<short, float, stereofloat>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24 )
+			pDest=ResampleTToFloatBuffer_Spline<S24, float, float>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24_STEREO )
+			pDest=ResampleTToFloatBuffer_Spline<S24, float, stereofloat>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32 )
+			pDest=ResampleTToFloatBuffer_Spline<int, float, float>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32_STEREO )
+			pDest=ResampleTToFloatBuffer_Spline<int, float, stereofloat>( pDest, iCount );
 		else
-			pDest=ResampleSigned8ToFloatBuffer_Spline( pDest, iCount );
-#endif
+			pDest=ResampleTToFloatBuffer_Spline<char, float, float>( pDest, iCount );
 	}
 	else if( m_Location.m_eFiltering==FILTER_LINEAR )
 	{
-#ifndef	BUZZ
 		if( m_Location.m_eFormat==SMP_FLOAT )
-			pDest=ResampleFloatToFloatBuffer_Filter( pDest, iCount );
-		else
-#endif
-		if( m_Location.m_eFormat==SMP_SIGNED16 )
-			pDest=ResampleSigned16ToFloatBuffer_Filter( pDest, iCount );
+			pDest=ResampleTToFloatBuffer_Filter<float, float, float>(pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_FLOAT_STEREO )
+			pDest=ResampleTToFloatBuffer_Filter<float, float, stereofloat>(pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED16 )
+			pDest=ResampleTToFloatBuffer_Filter<short, float, float>(pDest, iCount );
 		else if( m_Location.m_eFormat==SMP_SIGNED16_STEREO )
-			pDest=ResampleStereoSigned16ToFloatBuffer_Filter( pDest, iCount );
-#ifndef	BUZZ
+			pDest=ResampleTToFloatBuffer_Filter<short, float, stereofloat>(pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24 )
+			pDest=ResampleTToFloatBuffer_Filter<S24, float, float>(pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24_STEREO )
+			pDest=ResampleTToFloatBuffer_Filter<S24, float, stereofloat>(pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32 )
+			pDest=ResampleTToFloatBuffer_Filter<int, float, float>(pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32_STEREO )
+			pDest=ResampleTToFloatBuffer_Filter<int, float, stereofloat>(pDest, iCount );
 		else
-			pDest=ResampleSigned8ToFloatBuffer_Filter( pDest, iCount );
-#endif
+			pDest=ResampleTToFloatBuffer_Filter<char, float, float>(pDest, iCount );
 	}
 	else
 	{
-#ifndef	BUZZ
 		if( m_Location.m_eFormat==SMP_FLOAT )
-			pDest=ResampleFloatToFloatBuffer_Normal( pDest, iCount );
-		else
-#endif
-		if( m_Location.m_eFormat==SMP_SIGNED16 )
-			pDest=ResampleSigned16ToFloatBuffer_Normal( pDest, iCount );
+			pDest=ResampleTToFloatBuffer_Normal<float, float, float>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_FLOAT_STEREO )
+			pDest=ResampleTToFloatBuffer_Normal<float, float, stereofloat>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED16 )
+			pDest=ResampleTToFloatBuffer_Normal<short, float, float>( pDest, iCount );
 		else if( m_Location.m_eFormat==SMP_SIGNED16_STEREO )
-			pDest=ResampleStereoSigned16ToFloatBuffer_Normal( pDest, iCount );
-#ifndef	BUZZ
+			pDest=ResampleTToFloatBuffer_Normal<short, float, stereofloat>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24 )
+			pDest=ResampleTToFloatBuffer_Normal<S24, float, float>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24_STEREO )
+			pDest=ResampleTToFloatBuffer_Normal<S24, float, stereofloat>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32 )
+			pDest=ResampleTToFloatBuffer_Normal<int, float, float>( pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32_STEREO )
+			pDest=ResampleTToFloatBuffer_Normal<int, float, stereofloat>( pDest, iCount );
 		else
-			pDest=ResampleSigned8ToFloatBuffer_Normal( pDest, iCount );
-#endif
+			pDest=ResampleTToFloatBuffer_Normal<char, float, float>( pDest, iCount );
 	}
 	m_fMaybeLastLeftSample=pDest[-1];
 }
@@ -1258,51 +198,69 @@ void	CResampler::ResampleToStereoFloatBuffer_Raw( float *pDest, int iCount )
 {
 	if( m_Location.m_eFiltering==FILTER_SPLINE )
 	{
-#ifndef	BUZZ
 		if( m_Location.m_eFormat==SMP_FLOAT )
-			pDest=ResampleFloatToStereoFloatBuffer_Spline( pDest, iCount );
-		else
-#endif
-		if( m_Location.m_eFormat==SMP_SIGNED16 )
-			pDest=ResampleSigned16ToStereoFloatBuffer_Spline( pDest, iCount );
+			pDest=(float*)ResampleTToFloatBuffer_Spline<float, stereofloat, float>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_FLOAT_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Spline<float, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED16 )
+			pDest=(float*)ResampleTToFloatBuffer_Spline<short, stereofloat, float>((stereofloat*) pDest, iCount );
 		else if( m_Location.m_eFormat==SMP_SIGNED16_STEREO )
-			pDest=ResampleStereoSigned16ToStereoFloatBuffer_Spline( pDest, iCount );
-#ifndef	BUZZ
-		else
-			pDest=ResampleSigned8ToStereoFloatBuffer_Spline( pDest, iCount );
-#endif
+			pDest=(float*)ResampleTToFloatBuffer_Spline<short, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24 ) {
+			pDest=(float*)ResampleTToFloatBuffer_Spline<S24, stereofloat, float>((stereofloat*) pDest, iCount );
+		} else if( m_Location.m_eFormat==SMP_SIGNED24_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Spline<S24, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32 )
+			pDest=(float*)ResampleTToFloatBuffer_Spline<int, stereofloat, float>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Spline<int, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else {
+			pDest=(float*)ResampleTToFloatBuffer_Spline<char, stereofloat, float>((stereofloat*) pDest, iCount );
+		}
 	}
 	else if( m_Location.m_eFiltering==FILTER_LINEAR )
 	{
-#ifndef	BUZZ
 		if( m_Location.m_eFormat==SMP_FLOAT )
-			pDest=ResampleFloatToStereoFloatBuffer_Filter( pDest, iCount );
-		else
-#endif
-		if( m_Location.m_eFormat==SMP_SIGNED16 )
-			pDest=ResampleSigned16ToStereoFloatBuffer_Filter( pDest, iCount );
+			pDest=(float*)ResampleTToFloatBuffer_Filter<float, stereofloat, float>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_FLOAT_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Filter<float, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED16 )
+			pDest=(float*)ResampleTToFloatBuffer_Filter<short, stereofloat, float>((stereofloat*) pDest, iCount );
 		else if( m_Location.m_eFormat==SMP_SIGNED16_STEREO )
-			pDest=ResampleStereoSigned16ToStereoFloatBuffer_Filter( pDest, iCount );
-#ifndef	BUZZ
-		else
-			pDest=ResampleSigned8ToStereoFloatBuffer_Filter( pDest, iCount );
-#endif
+			pDest=(float*)ResampleTToFloatBuffer_Filter<short, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24 )
+			pDest=(float*)ResampleTToFloatBuffer_Filter<S24, stereofloat, float>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Filter<S24, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32 )
+			pDest=(float*)ResampleTToFloatBuffer_Filter<int, stereofloat, float>((stereofloat*) pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Filter<int, stereofloat, stereofloat>((stereofloat*) pDest, iCount );
+		else {
+			pDest=(float*)ResampleTToFloatBuffer_Filter<char, stereofloat, float>((stereofloat*) pDest, iCount );
+		}
 	}
 	else
 	{
-#ifndef	BUZZ
 		if( m_Location.m_eFormat==SMP_FLOAT )
-			pDest=ResampleFloatToStereoFloatBuffer_Normal( pDest, iCount );
-		else
-#endif
-		if( m_Location.m_eFormat==SMP_SIGNED16 )
-			pDest=ResampleSigned16ToStereoFloatBuffer_Normal( pDest, iCount );
+			pDest=(float*)ResampleTToFloatBuffer_Normal<float, stereofloat, float>((stereofloat*)  pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_FLOAT_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Normal<float, stereofloat, stereofloat>((stereofloat*)  pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED16 )
+			pDest=(float*)ResampleTToFloatBuffer_Normal<short, stereofloat, float>((stereofloat*)  pDest, iCount );
 		else if( m_Location.m_eFormat==SMP_SIGNED16_STEREO )
-			pDest=ResampleStereoSigned16ToStereoFloatBuffer_Normal( pDest, iCount );
-#ifndef	BUZZ
-		else
-			pDest=ResampleSigned8ToStereoFloatBuffer_Normal( pDest, iCount );
-#endif
+			pDest=(float*)ResampleTToFloatBuffer_Normal<short, stereofloat, stereofloat>((stereofloat*)  pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24 )
+			pDest=(float*)ResampleTToFloatBuffer_Normal<S24, stereofloat, float>((stereofloat*)  pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED24_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Normal<S24, stereofloat, stereofloat>((stereofloat*)  pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32 )
+			pDest=(float*)ResampleTToFloatBuffer_Normal<int, stereofloat, float>((stereofloat*)  pDest, iCount );
+		else if( m_Location.m_eFormat==SMP_SIGNED32_STEREO )
+			pDest=(float*)ResampleTToFloatBuffer_Normal<int, stereofloat, stereofloat>((stereofloat*)  pDest, iCount );
+		else {
+			pDest=(float*)ResampleTToFloatBuffer_Normal<char, stereofloat, float>((stereofloat*)  pDest, iCount );
+		}
 	}
 	m_fMaybeLastRightSample=pDest[-1];
 	m_fMaybeLastLeftSample=pDest[-2];

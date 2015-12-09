@@ -17,7 +17,7 @@ static	void	resample_with_reverse( float *pout, int numsamples, CExtResamplerSta
 
 		if( p+d*numsamples>=0 )
 		{
-			EXTDSP_Resample( pout, numsamples, state, params  );
+			DSP_Resample( pout, numsamples, state, params  );
 		}
 		else
 		{
@@ -35,7 +35,7 @@ static	void	resample_with_reverse( float *pout, int numsamples, CExtResamplerSta
 
 				if( n>0 )
 				{
-					EXTDSP_Resample( pout, n, state, params  );
+					DSP_Resample( pout, n, state, params  );
 					numsamples-=n;
 					if( params.LoopBegin!=-1 && (((llong(state.PosInt)<<RS_STEP_FRAC_BITS)+state.PosFrac)<=(llong(params.LoopBegin)<<RS_STEP_FRAC_BITS)) )
 					{

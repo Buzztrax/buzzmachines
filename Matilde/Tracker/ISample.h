@@ -21,6 +21,7 @@ public:
 
 	virtual	bool		IsValid()=0;
 	virtual	bool		IsStereo()=0;
+	virtual	bool		IsExtended()=0;
 	virtual	bool		IsLoop()=0;
 	virtual	bool		IsPingPongLoop()=0;
 
@@ -28,6 +29,8 @@ public:
 	virtual	long		GetSampleLength()=0;
 	virtual	long		GetLoopStart()=0;
 	virtual	long		GetLoopEnd()=0;
+	virtual int			GetSampleFormat()=0;
+	virtual int			GetBitsPerSample()=0;
 
 	virtual	bool		IsStillValid()=0;
 
