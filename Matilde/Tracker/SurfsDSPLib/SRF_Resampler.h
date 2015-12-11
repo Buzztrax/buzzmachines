@@ -4,6 +4,9 @@
 namespace SurfDSPLib
 {
 
+const long	MAXFRACTION=0xFFFFFF;
+const int		SHIFTFRACTION=24;
+
 typedef	void (*DoneCallback)( u_long );
 
 enum	ESampleFormat

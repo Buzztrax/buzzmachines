@@ -4,9 +4,6 @@
 
 using namespace SurfDSPLib;
 
-const long	MAXFRACTION=0xFFFFFF;
-const int		SHIFTFRACTION=24;
-
 #define	POINTERADD(p,n,mu)		(u_long(p)+((n)*(mu)))
 #define	POINTERSUB(p1,p2,mu)	((u_long(p1)-u_long(p2))/(mu))
 
