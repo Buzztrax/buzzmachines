@@ -7,6 +7,14 @@ all: "$(OUTDIR)\FSM Infector.dll" "$(OUTDIR)\FSM Infector.prs" "$(OUTDIR)\FSM In
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	if not exist $(INSTALLDIR_GEN) mkdir $(INSTALLDIR_GEN)
+	if not exist $(INSTALLDIR_GEN_PRS) mkdir $(INSTALLDIR_GEN_PRS)
+	if not exist $(INSTALLDIR_GEN_DOC) mkdir $(INSTALLDIR_GEN_DOC)
+	copy "$(OUTDIR)\FSM Infector.dll" $(INSTALLDIR_GEN) /y
+	copy "$(OUTDIR)\FSM Infector.prs" $(INSTALLDIR_GEN_PRS) /y
+	copy "$(OUTDIR)\FSM Infector.html" $(INSTALLDIR_GEN_DOC) /y
+
 "$(OUTDIR)\FSM Infector.dll": $(OUTDIR)\Infector.obj $(OUTDIR)\Filters.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Track.obj $(OUTDIR)\Vegetable.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $**

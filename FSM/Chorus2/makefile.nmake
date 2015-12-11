@@ -7,6 +7,10 @@ all: "$(OUTDIR)\FSM Chorus2.dll"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@if not exist "$(INSTALLDIR_EFX)" mkdir "$(INSTALLDIR_EFX)"
+	copy "$(OUTDIR)\FSM Chorus2.dll" "$(INSTALLDIR_EFX)" /y
+
 "$(OUTDIR)\FSM Chorus2.dll": $(OUTDIR)\Chorus2.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $** ..\..\common\mdk\$(OUTDIR)\mdk.lib ..\..\common\dsplib\$(OUTDIR)\dsplib.lib

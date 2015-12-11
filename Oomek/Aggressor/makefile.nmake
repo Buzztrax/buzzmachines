@@ -7,6 +7,10 @@ all: "$(OUTDIR)\Oomek Aggressor 303.dll"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@if not exist "$(INSTALLDIR_GEN)" mkdir "$(INSTALLDIR_GEN)"
+	copy "$(OUTDIR)\Oomek Aggressor 303.dll" "$(INSTALLDIR_GEN)" /y
+
 "$(OUTDIR)\Oomek Aggressor 303.dll": $(OUTDIR)\303.obj 
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $** user32.lib ..\..\common\mdk\$(OUTDIR)\mdk.lib ..\..\common\dsplib\$(OUTDIR)\dsplib.lib

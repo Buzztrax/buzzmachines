@@ -7,6 +7,12 @@ all: "$(OUTDIR)\FSM PanzerDelay.dll" "$(OUTDIR)\FSM PanzerDelay.prs"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@if not exist "$(INSTALLDIR_EFX)" mkdir "$(INSTALLDIR_EFX)"
+	@if not exist "$(INSTALLDIR_EFX_PRS)" mkdir "$(INSTALLDIR_EFX_PRS)"
+	copy "$(OUTDIR)\FSM PanzerDelay.dll" "$(INSTALLDIR_EFX)" /y
+	copy "$(OUTDIR)\FSM PanzerDelay.prs" "$(INSTALLDIR_EFX_PRS)" /y
+
 "$(OUTDIR)\FSM PanzerDelay.dll": $(OUTDIR)\PanzerDelay.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $** ..\..\common\mdk\$(OUTDIR)\mdk.lib ..\..\common\dsplib\$(OUTDIR)\dsplib.lib

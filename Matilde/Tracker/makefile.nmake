@@ -12,6 +12,12 @@ clean:
 	cd ..
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@if not exist "$(INSTALLDIR_GEN)" mkdir "$(INSTALLDIR_GEN)"
+	@if not exist "$(INSTALLDIR_GEN_DOC)" mkdir "$(INSTALLDIR_GEN_DOC)"
+	copy "$(OUTDIR)\Matilde Tracker2.dll" "$(INSTALLDIR_GEN)" /y
+	copy "$(OUTDIR)\Matilde Tracker2.html" "$(INSTALLDIR_GEN_DOC)" /y
+
 # NOTE: unused ExtResampler.cpp/obj
 
 "$(OUTDIR)\Matilde Tracker2.dll": $(OUTDIR)\BuzzInstrument.obj $(OUTDIR)\BuzzSample.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Envelope.obj $(OUTDIR)\IInstrument.obj $(OUTDIR)\ISample.obj $(OUTDIR)\Track.obj $(OUTDIR)\Tracker.obj $(OUTDIR)\WaveTableManager.obj SurfsDSPLib\$(OUTDIR)\SurfsDSPLib.lib

@@ -9,6 +9,9 @@ all: "$(OUTDIR)\mdk.lib"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@echo Nothing to install
+
 "$(OUTDIR)\mdk.lib": $(OUTDIR)\mdkimp.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	lib /OUT:$@ $**

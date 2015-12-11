@@ -7,6 +7,10 @@ all: "$(OUTDIR)\UnwieldyTracker.dll"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@if not exist "$(INSTALLDIR_GEN)" mkdir $(INSTALLDIR_GEN)"
+	copy "$(OUTDIR)\UnwieldyTracker.dll" "$(INSTALLDIR_GEN)" /y
+	
 "$(OUTDIR)\UnwieldyTracker.dll": $(OUTDIR)\unwieldy_tracker.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $** user32.lib comctl32.lib advapi32.lib
