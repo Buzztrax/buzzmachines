@@ -1,4 +1,5 @@
+!INCLUDE ..\common.nmake
+
 SUBDIRS_ALL = Tracker.all
-SUBDIRS_CLEAN = Tracker.clean
 
 !INCLUDE ..\subdirs.nmake

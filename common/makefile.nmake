@@ -1,4 +1,5 @@
+!INCLUDE ..\common.nmake
+
 SUBDIRS_ALL = dsplib.all mdk.all
-SUBDIRS_CLEAN = dsplib.clean mdk.clean
 
 !INCLUDE ..\subdirs.nmake

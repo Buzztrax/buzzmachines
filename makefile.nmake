@@ -1,16 +1,38 @@
-# Build with nmake in "VS x86 Native Tools Command Prompt" or "VS x64 Cross 
-# Tools Command Prompt" for either 32 or 64 bit machines respectively.
+# To build 32 bit machines in release mode, open the "VS x86 Native Tools
+# Command Prompt" and run nmake from the project directory as follows:
 #
-# Supports either Release or Debug configurations. F.ex:
+#   nmake -f makefile.nmake PLATFORM=x86
+#   nmake -f makefile.nmake PLATFORM=x86 INSTALLDIR=bin32 install
 #
-#   nmake -f makefile.nmake CONFIGURATION=Release PLATFORM=x86
-#   nmake -f makefile.nmake CONFIGURATION=Debug PLATFORM=x64
+# To build 64 bit machines, open the "VS x64 Cross Tools Command Prompt" and
+# run nmake as follows:
 #
-# Supports the "clean" make target:
-# 
-#   nmake -f makefile.nmake CONFIGURATION=Debug PLATFORM=x64 clean
+#   nmake -f makefile.nmake
+#   nmake -f makefile.nmake INSTALLDIR=bin64 install
+#
+# Supported targets:
+#   all (default) - builds all machines
+#   clean - deletes all files from the build output directories
+#   install - copies machine binaries, presets and docs from the build output
+#     directories to INSTALLDIR
+#
+# Supported configuration values:
+#   PLATFORM=[x86|x64]
+#   CONFIGURATION=[Release|Debug]
+#   INSTALLDIR=<path>
+#
+# PLATFORM is usually picked up automatically in the x64 environment.
+#
+# CONFIGURATION defaults to Release.
+#
+# INSTALLDIR defaults to PLATFORM\CONFIGURATION. Relative paths are converted
+# to absolute paths before passing down to makefiles in subdirectories.
+# INSTALLDIR is treated as the root directory of a Buzz installation.
+# Machine DLLs will be installed to INSTALLDIR\Gear\Effects and
+# INSTALLDIR\Gear\Generators.
+
+!INCLUDE common.nmake
 
 SUBDIRS_ALL = common.all FSM.all Fuzzpilz.all Matilde.all Oomek.all
-SUBDIRS_CLEAN = common.clean FSM.clean Fuzzpilz.clean Matilde.clean Oomek.clean
 
 !INCLUDE subdirs.nmake

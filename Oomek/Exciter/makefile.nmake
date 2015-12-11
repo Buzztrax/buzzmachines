@@ -7,6 +7,10 @@ all: "$(OUTDIR)\Oomek Exciter.dll"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@if not exist "$(INSTALLDIR_EFX)" mkdir "$(INSTALLDIR_EFX)"
+	copy "$(OUTDIR)\Oomek Exciter.dll" "$(INSTALLDIR_EFX)" /y
+
 "$(OUTDIR)\Oomek Exciter.dll": $(OUTDIR)\exciter.obj 
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $** ..\..\common\mdk\$(OUTDIR)\mdk.lib ..\..\common\dsplib\$(OUTDIR)\dsplib.lib

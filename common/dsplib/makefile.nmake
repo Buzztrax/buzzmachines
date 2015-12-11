@@ -7,6 +7,10 @@ all: "$(OUTDIR)\dsplib.dll"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	if not exist $(INSTALLDIR) mkdir $(INSTALLDIR)
+	copy $(OUTDIR)\dsplib.dll $(INSTALLDIR)\dsplib.dll /y
+
 "$(OUTDIR)\dsplib.dll": $(OUTDIR)\dsplib.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $**

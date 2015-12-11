@@ -7,6 +7,10 @@ all: "$(OUTDIR)\FSM WahMan.dll"
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
+install:
+	@if not exist "$(INSTALLDIR_EFX)" mkdir "$(INSTALLDIR_EFX)"
+	copy "$(OUTDIR)\FSM WahMan.dll" "$(INSTALLDIR_EFX)" /y
+
 "$(OUTDIR)\FSM WahMan.dll": $(OUTDIR)\WahMan.obj
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $**

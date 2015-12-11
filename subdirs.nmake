@@ -1,7 +1,19 @@
+# Before including this file, set SUBDIRS_ALL to a list of dirs postfixed with
+# the magic extension ".all", f.ex:
+#     SUBDIRS_ALL = doc.all src.all test.all
+#
+# This file implements to run "nmake -f makefile.nmake" in each of the
+# subdirectories (without the .all extension) for targets all, clean and
+# install.
+
+SUBDIRS_CLEAN = $(SUBDIRS_ALL:.all=.clean)
+SUBDIRS_INSTALL = $(SUBDIRS_ALL:.all=.install)
 
 all: $(SUBDIRS_ALL)
 
 clean: $(SUBDIRS_CLEAN)
+
+install: $(SUBDIRS_INSTALL)
 
 $(SUBDIRS_ALL): 
 	@echo Making in $* subdirectory...
@@ -13,4 +25,24 @@ $(SUBDIRS_CLEAN):
 	@echo Cleaning in $* subdirectory...
 	@cd $*
 	@nmake -f makefile.nmake CONFIGURATION=$(CONFIGURATION) clean
+	@cd ..
+
+# NOTE: The install target copies files relative to the invoking makefile.
+# Resolve relative paths using a temporary "tmp-curdir.bat" which writes the
+# string "INSTALLDIR=<full path of INSTALLDIR>" to the textfile
+# "tmp-curdir.txt". The textfile is used as a parameter-file for nmake and
+# deleted afterwards.
+
+$(SUBDIRS_INSTALL):
+	@echo Installing from $* subdirectory...
+	@if not exist $(INSTALLDIR) mkdir $(INSTALLDIR)
+	@<<tmp-curdir.bat
+		@pushd $(INSTALLDIR)
+		@set CURDIR=%CD%
+		@popd
+		@echo INSTALLDIR=%CURDIR% > $*\tmp-curdir.txt
+<<NOKEEP
+	@cd $*
+	@nmake -f makefile.nmake CONFIGURATION=$(CONFIGURATION) @tmp-curdir.txt install
+	@del tmp-curdir.txt
 	@cd ..

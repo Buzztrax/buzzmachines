@@ -1,4 +1,5 @@
+!INCLUDE ..\common.nmake
+
 SUBDIRS_ALL = Infector.all KickXP.all PhatMan.all WahMan.all WahManPro.all WahPro2.all Chorus2.all PanzerDelay.all
-SUBDIRS_CLEAN = Infector.clean KickXP.clean PhatMan.clean WahMan.clean WahManPro.clean WahPro2.clean Chorus2.clean PanzerDelay.clean
 
 !INCLUDE ..\subdirs.nmake

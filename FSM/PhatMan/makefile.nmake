@@ -4,6 +4,12 @@ CFLAGS = $(CFLAGS) /DNOMINMAX /D_USE_MATH_DEFINES
 
 all: "$(OUTDIR)\FSM PhatMan.dll" "$(OUTDIR)\FSM PhatMan.prs"
 
+install:
+	@if not exist "$(INSTALLDIR_EFX)" mkdir "$(INSTALLDIR_EFX)"
+	@if not exist "$(INSTALLDIR_EFX_PRS)" mkdir "$(INSTALLDIR_EFX_PRS)"
+	copy "$(OUTDIR)\FSM PhatMan.dll" "$(INSTALLDIR_EFX)" /y
+	copy "$(OUTDIR)\FSM PhatMan.prs" "$(INSTALLDIR_EFX_PRS)" /y
+
 clean:
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
