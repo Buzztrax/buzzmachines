@@ -97,6 +97,23 @@ inline stereofloat operator * (float f, stereofloat& sf) {
 	return sf * f;
 }
 
+static inline float	fscale( float r, long i ) {
+	//i=(*(long *)&r)+((i&0xFF)<<23);
+	//return *(float *)&i;
+	return r * (1 << i);
+}
+
+static inline stereofloat fscale( stereofloat r, long i ) {
+	stereofloat z;
+	/*long t = (*(long *)&r.l)+((i&0xFF)<<23);
+	z.l = *(float *)&t;
+	t = (*(long *)&r.r)+((i&0xFF)<<23);
+	z.r = *(float *)&t;*/
+	z.l = r.l * (1 << i);
+	z.r = r.r * (1 << i);
+	return z;
+}
+
 class	CResampler
 {
 public:

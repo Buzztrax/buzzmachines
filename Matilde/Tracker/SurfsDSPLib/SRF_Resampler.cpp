@@ -7,23 +7,6 @@ using namespace SurfDSPLib;
 #define	POINTERADD(p,n,mu)		(u_long(p)+((n)*(mu)))
 #define	POINTERSUB(p1,p2,mu)	((u_long(p1)-u_long(p2))/(mu))
 
-static inline float	fscale( float r, long i ) {
-	//i=(*(long *)&r)+((i&0xFF)<<23);
-	//return *(float *)&i;
-	return r * (1 << i);
-}
-
-static inline stereofloat fscale( stereofloat r, long i ) {
-	stereofloat z;
-	/*long t = (*(long *)&r.l)+((i&0xFF)<<23);
-	z.l = *(float *)&t;
-	t = (*(long *)&r.r)+((i&0xFF)<<23);
-	z.r = *(float *)&t;*/
-	z.l = r.l * (1 << i);
-	z.r = r.r * (1 << i);
-	return z;
-}
-
 static	u_char	gSampleSizes[16]=
 {
 	1, // SMP_SIGNED8=0,
