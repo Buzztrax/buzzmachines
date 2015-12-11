@@ -12,7 +12,9 @@ clean:
 	cd ..
 	if exist $(OUTDIR) del $(OUTDIR)\*.* /q
 
-"$(OUTDIR)\Matilde Tracker2.dll": $(OUTDIR)\BuzzInstrument.obj $(OUTDIR)\BuzzSample.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Envelope.obj $(OUTDIR)\ExtResampler.obj $(OUTDIR)\IInstrument.obj $(OUTDIR)\ISample.obj $(OUTDIR)\Track.obj $(OUTDIR)\Tracker.obj $(OUTDIR)\WaveTableManager.obj SurfsDSPLib\$(OUTDIR)\SurfsDSPLib.lib
+# NOTE: unused ExtResampler.cpp/obj
+
+"$(OUTDIR)\Matilde Tracker2.dll": $(OUTDIR)\BuzzInstrument.obj $(OUTDIR)\BuzzSample.obj $(OUTDIR)\Channel.obj $(OUTDIR)\Envelope.obj $(OUTDIR)\IInstrument.obj $(OUTDIR)\ISample.obj $(OUTDIR)\Track.obj $(OUTDIR)\Tracker.obj $(OUTDIR)\WaveTableManager.obj SurfsDSPLib\$(OUTDIR)\SurfsDSPLib.lib
 	if not exist $(OUTDIR) mkdir $(OUTDIR)
 	cl $(LINKFLAGS) /Fe$@ $**
 

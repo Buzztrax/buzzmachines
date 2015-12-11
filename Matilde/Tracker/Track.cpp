@@ -688,10 +688,29 @@ void	CTrack::ProcessRetrig( int retrig )
 				//m_Resampler.Stop();
 
 //				if( m_pChannel->m_pWaveInfo->Flags&WF_STEREO )
+				int format = m_pSample->GetSampleFormat();
+				ESampleFormat resamplerfmt;
+				switch (format) {
+					case 0:
+						resamplerfmt=SMP_SIGNED16;
+						break;
+					case 1:
+						resamplerfmt=SMP_FLOAT;
+						break;
+					case 2:
+						resamplerfmt=SMP_SIGNED32;
+						break;
+					case 3:
+						resamplerfmt=SMP_SIGNED24;
+						break;
+					default:
+						resamplerfmt=SMP_SIGNED16;
+						break;
+				}
 				if( m_pSample->IsStereo() )
-					m_pChannel->m_Resampler.m_Location.m_eFormat=SMP_SIGNED16_STEREO;
+					m_pChannel->m_Resampler.m_Location.m_eFormat=(ESampleFormat)(resamplerfmt|SMP_FLAG_STEREO);
 				else
-					m_pChannel->m_Resampler.m_Location.m_eFormat=SMP_SIGNED16;
+					m_pChannel->m_Resampler.m_Location.m_eFormat=resamplerfmt; 
 
 				//m_pChannel->m_Resampler.m_oPingPongLoop=(m_pChannel->m_pWaveInfo->Flags&WF_BIDIR_LOOP)?true:false;
 				m_pChannel->m_Resampler.m_oPingPongLoop=m_pSample->IsPingPongLoop();

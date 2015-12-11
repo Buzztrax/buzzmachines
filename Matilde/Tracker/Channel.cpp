@@ -196,7 +196,7 @@ bool	CChannel::Generate_Add( float *psamples, int numsamples )
 			float *	paux = m_pMachine->pCB->GetAuxBuffer();
 
 			//	Just a small optimization, the resampler and amp handle mono->stereo just fine
-			if( m_Resampler.m_Location.m_eFormat>=4 || m_Resampler.m_Loop.m_eFormat>=4 )
+			if( (m_Resampler.m_Location.m_eFormat&SurfDSPLib::SMP_FLAG_STEREO) || (m_Resampler.m_Loop.m_eFormat&SurfDSPLib::SMP_FLAG_STEREO) )
 			{
 				m_Resampler.ResampleToStereoFloatBuffer( paux, numsamples );
 				m_Filter.Filter_Stereo( paux, paux, numsamples );
@@ -270,7 +270,7 @@ bool	CChannel::Generate_Move( float *psamples, int numsamples )
 			float *	paux = m_pMachine->pCB->GetAuxBuffer();
 
 			//	Just a small optimization, the resampler and amp handle mono->stereo just fine
-			if( m_Resampler.m_Location.m_eFormat>=4 || m_Resampler.m_Loop.m_eFormat>=4 )
+			if( (m_Resampler.m_Location.m_eFormat&SurfDSPLib::SMP_FLAG_STEREO) || (m_Resampler.m_Loop.m_eFormat&SurfDSPLib::SMP_FLAG_STEREO) )
 			{
 				m_Resampler.ResampleToStereoFloatBuffer( paux, numsamples );
 				m_Filter.Filter_Stereo( paux, paux, numsamples );

@@ -4,7 +4,9 @@
 
 #include	"BuzzSample.h"
 #include	"BuzzInstrument.h"
-#include <MachineInterface.h>
+#include	<MachineInterface.h>
+
+#define WF_EXTENDED		4
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -40,6 +42,11 @@ bool		CBuzzSample::IsValid()
 	return m_iSavedNumSamples && m_pSavedSamples;
 }
 
+bool		CBuzzSample::IsExtended()
+{
+	return (m_pInstrument->m_pWaveInfo->Flags&WF_EXTENDED)?true:false;
+}
+
 bool		CBuzzSample::IsStereo()
 {
 	return (m_pInstrument->m_pWaveInfo->Flags&WF_STEREO)?true:false;
@@ -57,22 +64,46 @@ bool		CBuzzSample::IsLoop()
 
 void	*	CBuzzSample::GetSampleStart()
 {
-	return m_pWaveLevel->pSamples;
+	if (IsExtended())
+		return m_pWaveLevel->pSamples + 4; else
+		return m_pWaveLevel->pSamples;
 }
 
 long		CBuzzSample::GetSampleLength()
 {
-	return m_pWaveLevel->numSamples;
+	return AdjustSampleCount(m_pWaveLevel->numSamples);
 }
 
 long		CBuzzSample::GetLoopStart()
 {
-	return m_pWaveLevel->LoopStart;
+	return AdjustSampleCount(m_pWaveLevel->LoopStart);
 }
 
 long		CBuzzSample::GetLoopEnd()
 {
-	return m_pWaveLevel->LoopEnd;
+	return AdjustSampleCount(m_pWaveLevel->LoopEnd);
+}
+
+int			CBuzzSample::GetSampleFormat() {
+	if (IsExtended()) {
+		return m_pWaveLevel->pSamples[0];
+	} else
+		return 0;
+}
+
+int			CBuzzSample::GetBitsPerSample() {
+	switch (GetSampleFormat()) {
+		case 0:
+			return 16;
+		case 1:
+			return 32;
+		case 2:
+			return 32;
+		case 3:
+			return 24;
+		default:
+			return 16;
+	}
 }
 
 bool		CBuzzSample::IsStillValid()

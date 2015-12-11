@@ -30,6 +30,7 @@ public:
 
 	virtual	bool			IsValid();
 	virtual	bool			IsStereo();
+	virtual	bool			IsExtended();
 	virtual	bool			IsPingPongLoop();
 	virtual	bool			IsLoop();
 
@@ -37,12 +38,23 @@ public:
 	virtual	long			GetSampleLength();
 	virtual	long			GetLoopStart();
 	virtual	long			GetLoopEnd();
+	virtual int				GetSampleFormat();
+	virtual int				GetBitsPerSample();
 
 	virtual	bool			IsStillValid();
 
 	virtual	void			Free();
 
 protected:
+	inline int AdjustSampleCount(int iCount) {
+		if (IsExtended()) {
+			int channels = IsStereo()?2:1;
+			int bits = GetBitsPerSample() / 8;
+			return ((iCount-(4/channels)) *2 ) / bits;
+		} else
+			return iCount;
+	}
+
 	bool					m_oUsed;
 
 	CBuzzInstrument		*	m_pInstrument;
