@@ -703,6 +703,9 @@ void	CTrack::ProcessRetrig( int retrig )
 					case 3:
 						resamplerfmt=SMP_SIGNED24;
 						break;
+					default:
+						resamplerfmt=SMP_SIGNED16;
+						break;
 				}
 				if( m_pSample->IsStereo() )
 					m_pChannel->m_Resampler.m_Location.m_eFormat=(ESampleFormat)(resamplerfmt|SMP_FLAG_STEREO);
