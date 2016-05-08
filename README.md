@@ -42,12 +42,12 @@ They can be used via bml library or in all gstreamer app via bml+gst-buzztrax
 You can install this module locally too. Use following option for
 ./autogen.sh or ./configure
 
-    --prefix=$HOME/buzztard/
+    --prefix=$HOME/buzztrax/
 
 Add the path to the BML_PATH env var:
 
-    export BML_PATH=$HOME/buzztard/lib/Gear:$HOME/buzztard/lib/Gear/Effects:\
-      $HOME/buzztard/lib/Gear/Generators
+    export BML_PATH=$HOME/buzztrax/lib/Gear:$HOME/buzztrax/lib/Gear/Effects:\
+      $HOME/buzztrax/lib/Gear/Generators
 
 The native machines will be installed to $prefix/lib/Gear.
 
