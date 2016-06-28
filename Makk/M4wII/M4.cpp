@@ -2363,6 +2363,9 @@ inline float CTrack::Osc()
         int B1, B2;
 		int index=0, index2, index3, index4;
 
+        o = 0;
+        o2 = 0;
+
         if( pmi->LFO_Mix || UEGMixAmt != 0) { // LFO-MIX
                 B2 = pmi->Bal2;
 				if(pmi->LFO_Mix) {
