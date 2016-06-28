@@ -2258,6 +2258,7 @@ void CTrack::NoteOn()
 			LevelShift3 = 0;
 
 			while(Frequency*0.5*((float)(2048>>LevelShift3)/pmi->pMasterInfo->SamplesPerSec) > 1.0)
+			{
 				LevelShift3++;
 
 				if(LevelShift3 > 10)
@@ -2265,6 +2266,7 @@ void CTrack::NoteOn()
 
 				if(LevelShift3 < 0)
 					LevelShift3 = 0;
+			}
 		}
 		else 
 			LevelShift3 = 0;
@@ -2363,7 +2365,7 @@ inline float CTrack::Osc()
 
         if( pmi->LFO_Mix || UEGMixAmt != 0) { // LFO-MIX
                 B2 = pmi->Bal2;
-				if(pmi->LFO_Mix)
+				if(pmi->LFO_Mix) {
 					B2 += ((pmi->pwavetabLFO2[((unsigned)PhLFO2)>>21]*LFO2AmountMix)>>15);
 
 					B2 += UEGMixAmt;
@@ -2599,6 +2601,7 @@ inline float CTrack::Osc()
 						}
 
                 }
+        }
 
         // PhaseDependentMixing
 
@@ -2632,8 +2635,9 @@ inline float CTrack::Osc()
                 o ^= o2;
                 break;
         case 8: 
-             if(o < o2)
+             if(o < o2) {
                 o ^= ((o2 + o)*o) >> 15;
+             }
                 break;
         case 9: // AM		// FIXME: Use F2i
                 o = (int) ((float)o * (float)o2/16384.0f);
@@ -2952,8 +2956,9 @@ inline float CTrack::Filter( float x)
 				r = pmi->Resonance + UEGReso;
 	
         }
-        else
+        else {
 	        r = pmi->Resonance;
+	    }
 
 		if( r < 0)
 				r = 0;
@@ -3307,8 +3312,9 @@ inline void CTrack::NewPhases()
                                 if( center2 > 1)
                                         center2 = 1;
                 }
-                else  // No LFO
+                else { // No LFO
 					center2 = pmi->Center2;
+				}
 
 					PhScale2A = 0.5/center2;
 		            PhScale2B = 0.5/(1-center2);
@@ -3335,8 +3341,9 @@ inline void CTrack::NewPhases()
 
         if( Phase2 < c2)
                 Ph2 = f2i(Phase2*PhScale2A);
-        else
+        else {
                 Ph2 = f2i((Phase2 - c2)*PhScale2B + 0x4000000);
+        }
 
 		Ph2 = (Ph2 + pmi->PhaseDiff2 + UEGPhase);
 
@@ -3873,9 +3880,10 @@ void mi::MidiNote(int const channel, int const value, int const velocity)
 {
 	int v2;
 
-	if(aval.MIDIChannel != 0)
+	if(aval.MIDIChannel != 0) {
 		if(channel != aval.MIDIChannel-1)
 			return;
+	}
 
 		v2 = value + aval.MIDITranspose-24;
 
