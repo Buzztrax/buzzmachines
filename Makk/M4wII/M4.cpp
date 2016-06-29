@@ -2257,8 +2257,7 @@ void CTrack::NoteOn()
 		{
 			LevelShift3 = 0;
 
-			while(Frequency*0.5*((float)(2048>>LevelShift3)/pmi->pMasterInfo->SamplesPerSec) > 1.0)
-			{
+			while(Frequency*0.5*((float)(2048>>LevelShift3)/pmi->pMasterInfo->SamplesPerSec) > 1.0) {
 				LevelShift3++;
 
 				if(LevelShift3 > 10)
@@ -2359,12 +2358,9 @@ void CTrack::Tick( tvals const &tv)
 
 inline float CTrack::Osc()
 {
-        int o, o2, interp1, interp2, interp3, interp4;
+        int o = 0, o2 = 0, interp1, interp2, interp3, interp4;
         int B1, B2;
 		int index=0, index2, index3, index4;
-
-        o = 0;
-        o2 = 0;
 
         if( pmi->LFO_Mix || UEGMixAmt != 0) { // LFO-MIX
                 B2 = pmi->Bal2;
