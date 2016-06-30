@@ -136,7 +136,7 @@ struct CCircBuffer {
 
 	void AddData(float *s, int ns) {		// New contents for the buffer
 	//	assert(ns <= iLength);
-		int	c = min(ns,iLength - iPos);	ns -= c;
+		int	c = __min(ns,iLength - iPos);	ns -= c;
 		float *b = pBuffer + iPos; iPos += c;
 		while(c--) *b++ = *s++;
 		if(ns > 0) {

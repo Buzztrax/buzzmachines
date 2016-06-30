@@ -692,9 +692,9 @@ static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
       LVal=0.0;
       trk->dxSin=dxSin, trk->dxCos=dxCos;
     }
-    int max=min(i+trk->LeftOver,c);
+    int max=__min(i+trk->LeftOver,c);
     if (trk->SamplesToGo>0)
-      max=min(max,i+trk->SamplesToGo-1);
+      max=__min(max,i+trk->SamplesToGo-1);
     if (Amp>0.00001f && Vol>0)
     {
       amphigh = true;
@@ -731,7 +731,7 @@ static bool DoWork(float *pin, float *pout, mi *pmi, int c, CTrack *trk)
       if (fabs(AClick)<0.0001f) AClick=0.0001f;
       if (OldAmp>0.1f && CAmp>0.001f)
       {
-        int max2=i+min(max-i, 1024-Age);
+        int max2=i+__min(max-i, 1024-Age);
         float LVal2=0.f;
         for (int j=i; j<max2; j++)
         {
