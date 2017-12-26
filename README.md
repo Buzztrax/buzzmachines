@@ -20,7 +20,7 @@ We are running continuous integration on travis-ci
 
 and app-veyor:
 
-[https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true](https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true)
+[![Build Status](https://ci.appveyor.com/api/projects/status/32r7s2skrgm9ubva?svg=true)](https://ci.appveyor.com/project/ensonic/buzzmachines)
 
 ## building on windows
 Build with nmake in "VS x86 Native Tools Command Prompt" or "VS x64 Cross 
