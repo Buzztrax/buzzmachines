@@ -1,0 +1,13 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+environment:
+  matrix:
+  - VCVARS: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars32.bat
+  - VCVARS: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Auxiliary\Build\vcvars64.bat
+build_script:
+- cmd: |-
+    call "%VCVARS%"
+    nmake -f makefile.nmake CONFIGURATION=Release PLATFORM=%PLATFORM% INSTALLDIR=bin all install
+    7z a buzzmachines_%PLATFORM%.zip .\bin\*
+artifacts:
+- path: buzzmachines*.zip
