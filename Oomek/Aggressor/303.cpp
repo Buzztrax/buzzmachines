@@ -1,12 +1,25 @@
-// lines marked as //o means - optimised for speed
-// lines marked as //u means - original equations
+/* 
+ * Copyright (C) 2001 Radoslaw Dutkiewicz <radicdotkey@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 3 of the License,
+ * or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <https://www.gnu.org/licenses>.
+ */
 
 // 1. no longer tied to 44.1k but...
 // 2. cuttof and some other sliders may be still fixed to 44.1k
 // 3. no reinitialisation when samplerate is changed during playing (checked once after loading)
 // 4. as far as i remember envelopes are not samplerate friendly, getting shorter when increasing the samplerate
 //
-// Have fun :)
 // Oomek
 
 
