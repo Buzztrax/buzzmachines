@@ -1,3 +1,20 @@
+/* 
+ * Copyright (C) 2003 Radoslaw Dutkiewicz <radicdotkey@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation; either version 3 of the License,
+ * or (at your option) any later version.
+ * 
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, see <https://www.gnu.org/licenses>.
+ */
+
 #include <math.h>
 #include <float.h>
 #include <assert.h>
@@ -551,7 +568,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 		inLoL = LoBandL.Filter(inL, SplitOne);
 		LoLevelL = inLoL + denormalBuf[denormalPos]; //Denormal eliminator;
 		LoLevelL = LoLimiterL.Decay(LoLevelL, DecayLo);
-		LoLevelL = LoLimiterL.Attack(LoLevelL, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		LoLevelL = LoLimiterL.Attack(LoLevelL, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 //		if (LoLevelL < 1.0f) LoLevelL = 1.0f;
 		LoLevelL = KneeValue(LoLevelL);
@@ -568,7 +585,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 		
 		MidLevelL = inMidL + denormalBuf[denormalPos]; //Denormal eliminator;;
 		MidLevelL = MidLimiterL.Decay(MidLevelL, DecayMid);
-		MidLevelL = MidLimiterL.Attack(MidLevelL, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		MidLevelL = MidLimiterL.Attack(MidLevelL, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 //		if (MidLevelL < 1.0f) MidLevelL = 1.0f;
 		MidLevelL = KneeValue(MidLevelL);
@@ -582,7 +599,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 
 		HiLevelL = inHiL + denormalBuf[denormalPos]; //Denormal eliminator;;
 		HiLevelL = HiLimiterL.Decay(HiLevelL, DecayHi);
-		HiLevelL = HiLimiterL.Attack(HiLevelL, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		HiLevelL = HiLimiterL.Attack(HiLevelL, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 //		if (HiLevelL < 1.0f) HiLevelL = 1.0f;
 		HiLevelL = KneeValue(HiLevelL);
@@ -608,8 +625,8 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 
 
 		PostLevelL = *psamples + denormalBuf[denormalPos]; //Denormal eliminator;
-		PostLevelL = PostLimiterL.Decay(PostLevelL, 0.00011f); //400 ms
-		PostLevelL = PostLimiterL.Attack(PostLevelL, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		PostLevelL = PostLimiterL.Decay(PostLevelL, 0.00011f); //400 ms at 44100 - needs to be tied to samplerate
+		PostLevelL = PostLimiterL.Attack(PostLevelL, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 		if (PostLevelL < 1.0f) PostLevelL = 1.0f;
 		PostLevelL = 1.0f / PostLevelL; // BQP PostLevelL = 29204.0f / PostLevelL;
@@ -644,7 +661,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 		
 		LoLevelR = inLoR + denormalBuf[denormalPos]; //Denormal eliminator;
 		LoLevelR = LoLimiterR.Decay(LoLevelR, DecayLo);
-		LoLevelR = LoLimiterR.Attack(LoLevelR, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		LoLevelR = LoLimiterR.Attack(LoLevelR, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 		LoLevelR = KneeValue(LoLevelR);
 		LoLevelR = (RatioLo) / LoLevelR;
@@ -659,7 +676,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 		
 		MidLevelR = inMidR + denormalBuf[denormalPos]; //Denormal eliminator;
 		MidLevelR = MidLimiterR.Decay(MidLevelR, DecayMid);
-		MidLevelR = MidLimiterR.Attack(MidLevelR, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		MidLevelR = MidLimiterR.Attack(MidLevelR, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 		MidLevelR = KneeValue(MidLevelR);
 		MidLevelR = (RatioMid) / MidLevelR;
@@ -672,7 +689,7 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 
 		HiLevelR = inHiR  + denormalBuf[denormalPos]; //Denormal eliminator;
 		HiLevelR = HiLimiterR.Decay(HiLevelR, DecayHi);
-		HiLevelR = HiLimiterR.Attack(HiLevelR, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		HiLevelR = HiLimiterR.Attack(HiLevelR, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 		HiLevelR = KneeValue(HiLevelR);
 		HiLevelR = (RatioHi) / HiLevelR;
@@ -696,8 +713,8 @@ bool mi::MDKWorkStereo(float *psamples, int numsamples, int const mode)
 
 
 		PostLevelR = *psamples + denormalBuf[denormalPos]; //Denormal eliminator;
-		PostLevelR = PostLimiterR.Decay(PostLevelR, 0.00011f); //400 ms
-		PostLevelR = PostLimiterR.Attack(PostLevelR, 0.0443459f); //1 ms  przy 44100 - poprawiæ
+		PostLevelR = PostLimiterR.Decay(PostLevelR, 0.00011f); //400 ms at 44100 - needs to be tied to samplerate
+		PostLevelR = PostLimiterR.Attack(PostLevelR, 0.0443459f); //1 ms at 44100 - needs to be tied to samplerate
 
 
 		if (PostLevelR < 1.0f) PostLevelR = 1.0f;
@@ -727,7 +744,7 @@ void mi::Command(int const i)
 	switch(i)
 	{
 	case 0:
-		pCB->MessageBox("\n\n  .: Oomek's Masterizer :. \n        a 3 band limiter\n              v1.0\n\n            ©2002\n    Radoslaw Dutkiewicz    \n        oomek@go2.pl         \n\n");
+		pCB->MessageBox("\n\n  .: Oomek's Masterizer :. \n        a 3 band limiter\n              v1.0\n\n            Â©2002\n    Radoslaw Dutkiewicz    \n\n");
 		break;
 	default:
 		break;
