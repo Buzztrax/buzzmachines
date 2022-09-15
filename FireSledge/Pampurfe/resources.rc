@@ -1,0 +1,3 @@
+SKIN                    BITMAP  DISCARDABLE     "skin.bmp"
+textcolor               COLOR   DISCARDABLE     "textcolor.bin"
+
